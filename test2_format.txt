@@ -1,0 +1,81 @@
+[B|None] SPEAKING MOCK TEST 02
+[B|None] PART 01: SOCIAL INTERACTION
+[B|None] Let's talk about childhood hobbies
+[B|None] 1. What was your favorite childhood hobby?
+[B|None] B1 LEVEL
+[_|None] My favorite childhood hobby was  | [B|00B0F0] reading comics | [_|None] . I often  | [B|00B0F0] read comic books after school | [_|None] . It was  | [B|00B0F0] fun | [_|None]   | [_|None] and  | [B|00B0F0] relaxing | [_|None] .
+[B|None] B2 LEVEL
+[_|None] My favorite childhood hobby was  | [B|00B0F0] reading comics | [_|None] . I  | [B|00B0F0] enjoyed following different | [_|None]   | [B|00B0F0] characters and exciting storylines | [_|None] . It was an entertaining way to  | [B|00B0F0] spend my free time | [_|None]   | [_|None] and helped  | [B|00B0F0] develop my imagination | [_|None] .
+[B|None] 2. Why did you like it?
+[B|None] B1 LEVEL
+[_|None] I liked it because it was  | [B|00B0F0] interesting | [_|None]   | [_|None] and  | [B|00B0F0] enjoyable | [_|None] . The stories were  | [B|00B0F0] exciting | [_|None] , and I always  | [B|00B0F0] wanted to read more | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I liked it because comics  | [B|00B0F0] combined interesting stories with colorful illustrations | [_|None] . They allowed me to  | [B|00B0F0] explore different worlds | [_|None]   | [B|00B0F0] and characters | [_|None]   | [_|None] while helping me  | [B|00B0F0] relax after | [_|None]   | [B|00B0F0] studying | [_|None] . Reading them always  | [B|00B0F0] brought me enjoyment | [_|None] .
+[B|None] 3. Do you still like it now that you are older? Why/Why not?
+[B|None] B1 LEVEL
+[_|None] Yes, I do. I  | [B|00B0F0] still | [_|None]   | [B|00B0F0] read comics in my free time | [_|None] . They help me  | [B|00B0F0] relax after a busy day | [_|None] . I also  | [B|00B0F0] enjoy reading interesting stories and looking at the pictures | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Yes, I  | [B|00B0F0] still enjoy reading comics | [_|None] . Whenever I have some free time, I like reading them because they help me  | [B|00B0F0] unwind | [_|None]   | [_|None] and  | [B|00B0F0] escape from daily pressure | [_|None] . In addition, some comics  | [B|00B0F0] contain meaningful stories and life lessons | [_|None] .
+[B|None] Let's talk about free time activities
+[B|None] 1. How do you spend your free time?
+[B|None] B1 LEVEL
+[_|None] I usually  | [B|00B0F0] read books | [_|None]   | [_|None] and  | [B|00B0F0] listen to music | [_|None]  in my free time. These activities help me  | [B|00B0F0] relax | [_|None]   | [B|00B0F0] after studying | [_|None] . They also  | [B|00B0F0] improve my mood | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I often  | [B|00B0F0] read books | [_|None] ,  | [B|00B0F0] listen to music | [_|None] , or  | [B|00B0F0] go for a walk | [_|None]   | [_|None] when I have free time. These activities help me  | [B|00B0F0] recharge my batteries | [_|None]   | [_|None] and  | [B|00B0F0] maintain a good balance in life | [_|None] .
+[B|None] 2. Do you like reading books?
+[B|None] B1 LEVEL
+[B|00B0F0] Yes | [_|None] , I do. I usually  | [B|00B0F0] read books before going to bed | [_|None] . It helps me  | [B|00B0F0] relax | [_|None]   | [_|None] and  | [B|00B0F0] learn new things | [_|None] . I think reading is  | [B|00B0F0] a useful habit | [_|None] .
+[B|None] B2 LEVEL
+[B|00B0F0] Yes | [_|None] , I enjoy reading books very much. Through reading, I can  | [B|00B0F0] broaden my knowledge | [_|None]   | [_|None] and  | [B|00B0F0] develop better learning habits | [_|None] . It is also a productive way to  | [B|00B0F0] spend my free time | [_|None]   | [_|None] and  | [B|00B0F0] improve my understanding of different topics | [_|None] .
+[B|None] 3. What kinds of books do you like to read?
+[B|None] B1 LEVEL
+[_|None] I'm a big fan of  | [B|00B0F0] novels  | [_|None] and  | [B|00B0F0] comics | [_|None] . They are  | [B|00B0F0] interesting  | [_|None] and  | [B|00B0F0] entertaining | [_|None] . I  | [_|None] really  | [B|00B0F0] enjoy reading them in my free time | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I'm a big fan of novels and comics. Novels often c | [B|00B0F0] ontain meaningful stories and memorable characters | [_|None] , while comics are  | [B|00B0F0] entertaining | [_|None]   | [_|None] and  | [B|00B0F0] visually appealing | [_|None] . Reading both allows me to  | [B|00B0F0] relax | [_|None]   | [_|None] and  | [B|00B0F0] explore different perspectives | [_|None] .
+[B|None] PART 02: SOLUTION DISCUSSION
+[B|None] SITUATION
+[_|None] Your friend feels very stressed with her studies and wants to do something to relax. Which one would you recommend her: taking a sport, learning new soft skills, or doing volunteer work? 
+[B|None] B1 LEVEL
+[_|None] Well, if I had to  | [B|EE0000] suggest something for my friend to help her relax | [_|None] , I would  | [B|EE0000] recommend | [_|None]   | [B|EE0000] taking a sport | [_|None] .
+[_|None] First of all,  | [B|00B0F0] it | [B|00B0F0] ’ | [B|00B0F0] s an entertaining activity | [_|None]   | [_|None] because she can  | [B|00B0F0] have fun | [_|None]   | [_|None] and  | [B|00B0F0] enjoy her free | [_|None]   | [B|00B0F0] time | [_|None] . It | [_|None] ’ | [_|None] s also a good way to  | [B|00B0F0] reduce stress | [_|None] . So, she can  | [B|00B0F0] feel more relaxed | [_|None] .
+[_|None] Secondly,  | [B|00B0F0] it | [B|00B0F0] ’ | [B|00B0F0] s beneficial for health | [_|None]   | [_|None] because it allows her to  | [B|00B0F0] stay active | [_|None] . Besides, it helps her  | [B|00B0F0] improve both physical and mental health | [_|None] . So, she can  | [B|00B0F0] maintain a healthy lifestyle | [_|None] .
+[_|None] I wouldn’t recommend  | [B|70AD47] learning new soft skills | [_|None]   | [_|None] because  | [B|70AD47] it may require a lot of time and | [_|None]   | [B|70AD47] effort | [_|None] . As for  | [B|7030A0] doing volunteer work | [_|None] , | [_|None]  it’s less suitable because | [_|None]   | [B|7030A0] it | [_|None]   | [B|7030A0] may be tiring after a long day of studying | [_|None] .
+[_|None] In short, I believe  | [B|EE0000] taking a sport | [_|None]   | [_|None] is the best choice for this situation.
+[B|None] B2 LEVEL
+[_|None] Well, if I had to  | [B|EE0000] suggest something for my friend to help her relax | [_|None] , I would  | [B|EE0000] recommend | [_|None]   | [B|EE0000] taking a sport | [_|None] .
+[_|None] First of all,  | [B|00B0F0] it’s beneficial for her health | [_|None]  because it helps her  | [B|00B0F0] stay physically active | [_|None] . In addition, it can  | [B|00B0F0] reduce stress and negative emotions caused by studying | [_|None] . So, she can  | [B|00B0F0] improve both physical and mental health | [_|None] .
+[_|None] Secondly,  | [B|00B0F0] it’s an entertaining activity | [_|None]   | [_|None] because it allows her to  | [B|00B0F0] enjoy her free time | [_|None] . Moreover, it | [_|None] ’ | [_|None] s a great way to  | [B|00B0F0] improve her mood | [_|None]  and  | [B|00B0F0] increase energy levels | [_|None] . As a result, she can  | [B|00B0F0] feel happier and less stressed | [_|None] .
+[_|None] I wouldn’t recommend  | [B|70AD47] learning new soft skills | [_|None]   | [_|None] because  | [B|70AD47] it may require concentration and make her feel more tired | [_|None] . As for  | [B|7030A0] doing volunteer work | [_|None] , it’s less suitable because  | [B|7030A0] it | [_|None]   | [B|7030A0] may take a lot of time and affect her study schedule | [_|None] .
+[_|None] In short, I believe  | [B|EE0000] taking a sport | [_|None]   | [_|None] is the best choice for this situation.
+[B|None] PART 03: TOPIC DEVELOPMENT
+[B|None] TOPIC
+[B|None] There are some benefits of living alone for students. | [_|None]  
+[B|None] NOTE: Your own idea  | [B|None] → | [B|None]  Students can learn how to manage their time wisely.
+[B|None] B1 LEVEL
+[_|None] There are  | [_|None] some | [_|None]   | [B|EE0000] benefits | [_|None]   | [_|None] of  | [B|EE0000] living alone for students | [_|None] .
+[_|None] One major advantage is that  | [B|00B0F0] students can become more independent | [_|None] .  | [_|None] This is because t | [_|None] hey need to  | [B|00B0F0] take care of themselves  | [_|None] and  | [B|00B0F0] make their own decisions | [_|None] . As a result, they can  | [B|00B0F0] develop important life skills | [_|None] .
+[_|None] Another positive aspect is that  | [B|00B0F0] students can enjoy more freedom | [_|None] .  | [_|None] This means that t | [_|None] hey can  | [B|00B0F0] manage their time and daily activities by themselves | [_|None] . Therefore, they can  | [B|00B0F0] live the way they want | [_|None] .
+[_|None] One more beneficial effect is that  | [B|00B0F0] living alone can be peaceful | [_|None] .  | [_|None] In fac, s | [_|None] tudents can  | [B|00B0F0] study and relax without distractions from others | [_|None] . This helps them  | [B|00B0F0] focus | [B|00B0F0]  better | [_|None] .
+[_|None] In short,  | [B|EE0000] living alone for students | [_|None]   | [_|None] has several clear  | [B|EE0000] benefits | [_|None] , as mentioned above.
+[B|None] B2 LEVEL
+[_|None] There are  | [_|None] some | [_|None]   | [B|EE0000] benefits | [_|None]   | [_|None] of  | [B|EE0000] living alone for students | [_|None] .
+[_|None] One major advantage is that  | [B|00B0F0] living alone helps students become more independent | [_|None] . | [_|None]  This is because t | [_|None] hey need to  | [B|00B0F0] manage their daily activities | [_|None]   | [_|None] and  | [B|00B0F0] make decisions on their own | [_|None] . | [_|None]   | [_|None] As a result, they can  | [B|00B0F0] develop important life skills | [_|None] .
+[_|None] Another positive aspect is that  | [B|00B0F0] living alone gives students more freedom | [_|None] . | [_|None]  This means that t | [_|None] hey can  | [B|00B0F0] organize their schedules | [_|None]   | [_|None] and  | [B|00B0F0] choose their own lifestyle | [_|None] . | [_|None]   | [_|None] This allows them to  | [B|00B0F0] spend their | [_|None]   | [B|00B0F0] time in a way  | [B|00B0F0] they want | [_|None] .
+[_|None] One more beneficial effect is that  | [B|00B0F0] living alone provides a peaceful environment | [_|None] . | [_|None]  In fact, s | [_|None] tudents can  | [B|00B0F0] study and relax without being disturbed by others | [_|None] . | [_|None]   | [_|None] Therefore, they may be able to  | [B|00B0F0] focus | [B|00B0F0]  more effectively on their studies | [_|None] .
+[_|None] In short,  | [B|EE0000] living alone for students | [_|None]   | [_|None] has several clear  | [B|EE0000] benefits | [_|None] , as mentioned above.
+[B|None] FOLLOW-UP QUESTIONS
+[B|None] 1. Is living alone popular among students? Why/Why not?
+[B|None] B1 LEVEL
+[_|None] Yes, I think it is becoming more popular. Many students  | [B|00B0F0] want more independence and freedom | [_|None] . As a result, they  | [B|00B0F0] choose to live alone | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Yes, I think living alone is  | [B|00B0F0] becoming more popular among students | [_|None] . | [_|None]   | [_|None] Many students  | [B|00B0F0] move to different cities for their studies | [_|None] . | [_|None]   | [_|None] As a result, they often  | [B|00B0F0] choose to live independently | [_|None] .
+[B|None] 2. What are the disadvantages of living alone?
+[B|None] B1 LEVEL
+[_|None] Living alone can be  | [B|00B0F0] expensive | [_|None] . Students may also  | [B|00B0F0] feel lonely sometimes | [_|None] . Therefore, it  | [B|00B0F0] may not be suitable for everyone | [_|None] .
+[B|None] B2 LEVEL
+[_|None] One disadvantage is that students may  | [B|00B0F0] feel lonely | [_|None] . | [_|None]   | [_|None] They also have to  | [B|00B0F0] handle al | [_|None] l  | [B|00B0F0] household tasks by themselves | [_|None] . | [_|None]   | [_|None] In addition, living alone can be  | [B|00B0F0] quite expensive | [_|None] .
+[B|None] 3. Do students now live alone more than their parents' generation did? Why/Why not?
+[B|None] B1 LEVEL
+[_|None] Yes, I think so. Nowadays,  | [B|00B0F0] more students study far from home | [_|None] . Therefore, many of them  | [B|00B0F0] choose to live alone near their schools | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Yes, I think  | [B|00B0F0] more students live alone nowadays | [_|None] . | [_|None]   | [_|None] There are  | [B|00B0F0] more educational opportunities in different cities than in the past | [_|None] . | [_|None]   | [_|None] Therefore, many students need to  | [B|00B0F0] move | [_|None]   | [B|00B0F0] away from their families to study | [_|None] .

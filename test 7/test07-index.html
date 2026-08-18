@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<script>
+        // Block flash of protected content
+        (function() {
+            const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+            const testId = pathMatch ? parseInt(pathMatch[1]) : 1;
+            const TEST_PASSWORDS = {};
+            if (TEST_PASSWORDS[testId] && sessionStorage.getItem('unlocked_test_' + testId) !== 'true') {
+                document.documentElement.style.display = 'none';
+            }
+        })();
+    </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPEAKING MOCK TEST 07 - ENGLISHWITHMISSNGUYET</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome for Premium Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="styles.css?v=1782327221" rel="stylesheet"/>
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<nav class="test-sidebar">
+<div class="sidebar-header">
+<i class="fa-solid fa-list-check"></i> <span>VSTEP MOCK TESTS</span>
+</div>
+<ul class="test-list">
+<li class="test-item">
+<a href="../index.html">
+<span class="test-icon"><i class="fa-solid fa-house"></i></span>
+<span class="test-name">TRANG CHỦ</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="1" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 01</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="2" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 02</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="3" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 03</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="4" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 04</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="5" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 05</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="6" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 06</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="7" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 07</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="8" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 08</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="9" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 09</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="10" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 10</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="11" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 11</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="12" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 12</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="13" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 13</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="14" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 14</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="15" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 15</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="16" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 16</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="17" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 17</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="18" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 18</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="19" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 19</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="20" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 20</span>
+</a>
+</li>
+</ul>
+<a class="sidebar-brand-bottom" href="https://www.facebook.com/nguyetpham28" target="_blank">
+<span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+<span class="brand-text">ENGLISH WITH MISS NGUYET</span>
+</a>
+</nav>
+<!-- Background Chime/Sound Permission Modal (if required, or handled on welcome screen) -->
+<!-- App Wrapper -->
+<div class="app-container">
+<!-- Header Brand -->
+<header class="app-header">
+<div class="header-title-wrapper"></div>
+</header>
+<!-- Progress Timeline Tracker -->
+<div class="progress-timeline">
+<div class="timeline-step active" id="step-welcome">
+<div class="step-num">0</div>
+<div class="step-label">CHUẨN BỊ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part1">
+<div class="step-num">1</div>
+<div class="step-label">PART 01</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part2">
+<div class="step-num">2</div>
+<div class="step-label">PART 02</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part3">
+<div class="step-num">3</div>
+<div class="step-label">PART 03</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-review">
+<div class="step-num">4</div>
+<div class="step-label">KẾT QUẢ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-solution">
+<div class="step-num">5</div>
+<div class="step-label">BÀI GIẢI</div>
+</div>
+</div>
+<!-- Main Workspace -->
+<main class="app-main">
+<!-- SCREEN 1: WELCOME SCREEN -->
+<section class="screen-view active" id="view-welcome">
+<div class="glass-card welcome-card">
+<div class="welcome-header-center">
+<div class="welcome-cat-gif">
+<img alt="Typing Cat" class="typing-cat-img" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"/>
+</div>
+<h1>VSTEP Speaking Practice</h1>
+<div class="mock-test-pill">SPEAKING MOCK TEST 07</div>
+<p class="welcome-desc">Chào mừng bạn đến với hệ thống thi thử VSTEP SPEAKING MOCK TEST tương tác. Giao diện và cách tính giờ được lập trình mô phỏng chính xác phòng thi máy thực tế.</p>
+<p class="welcome-warning" style="margin-top: 12px; color: var(--color-red); font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>LƯU Ý:</strong> Không sử dụng bất kì tài liệu hay công cụ trong lúc thi thử. Mọi sự thảo luận đều không được cho phép trong phòng thi.</p>
+</div>
+<div class="test-outline">
+<h3>Cấu trúc bài thi</h3>
+<div class="outline-grid">
+<div class="outline-item">
+<span class="part-badge">PART 01</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Social Interaction</span> [Giao tiếp xã hội]</h4>
+<p>Thí sinh trả lời 02 chủ đề bất kì, mỗi chủ đề có 03 câu hỏi. Không có thời gian chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 3 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 02</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Solution Discussion</span> [Thảo luận giải pháp]</h4>
+<p>Thí sinh thảo luận phương án tốt nhất cho một tình huống giả định bất kì với 03 sự lựa chọn. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 4 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 03</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Topic Development</span> [Phát triển chủ đề]</h4>
+<p>Thí sinh phát triển một chủ đề bất kì dựa vào sơ đồ gợi ý và 03 câu hỏi mở rộng. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 5 phút</span>
+</div>
+</div>
+</div>
+<!-- Student Info Input -->
+<div class="student-form">
+<div class="input-group">
+<label for="student-name"><i class="fa-solid fa-user-pen"></i> Họ và tên học viên:</label>
+<input autocomplete="off" id="student-name" placeholder="Nhập họ tên của bạn..." type="text"/>
+</div>
+</div>
+<!-- Action and Sound Check -->
+<div class="audio-check-section">
+<div class="mic-status-msg" id="mic-status">
+<i class="fa-solid fa-circle-info"></i> Hãy cấp quyền truy cập Microphone để hệ thống ghi âm bài làm của bạn.
+                        </div>
+<button class="btn btn-primary" id="btn-start-test">
+<span>BẮT ĐẦU BÀI THI</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 2: PART 1 SCREEN -->
+<section class="screen-view" id="view-part1">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 01: <span style="color: var(--color-red);">SOCIAL INTERACTION</span></div>
+<div class="part1-topics">
+<!-- Topic 1 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-phone"></i> <span>Let's talk about <strong>phone calls</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">1</span> Who do you usually call, and how often?</li>
+<li><span class="q-num">2</span> What do you usually talk about when you make phone calls?</li>
+<li><span class="q-num">3</span> Do you prefer talking on the phone or sending messages? Why?</li>
+</ul>
+</div>
+<!-- Topic 2 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-shirt"></i> <span>Let's talk about <strong>clothes</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">4</span> How often do you go shopping for clothes?</li>
+<li><span class="q-num">5</span> On what occasions do you usually buy new clothes?</li>
+<li><span class="q-num">6</span> What types of clothes do you usually buy?</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Mic, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator recording" id="p1-status">
+<span class="status-dot"></span>
+<span class="status-text">Hệ thống đang ghi âm bài nói của bạn</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p1-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p1-time-val">03:00</span>
+<span class="time-label">TỔNG THỜI GIAN</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p1-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 3: PART 2 SCREEN -->
+<section class="screen-view" id="view-part2">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 02: <span style="color: var(--color-red);">SOLUTION DISCUSSION</span></div>
+<!-- Situation Card -->
+<div class="situation-box">
+                            SITUATION: You want to invite your friend to go to the cinema with you. There are three types of films you can choose from: <strong style="color: #7030a0;">an action film</strong>, <strong style="color: #70ad47;">a romantic film</strong>, and <strong style="color: #ee0000;">a comedy film</strong>. Which one would you choose, and why?
+                        </div>
+</div>
+<!-- Right: Control Panel (Timer, Prep state, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p2-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p2-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p2-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p2-time-val">01:00</span>
+<span class="time-label" id="p2-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p2-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p2-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 4: PART 3 SCREEN -->
+<section class="screen-view" id="view-part3">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 03: <span style="color: var(--color-red);">TOPIC DEVELOPMENT</span></div>
+<div class="topic-header">
+<h3 class="topic-heading-red">Topic:</h3>
+<p class="topic-desc">There are several negative effects of online communication.</p>
+</div>
+<!-- CSS Grid Mindmap -->
+<div class="mindmap-wrapper">
+<div class="mindmap-container">
+<!-- Center Node -->
+<div class="mindmap-node node-center">
+<span>Online communication</span>
+</div>
+<!-- Connectors -->
+<div class="mindmap-line line-top"></div>
+<div class="mindmap-line line-left"></div>
+<div class="mindmap-line line-bottom"></div>
+<div class="mindmap-line line-right"></div>
+<!-- Top Branch -->
+<div class="mindmap-node node-branch branch-top">
+<span>reduce face-to-face interaction</span>
+</div>
+<!-- Left Branch -->
+<div class="mindmap-node node-branch branch-left">
+<span>lead to conflict</span>
+</div>
+<!-- Bottom Branch -->
+<div class="mindmap-node node-branch branch-bottom">
+<span>get distracted easily</span>
+</div>
+<!-- Right Branch -->
+<div class="mindmap-node node-branch branch-right">
+<span>[your own idea]</span>
+</div>
+</div>
+</div>
+<!-- Follow-up Questions Box -->
+<div class="follow-up-box">
+<h4><i class="fa-solid fa-circle-question"></i> Follow-up questions:</h4>
+<ul class="question-list">
+<li><span class="q-num">1</span> What kind of modern communication technology do you use most often?</li>
+<li><span class="q-num">2</span> Do you think technology will completely replace face-to-face communication in the future?</li>
+<li><span class="q-num">3</span> How can people avoid problems caused by online communication?</li>
+</ul>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Scratchpad, Finish button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p3-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p3-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p3-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p3-time-val">01:00</span>
+<span class="time-label" id="p3-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p3-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-success" id="btn-p3-next">
+<span>Hoàn thành bài thi</span> <i class="fa-solid fa-circle-check"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 5: REVIEW SCREEN -->
+<section class="screen-view" id="view-review">
+<div class="glass-card review-card">
+<div class="success-banner">
+<div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+<h2>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI THI NÓI!</h2>
+<p style="margin-bottom: 8px;">Bạn có 10s để khóc trước khi xem phần BÀI GIẢI.</p>
+<p id="review-student-info" style="font-size: 13px; opacity: 0.7; margin-top: 4px;"></p>
+</div>
+<!-- Summary Grid: Audio Files & Notes -->
+<div class="review-grid">
+<!-- Left Panel: Playback recordings -->
+<div class="review-recordings-panel">
+<h3><i class="fa-solid fa-microphone-lines"></i> Nghe lại bài nói của bạn</h3>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 01</span>
+<span class="rec-title">Social Interaction</span>
+</div>
+<div class="audio-player-wrapper" id="p1-player-container">
+<!-- Dynamic custom Audio Player or native audio element styled -->
+<audio controls="" id="p1-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part1.webm" id="p1-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 02</span>
+<span class="rec-title">Solution Discussion</span>
+</div>
+<div class="audio-player-wrapper" id="p2-player-container">
+<audio controls="" id="p2-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part2.webm" id="p2-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 03</span>
+<span class="rec-title">Topic Development</span>
+</div>
+<div class="audio-player-wrapper" id="p3-player-container">
+<audio controls="" id="p3-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part3.webm" id="p3-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Right Panel: Feedback -->
+<div class="review-notes-panel">
+<h3><i class="fa-solid fa-comment-medical"></i> ĐÁNH GIÁ CHUNG</h3>
+<div class="teacher-feedback-box">
+<label for="teacher-feedback">Học viên tự đánh giá mức độ hoàn thành bài nói:</label>
+<textarea id="teacher-feedback" placeholder="Bạn đã hoàn thành tất cả nội dung bài thi hay chưa? Bạn có tự tin với bài nói của mình hay không?" style="min-height: 200px;"></textarea>
+</div>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="review-actions">
+<button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
+<i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
+                        </button>
+<button class="btn btn-secondary" id="btn-restart-test">
+<i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
+                        </button>
+</div>
+</div>
+</section>
+<!-- SCREEN 6: SOLUTION SCREEN -->
+<section class="screen-view" id="view-solution">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+<h2 style="color: var(--color-red); margin-bottom: 0;"><i class="fa-solid fa-book-open"></i> BÀI GIẢI CHI TIẾT</h2>
+<span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 07</span>
+</div>
+<div class="solution-tab-container">
+<div class="solution-tab-buttons">
+<button class="sol-tab-btn active" onclick="switchSolTab(1)">PART 01: SOCIAL INTERACTION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(2)">PART 02: SOLUTION DISCUSSION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(3)">PART 03: TOPIC DEVELOPMENT</button>
+</div>
+<!-- Panel Part 1 -->
+<div class="sol-tab-content active" id="sol-panel-1">
+<!-- Topic 1 -->
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-comments"></i> Topic 1: Let's talk about phone calls <span class="sol-translation">(Hãy nói về các cuộc điện thoại)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. Who do you usually call, and how often? <span class="sol-translation">(Bạn thường gọi cho ai, và mức độ thường xuyên thế nào?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I usually <strong style="color: #00b0f0;">call my family and close friends</strong>. I talk to them <strong style="color: #00b0f0;">several times a week</strong>. It helps us <strong style="color: #00b0f0;">stay in touch</strong> with each other.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường <strong style="color: #00b0f0;">gọi điện cho gia đình và bạn bè thân thiết</strong>. Tôi nói chuyện với họ <strong style="color: #00b0f0;">vài lần một tuần</strong>. Việc này giúp chúng tôi <strong style="color: #00b0f0;">giữ liên lạc</strong> với nhau.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I usually call my <strong style="color: #70ad47;">family members and a few close friends</strong>. I talk to them <strong style="color: #70ad47;">several times a week</strong> to catch up on our daily lives and share important news. This helps me <strong style="color: #70ad47;">maintain strong relationships</strong> with the people I care about.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường gọi cho các thành viên trong <strong style="color: #70ad47;">gia đình và một vài người bạn thân</strong>. Tôi nói chuyện với họ <strong style="color: #70ad47;">vài lần một tuần</strong> để cập nhật cuộc sống hàng ngày và chia sẻ những tin tức quan trọng. Điều này giúp tôi <strong style="color: #70ad47;">duy trì mối quan hệ bền chặt</strong> với những người tôi yêu thương.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. What do you usually talk about when you make phone calls? <span class="sol-translation">(Bạn thường nói chuyện về điều gì khi gọi điện?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            We usually talk about our <strong style="color: #00b0f0;">studies, work, and daily activities</strong>. Sometimes, we also discuss our <strong style="color: #00b0f0;">future plans</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Chúng tôi thường nói về <strong style="color: #00b0f0;">việc học hành, công việc và các hoạt động hàng ngày</strong>. Đôi khi chúng tôi cũng thảo luận về những <strong style="color: #00b0f0;">kế hoạch tương lai</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            We often talk about <strong style="color: #70ad47;">work, studies, family matters</strong>, and recent events in our lives. Sometimes, we also <strong style="color: #70ad47;">exchange advice or discuss future plans</strong>. These conversations help us <strong style="color: #70ad47;">understand and support each other</strong> better.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Chúng tôi thường trò chuyện về <strong style="color: #70ad47;">công việc, học tập, chuyện gia đình</strong> và những sự kiện gần đây trong cuộc sống. Đôi khi chúng tôi cũng trao đổi lời khuyên hoặc thảo luận về <strong style="color: #70ad47;">kế hoạch tương lai</strong>. Những cuộc trò chuyện này giúp chúng tôi <strong style="color: #70ad47;">hiểu và hỗ trợ nhau</strong> tốt hơn.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. Do you prefer talking on the phone or sending messages? Why? <span class="sol-translation">(Bạn thích nói chuyện điện thoại hay gửi tin nhắn hơn? Tại sao?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I prefer talking on the phone because it is <strong style="color: #00b0f0;">faster and more personal</strong>. I can <strong style="color: #00b0f0;">express my feelings more clearly</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thích nói chuyện qua điện thoại hơn vì nó <strong style="color: #00b0f0;">nhanh hơn và mang tính <strong style="color: #00b0f0;">cá nhân hơn</strong>. Tôi có thể <strong style="color: #00b0f0;">bày tỏ cảm xúc của mình rõ ràng hơn</strong>.</strong></div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I prefer talking on the phone because communication is <strong style="color: #70ad47;">more direct and interactive</strong>. I can hear the other person's voice and respond immediately, which helps <strong style="color: #70ad47;">avoid misunderstandings</strong>. Besides, it feels <strong style="color: #70ad47;">more personal</strong> than sending messages.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thích nói chuyện điện thoại hơn vì giao tiếp <strong style="color: #70ad47;">trực tiếp và tương tác tốt hơn</strong>. Tôi có thể nghe thấy giọng nói của người kia và phản hồi ngay lập tức, điều này giúp <strong style="color: #70ad47;">tránh hiểu lầm</strong>. Ngoài ra, nó mang lại cảm giác <strong style="color: #70ad47;">cá nhân hơn</strong> là gửi tin nhắn.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Topic 2 -->
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-shirt"></i> Topic 2: Let's talk about clothes <span class="sol-translation">(Hãy nói về quần áo)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. How often do you go shopping for clothes? <span class="sol-translation">(Bạn thường đi mua sắm quần áo với tần suất như thế nào?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I usually go shopping for clothes <strong style="color: #00b0f0;">every few months</strong>. I buy new clothes <strong style="color: #00b0f0;">when I need them</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường đi mua sắm quần áo <strong style="color: #00b0f0;">vài tháng một lần</strong>. Tôi mua quần áo mới <strong style="color: #00b0f0;">khi thấy cần thiết</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I normally go shopping for clothes <strong style="color: #70ad47;">every few months</strong> rather than very frequently. I usually buy new clothes <strong style="color: #70ad47;">when the seasons change</strong> or when I need something for a <strong style="color: #70ad47;">special occasion</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường đi mua sắm quần áo <strong style="color: #70ad47;">vài tháng một lần</strong> thay vì đi quá thường xuyên. Tôi thường mua quần áo mới <strong style="color: #70ad47;">khi giao mùa</strong> hoặc khi cần đồ cho một <strong style="color: #70ad47;">dịp đặc biệt</strong>.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. On what occasions do you usually buy new clothes? <span class="sol-translation">(Bạn thường mua quần áo mới vào những dịp nào?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I usually buy new clothes for <strong style="color: #00b0f0;">holidays, family events</strong>, or special celebrations. I also buy them when my old clothes <strong style="color: #00b0f0;">wear out</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường mua quần áo mới cho <strong style="color: #00b0f0;">các ngày lễ, sự kiện gia đình</strong> hoặc các dịp kỷ niệm đặc biệt. Tôi cũng mua chúng khi quần áo cũ đã <strong style="color: #00b0f0;">sờn rách</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I often buy new clothes for <strong style="color: #70ad47;">important occasions</strong> such as holidays, weddings, birthdays, or professional events. In addition, I sometimes purchase clothes when I want to <strong style="color: #70ad47;">refresh my wardrobe</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường mua quần áo mới cho các <strong style="color: #70ad47;">dịp quan trọng</strong> như ngày lễ, đám cưới, sinh nhật hoặc sự kiện công việc. Ngoài ra, thỉnh thoảng tôi cũng mua quần áo khi muốn <strong style="color: #70ad47;">làm mới tủ đồ của mình</strong>.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. What types of clothes do you usually buy? <span class="sol-translation">(Loại quần áo nào bạn thường mua?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I usually buy <strong style="color: #00b0f0;">casual clothes</strong> such as T-shirts, jeans, and jackets. They are <strong style="color: #00b0f0;">comfortable and practical</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường mua <strong style="color: #00b0f0;">quần áo thông thường</strong> như áo thun, quần jean và áo khoác. Chúng rất <strong style="color: #00b0f0;">thoải mái và thiết thực</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I mainly buy <strong style="color: #70ad47;">casual clothes</strong> because they are comfortable and suitable for everyday use. However, I also invest in <strong style="color: #70ad47;">formal outfits</strong> for work-related events or special occasions.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi chủ yếu mua <strong style="color: #70ad47;">quần áo mặc thường ngày</strong> vì chúng thoải mái và phù hợp để sử dụng hàng ngày. Tuy nhiên, tôi cũng đầu tư vào những bộ <strong style="color: #70ad47;">trang phục trang trọng</strong> cho các sự kiện liên quan đến công việc hoặc các <strong style="color: #70ad47;">dịp đặc biệt</strong>.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 2 -->
+<div class="sol-tab-content" id="sol-panel-2">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-circle-info"></i> SITUATION <span class="sol-translation">(tình huống)</span>
+</div>
+<div class="sol-situation-box">
+                                    You want to invite your friend to go to the cinema with you. There are three types of films you can choose from: <strong style="color: #7030a0;">an action film</strong>, <strong style="color: #70ad47;">a romantic film</strong>, and <strong style="color: #00b0f0;">a comedy film</strong>. Which one would you choose, and why?
+                                    <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-size: 13.5px;">(Bạn muốn mời bạn của mình đi xem phim cùng. Có ba thể loại phim bạn có thể chọn: phim hành động, phim tình cảm, và phim hài. Bạn sẽ chọn phim nào và tại sao?)</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-graduation-cap"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Well, if I had to <strong style="color: #ee0000;">choose a film to watch with my friend</strong>, I would <strong style="color: #ee0000;">go for a comedy film</strong>.<br/><br/>First of all, watching a comedy film is an interesting activity because it helps us <strong style="color: #00b0f0;">laugh and relax</strong>. Moreover, it is a good way to <strong style="color: #00b0f0;">reduce stress</strong> after a busy week. As a result, we can feel happier and more comfortable.<br/><br/>Secondly, watching a comedy film is a meaningful activity because it allows us to <strong style="color: #00b0f0;">spend quality time together</strong>. Besides, we can share funny moments and enjoy the experience together. Therefore, we can <strong style="color: #00b0f0;">become closer</strong>.<br/><br/>I wouldn’t choose a romantic film because it may <strong style="color: #70ad47;">not be interesting to everyone</strong>.<br/><br/>As for an action film, it is less suitable because some action scenes can be <strong style="color: #7030a0;">too intense or noisy</strong>.<br/><br/>In short, I believe a <strong style="color: #00b0f0;">comedy film</strong> is the best choice for this situation.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none; white-space: normal;">À, nếu tôi phải <strong style="color: #ee0000;">chọn một bộ phim để xem cùng bạn mình</strong>, tôi sẽ <strong style="color: #ee0000;">chọn một bộ phim hài</strong>.<br/><br/>Trước hết, xem <strong style="color: #00b0f0;">phim hài</strong> là một hoạt động thú vị vì nó giúp chúng tôi <strong style="color: #00b0f0;">cười và thư giãn</strong>. Hơn nữa, đó là một cách tốt để <strong style="color: #00b0f0;">giảm bớt căng thẳng</strong> sau một tuần bận rộn. Kết quả là chúng tôi có thể cảm thấy hạnh phúc và thoải mái hơn.<br/><br/>Thứ hai, xem <strong style="color: #00b0f0;">phim hài</strong> là một hoạt động ý nghĩa vì nó cho phép chúng tôi <strong style="color: #00b0f0;">dành thời gian chất lượng bên nhau</strong>. Ngoài ra, chúng tôi có thể chia sẻ những khoảnh khắc vui nhộn và cùng tận hưởng trải nghiệm đó. Vì vậy, chúng tôi có thể <strong style="color: #00b0f0;">trở nên thân thiết hơn</strong>.<br/><br/>Tôi sẽ không chọn một bộ <strong style="color: #70ad47;">phim lãng mạn</strong> vì nó có thể <strong style="color: #70ad47;">không thú vị đối với tất cả mọi người</strong>. Đối với <strong style="color: #7030a0;">phim hành động</strong>, nó ít phù hợp hơn vì một số cảnh hành động có thể <strong style="color: #7030a0;">quá kịch tính hoặc ồn ào</strong>.<br/><br/>Tóm lại, tôi tin rằng <strong style="color: #00b0f0;">phim hài</strong> là lựa chọn tốt nhất cho tình huống này.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2" style="margin-top: 20px;">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Well, if I had to <strong style="color: #ee0000;">choose a film to watch with my friend</strong>, I would <strong style="color: #ee0000;">go for a comedy film</strong>.<br/><br/>First of all, watching a comedy film is an entertaining activity because it helps us <strong style="color: #00b0f0;">relax and recharge our batteries</strong> after a busy day. Moreover, laughter can <strong style="color: #00b0f0;">reduce stress and improve our mood</strong>. As a result, we can enjoy a more positive and enjoyable experience.<br/><br/>Secondly, a comedy film is a great choice for <strong style="color: #00b0f0;">spending quality time together</strong>. Besides enjoying the story, we can share funny moments and <strong style="color: #00b0f0;">create enjoyable memories</strong>. Therefore, it can <strong style="color: #00b0f0;">strengthen our friendship</strong> and make the outing more meaningful.<br/><br/>I wouldn’t choose a romantic film because personal preferences for this genre can vary greatly. There is a chance that one of us may <strong style="color: #70ad47;">not find it very interesting</strong>.<br/><br/>As for an action film, it is less suitable because it often focuses more on excitement and special effects than on relaxation. Since our goal is to enjoy a pleasant time together, a comedy film would be a <strong style="color: #00b0f0;">better option</strong>.<br/><br/>In short, I believe a <strong style="color: #00b0f0;">comedy film</strong> is the best choice for this situation.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none; white-space: normal;">À, nếu tôi phải <strong style="color: #ee0000;">chọn một bộ phim để xem cùng bạn mình</strong>, tôi sẽ <strong style="color: #ee0000;">chọn một bộ phim hài</strong>.<br/><br/>Trước hết, xem <strong style="color: #00b0f0;">phim hài</strong> là một hoạt động giải trí vì nó giúp chúng tôi <strong style="color: #00b0f0;">thư giãn và nạp lại năng lượng</strong> sau một ngày bận rộn. Hơn nữa, tiếng cười có thể <strong style="color: #00b0f0;">giảm căng thẳng và cải thiện tâm trạng</strong> của chúng tôi. Kết quả là chúng tôi có thể tận hưởng một trải nghiệm tích cực và thú vị hơn.<br/><br/>Thứ hai, <strong style="color: #00b0f0;">phim hài</strong> là sự lựa chọn tuyệt vời để <strong style="color: #00b0f0;">dành thời gian chất lượng bên nhau</strong>. Bên cạnh việc thưởng thức câu chuyện, chúng tôi có thể chia sẻ những khoảnh khắc hài hước và <strong style="color: #00b0f0;">tạo nên những kỷ niệm đẹp</strong>. Do đó, nó có thể <strong style="color: #00b0f0;">thắt chặt tình bạn</strong> của chúng tôi và giúp buổi đi chơi ý nghĩa hơn. Tôi không chọn <strong style="color: #70ad47;">phim lãng mạn</strong> vì sở thích cá nhân đối với thể loại này có thể rất khác nhau. Có khả năng một trong hai chúng tôi sẽ <strong style="color: #70ad47;">không thấy nó thú vị lắm</strong>. Đối với <strong style="color: #7030a0;">phim hành động</strong>, nó kém phù hợp hơn vì thường tập trung nhiều vào sự kích thích và hiệu ứng kỹ xảo hơn là sự thư giãn. Vì mục tiêu của chúng tôi là tận hưởng thời gian vui vẻ bên nhau, một bộ <strong style="color: #00b0f0;">phim hài</strong> sẽ là <strong style="color: #00b0f0;">lựa chọn tốt hơn</strong>.<br/><br/>Tóm lại, tôi tin rằng <strong style="color: #00b0f0;">phim hài</strong> là lựa chọn tốt nhất cho tình huống này.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 3 -->
+<div class="sol-tab-content" id="sol-panel-3">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-chart-line"></i> TOPIC DEVELOPMENT <span class="sol-translation">(phát triển chủ đề)</span>
+</div>
+<div class="sol-situation-box" style="font-weight: 600;">
+                                    Topic: There are several negative effects of online communication. <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-weight: normal;">(Chủ đề: Có một số tác động tiêu cực của giao tiếp trực tuyến.)</span>
+<span style="color: var(--color-red); font-weight: normal; display: block; margin-top: 8px;">Note (Your own idea) → People may become dependent on technology. <span class="sol-translation" style="display: block; margin-top: 4px; margin-left: 0;">(Ý kiến của riêng bạn → Mọi người có thể trở nên phụ thuộc vào công nghệ.)</span></span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-file-pen"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">There are several negative effects of online communication.<br/><br/>One major negative effect is that people can <strong style="color: #00b0f0;">get distracted easily</strong>. They may spend too much time checking messages or social media instead of focusing on important tasks. As a result, their <strong style="color: #00b0f0;">productivity may decrease</strong>.<br/><br/>Another negative effect is that online communication can <strong style="color: #00b0f0;">lead to conflict</strong>. Sometimes, messages can be misunderstood because people cannot see facial expressions or hear tone of voice. Therefore, <strong style="color: #00b0f0;">unnecessary arguments</strong> may happen.<br/><br/>One more negative effect is that online communication can <strong style="color: #00b0f0;">reduce face-to-face interaction</strong>. People may spend less time talking to others in person. This can <strong style="color: #00b0f0;">weaken personal relationships</strong>.<br/><br/>One additional negative effect is that people may <strong style="color: #00b0f0;">become dependent on technology</strong>. They may rely too much on online communication and feel uncomfortable when they cannot access the Internet. As a result, their <strong style="color: #00b0f0;">communication skills</strong> may be affected.<br/><br/>In short, <strong style="color: #ee0000;">online communication has several clear negative effects</strong>, as mentioned above.                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none; white-space: normal;">Có một số tác động tiêu cực của giao tiếp trực tuyến.<br/><br/>Một tác động tiêu cực lớn là con người <strong style="color: #00b0f0;">dễ bị mất tập trung</strong>. Họ có thể dành quá nhiều thời gian để kiểm tra tin nhắn hoặc mạng xã hội thay vì tập trung vào các nhiệm vụ quan trọng. Kết quả là <strong style="color: #00b0f0;">năng suất làm việc của họ có thể giảm sút</strong>.<br/><br/>Một tác động tiêu cực khác là giao tiếp trực tuyến có thể <strong style="color: #00b0f0;">dẫn đến xung đột</strong>. Đôi khi, tin nhắn có thể bị hiểu lầm vì mọi người không thể nhìn thấy nét mặt hay nghe được giọng nói. Do đó, những <strong style="color: #00b0f0;">tranh cãi không đáng có</strong> có thể xảy ra.<br/><br/>Một tác động tiêu cực nữa là giao tiếp trực tuyến có thể <strong style="color: #00b0f0;">giảm bớt sự tương tác trực tiếp</strong>. Mọi người có thể dành ít thời gian nói chuyện trực tiếp với người khác hơn. Điều này có thể <strong style="color: #00b0f0;">làm suy yếu các mối quan hệ cá nhân</strong>.<br/><br/>Một tác động tiêu cực bổ sung là mọi người có thể <strong style="color: #00b0f0;">trở nên phụ thuộc vào công nghệ</strong>. Họ có thể dựa dẫm quá nhiều vào giao tiếp trực tuyến và cảm thấy khó chịu khi không thể truy cập Internet. Kết quả là <strong style="color: #00b0f0;">kỹ năng giao tiếp</strong> của họ có thể bị ảnh hưởng.<br/><br/>Tóm lại, <strong style="color: #ee0000;">giao tiếp trực tuyến có một số tác động tiêu cực rõ ràng</strong> như đã nêu trên.</div>
+</div></div>
+<div class="sol-level-box level-b2" style="margin-top: 20px;">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">There are several negative effects of online communication.<br/><br/>One major negative effect is that people can <strong style="color: #70ad47;">get distracted easily</strong>. Because messages and notifications appear constantly, individuals may find it difficult to <strong style="color: #70ad47;">focus on work or study</strong>. As a result, their <strong style="color: #70ad47;">productivity and concentration</strong> can be reduced.<br/><br/>Another negative effect is that online communication can <strong style="color: #70ad47;">lead to conflict</strong>. Since people cannot always see facial expressions or hear the speaker's tone of voice, messages may be <strong style="color: #70ad47;">interpreted incorrectly</strong>. Therefore, <strong style="color: #70ad47;">misunderstandings and unnecessary disagreements</strong> can occur.<br/><br/>One more negative effect is that online communication can <strong style="color: #70ad47;">reduce face-to-face interaction</strong>. When people communicate mainly through screens, they may spend less time <strong style="color: #70ad47;">building meaningful personal relationships</strong>. Consequently, their <strong style="color: #70ad47;">social connections</strong> may become weaker.<br/><br/>One additional negative effect is that people may <strong style="color: #70ad47;">become dependent on technology</strong>. They may rely heavily on online platforms for communication and feel uncomfortable when these tools are unavailable. As a result, they may gradually <strong style="color: #70ad47;">lose confidence in direct, face-to-face communication</strong>.<br/><br/>In short, <strong style="color: #ee0000;">online communication has several clear negative effects</strong>, as mentioned above.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none; white-space: normal;">Có một số tác động tiêu cực của giao tiếp trực tuyến.<br/><br/>Một tác động tiêu cực lớn là mọi người rất <strong style="color: #70ad47;">dễ bị phân tâm</strong>. Do tin nhắn và thông báo xuất hiện liên tục, các cá nhân có thể gặp khó khăn khi <strong style="color: #70ad47;">tập trung vào công việc hoặc học tập</strong>. Kết quả là <strong style="color: #70ad47;">năng suất và sự tập trung</strong> của họ có thể bị giảm sút.<br/><br/>Một tác động tiêu cực khác là giao tiếp trực tuyến có thể <strong style="color: #70ad47;">dẫn đến xung đột</strong>. Vì mọi người không thể luôn luôn nhìn thấy nét mặt hay nghe giọng nói của người nói nên tin nhắn có thể bị <strong style="color: #70ad47;">diễn giải sai</strong>. Do đó, những <strong style="color: #70ad47;">hiểu lầm và bất đồng không đáng có</strong> có thể xảy ra.<br/><br/>Một tác động tiêu cực nữa là giao tiếp trực tuyến làm <strong style="color: #70ad47;">giảm tương tác trực tiếp</strong>. Khi mọi người giao tiếp chủ yếu qua màn hình, họ có thể dành ít thời gian hơn để <strong style="color: #70ad47;">xây dựng các mối quan hệ cá nhân ý nghĩa</strong>. Hệ quả là <strong style="color: #70ad47;">kết nối xã hội</strong> của họ có thể trở nên yếu đi.<br/><br/>Một tác động tiêu cực bổ sung là con người có thể bị <strong style="color: #70ad47;">phụ thuộc vào công nghệ</strong>. Họ có thể dựa dẫm nhiều vào các nền tảng trực tuyến để giao tiếp và cảm thấy khó chịu khi các công cụ này không khả dụng. Kết quả là họ có thể dần <strong style="color: #70ad47;">mất đi sự tự tin trong giao tiếp trực tiếp</strong>.<br/><br/>Tóm lại, <strong style="color: #ee0000;">giao tiếp trực tuyến có một số tác động tiêu cực rõ ràng</strong> như đã nêu trên.</div>
+</div>
+</div>
+<div class="sol-topic-header" style="margin-top: 30px;">
+<i class="fa-solid fa-circle-question"></i> FOLLOW-UP QUESTIONS <span class="sol-translation">(câu hỏi mở rộng)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What kind of modern communication technology do you use most often? <span class="sol-translation">(Loại công nghệ giao tiếp hiện đại nào bạn sử dụng thường xuyên nhất?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I mostly use <strong style="color: #00b0f0;">messaging applications</strong> on my smartphone. They are <strong style="color: #00b0f0;">convenient</strong> and help me communicate with others quickly.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi chủ yếu sử dụng các <strong style="color: #00b0f0;">ứng dụng tin nhắn</strong> trên điện thoại thông minh của mình. Chúng rất <strong style="color: #00b0f0;">tiện lợi</strong> và giúp tôi giao tiếp với người khác nhanh chóng.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content"> I mainly use <strong style="color: #70ad47;">messaging applications and social media platforms</strong> because they allow me to communicate instantly with friends, family, and colleagues. They are <strong style="color: #70ad47;">convenient and easy to access</strong> from anywhere. <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi chủ yếu sử dụng các <strong style="color: #70ad47;">ứng dụng tin nhắn</strong> và nền tảng mạng xã hội vì chúng cho phép tôi giao tiếp ngay lập tức với bạn bè, gia đình và đồng nghiệp. Chúng rất <strong style="color: #70ad47;">tiện lợi</strong> và dễ dàng truy cập từ bất cứ đâu.</div>
+</div></div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. Do you think technology will completely replace face-to-face communication in the future? <span class="sol-translation">(Bạn có nghĩ công nghệ sẽ thay thế hoàn toàn giao tiếp trực tiếp trong tương lai không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            No, I don't think so. Face-to-face communication is <strong style="color: #00b0f0;">more personal</strong> and helps people <strong style="color: #00b0f0;">build stronger relationships</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Không, tôi không nghĩ vậy. Giao tiếp trực tiếp mang tính <strong style="color: #00b0f0;">cá nhân hơn</strong> và giúp mọi người <strong style="color: #00b0f0;">xây dựng các mối quan hệ bền chặt hơn</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            No, I do not believe technology will completely replace face-to-face communication. Although technology is convenient, <strong style="color: #70ad47;">direct interaction remains important</strong> for building trust, expressing emotions, and <strong style="color: #70ad47;">maintaining meaningful relationships</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Không, tôi không tin công nghệ sẽ thay thế hoàn toàn giao tiếp trực tiếp. Mặc dù công nghệ rất <strong style="color: #70ad47;">tiện lợi</strong>, nhưng sự <strong style="color: #70ad47;">tương tác trực tiếp vẫn đóng vai trò quan trọng</strong> trong việc xây dựng lòng tin, bày tỏ cảm xúc và <strong style="color: #70ad47;">duy trì các mối quan hệ có ý nghĩa</strong>.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. How can people avoid problems caused by online communication? <span class="sol-translation">(Làm thế nào để mọi người tránh các vấn đề gây ra bởi giao tiếp trực tuyến?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            People should <strong style="color: #00b0f0;">communicate clearly</strong> and <strong style="color: #00b0f0;">think carefully before sending messages</strong>. They should also spend more time talking to others in person.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Mọi người nên <strong style="color: #00b0f0;">giao tiếp rõ ràng</strong> và <strong style="color: #00b0f0;">suy nghĩ cẩn thận trước khi gửi tin nhắn</strong>. Họ cũng nên dành nhiều thời gian hơn để nói chuyện trực tiếp với người khác.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            People can avoid these problems by <strong style="color: #70ad47;">communicating clearly and respectfully online</strong>. In addition, they should <strong style="color: #70ad47;">verify information before sharing it</strong> and maintain a <strong style="color: #70ad47;">healthy balance</strong> between online and face-to-face communication. This can help reduce misunderstandings and strengthen relationships.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Mọi người có thể tránh các vấn đề này bằng cách <strong style="color: #70ad47;">giao tiếp trực tuyến một cách rõ ràng và tôn trọng</strong>. Ngoài ra, họ nên <strong style="color: #70ad47;">xác minh thông tin trước khi chia sẻ</strong> và duy trì sự <strong style="color: #70ad47;">cân bằng lành mạnh</strong> giữa giao tiếp trực tuyến và trực tiếp. Điều này có thể giúp giảm bớt hiểu lầm và thắt chặt các mối quan hệ.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Custom Script JS -->
+<script src="../db.js?v=1782327221"></script>
+<script src="app.js?v=1782327221"></script>
+<script>
+      function toggleTranslation(element) {
+          const textNode = element.nextElementSibling;
+          const icon = element.querySelector('i');
+          if (textNode.style.display === 'none') {
+              textNode.style.display = 'block';
+              if (icon) icon.className = 'fa-solid fa-chevron-up';
+          } else {
+              textNode.style.display = 'none';
+              if (icon) icon.className = 'fa-solid fa-chevron-down';
+          }
+      }
+</script>
+</body>
+</html>

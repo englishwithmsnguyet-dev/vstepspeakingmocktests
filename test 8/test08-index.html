@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<script>
+        // Block flash of protected content
+        (function() {
+            const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+            const testId = pathMatch ? parseInt(pathMatch[1]) : 1;
+            const TEST_PASSWORDS = {};
+            if (TEST_PASSWORDS[testId] && sessionStorage.getItem('unlocked_test_' + testId) !== 'true') {
+                document.documentElement.style.display = 'none';
+            }
+        })();
+    </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPEAKING MOCK TEST 08 - ENGLISHWITHMISSNGUYET</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome for Premium Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="styles.css?v=1782327221" rel="stylesheet"/>
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<nav class="test-sidebar">
+<div class="sidebar-header">
+<i class="fa-solid fa-list-check"></i> <span>VSTEP MOCK TESTS</span>
+</div>
+<ul class="test-list">
+<li class="test-item">
+<a href="../index.html">
+<span class="test-icon"><i class="fa-solid fa-house"></i></span>
+<span class="test-name">TRANG CHỦ</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="1" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 01</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="2" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 02</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="3" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 03</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="4" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 04</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="5" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 05</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="6" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 06</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="7" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 07</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="8" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 08</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="9" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 09</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="10" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 10</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="11" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 11</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="12" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 12</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="13" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 13</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="14" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 14</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="15" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 15</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="16" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 16</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="17" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 17</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="18" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 18</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="19" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 19</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="20" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 20</span>
+</a>
+</li>
+</ul>
+<a class="sidebar-brand-bottom" href="https://www.facebook.com/nguyetpham28" target="_blank">
+<span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+<span class="brand-text">ENGLISH WITH MISS NGUYET</span>
+</a>
+</nav>
+<!-- Background Chime/Sound Permission Modal (if required, or handled on welcome screen) -->
+<!-- App Wrapper -->
+<div class="app-container">
+<!-- Header Brand -->
+<header class="app-header">
+<div class="header-title-wrapper"></div>
+</header>
+<!-- Progress Timeline Tracker -->
+<div class="progress-timeline">
+<div class="timeline-step active" id="step-welcome">
+<div class="step-num">0</div>
+<div class="step-label">CHUẨN BỊ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part1">
+<div class="step-num">1</div>
+<div class="step-label">PART 01</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part2">
+<div class="step-num">2</div>
+<div class="step-label">PART 02</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part3">
+<div class="step-num">3</div>
+<div class="step-label">PART 03</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-review">
+<div class="step-num">4</div>
+<div class="step-label">KẾT QUẢ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-solution">
+<div class="step-num">5</div>
+<div class="step-label">BÀI GIẢI</div>
+</div>
+</div>
+<!-- Main Workspace -->
+<main class="app-main">
+<!-- SCREEN 1: WELCOME SCREEN -->
+<section class="screen-view active" id="view-welcome">
+<div class="glass-card welcome-card">
+<div class="welcome-header-center">
+<div class="welcome-cat-gif">
+<img alt="Typing Cat" class="typing-cat-img" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"/>
+</div>
+<h1>VSTEP Speaking Practice</h1>
+<div class="mock-test-pill">SPEAKING MOCK TEST 08</div>
+<p class="welcome-desc">Chào mừng bạn đến với hệ thống thi thử VSTEP SPEAKING MOCK TEST tương tác. Giao diện và cách tính giờ được lập trình mô phỏng chính xác phòng thi máy thực tế.</p>
+<p class="welcome-warning" style="margin-top: 12px; color: var(--color-red); font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>LƯU Ý:</strong> Không sử dụng bất kì tài liệu hay công cụ trong lúc thi thử. Mọi sự thảo luận đều không được cho phép trong phòng thi.</p>
+</div>
+<div class="test-outline">
+<h3>Cấu trúc bài thi</h3>
+<div class="outline-grid">
+<div class="outline-item">
+<span class="part-badge">PART 01</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Social Interaction</span> [Giao tiếp xã hội]</h4>
+<p>Thí sinh trả lời 02 chủ đề bất kì, mỗi chủ đề có 03 câu hỏi. Không có thời gian chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 3 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 02</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Solution Discussion</span> [Thảo luận giải pháp]</h4>
+<p>Thí sinh thảo luận phương án tốt nhất cho một tình huống giả định bất kì với 03 sự lựa chọn. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 4 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 03</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Topic Development</span> [Phát triển chủ đề]</h4>
+<p>Thí sinh phát triển một chủ đề bất kì dựa vào sơ đồ gợi ý và 03 câu hỏi mở rộng. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 5 phút</span>
+</div>
+</div>
+</div>
+<!-- Student Info Input -->
+<div class="student-form">
+<div class="input-group">
+<label for="student-name"><i class="fa-solid fa-user-pen"></i> Họ và tên học viên:</label>
+<input autocomplete="off" id="student-name" placeholder="Nhập họ tên của bạn..." type="text"/>
+</div>
+</div>
+<!-- Action and Sound Check -->
+<div class="audio-check-section">
+<div class="mic-status-msg" id="mic-status">
+<i class="fa-solid fa-circle-info"></i> Hãy cấp quyền truy cập Microphone để hệ thống ghi âm bài làm của bạn.
+                        </div>
+<button class="btn btn-primary" id="btn-start-test">
+<span>BẮT ĐẦU BÀI THI</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 2: PART 1 SCREEN -->
+<section class="screen-view" id="view-part1">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 01: <span style="color: var(--color-red);">SOCIAL INTERACTION</span></div>
+<div class="part1-topics">
+<!-- Topic 1 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-palette"></i> <span>Let's talk about <strong>your favorite color</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">1</span> What color would you choose for your house?</li>
+<li><span class="q-num">2</span> What color do you usually choose for your clothes?</li>
+<li><span class="q-num">3</span> Do you think colors affect your feelings?</li>
+</ul>
+</div>
+<!-- Topic 2 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-book"></i> <span>Let's talk about <strong>library</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">4</span> Do you often go to the library?</li>
+<li><span class="q-num">5</span> What do you usually do at the library?</li>
+<li><span class="q-num">6</span> How do you feel when you are in the library?</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Mic, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator recording" id="p1-status">
+<span class="status-dot"></span>
+<span class="status-text">Hệ thống đang ghi âm bài nói của bạn</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p1-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p1-time-val">03:00</span>
+<span class="time-label">TỔNG THỜI GIAN</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p1-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 3: PART 2 SCREEN -->
+<section class="screen-view" id="view-part2">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 02: <span style="color: var(--color-red);">SOLUTION DISCUSSION</span></div>
+<!-- Situation Card -->
+<div class="situation-box">
+                            SITUATION: You want to buy a gift for your teacher. There are three options: <strong style="color: #ee0000;">a handbag</strong>, <strong style="color: #70ad47;">a pair of shoes</strong>, and <strong style="color: #7030a0;">a pair of glasses</strong>. Which one would you choose?
+                        </div>
+</div>
+<!-- Right: Control Panel (Timer, Prep state, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p2-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p2-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p2-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p2-time-val">01:00</span>
+<span class="time-label" id="p2-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p2-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p2-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 4: PART 3 SCREEN -->
+<section class="screen-view" id="view-part3">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 03: <span style="color: var(--color-red);">TOPIC DEVELOPMENT</span></div>
+<div class="topic-header">
+<h3 class="topic-heading-red">Topic:</h3>
+<p class="topic-desc">There are many benefits of living in a dormitory.</p>
+</div>
+<!-- CSS Grid Mindmap -->
+<div class="mindmap-wrapper">
+<div class="mindmap-container">
+<!-- Center Node -->
+<div class="mindmap-node node-center">
+<span>Living in a dormitory</span>
+</div>
+<!-- Connectors -->
+<div class="mindmap-line line-top"></div>
+<div class="mindmap-line line-left"></div>
+<div class="mindmap-line line-bottom"></div>
+<div class="mindmap-line line-right"></div>
+<!-- Top Branch -->
+<div class="mindmap-node node-branch branch-top">
+<span>make new friends</span>
+</div>
+<!-- Left Branch -->
+<div class="mindmap-node node-branch branch-left">
+<span>be close to the classroom</span>
+</div>
+<!-- Bottom Branch -->
+<div class="mindmap-node node-branch branch-bottom">
+<span>improve life skills</span>
+</div>
+<!-- Right Branch -->
+<div class="mindmap-node node-branch branch-right">
+<span>[your own idea]</span>
+</div>
+</div>
+</div>
+<!-- Follow-up Questions Box -->
+<div class="follow-up-box">
+<h4><i class="fa-solid fa-circle-question"></i> Follow-up questions:</h4>
+<ul class="question-list">
+<li><span class="q-num">1</span> What are the challenges of living in a dormitory?</li>
+<li><span class="q-num">2</span> Do you think all students should live in dormitories? Why or why not?</li>
+<li><span class="q-num">3</span> How can students solve conflicts with roommates?</li>
+</ul>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Scratchpad, Finish button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p3-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p3-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p3-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p3-time-val">01:00</span>
+<span class="time-label" id="p3-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p3-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-success" id="btn-p3-next">
+<span>Hoàn thành bài thi</span> <i class="fa-solid fa-circle-check"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 5: REVIEW SCREEN -->
+<section class="screen-view" id="view-review">
+<div class="glass-card review-card">
+<div class="success-banner">
+<div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+<h2>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI THI NÓI!</h2>
+<p style="margin-bottom: 8px;">Bạn có 10s để khóc trước khi xem phần BÀI GIẢI.</p>
+<p id="review-student-info" style="font-size: 13px; opacity: 0.7; margin-top: 4px;"></p>
+</div>
+<!-- Summary Grid: Audio Files & Notes -->
+<div class="review-grid">
+<!-- Left Panel: Playback recordings -->
+<div class="review-recordings-panel">
+<h3><i class="fa-solid fa-microphone-lines"></i> Nghe lại bài nói của bạn</h3>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 01</span>
+<span class="rec-title">Social Interaction</span>
+</div>
+<div class="audio-player-wrapper" id="p1-player-container">
+<!-- Dynamic custom Audio Player or native audio element styled -->
+<audio controls="" id="p1-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part1.webm" id="p1-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 02</span>
+<span class="rec-title">Solution Discussion</span>
+</div>
+<div class="audio-player-wrapper" id="p2-player-container">
+<audio controls="" id="p2-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part2.webm" id="p2-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 03</span>
+<span class="rec-title">Topic Development</span>
+</div>
+<div class="audio-player-wrapper" id="p3-player-container">
+<audio controls="" id="p3-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part3.webm" id="p3-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Right Panel: Feedback -->
+<div class="review-notes-panel">
+<h3><i class="fa-solid fa-comment-medical"></i> ĐÁNH GIÁ CHUNG</h3>
+<div class="teacher-feedback-box">
+<label for="teacher-feedback">Học viên tự đánh giá mức độ hoàn thành bài nói:</label>
+<textarea id="teacher-feedback" placeholder="Bạn đã hoàn thành tất cả nội dung bài thi hay chưa? Bạn có tự tin với bài nói của mình hay không?" style="min-height: 200px;"></textarea>
+</div>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="review-actions">
+<button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
+<i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
+                        </button>
+<button class="btn btn-secondary" id="btn-restart-test">
+<i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
+                        </button>
+</div>
+</div>
+</section>
+<!-- SCREEN 6: SOLUTION SCREEN -->
+<section class="screen-view" id="view-solution">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+<h2 style="color: var(--color-red); margin-bottom: 0;"><i class="fa-solid fa-book-open"></i> BÀI GIẢI CHI TIẾT</h2>
+<span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 08</span>
+</div>
+<div class="solution-tab-container">
+<div class="solution-tab-buttons">
+<button class="sol-tab-btn active" onclick="switchSolTab(1)">PART 01: SOCIAL INTERACTION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(2)">PART 02: SOLUTION DISCUSSION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(3)">PART 03: TOPIC DEVELOPMENT</button>
+</div>
+<!-- Panel Part 1 -->
+<div class="sol-tab-content active" id="sol-panel-1">
+<!-- Topic 1 -->
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-comments"></i> Topic 1: Let's talk about your favorite color <span class="sol-translation">(Hãy nói về màu sắc yêu thích của bạn)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What color would you choose for your house? <span class="sol-translation">(Bạn sẽ chọn màu gì cho ngôi nhà của mình?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I would choose <strong style="color: #00b0f0;">white</strong> for my house. It looks <strong style="color: #00b0f0;">clean and bright</strong>. It also makes the house feel <strong style="color: #00b0f0;">more comfortable</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi sẽ chọn <strong style="color: #00b0f0;">màu trắng</strong> cho ngôi nhà của mình. Nó trông <strong style="color: #00b0f0;">sạch sẽ và sáng sủa</strong>. Nó cũng làm cho ngôi nhà có cảm giác <strong style="color: #00b0f0;">thoải mái hơn</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I would probably choose <strong style="color: #70ad47;">white or light beige</strong> for my house. These colors create a <strong style="color: #70ad47;">calm and welcoming atmosphere</strong>. Besides, they make rooms look <strong style="color: #70ad47;">more spacious</strong> and are easy to combine with different types of furniture.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi có lẽ sẽ chọn <strong style="color: #70ad47;">màu trắng</strong> hoặc màu be nhạt cho ngôi nhà của mình. Những màu sắc này tạo ra một bầu không khí <strong style="color: #70ad47;">yên bình và chào đón</strong>. Ngoài ra, chúng làm cho các căn phòng trông <strong style="color: #70ad47;">rộng rãi hơn</strong> và dễ kết hợp với các loại đồ nội thất khác nhau.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. What color do you usually choose for your clothes? <span class="sol-translation">(Bạn thường chọn màu gì cho quần áo?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I usually choose <strong style="color: #00b0f0;">black and blue clothes</strong>. They are simple and <strong style="color: #00b0f0;">easy to match</strong> with other items.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường chọn quần áo <strong style="color: #00b0f0;">màu đen và xanh dương</strong>. Chúng đơn giản và <strong style="color: #00b0f0;">dễ phối đồ</strong> với các món đồ khác.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I usually wear clothes in <strong style="color: #70ad47;">neutral colors</strong> such as black, blue, and gray. These colors <strong style="color: #70ad47;">look elegant</strong> and are suitable for many different occasions. In addition, they are practical because they can be <strong style="color: #70ad47;">easily matched</strong> with other pieces of clothing.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường mặc quần áo có <strong style="color: #70ad47;">màu trung tính</strong> như đen, xanh dương và xám. Những màu này trông <strong style="color: #70ad47;">thanh lịch</strong> và phù hợp cho nhiều dịp khác nhau. Ngoài ra, chúng rất tiện dụng vì có thể <strong style="color: #70ad47;">dễ dàng phối</strong> với các trang phục khác.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. Do you think colors affect your feelings? <span class="sol-translation">(Bạn có nghĩ màu sắc ảnh hưởng đến cảm xúc của mình không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            Yes, I do. Some colors can make people <strong style="color: #00b0f0;">feel relaxed</strong>, while others can make them <strong style="color: #00b0f0;">feel energetic</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi có. Một số màu sắc có thể làm mọi người cảm thấy <strong style="color: #00b0f0;">thư giãn</strong>, trong khi những màu khác có thể làm họ cảm thấy <strong style="color: #00b0f0;">tràn đầy năng lượng</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            Yes, I believe colors can have a <strong style="color: #70ad47;">significant impact on people's emotions</strong>. For example, <strong style="color: #70ad47;">soft colors often create a sense of calmness</strong>, whereas <strong style="color: #70ad47;">bright colors can boost energy and enthusiasm</strong>. That is why colors are often used carefully in homes, workplaces, and public spaces.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi tin rằng màu sắc có thể <strong style="color: #70ad47;">ảnh hưởng lớn đến cảm xúc của con người</strong>. Ví dụ, những <strong style="color: #70ad47;">tông màu dịu thường tạo cảm giác yên bình</strong>, trong khi những <strong style="color: #70ad47;">màu sáng có thể tăng cường năng lượng và sự hứng khởi</strong>. Đó là lý do tại sao màu sắc thường được sử dụng một cách cẩn thận trong nhà ở, nơi làm việc và không gian công cộng.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Topic 2 -->
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-shirt"></i> Topic 2: Let's talk about the library <span class="sol-translation">(Hãy nói về thư viện)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. Do you often go to the library? <span class="sol-translation">(Bạn có thường xuyên đến thư viện không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            Yes, I do. I usually go there when I need a <strong style="color: #00b0f0;">quiet place to study</strong>. It helps me <strong style="color: #00b0f0;">focus better</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi có. Tôi thường đến đó khi cần một <strong style="color: #00b0f0;">nơi yên tĩnh để học</strong>. Nó giúp tôi <strong style="color: #00b0f0;">tập trung tốt hơn</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            Yes, I do. I often visit the library when I need a <strong style="color: #70ad47;">quiet and productive environment</strong> for studying or reading. It is a great place to <strong style="color: #70ad47;">concentrate without distractions</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi có. Tôi thường ghé thăm thư viện khi cần một <strong style="color: #70ad47;"><strong style="color: #70ad47;">môi trường yên tĩnh</strong> và làm việc hiệu quả</strong> để học tập hoặc đọc sách. Đó là một nơi tuyệt vời để <strong style="color: #70ad47;">tập trung mà không bị phân tâm</strong>.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. What do you usually do at the library? <span class="sol-translation">(Bạn thường làm gì ở thư viện?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I usually <strong style="color: #00b0f0;">read books and do my homework</strong>. Sometimes, I also <strong style="color: #00b0f0;">look for information</strong> for my studies.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường <strong style="color: #00b0f0;">đọc sách và <strong style="color: #00b0f0;">làm bài tập</strong> về nhà</strong>. Đôi khi tôi cũng <strong style="color: #00b0f0;">tìm kiếm thông tin</strong> cho việc học của mình.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I usually read books, <strong style="color: #70ad47;">work on assignments</strong>, and search for academic materials. Besides, I sometimes use the library as a place to prepare for exams because the atmosphere is very <strong style="color: #70ad47;">conducive to learning</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường đọc sách, <strong style="color: #70ad47;">làm bài tập</strong> và tìm kiếm các tài liệu học thuật. Ngoài ra, thỉnh thoảng tôi cũng sử dụng thư viện làm nơi chuẩn bị cho các kỳ thi vì không khí ở đó rất <strong style="color: #70ad47;">thuận lợi cho việc học tập</strong>.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. How do you feel when you are in the library? <span class="sol-translation">(Bạn cảm thấy thế nào khi ở thư viện?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I feel <strong style="color: #00b0f0;">relaxed and comfortable</strong>. The <strong style="color: #00b0f0;">quiet environment</strong> helps me concentrate on my work.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi cảm thấy <strong style="color: #00b0f0;">thư giãn</strong> và thoải mái. Môi trường yên tĩnh giúp tôi tập trung vào công việc của mình.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            I feel <strong style="color: #70ad47;">calm and focused</strong> whenever I am in the library. The <strong style="color: #70ad47;">peaceful atmosphere</strong> allows me to concentrate better and <strong style="color: #70ad47;">be more productive</strong>. As a result, I often accomplish more work there than at home.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi cảm thấy <strong style="color: #70ad47;">điềm tĩnh và tập trung</strong> mỗi khi ở thư viện. Bầu không khí yên bình cho phép tôi <strong style="color: #70ad47;">tập trung tốt hơn</strong> và <strong style="color: #70ad47;">làm việc hiệu quả hơn</strong>. Kết quả là tôi thường hoàn thành nhiều việc ở đó hơn là ở nhà.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 2 -->
+<div class="sol-tab-content" id="sol-panel-2">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-circle-info"></i> SITUATION <span class="sol-translation">(tình huống)</span>
+</div>
+<div class="sol-situation-box">
+                                    You want to buy a gift for your teacher. There are three options: <strong style="color: #00b0f0;">a handbag</strong>, <strong style="color: #70ad47;">a pair of shoes</strong>, and <strong style="color: #7030a0;">a pair of glasses</strong>. Which one would you choose?
+                                    <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-size: 13.5px;">(Bạn muốn mua một món quà cho thầy/cô giáo của mình. Có ba lựa chọn: một chiếc túi xách, một đôi giày, và một chiếc kính mắt. Bạn sẽ chọn cái nào?)</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-graduation-cap"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Well, if I had to <strong style="color: #ee0000;">choose a gift for my teacher</strong>, I would <strong style="color: #ee0000;">recommend a handbag</strong>.<br/><br/>First of all, a handbag is practical because it can be <strong style="color: #00b0f0;">used every day</strong>. Teachers often carry books, documents, and personal items. As a result, a handbag can be <strong style="color: #00b0f0;">very useful</strong> for them.<br/><br/>Secondly, a handbag is a meaningful gift because it <strong style="color: #00b0f0;">shows thoughtfulness and appreciation</strong>. Besides, it is suitable for many <strong style="color: #00b0f0;">different styles and occasions</strong>.<br/><br/>I wouldn’t choose a pair of shoes because it may be <strong style="color: #70ad47;">difficult to know the correct size</strong>.<br/><br/>As for a pair of glasses, it is less suitable because it depends heavily on <strong style="color: #7030a0;">personal preferences and eyesight requirements</strong>.<br/><br/>In short, I believe a <strong style="color: #00b0f0;">handbag</strong> is the best choice for this situation.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none; white-space: normal;">À, nếu tôi phải <strong style="color: #ee0000;">chọn một món quà cho thầy/cô giáo của mình</strong>, tôi sẽ <strong style="color: #ee0000;">chọn một chiếc túi xách</strong>.<br/><br/>Trước hết, <strong style="color: #00b0f0;">túi xách</strong> rất thiết thực vì có thể <strong style="color: #00b0f0;">sử dụng hàng ngày</strong>. Giáo viên thường mang theo sách vở, tài liệu và đồ dùng cá nhân. Do đó, một chiếc <strong style="color: #00b0f0;">túi xách</strong> sẽ <strong style="color: #00b0f0;">rất hữu ích</strong> cho họ.<br/><br/>Thứ hai, <strong style="color: #00b0f0;">túi xách</strong> là một món quà ý nghĩa vì nó <strong style="color: #00b0f0;">thể hiện sự chu đáo và trân trọng</strong>. Ngoài ra, nó phù hợp với nhiều <strong style="color: #00b0f0;">phong cách và dịp khác nhau</strong>.<br/><br/>Tôi sẽ không chọn một <strong style="color: #70ad47;">đôi giày</strong> vì có thể <strong style="color: #70ad47;">khó biết được kích cỡ chính xác</strong>. Đối với một <strong style="color: #7030a0;">cặp kính</strong>, nó ít phù hợp hơn vì phụ thuộc nhiều vào <strong style="color: #7030a0;">sở thích cá nhân và yêu cầu về thị lực</strong>.<br/><br/>Tóm lại, tôi tin rằng <strong style="color: #00b0f0;">túi xách</strong> là lựa chọn tốt nhất cho tình huống này.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2" style="margin-top: 20px;">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Well, if I had to <strong style="color: #ee0000;">choose a gift for my teacher</strong>, I would <strong style="color: #ee0000;">recommend a handbag</strong>.<br/><br/>First of all, a handbag is a practical gift because teachers often need to <strong style="color: #00b0f0;">carry books, teaching materials, and personal belongings</strong>. Therefore, it can be useful in their daily lives and <strong style="color: #00b0f0;">support their work</strong>.<br/><br/>Secondly, a handbag is both <strong style="color: #00b0f0;">meaningful and versatile</strong>. Besides showing appreciation and respect, it can be used on many different occasions. As a result, it is likely to be a gift that the teacher can <strong style="color: #00b0f0;">use regularly</strong>.<br/><br/>I wouldn’t choose a pair of shoes because selecting the correct size and style can be <strong style="color: #70ad47;">quite challenging</strong>. If the shoes are not suitable, the teacher may not be able to use them comfortably.<br/><br/>As for a pair of glasses, it is less suitable because eyewear is <strong style="color: #7030a0;">highly personal</strong> and depends on individual preferences as well as vision needs.<br/><br/>In short, I believe a <strong style="color: #00b0f0;">handbag</strong> is the best choice for this situation.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none; white-space: normal;">À, nếu tôi phải <strong style="color: #ee0000;">chọn một món quà cho thầy/cô giáo của mình</strong>, tôi sẽ <strong style="color: #ee0000;">chọn một chiếc túi xách</strong>.<br/><br/>Trước hết, <strong style="color: #00b0f0;">túi xách</strong> là một món quà thiết thực vì giáo viên thường cần <strong style="color: #00b0f0;">mang theo sách, giáo án và đồ dùng cá nhân</strong>. Do đó, nó sẽ <strong style="color: #00b0f0;">rất hữu ích</strong> trong cuộc sống hàng ngày và <strong style="color: #00b0f0;">hỗ trợ công việc</strong> của họ.<br/><br/>Thứ hai, <strong style="color: #00b0f0;">túi xách</strong> vừa <strong style="color: #00b0f0;">ý nghĩa vừa linh hoạt</strong>. Bên cạnh việc thể hiện sự trân trọng và kính trọng, nó có thể được sử dụng trong nhiều dịp khác nhau. Nhờ vậy, đây có khả năng là món quà mà thầy/cô giáo có thể <strong style="color: #00b0f0;">sử dụng thường xuyên</strong>. Tôi không chọn một <strong style="color: #70ad47;">đôi giày</strong> vì việc chọn đúng kích cỡ và kiểu dáng có thể <strong style="color: #70ad47;">khá khó khăn</strong>. Nếu <strong style="color: #70ad47;">đôi giày</strong> không phù hợp, giáo viên có thể không sử dụng chúng một cách thoải mái. Về một <strong style="color: #7030a0;">chiếc kính</strong>, nó ít phù hợp hơn vì <strong style="color: #7030a0;">kính mắt</strong> <strong style="color: #7030a0;">mang tính cá nhân cao</strong> và phụ thuộc vào sở thích của từng người cũng như nhu cầu về thị lực.<br/><br/>Tóm lại, tôi tin rằng <strong style="color: #00b0f0;">túi xách</strong> là lựa chọn tốt nhất cho tình huống này.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 3 -->
+<div class="sol-tab-content" id="sol-panel-3">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-chart-line"></i> TOPIC DEVELOPMENT <span class="sol-translation">(phát triển chủ đề)</span>
+</div>
+<div class="sol-situation-box" style="font-weight: 600;">
+                                    Topic: There are many benefits of living in a dormitory. <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-weight: normal;">(Chủ đề: Có nhiều lợi ích khi sống trong ký túc xá.)</span>
+<span style="color: var(--color-red); font-weight: normal; display: block; margin-top: 8px;">Note (Your own idea) → Dormitories are usually more affordable than renting apartments. <span class="sol-translation" style="display: block; margin-top: 4px; margin-left: 0;">(Ý kiến của riêng bạn → Ký túc xá thường có giá phải chăng hơn thuê căn hộ.)</span></span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-file-pen"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">There are several benefits of living in a dormitory.<br/><br/>One major advantage is that it helps students <strong style="color: #00b0f0;">improve life skills</strong>. Students learn how to manage their time, solve problems, and take care of themselves. As a result, they <strong style="color: #00b0f0;">become more independent</strong>.<br/><br/>Another positive aspect is that students can be <strong style="color: #00b0f0;">close to the classroom</strong>. They do not need to spend much time traveling every day. Therefore, they can <strong style="color: #00b0f0;">save both time and energy</strong>.<br/><br/>One more beneficial effect is that students can <strong style="color: #00b0f0;">make new friends</strong>. Living with other students provides more opportunities to communicate and build relationships. This helps them <strong style="color: #00b0f0;">expand their social network</strong>.<br/><br/>One additional benefit is that dormitories are usually <strong style="color: #00b0f0;">more affordable than renting apartments</strong>. Students can save money on accommodation expenses. As a result, they can <strong style="color: #00b0f0;">reduce the financial burden</strong> on themselves and their families.<br/><br/>In short, <strong style="color: #ee0000;">living in a dormitory has several clear benefits</strong>, as mentioned above.                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none; white-space: normal;">Có một số lợi ích khi sống trong ký túc xá.<br/><br/>Một lợi thế lớn là nó giúp sinh viên <strong style="color: #00b0f0;">cải thiện các kỹ năng sống</strong>. Sinh viên học cách quản lý thời gian, giải quyết các vấn đề và tự chăm sóc bản thân. Nhờ đó, họ <strong style="color: #00b0f0;">trở nên độc lập hơn</strong>.<br/><br/>Một khía cạnh tích cực khác là sinh viên có thể ở <strong style="color: #00b0f0;">gần lớp học</strong>. Họ không cần phải dành nhiều thời gian di chuyển mỗi ngày. Vì vậy, họ có thể <strong style="color: #00b0f0;">tiết kiệm cả thời gian và năng lượng</strong>.<br/><br/>Một tác động có lợi nữa là sinh viên có thể <strong style="color: #00b0f0;">kết bạn mới</strong>. Sống chung với các sinh viên khác mang lại nhiều cơ hội hơn để giao tiếp và xây dựng mối quan hệ. Điều này giúp họ <strong style="color: #00b0f0;">mở rộng mạng lưới xã hội của mình</strong>.<br/><br/>Một lợi ích bổ sung là ký túc xá thường có <strong style="color: #00b0f0;">giá phải chăng hơn so với thuê căn hộ</strong>. Sinh viên có thể tiết kiệm tiền chi phí chỗ ở. Nhờ đó, họ có thể <strong style="color: #00b0f0;">giảm bớt gánh nặng tài chính</strong> cho bản thân và gia đình.<br/><br/>Tóm lại, <strong style="color: #ee0000;">sống trong ký túc xá có một số lợi ích rõ ràng</strong> như đã nêu trên.</div>
+</div></div>
+<div class="sol-level-box level-b2" style="margin-top: 20px;">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">There are several benefits of living in a dormitory.<br/><br/>One major advantage is that it helps students <strong style="color: #70ad47;">improve important life skills</strong>. By managing their own schedules, responsibilities, and daily routines, students can become <strong style="color: #70ad47;">more independent and responsible</strong>. As a result, they are <strong style="color: #70ad47;">better prepared for adult life</strong>.<br/><br/>Another positive aspect is that dormitories are usually located <strong style="color: #70ad47;">close to classrooms and campus facilities</strong>. Therefore, students can save a considerable amount of time and effort on commuting. This allows them to <strong style="color: #70ad47;">focus more on their studies</strong> and extracurricular activities.<br/><br/>One more beneficial effect is that students can <strong style="color: #70ad47;">make new friends and expand their social networks</strong>. Living with people from different backgrounds provides valuable opportunities to <strong style="color: #70ad47;">develop communication and teamwork skills</strong>. Consequently, students can <strong style="color: #70ad47;">build meaningful relationships</strong>.<br/><br/>One additional benefit is that dormitories are often <strong style="color: #70ad47;">more affordable than renting private accommodation</strong>. Besides reducing living expenses, they help students and their families <strong style="color: #70ad47;">manage their budgets more effectively</strong>.<br/><br/>In short, <strong style="color: #ee0000;">living in a dormitory has several clear benefits</strong>, as mentioned above.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none; white-space: normal;">Có một số lợi ích khi sống trong ký túc xá.<br/><br/>Một lợi thế lớn là nó giúp sinh viên <strong style="color: #70ad47;">cải thiện các kỹ năng sống quan trọng</strong>. Bằng cách tự quản lý thời gian biểu, trách nhiệm và sinh hoạt hàng ngày, sinh viên có thể trở nên <strong style="color: #70ad47;">độc lập và có trách nhiệm hơn</strong>. Nhờ đó, họ được <strong style="color: #70ad47;">chuẩn bị tốt hơn cho cuộc sống trưởng thành</strong>.<br/><br/>Một khía cạnh tích cực khác là ký túc xá thường nằm <strong style="color: #70ad47;">gần lớp học và các cơ sở vật chất của trường</strong>. Vì vậy, sinh viên có thể tiết kiệm một lượng thời gian và công sức đáng kể cho việc đi lại. Điều này cho phép họ <strong style="color: #70ad47;">tập trung nhiều hơn vào việc học</strong> và các hoạt động ngoại khóa.<br/><br/>Một tác động có lợi nữa là sinh viên có thể <strong style="color: #70ad47;">kết bạn mới và mở rộng mạng lưới xã hội</strong>. Sống chung với những người có nguồn gốc khác nhau mang lại cơ hội quý giá để <strong style="color: #70ad47;">phát triển kỹ năng giao tiếp và làm việc nhóm</strong>. Do đó, sinh viên có thể <strong style="color: #70ad47;">xây dựng các mối quan hệ có ý nghĩa</strong>.<br/><br/>Một lợi ích bổ sung là ký túc xá thường có <strong style="color: #70ad47;">giá cả phải chăng hơn thuê chỗ ở tư nhân</strong>. Ngoài việc giảm chi phí sinh hoạt, chúng còn giúp sinh viên và gia đình <strong style="color: #70ad47;">quản lý ngân sách hiệu quả hơn</strong>.<br/><br/>Tóm lại, <strong style="color: #ee0000;">sống trong ký túc xá có một số lợi ích rõ ràng</strong> như đã nêu trên.</div>
+</div>
+</div>
+<div class="sol-topic-header" style="margin-top: 30px;">
+<i class="fa-solid fa-circle-question"></i> FOLLOW-UP QUESTIONS <span class="sol-translation">(câu hỏi mở rộng)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What are the challenges of living in a dormitory? <span class="sol-translation">(Những thử thách khi sống ở ký túc xá là gì?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            One challenge is the <strong style="color: #00b0f0;">lack of privacy</strong> because students often share rooms with others. Another challenge is that dormitories can sometimes be <strong style="color: #00b0f0;">noisy</strong>.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Một thách thức là <strong style="color: #00b0f0;">thiếu sự riêng tư</strong> vì sinh viên thường phải chung phòng với những người khác. Một thách thức khác là ký túc xá đôi khi có thể <strong style="color: #00b0f0;">ồn ào</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content"> One major challenge is the <strong style="color: #70ad47;">lack of privacy</strong>, especially when students share living spaces with roommates. In addition, <strong style="color: #70ad47;">noise and differences in lifestyles</strong> can occasionally lead to conflicts or distractions. <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Một thách thức lớn là <strong style="color: #70ad47;">thiếu sự riêng tư</strong>, đặc biệt là khi sinh viên chia sẻ không gian sống với bạn cùng phòng. Ngoài ra, <strong style="color: #70ad47;">tiếng ồn và sự khác biệt trong lối sống</strong> đôi khi có thể dẫn đến xung đột hoặc gây phân tâm.</div>
+</div></div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. Do you think all students should live in dormitories? Why or why not? <span class="sol-translation">(Bạn có nghĩ tất cả sinh viên nên sống trong ký túc xá không? Tại sao hay tại sao không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            No, I don't think so. Different students have <strong style="color: #00b0f0;">different needs and preferences</strong>. Some may prefer living with their families or renting private accommodation.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Không, tôi không nghĩ vậy. Các sinh viên khác nhau có <strong style="color: #00b0f0;">nhu cầu và sở thích khác nhau</strong>. Một số người có thể thích sống với gia đình hoặc thuê chỗ ở riêng.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            No, I do not think dormitory living is suitable for everyone. While it offers many benefits, some students may <strong style="color: #70ad47;">prefer greater privacy</strong> or need a <strong style="color: #70ad47;">different living environment</strong> that better supports their personal circumstances.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Không, tôi không nghĩ việc sống trong ký túc xá phù hợp với tất cả mọi người. Mặc dù nó mang lại nhiều lợi ích, một số sinh viên có thể <strong style="color: #70ad47;">thích sự riêng tư lớn hơn</strong> hoặc cần một <strong style="color: #70ad47;">môi trường sống khác</strong> hỗ trợ tốt hơn cho hoàn cảnh cá nhân của họ.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. How can students solve conflicts with roommates? <span class="sol-translation">(Làm thế nào để sinh viên giải quyết xung đột với bạn cùng phòng?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            Students should <strong style="color: #00b0f0;">communicate openly</strong> and <strong style="color: #00b0f0;">respect each other's opinions</strong>. They should also try to find solutions together.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Sinh viên nên <strong style="color: #00b0f0;">giao tiếp cởi mở</strong> và <strong style="color: #00b0f0;">tôn trọng ý kiến của nhau</strong>. Họ cũng nên cố gắng cùng nhau tìm ra giải pháp.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                            Students can resolve conflicts by <strong style="color: #70ad47;">communicating honestly and respectfully</strong> with one another. In addition, <strong style="color: #70ad47;">setting clear rules and discussing problems early</strong> can help prevent misunderstandings from becoming more serious.
+                                            <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Sinh viên có thể giải quyết xung đột bằng cách <strong style="color: #70ad47;">giao tiếp trung thực và tôn trọng lẫn nhau</strong>. Ngoài ra, việc <strong style="color: #70ad47;">thiết lập các quy tắc rõ ràng và thảo luận sớm các vấn đề</strong> có thể giúp ngăn ngừa những hiểu lầm trở nên nghiêm trọng hơn.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Custom Script JS -->
+<script src="../db.js?v=1782327221"></script>
+<script src="app.js?v=1782327221"></script>
+<script>
+      function toggleTranslation(element) {
+          const textNode = element.nextElementSibling;
+          const icon = element.querySelector('i');
+          if (textNode.style.display === 'none') {
+              textNode.style.display = 'block';
+              if (icon) icon.className = 'fa-solid fa-chevron-up';
+          } else {
+              textNode.style.display = 'none';
+              if (icon) icon.className = 'fa-solid fa-chevron-down';
+          }
+      }
+</script>
+</body>
+</html>

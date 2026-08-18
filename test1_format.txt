@@ -1,0 +1,80 @@
+[B|None] SPEAKING MOCK TEST 01
+[B|None] PART 01: SOCIAL INTERACTION
+[B|None] Let's talk about street food
+[B|None] 1. Do you like eating street food?
+[B|None] B1 LEVEL
+[_|None] Yes, I do. I often | [B|00B0F0] eat street food in the evening with my friends | [_|None] . I like it because it | [_|None] ’ | [_|None] s | [B|00B0F0] delicious | [_|000000] and | [B|00B0F0] affordable | [_|None] . It also gives me a chance to | [B|00B0F0] try different local dishes | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Yes, I do. I | [B|00B0F0] enjoy eating street food whenever I have free time | [_|None] , | [B|00B0F0] especially in the evening | [_|None] . It | [_|None] ’ | [_|None] s usually | [B|00B0F0] delicious | [_|None] , | [B|00B0F0] affordable | [_|None] , and | [B|00B0F0] easy to find | [_|None] . Besides, trying different street foods allows me to | [B|00B0F0] experience local culture and cuisine | [_|None] .
+[B|None] 2. What are some famous street foods?
+[B|None] B1 LEVEL
+[_|None] There are many famous street foods in my country | [_|None] such as | [B|00B0F0] bánh mì | [_|None] , | [B|00B0F0] phở | [_|None] , and | [B|00B0F0] bánh xèo | [_|None] . Many people enjoy them because they are | [B|00B0F0] tasty | [_|None] and | [B|00B0F0] easy to find | [_|None] .
+[B|None] B2 LEVEL
+[_|None] There are many well-known street foods in Vietnam, such as | [B|00B0F0] bánh mì | [_|None] , | [B|00B0F0] phở | [_|None] , and | [B|00B0F0] bánh xèo | [_|None] . | [_|None] These dishes are popular because they are | [B|00B0F0] flavorful | [_|None] , | [B|00B0F0] convenient | [_|None] , and | [B|00B0F0] reasonably | [B|00B0F0] priced | [_|None] . They are also | [B|00B0F0] considered important parts of Vietnamese food culture | [_|None] .
+[B|None] 3. What are the benefits of eating street food?
+[B|None] B1 LEVEL
+[_|None] One benefit is that it | [_|None] ’ | [_|None] s usually | [B|00B0F0] cheaper than eating at restaurants | [_|None] . Another advantage is that it | [B|00B0F0] saves time | [_|None] because the food is | [B|00B0F0] prepared quickly | [_|None] . It also allows people to | [B|00B0F0] experience local culture through traditional dishes | [_|None] .
+[B|None] B2 LEVEL
+[_|None] One major benefit is that street food is often | [B|00B0F0] more affordable than restaurant meals | [_|None] . In addition, it | [_|None] ’ | [_|None] s | [B|00B0F0] convenient | [_|None] because people can | [B|00B0F0] buy food quickly | [_|None] when they are busy. Furthermore, street food helps people | [B|00B0F0] learn more about local traditions and culinary culture | [_|None] .
+[B|None] Let's talk about coffee shops
+[B|None] 1. Do you like going to coffee shops?
+[B|None] B1 LEVEL
+[_|None] Yes, I do. I | [B|00B0F0] usually go to coffee shops | [B|00B0F0] in my free time | [_|None] , | [B|00B0F0] especially | [B|00B0F0] on weekends | [_|None] . I | [B|00B0F0] enjoy the | [B|00B0F0] relaxing atmosphere | [_|None] , and it helps me | [B|00B0F0] reduce stress after a busy week | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Yes, I do. I often | [B|00B0F0] visit coffee shops in my free time | [_|None] , | [B|00B0F0] especially on weekends | [_|None] . This is | [_|None] because they | [B|00B0F0] provide a comfortable and relaxing | [B|00B0F0] atmosphere | [_|None] . They are great places to | [B|00B0F0] unwind | [_|None] , | [B|00B0F0] enjoy a drink | [_|None] , and | [B|00B0F0] escape from daily stress | [_|None] .
+[B|None] 2. Who do you often go there with?
+[B|None] B1 LEVEL
+[_|None] I often | [B|00B0F0] go there with my friends | [_|None] . We usually | [B|00B0F0] chat about our studies and daily lives | [_|None] . It | [_|None] ’ | [_|None] s a good way to | [B|00B0F0] strengthen our friendship | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I usually | [B|00B0F0] go there with my friends or | [B|00B0F0] co-workers | [_|None] . We often meet to | [B|00B0F0] catch up | [_|None] , | [B|00B0F0] exchange | [B|00B0F0] ideas | [_|None] , or simply | [B|00B0F0] spend time together | [_|None] . These meetings help | [B|00B0F0] strengthen our relationships | [_|None] .
+[B|None] 3. What do you usually do at a coffee shop?
+[B|None] B1 LEVEL
+[_|None] I usually | [B|00B0F0] drink coffee | [_|None] and | [B|00B0F0] talk with my friends | [_|None] . Sometimes, I also | [B|00B0F0] read books | [_|None] or | [B|00B0F0] do some | [B|00B0F0] work | [_|None] . It helps me | [B|00B0F0] stay focused and productive | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I | [_|None] usually | [B|00B0F0] enjoy a cup of coffee while reading books | [_|None] , | [B|00B0F0] working on my tasks | [_|None] , or | [B|00B0F0] chatting with friends | [_|None] . Sometimes, I also | [B|00B0F0] use the quiet atmosphere to concentrate on important work | [_|None] .
+[B|None] PART 02: SOLUTION DISCUSSION
+[B|None] SITUATION
+[_|None] Your brother has just graduated, and he is considering what to do after graduation. There are three options: go to work, study for his master’s degree, or take a gap year. Which one would you recommend him?
+[B|None] B1 LEVEL
+[_|None] Well, if I had to | [B|EE0000] suggest what my brother should do after graduation | [_|None] , I would | [B|EE0000] recommend | [B|EE0000] going to work | [_|None] .
+[_|None] First of all, going to work allows | [B|None] him | [_|None] to | [B|00B0F0] gain practical experience | [_|None] . In fact, | [B|None] he | [_|None] can | [B|00B0F0] learn | [B|00B0F0] professional skills | [_|None] and | [B|00B0F0] understand the real working environment | [_|None] . Therefore, | [B|None] he | [_|None] can | [B|00B0F0] prepare better for his future career | [_|None] .
+[_|None] Secondly, | [B|None] he | [_|None] can | [B|00B0F0] earn money | [_|None] and | [B|00B0F0] become more independent | [_|None] . As a result, | [B|None] he | [_|None] can | [B|00B0F0] support | [B|00B0F0] himself | [_|None] and | [B|00B0F0] reduce the financial burden on our family | [_|None] .
+[_|None] I wouldn’t recommend | [B|70AD47] studying for a master’s degree | [_|None] because | [B|70AD47] it can be expensive | [_|None] . As for | [B|7030A0] taking a gap year | [_|None] , it | [_|None] ’ | [_|None] s less suitable because | [B|7030A0] he may lose motivation and waste | [B|7030A0] valuable time | [_|None] .
+[_|None] In short, I believe | [B|EE0000] going to work | [_|None] is the best choice for this situation.
+[B|None] B2 LEVEL
+[_|None] Well, if I had to | [B|EE0000] suggest what my brother should do after graduation | [_|None] , I would | [B|EE0000] recommend | [B|EE0000] going to work | [_|None] .
+[_|None] First of all, getting a job would allow him to | [B|00B0F0] gain valuable practical experience | [_|None] . By working in a professional environment, he can | [B|00B0F0] develop important skills | [_|None] , | [B|00B0F0] learn how | [B|00B0F0] businesses operate | [_|None] , and | [B|00B0F0] better understand his career interests | [_|None] . This experience can be | [B|00B0F0] very useful for his long-term development | [_|None] .
+[_|None] Secondly, having a job would help him | [B|00B0F0] become financially independent | [_|None] . He can | [B|00B0F0] earn his | [B|00B0F0] own income | [_|None] , | [B|00B0F0] support himself | [_|None] , and | [B|00B0F0] reduce the financial burden on our family | [_|None] . In addition, working may help him | [B|00B0F0] build professional networks for future opportunities | [_|None] .
+[_|None] I wouldn’t recommend | [B|70AD47] studying for a master’s degree | [_|None] because | [B|70AD47] it requires a significant | [B|70AD47] investment of time and money | [_|None] . As for | [B|7030A0] taking a gap year | [_|None] , it | [_|None] ’ | [_|None] s less suitable because | [B|7030A0] he may lose motivation and waste | [B|7030A0] valuable time | [_|None] .
+[_|None] In short, I believe | [B|EE0000] going to work | [_|None] is the best choice for this situation.
+[B|None] PART 03: TOPIC DEVELOPMENT
+[B|None] TOPIC
+[B|None] Having lunch at the school canteen has a lot of benefits.
+[B|None] B1 LEVEL
+[_|None] There are | [_|None] some | [B|00B0F0] benefits | [_|None] of | [B|00B0F0] having lunch at the school canteen | [_|None] .
+[_|None] One major advantage is that | [B|00B0F0] it | [B|00B0F0] ’ | [B|00B0F0] s convenient | [_|None] . | [_|None] This is because s | [_|None] tudents | [B|None] do | [B|None] n’ | [B|None] t need to leave the school to look for food | [_|None] . As a result, they can | [B|None] have lunch more easily and comfortably | [_|None] .
+[_|None] Another positive aspect is that | [B|00B0F0] it | [B|00B0F0] ’ | [B|00B0F0] s time-saving | [_|None] . | [_|None] Because | [_|None] the canteen | [B|None] is located inside the school | [_|None] , students can | [B|None] buy their meals quickly | [_|None] . Therefore, they | [B|None] have more time to rest | [_|None] or | [B|None] prepare for their next classes | [_|None] .
+[_|None] One more beneficial effect is that | [B|00B0F0] meals at the canteen are usually cheap | [_|None] . | [_|None] This means that s | [_|None] tudents can | [B|None] enjoy lunch at reasonable prices | [_|None] . This helps them | [B|None] save money | [_|None] .
+[_|None] In short, | [B|00B0F0] having lunch at the school canteen | [_|None] has several clear | [B|00B0F0] benefits | [_|None] , as mentioned above.
+[B|None] B2 LEVEL
+[_|None] There are | [_|None] some | [B|EE0000] benefits | [_|None] of | [B|EE0000] having lunch at the school canteen | [_|None] .
+[_|None] One major advantage is that | [B|EE0000] having lunch at the school canteen is convenient | [_|None] . | [_|None] This is because s | [_|None] tudents | [B|00B0F0] don | [B|00B0F0] ’ | [B|00B0F0] t need to leave the school to buy food | [_|None] . | [_|None] As a result, they can | [B|00B0F0] spend | [B|00B0F0] more time resting or studying | [_|None] .
+[_|None] Another positive aspect is that | [B|EE0000] meals at the canteen are usually cheap | [_|None] . | [_|None] In fact, | [_|None] s | [_|None] tudents usually | [B|00B0F0] spend less money than when eating at restaurants or food stalls | [_|None] . | [_|None] This helps students | [B|00B0F0] save money on daily meals | [_|None] .
+[_|None] One more beneficial effect is that | [B|EE0000] having lunch at the school canteen is time-saving | [_|None] . | [_|None] Students can | [B|00B0F0] get their meals quickly without travelling far | [_|None] . | [_|None] Therefore, they | [B|00B0F0] have more time for other school activities | [_|None] .
+[_|None] In short, | [B|EE0000] having lunch at the school canteen | [_|None] has several clear | [B|EE0000] benefits | [_|None] , as mentioned above.
+[B|None] FOLLOW-UP QUESTIONS
+[B|None] 1. How does a school attract more students to have lunch at its canteen?
+[B|None] B1 LEVEL
+[_|None] I think s | [_|None] chools should | [B|00B0F0] provide | [B|00B0F0] delicious | [B|00B0F0] and affordable food | [_|None] . They can also | [B|00B0F0] offer more food | [B|00B0F0] choices | [_|None] . As a result, more students may | [B|00B0F0] choose to eat there | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Schools can attract more students by | [B|00B0F0] improving both the quality and variety of food | [_|None] . In addition, | [B|00B0F0] maintaining reasonable prices and a clean environment | [_|None] is very important. Schools could also regularly | [B|00B0F0] collect students’ feedback to better meet their needs | [_|None] .
+[B|None] 2. What are some disadvantages of eating at the canteen?
+[B|None] B1 LEVEL
+[_|None] The canteen | [B|00B0F0] may be crowded during lunchtime | [_|None] . Students may also | [B|00B0F0] have limited food | [B|00B0F0] choices | [_|None] . Therefore, some students | [B|00B0F0] may not enjoy eating there | [_|None] .
+[B|None] B2 LEVEL
+[_|None] One disadvantage is that | [B|00B0F0] school canteens are often crowded | [_|None] , | [B|00B0F0] especially during peak | [B|00B0F0] hours | [_|None] . As a result, students may | [B|00B0F0] spend time waiting in long lines | [_|None] . Another drawback is that the menu | [B|00B0F0] may not always satisfy different tastes or dietary needs | [_|None] .
+[B|None] 3. What should schools do to have hygienic and healthy meals for students?
+[B|None] B1 LEVEL
+[_|None] Schools should | [B|00B0F0] use fresh ingredients | [_|None] . They should also | [B|00B0F0] keep the canteen clean | [_|None] . This can help students | [B|00B0F0] stay healthy | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Schools should | [B|00B0F0] strictly follow food safety standards | [_|None] and | [B|00B0F0] regularly inspect the quality of | [B|00B0F0] ingredients | [_|None] . They should also | [B|00B0F0] ensure that food is prepared in a clean environment by trained staff | [_|None] . Furthermore, schools should | [B|00B0F0] provide balanced meals containing sufficient | [B|00B0F0] nutrients | [_|None] to support students’ health and development.

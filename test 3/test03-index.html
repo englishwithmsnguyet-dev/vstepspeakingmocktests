@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<script>
+        // Block flash of protected content
+        (function() {
+            const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+            const testId = pathMatch ? parseInt(pathMatch[1]) : 1;
+            const TEST_PASSWORDS = {};
+            if (TEST_PASSWORDS[testId] && sessionStorage.getItem('unlocked_test_' + testId) !== 'true') {
+                document.documentElement.style.display = 'none';
+            }
+        })();
+    </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPEAKING MOCK TEST 03 - ENGLISHWITHMISSNGUYET</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome for Premium Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="styles.css?v=1782327221" rel="stylesheet"/>
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<nav class="test-sidebar">
+<div class="sidebar-header">
+<i class="fa-solid fa-list-check"></i> <span>VSTEP MOCK TESTS</span>
+</div>
+<ul class="test-list">
+<li class="test-item">
+<a href="../index.html">
+<span class="test-icon"><i class="fa-solid fa-house"></i></span>
+<span class="test-name">TRANG CHỦ</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="1" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 01</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="2" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 02</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="3" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 03</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="4" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 04</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="5" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 05</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="6" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 06</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="7" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 07</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="8" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 08</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="9" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 09</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="10" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 10</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="11" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 11</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="12" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 12</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="13" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 13</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="14" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 14</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="15" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 15</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="16" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 16</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="17" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 17</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="18" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 18</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="19" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 19</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="20" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 20</span>
+</a>
+</li>
+</ul>
+<a class="sidebar-brand-bottom" href="https://www.facebook.com/nguyetpham28" target="_blank">
+<span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+<span class="brand-text">ENGLISH WITH MISS NGUYET</span>
+</a>
+</nav>
+<!-- Background Chime/Sound Permission Modal (if required, or handled on welcome screen) -->
+<!-- App Wrapper -->
+<div class="app-container">
+<!-- Header Brand -->
+<header class="app-header">
+<div class="header-title-wrapper"></div>
+</header>
+<!-- Progress Timeline Tracker -->
+<div class="progress-timeline">
+<div class="timeline-step active" id="step-welcome">
+<div class="step-num">0</div>
+<div class="step-label">CHUẨN BỊ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part1">
+<div class="step-num">1</div>
+<div class="step-label">PART 01</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part2">
+<div class="step-num">2</div>
+<div class="step-label">PART 02</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part3">
+<div class="step-num">3</div>
+<div class="step-label">PART 03</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-review">
+<div class="step-num">4</div>
+<div class="step-label">KẾT QUẢ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-solution">
+<div class="step-num">5</div>
+<div class="step-label">BÀI GIẢI</div>
+</div>
+</div>
+<!-- Main Workspace -->
+<main class="app-main">
+<!-- SCREEN 1: WELCOME SCREEN -->
+<section class="screen-view active" id="view-welcome">
+<div class="glass-card welcome-card">
+<div class="welcome-header-center">
+<div class="welcome-cat-gif">
+<img alt="Typing Cat" class="typing-cat-img" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"/>
+</div>
+<h1>VSTEP Speaking Practice</h1>
+<div class="mock-test-pill">SPEAKING MOCK TEST 03</div>
+<p class="welcome-desc">Chào mừng bạn đến với hệ thống thi thử VSTEP SPEAKING MOCK TEST tương tác. Giao diện và cách tính giờ được lập trình mô phỏng chính xác phòng thi máy thực tế.</p>
+<p class="welcome-warning" style="margin-top: 12px; color: var(--color-red); font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>LƯU Ý:</strong> Không sử dụng bất kì tài liệu hay công cụ trong lúc thi thử. Mọi sự thảo luận đều không được cho phép trong phòng thi.</p>
+</div>
+<div class="test-outline">
+<h3>Cấu trúc bài thi</h3>
+<div class="outline-grid">
+<div class="outline-item">
+<span class="part-badge">PART 01</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Social Interaction</span> [Giao tiếp xã hội]</h4>
+<p>Thí sinh trả lời 02 chủ đề bất kì, mỗi chủ đề có 03 câu hỏi. Không có thời gian chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 3 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 02</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Solution Discussion</span> [Thảo luận giải pháp]</h4>
+<p>Thí sinh thảo luận phương án tốt nhất cho một tình huống giả định bất kì với 03 sự lựa chọn. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 4 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 03</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Topic Development</span> [Phát triển chủ đề]</h4>
+<p>Thí sinh phát triển một chủ đề bất kì dựa vào sơ đồ gợi ý và 03 câu hỏi mở rộng. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 5 phút</span>
+</div>
+</div>
+</div>
+<!-- Student Info Input -->
+<div class="student-form">
+<div class="input-group">
+<label for="student-name"><i class="fa-solid fa-user-pen"></i> Họ và tên học viên:</label>
+<input autocomplete="off" id="student-name" placeholder="Nhập họ tên của bạn..." type="text"/>
+</div>
+</div>
+<!-- Action and Sound Check -->
+<div class="audio-check-section">
+<div class="mic-status-msg" id="mic-status">
+<i class="fa-solid fa-circle-info"></i> Hãy cấp quyền truy cập Microphone để hệ thống ghi âm bài làm của bạn.
+                        </div>
+<button class="btn btn-primary" id="btn-start-test">
+<span>BẮT ĐẦU BÀI THI</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 2: PART 1 SCREEN -->
+<section class="screen-view" id="view-part1">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 01: <span style="color: var(--color-red);">SOCIAL INTERACTION</span></div>
+<div class="part1-topics">
+<!-- Topic 1 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-gamepad"></i> <span>Let's talk about <strong>game shows</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">1</span> What gameshow do you often watch?</li>
+<li><span class="q-num">2</span> Would you prefer to watch it alone or with someone else?</li>
+<li><span class="q-num">3</span> What are the benefits of watching a gameshow?</li>
+</ul>
+</div>
+<!-- Topic 2 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-bus"></i> <span>Let's talk about <strong>buses</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">4</span> Have you ever traveled by bus?</li>
+<li><span class="q-num">5</span> Is bus service good in your country?</li>
+<li><span class="q-num">6</span> What are the benefits of traveling by bus?</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Mic, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator recording" id="p1-status">
+<span class="status-dot"></span>
+<span class="status-text">Hệ thống đang ghi âm bài nói của bạn</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p1-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p1-time-val">03:00</span>
+<span class="time-label">TỔNG THỜI GIAN</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p1-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 3: PART 2 SCREEN -->
+<section class="screen-view" id="view-part2">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 02: <span style="color: var(--color-red);">SOLUTION DISCUSSION</span></div>
+<!-- Situation Card -->
+<div class="situation-box">
+<h3 class="section-subtitle"><i class="fa-solid fa-circle-question"></i> Situation:</h3>
+<p class="situation-desc">
+                                Your youth club is supposed to invite a speaker to talk about his/ her life experience. Three options are suggested: <strong>a famous singer</strong>, <strong>a company president</strong>, or <strong>an excellent student</strong>. Which one is the best choice?
+                            </p>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Prep state, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p2-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p2-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p2-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p2-time-val">01:00</span>
+<span class="time-label" id="p2-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p2-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p2-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 4: PART 3 SCREEN -->
+<section class="screen-view" id="view-part3">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 03: <span style="color: var(--color-red);">TOPIC DEVELOPMENT</span></div>
+<div class="topic-header">
+<h3 class="topic-heading-red">Topic:</h3>
+<p class="topic-desc">There are a lot of disadvantages to keeping animals in zoos.</p>
+</div>
+<!-- CSS Grid Mindmap -->
+<div class="mindmap-wrapper">
+<div class="mindmap-container">
+<!-- Center Node -->
+<div class="mindmap-node node-center">
+<span>Keeping animals in zoos</span>
+</div>
+<!-- Connectors -->
+<div class="mindmap-line line-top"></div>
+<div class="mindmap-line line-left"></div>
+<div class="mindmap-line line-bottom"></div>
+<div class="mindmap-line line-right"></div>
+<!-- Top Branch -->
+<div class="mindmap-node node-branch branch-top">
+<span>lack of space</span>
+</div>
+<!-- Left Branch -->
+<div class="mindmap-node node-branch branch-left">
+<span>lack of survival skills</span>
+</div>
+<!-- Bottom Branch -->
+<div class="mindmap-node node-branch branch-bottom">
+<span>loss of freedom</span>
+</div>
+<!-- Right Branch -->
+<div class="mindmap-node node-branch branch-right">
+<span>[your own idea]</span>
+</div>
+</div>
+</div>
+<!-- Follow-up Questions Box -->
+<div class="follow-up-box">
+<h4><i class="fa-solid fa-circle-question"></i> Follow-up questions:</h4>
+<ul class="question-list">
+<li><span class="q-num">1</span> What kinds of animals are usually kept in zoos?</li>
+<li><span class="q-num">2</span> What are the benefits of keeping animals in zoos?</li>
+<li><span class="q-num">3</span> What can people do to protect wildlife species?</li>
+</ul>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Scratchpad, Finish button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p3-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p3-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p3-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p3-time-val">01:00</span>
+<span class="time-label" id="p3-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p3-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-success" id="btn-p3-next">
+<span>Hoàn thành bài thi</span> <i class="fa-solid fa-circle-check"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 5: REVIEW SCREEN -->
+<section class="screen-view" id="view-review">
+<div class="glass-card review-card">
+<div class="success-banner">
+<div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+<h2>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI THI NÓI!</h2>
+<p style="margin-bottom: 8px;">Bạn có 10s để khóc trước khi xem phần BÀI GIẢI.</p>
+<p id="review-student-info" style="font-size: 13px; opacity: 0.7; margin-top: 4px;"></p>
+</div>
+<!-- Summary Grid: Audio Files & Notes -->
+<div class="review-grid">
+<!-- Left Panel: Playback recordings -->
+<div class="review-recordings-panel">
+<h3><i class="fa-solid fa-microphone-lines"></i> Nghe lại bài nói của bạn</h3>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 01</span>
+<span class="rec-title">Social Interaction</span>
+</div>
+<div class="audio-player-wrapper" id="p1-player-container">
+<!-- Dynamic custom Audio Player or native audio element styled -->
+<audio controls="" id="p1-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part1.webm" id="p1-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 02</span>
+<span class="rec-title">Solution Discussion</span>
+</div>
+<div class="audio-player-wrapper" id="p2-player-container">
+<audio controls="" id="p2-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part2.webm" id="p2-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 03</span>
+<span class="rec-title">Topic Development</span>
+</div>
+<div class="audio-player-wrapper" id="p3-player-container">
+<audio controls="" id="p3-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part3.webm" id="p3-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Right Panel: Feedback -->
+<div class="review-notes-panel">
+<h3><i class="fa-solid fa-comment-medical"></i> ĐÁNH GIÁ CHUNG</h3>
+<div class="teacher-feedback-box">
+<label for="teacher-feedback">Học viên tự đánh giá mức độ hoàn thành bài nói:</label>
+<textarea id="teacher-feedback" placeholder="Bạn đã hoàn thành tất cả nội dung bài thi hay chưa? Bạn có tự tin với bài nói của mình hay không?" style="min-height: 200px;"></textarea>
+</div>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="review-actions">
+<button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
+<i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
+                        </button>
+<button class="btn btn-secondary" id="btn-restart-test">
+<i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
+                        </button>
+</div>
+</div>
+</section>
+<!-- SCREEN 6: SOLUTION SCREEN -->
+<section class="screen-view" id="view-solution">
+<div class="glass-card instruction-card" style="max-width: 900px; margin: 20px auto;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+<h2 style="color: var(--color-red); margin-bottom: 0;"><i class="fa-solid fa-book-open"></i> BÀI GIẢI CHI TIẾT</h2>
+<span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 03</span>
+</div>
+<div class="solution-tab-container">
+<div class="solution-tab-buttons">
+<button class="sol-tab-btn active" onclick="switchSolTab(1)">PART 01: SOCIAL INTERACTION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(2)">PART 02: SOLUTION DISCUSSION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(3)">PART 03: TOPIC DEVELOPMENT</button>
+</div>
+<!-- Panel Part 1 -->
+<div class="sol-tab-content active" id="sol-panel-1">
+<!-- Topic 1 -->
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-gamepad"></i> Topic 1: Let's talk about game shows <span class="sol-translation">(Hãy nói về các chương trình truyền hình thực tế/trò chơi truyền hình)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What gameshow do you often watch? <span class="sol-translation">(Bạn thường xem chương trình trò chơi truyền hình nào?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        I’m a big fan of <strong style="color: #00b0f0;">2 Days 1 Night</strong>. It’s very <strong style="color: #00b0f0;">entertaining</strong> and <strong style="color: #00b0f0;">funny</strong>. It helps me <strong style="color: #00b0f0;">relax after studying</strong> and <strong style="color: #00b0f0;">reduce stress</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường xem các chương trình trò chơi truyền hình về kiến thức trên tivi. Chúng rất thú vị và mang tính giáo dục. Tôi có thể học được nhiều điều bổ ích từ chúng.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        I’m a big fan of <strong style="color: #70ad47;">2 Days 1 Night</strong> because it’s both <strong style="color: #70ad47;">entertaining</strong> and <strong style="color: #70ad47;">engaging</strong>. The cast members <strong style="color: #70ad47;">take part in many exciting activities</strong> and <strong style="color: #70ad47;">visit different places</strong>. Watching the show helps me <strong style="color: #70ad47;">relax after a busy day</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường xem các chương trình trò chơi truyền hình về kiến thức vì chúng vừa mang tính giải trí vừa cung cấp thông tin. Chúng giúp tôi học hỏi thêm các sự kiện mới trong khi tận hưởng thời gian rảnh rỗi của mình.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. Would you prefer to watch it alone or with someone else? <span class="sol-translation">(Bạn thích xem nó một mình hay xem cùng người khác?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        I <strong style="color: #00b0f0;">prefer watching it with my family</strong>. We can <strong style="color: #00b0f0;">laugh together</strong> and <strong style="color: #00b0f0;">enjoy the funny moments</strong> in the show. It’s a good way to <strong style="color: #00b0f0;">spend quality time together</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thích xem nó cùng gia đình hơn. Chúng tôi có thể cùng thảo luận về các câu hỏi và thưởng thức chương trình. Đó là một cách tốt để dành thời gian chất lượng bên nhau.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        I would rather <strong style="color: #70ad47;">watch it with my family or friends</strong>. Watching the funny activities and interesting trips with them <strong style="color: #70ad47;">makes the experience more enjoyable</strong>. It also gives us a chance to <strong style="color: #70ad47;">spend quality time together</strong> and <strong style="color: #70ad47;">strengthen our relationships</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi muốn xem nó cùng gia đình hoặc bạn bè hơn. Việc chia sẻ ý kiến và cùng nhau trả lời câu hỏi làm cho trải nghiệm trở nên thú vị và tương tác hơn. Nó cũng giúp chúng tôi thắt chặt các mối quan hệ của mình.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. What are the benefits of watching a gameshow? <span class="sol-translation">(Những lợi ích của việc xem chương trình trò chơi truyền hình là gì?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        One benefit is that it helps me <strong style="color: #00b0f0;">relax after a busy day</strong>. Another benefit is that I can <strong style="color: #00b0f0;">learn many new things</strong> from the program. It’s both <strong style="color: #00b0f0;">entertaining</strong> and <strong style="color: #00b0f0;">educational</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Một lợi ích là nó giúp tôi thư giãn sau giờ học. Một ưu điểm khác là tôi có thể tiếp thu thêm kiến thức mới. Nó cũng cải thiện kỹ năng tư duy của tôi.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        Watching game shows <strong style="color: #70ad47;">offers both entertainment and educational benefits</strong>. They help me <strong style="color: #70ad47;">clear my mind</strong> and <strong style="color: #70ad47;">improve my mood</strong>. At the same time, I can <strong style="color: #70ad47;">gain useful knowledge</strong> and <strong style="color: #70ad47;">learn interesting facts about different topics</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Xem các chương trình trò chơi giúp tôi thư giãn và thoát khỏi những căng thẳng hàng ngày. Ngoài ra, nó cho phép tôi mở rộng kiến thức và phát triển trí tò mò về thế giới. Một số chương trình cũng cải thiện kỹ năng tư duy phản biện.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Topic 2 -->
+<div class="sol-topic-section" style="margin-top: 30px;">
+<div class="sol-topic-header">
+<i class="fa-solid fa-bus"></i> Topic 2: Let's talk about buses <span class="sol-translation">(Hãy nói về xe buýt)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. Have you ever traveled by bus? <span class="sol-translation">(Bạn đã từng đi du lịch/đi lại bằng xe buýt chưa?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+<strong style="color: #00b0f0;">Yes</strong>, I have. I often <strong style="color: #00b0f0;">take a bus to get around the city</strong>. It’s <strong style="color: #00b0f0;">easy to use</strong> and <strong style="color: #00b0f0;">available in many areas</strong>. I usually <strong style="color: #00b0f0;">choose it for short trips</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi đã từng. Tôi thường đi xe buýt khi đi du lịch đến các thành phố lân cận. Nó rất phải chăng và tiện lợi.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+<strong style="color: #70ad47;">Yes</strong>, I have traveled by bus many times. It’s <strong style="color: #70ad47;">one of the most affordable means of transportation</strong>, especially for students and people with a limited budget.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi đã đi du lịch bằng xe buýt nhiều lần. Đây là một trong những phương tiện giao thông hợp túi tiền nhất, đặc biệt là đối với sinh viên và những người có ngân sách hạn chế.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. Is bus service good in your country? <span class="sol-translation">(Dịch vụ xe buýt ở nước bạn có tốt không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+<strong style="color: #00b0f0;">Yes</strong>, I think it is quite good. There are <strong style="color: #00b0f0;">many bus routes in big cities</strong>. The buses <strong style="color: #00b0f0;">run regularly throughout the day</strong>. Many people <strong style="color: #00b0f0;">rely on them for daily travel</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi nghĩ nó khá tốt. Có rất nhiều tuyến xe buýt ở các thành phố lớn. Chúng giúp mọi người di chuyển dễ dàng.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        Generally, <strong style="color: #70ad47;">yes</strong>. Bus services <strong style="color: #70ad47;">have improved a lot in recent years</strong>. They are more <strong style="color: #70ad47;">accessible</strong>, <strong style="color: #70ad47;">affordable</strong>, and <strong style="color: #70ad47;">environmentally friendly</strong> than before.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Nói chung là có. Dịch vụ xe buýt đã cải thiện rất nhiều trong những năm gần đây. Chúng dễ tiếp cận, giá cả phải chăng và thân thiện với môi trường hơn trước đây.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. What are the benefits of traveling by bus? <span class="sol-translation">(Những lợi ích của việc đi lại bằng xe buýt là gì?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        Traveling by bus has many benefits. It helps people <strong style="color: #00b0f0;">save money</strong>. It can <strong style="color: #00b0f0;">reduce traffic jams</strong> and <strong style="color: #00b0f0;">protect the environment</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Đi du lịch bằng xe buýt vừa tiết kiệm vừa thuận tiện. Nó cũng giúp giảm thiểu ùn tắc giao thông. Ngoài ra, nó rất tốt cho môi trường.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        Traveling by bus is beneficial in many ways. It allows people to <strong style="color: #70ad47;">save money on transportation</strong> and helps <strong style="color: #70ad47;">reduce traffic congestion</strong>. Moreover, it’s also a practical way to <strong style="color: #70ad47;">protect the environment</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Một lợi thế lớn là xe buýt không đắt và có sẵn ở nhiều khu vực. Chúng cũng giúp giảm số lượng phương tiện cá nhân trên đường, từ đó có thể làm giảm ùn tắc giao thông và ô nhiễm không khí.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 2 -->
+<div class="sol-tab-content" id="sol-panel-2">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-circle-info"></i> SITUATION <span class="sol-translation">(tình huống)</span>
+</div>
+<div class="sol-situation-box">
+                                    Your youth club is supposed to invite a speaker to talk about his/ her life experience. Three options are suggested: <strong>a famous singer</strong>, <strong>a company president</strong>, or <strong>an excellent student</strong>. Which one is the best choice?
+                                    <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-size: 13.5px;">(Câu lạc bộ thanh niên của bạn dự kiến mời một diễn giả đến nói chuyện về kinh nghiệm sống của họ. Ba phương án được đề xuất: <strong>một ca sĩ nổi tiếng</strong>, <strong>một chủ tịch công ty</strong>, <strong>một học sinh xuất sắc</strong>. Lựa chọn nào là tốt nhất?)</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-graduation-cap"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Well, if I had to <strong style="color: #ee0000;">suggest a speaker for our youth club</strong>, I would <strong style="color: #ee0000;">recommend inviting a company president</strong>.<br/><br/>First of all, a company president usually <strong style="color: #00b0f0;">has rich life experience</strong>. He or she <strong style="color: #00b0f0;">overcame many challenges before being successful</strong>. So, members can <strong style="color: #00b0f0;">learn important lessons about life and success</strong>.<br/><br/>Secondly, the speaker can <strong style="color: #00b0f0;">inspire young people to work hard and never give up</strong>. His or her story can show that <strong style="color: #00b0f0;">success takes time and effort</strong>. So, members can <strong style="color: #00b0f0;">become more motivated</strong>.<br/><br/>I wouldn’t recommend <strong style="color: #70ad47;">inviting a famous singer</strong> because <strong style="color: #70ad47;">the talk may focus too much on entertainment</strong>. As for <strong style="color: #7030a0;">an excellent student</strong>, it’s less suitable <strong style="color: #7030a0;">he or she may not have much life experience to share</strong>.<br/><br/>In short, I believe <strong style="color: #ee0000;">a company president</strong> is the best choice for this situation.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">À, nếu phải chọn một diễn giả cho câu lạc bộ thanh niên của mình, chúng tôi sẽ đề xuất một vị chủ tịch công ty. Trước hết, ông ấy có thể chia sẻ những kinh nghiệm sống và làm việc quý báu. Điều này có nghĩa là các thành viên có thể học cách vượt qua thử thách và đạt được thành công. Nhờ đó, họ có thể tích lũy kinh nghiệm thực tế cho tương lai. Thứ hai, ông ấy có thể đưa ra những lời khuyên nghề nghiệp hữu ích. Ông ấy có thể dạy chúng tôi cách thiết lập mục tiêu và đưa ra những quyết định tốt hơn. Những bài học này sẽ rất hữu ích cho sự nghiệp tương lai của chúng tôi. Chúng tôi không khuyên chọn một ca sĩ nổi tiếng vì kinh nghiệm của họ có thể tập trung chủ yếu vào ngành giải trí, điều này không phù hợp với tất cả mọi người. Đối với một học sinh xuất sắc, phương án này ít phù hợp hơn vì họ có thể chưa có đủ kinh nghiệm sống hoặc làm việc thực tế để truyền cảm hứng cho các thành viên câu lạc bộ. Tóm lại, chúng tôi tin rằng chủ tịch công ty là lựa chọn tốt nhất cho tình huống này.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Well, if I had to <strong style="color: #ee0000;">suggest a speaker for our youth club</strong>, I would <strong style="color: #ee0000;">recommend inviting a company president</strong>.<br/><br/>First of all, <strong style="color: #00b0f0;">it’s an educational choice</strong> because club members can <strong style="color: #00b0f0;">listen to real-life experiences from a successful businessperson</strong>. Besides, they can <strong style="color: #00b0f0;">learn valuable lessons about work and life</strong>. This way, they can <strong style="color: #00b0f0;">gain useful knowledge for the future</strong>.<br/><br/>Secondly, <strong style="color: #00b0f0;">it can be very inspiring</strong> because students can <strong style="color: #00b0f0;">learn about the speaker’s journey to success</strong>. Moreover, they can <strong style="color: #00b0f0;">understand the importance of hard work and determination</strong>. As a result, they can <strong style="color: #00b0f0;">become more motivated</strong> to <strong style="color: #00b0f0;">achieve their goals</strong>.<br/><br/>I wouldn’t recommend <strong style="color: #70ad47;">inviting a famous singer</strong> because <strong style="color: #70ad47;">the talk may focus more</strong> on <strong style="color: #70ad47;">entertainment than life lessons</strong>. As for <strong style="color: #7030a0;">an excellent student</strong>, it’s less suitable because <strong style="color: #7030a0;">he or she may not have as much life experience as the other speakers</strong>.<br/><br/>In short, I believe <strong style="color: #ee0000;">a company president</strong> is the best choice for this situation.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">À, nếu phải chọn một diễn giả cho câu lạc bộ thanh niên của mình, chúng tôi sẽ đề xuất một vị chủ tịch công ty. Trước hết, chủ tịch công ty có thể chia sẻ nhiều kinh nghiệm thực tế có được qua công việc và sự lãnh đạo. Bằng cách lắng nghe hành trình của họ, các thành viên câu lạc bộ có thể có cái nhìn sâu sắc về cách vượt qua khó khăn, đưa ra các quyết định quan trọng và đạt được các mục tiêu dài hạn. Thứ hai, diễn giả này có thể đưa ra những hướng dẫn quý giá về phát triển nghề nghiệp và phát triển cá nhân. Các thành viên có thể học cách xây dựng tính tự giác và trách nhiệm, phát triển các kỹ năng chuyên môn và chuẩn bị cho các cơ hội tương lai. Chúng tôi không khuyên chọn một ca sĩ nổi tiếng vì những kinh nghiệm được chia sẻ có thể chỉ giới hạn trong ngành giải trí và có thể không liên quan đến tất cả các thành viên. Đối với một học sinh xuất sắc, mặc dù họ có thể chia sẻ các phương pháp học tập hữu ích, nhưng họ có thể chưa có đủ kinh nghiệm chuyên môn để đưa ra những bài học cuộc sống rộng lớn hơn. Tóm lại, chúng tôi tin rằng chủ tịch công ty là lựa chọn tốt nhất cho tình huống này.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 3 -->
+<div class="sol-tab-content" id="sol-panel-3">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-chart-line"></i> TOPIC DEVELOPMENT <span class="sol-translation">(phát triển chủ đề)</span>
+</div>
+<div class="sol-situation-box" style="font-weight: 600;">
+                                    Topic: There are a lot of disadvantages to keeping animals in zoos. <br/>
+<ul style="margin-top: 8px; margin-bottom: 0; padding-left: 20px; font-weight: normal;"><li>lack of space</li><li>lack of survival skills</li><li>loss of freedom</li></ul>
+<span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-weight: normal;">(Chủ đề: Có rất nhiều bất lợi khi nuôi nhốt động vật trong sở thú.)<br/>
+<ul style="margin-top: 4px; margin-bottom: 0; padding-left: 20px;"><li>thiếu không gian</li><li>thiếu kỹ năng sinh tồn</li><li>mất tự do</li></ul>
+</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-file-pen"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        There are some <strong style="color: #ee0000;">drawbacks</strong> of <strong style="color: #ee0000;">keeping animals in zoos</strong>.<br/><br/>One major disadvantage is that <strong style="color: #00b0f0;">animals may face a lack of space</strong>. This is because <strong style="color: #00b0f0;">zoos are usually much smaller than natural habitats</strong>. As a result, animals <strong style="color: #00b0f0;">may not have enough room to move around freely</strong>.<br/><br/>Another negative aspect is that <strong style="color: #00b0f0;">animals may experience a loss of freedom</strong>. This means that they <strong style="color: #00b0f0;">cannot live and move freely in the wild</strong>. Therefore, they may <strong style="color: #00b0f0;">feel stressed or unhappy</strong>.<br/><br/>One more harmful effect is that <strong style="color: #00b0f0;">animals may experience a lack of survival skills</strong>. In fact, they <strong style="color: #00b0f0;">receive food and protection from zoo staff every day</strong>. As a result, they may <strong style="color: #00b0f0;">find it difficult to survive in the wild</strong>.<br/><br/>In short, <strong style="color: #ee0000;">keeping animals in zoos</strong> has several clear <strong style="color: #ee0000;">drawbacks</strong>, as mentioned above.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Có một số bất lợi của việc nuôi giữ động vật trong vườn thú. Một bất lợi lớn là động vật thường thiếu không gian. Chúng không thể tự do di chuyển như ở ngoài hoang dã. Kết quả là chúng có thể cảm thấy không thoải mái. Một tác động tiêu cực khác là động vật có thể bị căng thẳng. Sống trong môi trường nhân tạo rất khác so với môi trường sống tự nhiên của chúng. Do đó, chúng có thể phát triển các vấn đề về sức khỏe hoặc hành vi. Một hạn chế nữa là động vật bị tách biệt khỏi môi trường tự nhiên của chúng. Chúng không thể tuân theo lối sống bình thường hoặc bản năng tự nhiên của mình. Điều này có thể ảnh hưởng đến thể trạng của chúng. Một bất lợi bổ sung là động vật có thể mất đi các kỹ năng sinh tồn tự nhiên. Vì chúng nhận được thức ăn và sự chăm sóc từ con người hàng ngày, chúng không cần phải săn mồi hay tự bảo vệ mình. Do đó, chúng có thể gặp khó khăn để sinh tồn trong tự nhiên. Tóm lại, việc nuôi giữ động vật trong vườn thú có thể gây ra một số vấn đề cho cuộc sống và thể trạng của chúng.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        There are some <strong style="color: #ee0000;">drawbacks</strong> of <strong style="color: #ee0000;">keeping animals in zoos</strong>.<br/><br/>One major disadvantage is that <strong style="color: #00b0f0;">animals in zoos often lack space</strong>. This is because many animals <strong style="color: #00b0f0;">live in enclosed areas that are much smaller than their natural habitats</strong>. As a result, they <strong style="color: #00b0f0;">may not be able to move freely or behave naturally</strong>.<br/><br/>Another negative aspect is that <strong style="color: #00b0f0;">animals may lose their freedom</strong>. This means that they <strong style="color: #00b0f0;">cannot choose where to live or search for food on their own</strong>. This can <strong style="color: #00b0f0;">affect their well-being and natural behaviour</strong>.<br/><br/>One more harmful effect is that <strong style="color: #00b0f0;">animals may lack survival skills</strong>. Because they are cared for by humans, they <strong style="color: #00b0f0;">don’t need to hunt or protect themselves</strong>. Therefore, they may <strong style="color: #00b0f0;">find it difficult to survive if they are released into the wild</strong>.<br/><br/>In short, <strong style="color: #ee0000;">keeping animals in zoos</strong> has several clear <strong style="color: #ee0000;">drawbacks</strong>, as mentioned above.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Có một số bất lợi của việc nuôi giữ động vật trong vườn thú. Một bất lợi lớn là thiếu không gian. So với môi trường tự nhiên, chuồng trại ở sở thú thường nhỏ hơn nhiều. Do đó, động vật không thể di chuyển tự do hoặc hành xử tự nhiên. Một tác động tiêu cực khác là căng thẳng tâm lý. Sống trong điều kiện nuôi nhốt có thể ngăn cản động vật thực hiện các bản năng tự nhiên và hành vi xã hội của chúng. Kết quả là chúng có thể cảm thấy buồn chán, thất vọng hoặc gặp các vấn đề về sức khỏe. Một hạn chế nữa là sở thú tách biệt động vật khỏi môi trường tự nhiên của chúng. Chúng mất đi cơ hội tương tác với hệ sinh thái như cách chúng làm ngoài hoang dã. Điều này có thể làm giảm chất lượng cuộc sống tổng thể của chúng. Một bất lợi bổ sung là động vật có thể dần mất đi các kỹ năng sinh tồn tự nhiên. Vì thức ăn, nơi ẩn náu và sự bảo vệ đều do con người cung cấp, chúng không còn cần phải săn mồi, tìm kiếm tài nguyên hay tránh động vật ăn thịt. Do đó, chúng có thể gặp khó khăn để sinh tồn nếu được thả về tự nhiên. Tóm lại, việc nuôi giữ động vật trong vườn thú có thể ảnh hưởng tiêu cực đến cả sức khỏe thể chất và tâm lý của chúng.</div>
+</div>
+</div>
+<div class="sol-topic-header" style="margin-top: 30px;">
+<i class="fa-solid fa-circle-question"></i> FOLLOW-UP QUESTIONS <span class="sol-translation">(câu hỏi mở rộng)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What kinds of animals are usually kept in zoos? <span class="sol-translation">(Những loại động vật nào thường được nuôi trong vườn thú?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        Zoos usually keep many kinds of animals, such as <strong style="color: #00b0f0;">lions</strong>, <strong style="color: #00b0f0;">tigers</strong>, <strong style="color: #00b0f0;">elephants</strong>, <strong style="color: #00b0f0;">monkeys</strong>, and <strong style="color: #00b0f0;">bears</strong>. Some zoos also <strong style="color: #00b0f0;">have rare or endangered species</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Các vườn thú thường nuôi giữ nhiều loại động vật như sư tử, hổ, voi, khỉ và gấu. Một số vườn thú cũng có các loài quý hiếm hoặc có nguy cơ tuyệt chủng.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        Zoos usually <strong style="color: #70ad47;">keep a wide variety of animals</strong>. These include <strong style="color: #70ad47;">lions</strong>, <strong style="color: #70ad47;">tigers</strong>, <strong style="color: #70ad47;">elephants</strong>, <strong style="color: #70ad47;">monkeys</strong>, and <strong style="color: #70ad47;">many bird species</strong>. Some zoos also <strong style="color: #70ad47;">keep rare or endangered animals</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vườn thú thường nuôi giữ nhiều loại động vật, bao gồm động vật có vú, chim, bò sát và các loài thủy sinh. Nhiều vườn thú cũng tập trung vào việc bảo vệ các động vật có nguy cơ tuyệt chủng thông qua các chương trình bảo tồn.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. What are the benefits of keeping animals in zoos? <span class="sol-translation">(Những lợi ích của việc <strong>nuôi giữ động vật trong vườn thú</strong> là gì?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        Zoos can help <strong style="color: #00b0f0;">protect endangered animals</strong>. They also <strong style="color: #00b0f0;">provide educational opportunities for visitors</strong>. As a result, people can <strong style="color: #00b0f0;">learn more about wildlife</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Một lợi ích là mọi người có thể tìm hiểu thêm về các loài động vật. Vườn thú cũng giúp bảo vệ một số loài có nguy cơ tuyệt chủng. Ngoài ra, chúng có thể hỗ trợ các chương trình giáo dục.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        Zoos can help <strong style="color: #70ad47;">protect endangered species through conservation programs</strong>. They also <strong style="color: #70ad47;">provide educational opportunities for visitors</strong>. In addition, zoos <strong style="color: #70ad47;">support scientific research on animals</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vườn thú cung cấp các cơ hội giáo dục bằng cách giúp mọi người tìm hiểu về động vật hoang dã. Chúng cũng có thể đóng góp vào các nỗ lực bảo tồn bằng cách bảo vệ các loài có nguy cơ tuyệt chủng và hỗ trợ các chương trình nhân giống.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. What can people do to protect wildlife species? <span class="sol-translation">(Mọi người có thể làm gì để bảo vệ các loài động vật hoang dã?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        People should <strong style="color: #00b0f0;">protect natural habitats</strong>. They should also <strong style="color: #00b0f0;">avoid hunting wild animals illegally</strong>. This can <strong style="color: #00b0f0;">help wildlife populations survive and grow</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Mọi người nên bảo vệ môi trường sống tự nhiên và ngăn chặn việc săn bắn trái phép. Họ cũng nên nâng cao nhận thức về bảo vệ động vật hoang dã. Những hành động này có thể giúp nhiều loài sống sót.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        People can help <strong style="color: #70ad47;">protect wildlife by preserving natural habitats</strong>. They should also <strong style="color: #70ad47;">avoid buying products made from endangered animals</strong>. In addition, <strong style="color: #70ad47;">supporting conservation organizations</strong> can make a positive difference.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Mọi người có thể bảo vệ động vật hoang dã bằng cách bảo tồn môi trường sống tự nhiên, giảm thiểu ô nhiễm môi trường và hỗ trợ các tổ chức bảo tồn. Các chính phủ cũng nên thực thi các luật nghiêm ngặt hơn chống lại nạn săn bắn và buôn bán động vật hoang dã trái phép.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Custom Script JS -->
+<script src="../db.js?v=1782327221"></script>
+<script src="app.js?v=1782327221"></script>
+<script>
+      function toggleTranslation(element) {
+          const textNode = element.nextElementSibling;
+          const icon = element.querySelector('i');
+          if (textNode.style.display === 'none') {
+              textNode.style.display = 'block';
+              if (icon) icon.className = 'fa-solid fa-chevron-up';
+          } else {
+              textNode.style.display = 'none';
+              if (icon) icon.className = 'fa-solid fa-chevron-down';
+          }
+      }
+</script>
+</body>
+</html>

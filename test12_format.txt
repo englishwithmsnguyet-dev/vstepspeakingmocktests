@@ -1,0 +1,95 @@
+[B|None]   PART 01: SOCIAL INTERACTION 
+[_|None] Let's talk about  | [B|None] holidays | [_|None] :
+[_|None] •  | [_|None] What do you usually enjoy doing when you are on holiday?
+[_|None] • | [_|None]   | [_|None] Do you often try local food when you travel? Why or why not?
+[_|None] • What place would you like to visit again in the future?
+[_|None] Let's talk about  | [B|None] memories | [_|None] :
+[_|None] • What is your first memory of going to school?
+[_|None] • Do you think memories are important? Why or why not?
+[_|None] • How do you usually keep your memories?
+[B|None]    PART 02: SOLUTION DISCUSSION | [_|None] 	
+[B|None]   PART 03: TOPIC DEVELOPMENT
+[B|None] TOPIC:  | [_|None] Technology has influenced people’s working habits in many ways | [_|None] .
+[B|None] Follow-up questions:
+[_|None] -  | [_|None] How has technology made work easier for people nowadays?
+[_|None] -  | [_|None] What skills do workers need to use technology effectively?
+[_|None] -  | [_|None] Do you think technology will improve working habits even more in the future?
+[B|None] PART 01: SOCIAL INTERACTION
+[B|None] Let's talk about holidays
+[B|None] 1. What do you usually enjoy doing when you are on holiday?
+[B|None] B1 LEVEL
+[_|None] I usually  | [B|00B0F0] enjoy visiting new places | [_|None]   | [_|None] and  | [B|00B0F0] spending time with my family | [_|None] . It helps me  | [B|00B0F0] relax | [_|None]   | [_|None] and  | [B|00B0F0] recharge my batteries after a busy period | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I usually  | [B|00B0F0] enjoy traveling | [_|None] ,  | [B|00B0F0] exploring new places | [_|None] , and  | [B|00B0F0] trying different activities | [_|None]   | [_|None] when I am on holiday. These experiences help me  | [B|00B0F0] relax | [_|None] ,  | [B|00B0F0] broaden my horizons | [_|None] , and  | [B|00B0F0] create | [_|None]   | [B|00B0F0] memorable experiences with my family or friends | [_|None] .
+[B|None] 2. Do you often try local food when you travel? Why or why not?
+[B|None] B1 LEVEL
+[_|None] Yes, I do. I  | [B|00B0F0] like trying local food | [_|None]   | [_|None] because  | [B|00B0F0] it | [B|00B0F0] ’ | [B|00B0F0] s delicious and different from the food in my hometown | [_|None] . It also helps me  | [B|00B0F0] learn more about local culture | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Yes, I always  | [B|00B0F0] try local | [_|None]   | [B|00B0F0] food | [_|None]   | [_|None] when I travel. I believe that food is  | [B|00B0F0] an important part of a region's culture | [_|None] , so it allows me to  | [B|00B0F0] gain a deeper understanding of local traditions | [_|None] . Besides, it  | [B|00B0F0] makes the trip more enjoyable and memorable | [_|None] .
+[B|None] 3. What place would you like to visit again in the future?
+[B|None] B1 LEVEL
+[_|None] I would like to visit Da Nang again. It has beautiful beaches, delicious food, and friendly people.
+[B|None] B2 LEVEL
+[_|None] I would love to visit Da Nang again in the future. It is a beautiful city with stunning beaches, excellent cuisine, and a relaxing atmosphere. My previous trip was very enjoyable, so I would like to experience it again.
+[B|None] Let's talk about memories
+[B|None] 1. What is your first memory of going to school?
+[B|None] B1 LEVEL
+[_|None] My first memory of school was meeting my teacher and classmates. I felt nervous but also excited on my first day.
+[B|None] B2 LEVEL
+[_|None] My first memory of going to school was arriving with my parents on the first day of class. I remember feeling both nervous and excited because everything was new to me. It was an important milestone in my childhood.
+[B|None] 2. Do you think memories are important? Why or why not?
+[B|None] B1 LEVEL
+[_|None] Yes, I do. Memories help us remember important moments in our lives. They also remind us of happy experiences.
+[B|None] B2 LEVEL
+[_|None] Yes, I believe memories are very important because they shape who we are and help us learn from past experiences. In addition, positive memories can provide comfort and motivation during difficult times.
+[B|None] 3. How do you usually keep your memories?
+[B|None] B1 LEVEL
+[_|None] I usually take photos and keep them on my phone. Sometimes, I also write about special events in a notebook.
+[B|None] B2 LEVEL
+[_|None] I usually keep my memories by taking photographs and storing them digitally. Besides, I occasionally write short notes about meaningful experiences so that I can look back on them in the future.
+[B|None] PART 02: SOLUTION DISCUSSION
+[B|None] SITUATION
+[_|None] You are going to give a presentation next week. You need to choose a topic that will be interesting for your audience. There are three options:  | [B|None] local music, famous architecture, and environmental programs. | [_|None]  Which one would you choose?
+[B|None] B1 LEVEL
+[_|None] Well, if I had to choose a topic for my presentation, I would go for environmental programs.
+[_|None] First of all, it is an educational topic because people can learn more about environmental problems and possible solutions. This helps raise awareness of environmental protection. So, the audience can gain useful knowledge.
+[_|None] Secondly, it is a meaningful topic because it encourages people to protect the environment. It can inspire them to take part in environmental activities. So, they can make positive changes in their daily lives.
+[_|None] I wouldn’t choose local music because it may not be useful for everyone. As for famous architecture, some audience members may find it less relevant to their lives.
+[_|None] In short, I believe environmental programs is the best choice for this situation.
+[B|None] B2 LEVEL
+[_|None] Well, if I had to choose a topic for my presentation, I’d go for environmental programs.
+[_|None] First of all, it’s an educational topic because it helps people understand environmental issues and their impact on society. Besides, the audience can learn practical ways to protect the environment. This way, they can become more aware of environmental problems.
+[_|None] Secondly, it’s a meaningful topic because it encourages people to take action and contribute to the community. Moreover, small actions can make a positive difference. As a result, the presentation can inspire positive changes.
+[_|None] I wouldn’t choose local music because it mainly provides entertainment rather than useful information. As for famous architecture, it’s less suitable because it may not be relevant to everyone in the audience.
+[_|None] In short, I believe environmental programs are the best choice for this presentation.
+[B|None] PART 03: TOPIC DEVELOPMENT
+[B|None] TOPIC
+[B|None] Technology has influenced people's working habits in many ways.
+[B|None] B1 LEVEL
+[_|None] Technology has influenced people's working habits in many ways.
+[_|None] One major impact is that technology increases efficiency. Many tasks can now be completed more quickly with the help of computers and software. As a result, employees can be more productive.
+[_|None] Another positive effect is that technology supports communication. People can easily communicate through emails, messaging applications, and online meetings. Therefore, teamwork becomes more effective.
+[_|None] One more benefit is that technology offers flexible working styles. Employees can work remotely and access their tasks from different locations. This helps them maintain a better work-life balance.
+[_|None] One additional impact is that technology helps people access information instantly. Workers can quickly find the information they need to complete their tasks. As a result, decision-making and problem-solving become easier.
+[_|None] In short, technology has influenced people's working habits in many positive ways, as mentioned above.
+[B|None] B2 LEVEL
+[_|None] There are several positive effects of technology on people's working habits.
+[_|None] One major positive effect is that technology offers flexible working styles. | [_|None]   | [_|None] Employees can work remotely and access information from different locations. | [_|None]   | [_|None] As a result, they can balance their work and personal lives more effectively.
+[_|None] Another beneficial effect is that technology supports communication. | [_|None]   | [_|None] People can easily connect with colleagues through emails, messaging apps, and online meetings. | [_|None]  This helps teams collaborate more efficiently. | [_|None]   | [_|None] One more positive effect is that technology increases efficiency. | [_|None]   | [_|None] Many tasks can be completed faster with the help of digital tools and software. | [_|None]   | [_|None] Therefore, employees can improve their productivity at work.
+[_|None] In short, technology has several positive effects on people's working habits, as mentioned above.
+[B|None] FOLLOW-UP QUESTIONS
+[B|None] 1. How has technology made work easier for people nowadays?
+[B|None] B1 LEVEL
+[_|None] Technology helps people complete tasks more quickly and communicate more easily. It also allows them to access information instantly.
+[B|None] B2 LEVEL
+[_|None] Technology has made work easier in many ways. | [_|None]   | [_|None] It helps people complete tasks more quickly and access information instantly. | [_|None]   | [_|None] As a result, employees can work more efficiently than before.
+[B|None] 2. What skills do workers need to use technology effectively?
+[B|None] B1 LEVEL
+[_|None] Workers need basic computer skills and problem-solving skills. They should also be willing to learn new technologies.
+[B|None] B2 LEVEL
+[_|None] Workers need basic computer and digital skills. | [_|None]   | [_|None] They should also know how to use online communication and collaboration tools. | [_|None]   | [_|None] In addition, problem-solving skills can help them adapt to new technologies.
+[B|None] 3. Do you think technology will improve working habits even more in the future?
+[B|None] B1 LEVEL
+[_|None] Yes, I do. Technology will continue to make work faster and more convenient. It may also create new opportunities for employees.
+[B|None] B2 LEVEL
+[_|None] Yes, I believe technology will continue to improve working habits. | [_|None]   | [_|None] New technologies can help automate routine tasks and save time. | [_|None]   | [_|None] As a result, employees may be able to focus on more important and creative work.

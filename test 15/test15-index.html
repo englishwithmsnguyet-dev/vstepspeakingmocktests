@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<script>
+        // Block flash of protected content
+        (function() {
+            const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+            const testId = pathMatch ? parseInt(pathMatch[1]) : 1;
+            const TEST_PASSWORDS = {};
+            if (TEST_PASSWORDS[testId] && sessionStorage.getItem('unlocked_test_' + testId) !== 'true') {
+                document.documentElement.style.display = 'none';
+            }
+        })();
+    </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPEAKING MOCK TEST 15 - ENGLISHWITHMISSNGUYET</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome for Premium Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="styles.css?v=1782327221" rel="stylesheet"/>
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<nav class="test-sidebar">
+<div class="sidebar-header">
+<i class="fa-solid fa-list-check"></i> <span>VSTEP MOCK TESTS</span>
+</div>
+<ul class="test-list">
+<li class="test-item">
+<a href="../index.html">
+<span class="test-icon"><i class="fa-solid fa-house"></i></span>
+<span class="test-name">TRANG CHỦ</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="1" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 01</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="2" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 02</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="3" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 03</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="4" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 04</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="5" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 05</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="6" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 06</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="7" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 07</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="8" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 08</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="9" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 09</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="10" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 10</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="11" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 11</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="12" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 12</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="13" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 13</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="14" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 14</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="15" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 15</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="16" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 16</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="17" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 17</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="18" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 18</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="19" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 19</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="20" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 20</span>
+</a>
+</li>
+</ul>
+<a class="sidebar-brand-bottom" href="https://www.facebook.com/nguyetpham28" target="_blank">
+<span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+<span class="brand-text">ENGLISH WITH MISS NGUYET</span>
+</a>
+</nav>
+<!-- Background Chime/Sound Permission Modal (if required, or handled on welcome screen) -->
+<!-- App Wrapper -->
+<div class="app-container">
+<!-- Header Brand -->
+<header class="app-header">
+<div class="header-title-wrapper"></div>
+</header>
+<!-- Progress Timeline Tracker -->
+<div class="progress-timeline">
+<div class="timeline-step active" id="step-welcome">
+<div class="step-num">0</div>
+<div class="step-label">CHUẨN BỊ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part1">
+<div class="step-num">1</div>
+<div class="step-label">PART 01</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part2">
+<div class="step-num">2</div>
+<div class="step-label">PART 02</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part3">
+<div class="step-num">3</div>
+<div class="step-label">PART 03</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-review">
+<div class="step-num">4</div>
+<div class="step-label">KẾT QUẢ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-solution">
+<div class="step-num">5</div>
+<div class="step-label">BÀI GIẢI</div>
+</div>
+</div>
+<!-- Main Workspace -->
+<main class="app-main">
+<!-- SCREEN 1: WELCOME SCREEN -->
+<section class="screen-view active" id="view-welcome">
+<div class="glass-card welcome-card">
+<div class="welcome-header-center">
+<div class="welcome-cat-gif">
+<img alt="Typing Cat" class="typing-cat-img" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"/>
+</div>
+<h1>VSTEP Speaking Practice</h1>
+<div class="mock-test-pill">SPEAKING MOCK TEST 15</div>
+<p class="welcome-desc">Chào mừng bạn đến với hệ thống thi thử VSTEP SPEAKING MOCK TEST tương tác. Giao diện và cách tính giờ được lập trình mô phỏng chính xác phòng thi máy thực tế.</p>
+<p class="welcome-warning" style="margin-top: 12px; color: var(--color-red); font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>LƯU Ý:</strong> Không sử dụng bất kì tài liệu hay công cụ trong lúc thi thử. Mọi sự thảo luận đều không được cho phép trong phòng thi.</p>
+</div>
+<div class="test-outline">
+<h3>Cấu trúc bài thi</h3>
+<div class="outline-grid">
+<div class="outline-item">
+<span class="part-badge">PART 01</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Social Interaction</span> [Giao tiếp xã hội]</h4>
+<p>Thí sinh trả lời 02 chủ đề bất kì, mỗi chủ đề có 03 câu hỏi. Không có thời gian chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 3 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 02</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Solution Discussion</span> [Thảo luận giải pháp]</h4>
+<p>Thí sinh thảo luận phương án tốt nhất cho một tình huống giả định bất kì với 03 sự lựa chọn. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 4 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 03</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Topic Development</span> [Phát triển chủ đề]</h4>
+<p>Thí sinh phát triển một chủ đề bất kì dựa vào sơ đồ gợi ý và 03 câu hỏi mở rộng. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 5 phút</span>
+</div>
+</div>
+</div>
+<!-- Student Info Input -->
+<div class="student-form">
+<div class="input-group">
+<label for="student-name"><i class="fa-solid fa-user-pen"></i> Họ và tên học viên:</label>
+<input autocomplete="off" id="student-name" placeholder="Nhập họ tên của bạn..." type="text"/>
+</div>
+</div>
+<!-- Action and Sound Check -->
+<div class="audio-check-section">
+<div class="mic-status-msg" id="mic-status">
+<i class="fa-solid fa-circle-info"></i> Hãy cấp quyền truy cập Microphone để hệ thống ghi âm bài làm của bạn.
+                        </div>
+<button class="btn btn-primary" id="btn-start-test">
+<span>BẮT ĐẦU BÀI THI</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 2: PART 1 SCREEN -->
+<section class="screen-view" id="view-part1">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 01: <span style="color: var(--color-red);">SOCIAL INTERACTION</span></div>
+<div class="part1-topics">
+<!-- Topic 1 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-utensils"></i> <span>Let's talk about <strong>going to restaurants</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">1</span> How often do you go to restaurants?</li>
+<li><span class="q-num">2</span> How do you feel when you eat at a restaurant?</li>
+<li><span class="q-num">3</span> Do you prefer eating at restaurants or eating at home? Why?</li>
+</ul>
+</div>
+<!-- Topic 2 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-globe"></i> <span>Let's talk about the <strong>Internet</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">4</span> How often do you use the Internet?</li>
+<li><span class="q-num">5</span> What do you usually do when you go online?</li>
+<li><span class="q-num">6</span> Do you prefer reading online or reading printed materials? Why?</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Mic, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator recording" id="p1-status">
+<span class="status-dot"></span>
+<span class="status-text">Hệ thống đang ghi âm bài nói của bạn</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p1-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p1-time-val">03:00</span>
+<span class="time-label">TỔNG THỜI GIAN</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p1-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 3: PART 2 SCREEN -->
+<section class="screen-view" id="view-part2">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 02: <span style="color: var(--color-red);">SOLUTION DISCUSSION</span></div>
+<!-- Situation Card -->
+<div class="situation-box">
+<h3 class="section-subtitle"><i class="fa-solid fa-circle-question"></i> Situation:</h3>
+<p class="situation-desc">
+                                Your friend is deciding what to read next. She is considering three options: <strong>a science fiction book</strong>, <strong>an adventure novel</strong>, and <strong>a science non-fiction book</strong>. Which one would you recommend, and why?
+                            </p>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Prep state, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p2-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p2-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p2-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p2-time-val">01:00</span>
+<span class="time-label" id="p2-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p2-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p2-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 4: PART 3 SCREEN -->
+<section class="screen-view" id="view-part3">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 03: <span style="color: var(--color-red);">TOPIC DEVELOPMENT</span></div>
+<div class="topic-header">
+<h3 class="topic-heading-red">Topic:</h3>
+<p class="topic-desc">Maintaining calmness is important for effective communication.</p>
+</div>
+<!-- CSS Grid Mindmap -->
+<div class="mindmap-wrapper">
+<div class="mindmap-container">
+<!-- Center Node -->
+<div class="mindmap-node node-center">
+<span>Maintaining calmness</span>
+</div>
+<!-- Connectors -->
+<div class="mindmap-line line-top"></div>
+<div class="mindmap-line line-left"></div>
+<div class="mindmap-line line-bottom"></div>
+<div class="mindmap-line line-right"></div>
+<!-- Top Branch -->
+<div class="mindmap-node node-branch branch-top">
+<span>promote active listening</span>
+</div>
+<!-- Left Branch -->
+<div class="mindmap-node node-branch branch-left">
+<span>solve conflicts</span>
+</div>
+<!-- Bottom Branch -->
+<div class="mindmap-node node-branch branch-bottom">
+<span>help build understanding</span>
+</div>
+<!-- Right Branch -->
+<div class="mindmap-node node-branch branch-right">
+<span>[your own idea]</span>
+</div>
+</div>
+</div>
+<!-- Follow-up Questions Box -->
+<div class="follow-up-box">
+<h4><i class="fa-solid fa-circle-question"></i> Follow-up questions:</h4>
+<ul class="question-list">
+<li><span class="q-num">1</span> What other factors are important for effective communication?</li>
+<li><span class="q-num">2</span> Why do you think some people find it difficult to stay calm in conversations?</li>
+<li><span class="q-num">3</span> Do you think people should always stay calm when communicating? Why or why not?</li>
+</ul>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Scratchpad, Finish button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p3-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p3-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p3-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p3-time-val">01:00</span>
+<span class="time-label" id="p3-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p3-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-success" id="btn-p3-next">
+<span>Hoàn thành bài thi</span> <i class="fa-solid fa-circle-check"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 5: REVIEW SCREEN -->
+<section class="screen-view" id="view-review">
+<div class="glass-card review-card">
+<div class="success-banner">
+<div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+<h2>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI THI NÓI!</h2>
+<p style="margin-bottom: 8px;">Bạn có 10s để khóc trước khi xem phần BÀI GIẢI.</p>
+<p id="review-student-info" style="font-size: 13px; opacity: 0.7; margin-top: 4px;"></p>
+</div>
+<!-- Summary Grid: Audio Files & Notes -->
+<div class="review-grid">
+<!-- Left Panel: Playback recordings -->
+<div class="review-recordings-panel">
+<h3><i class="fa-solid fa-microphone-lines"></i> Nghe lại bài nói của bạn</h3>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 01</span>
+<span class="rec-title">Social Interaction</span>
+</div>
+<div class="audio-player-wrapper" id="p1-player-container">
+<!-- Dynamic custom Audio Player or native audio element styled -->
+<audio controls="" id="p1-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part1.webm" id="p1-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 02</span>
+<span class="rec-title">Solution Discussion</span>
+</div>
+<div class="audio-player-wrapper" id="p2-player-container">
+<audio controls="" id="p2-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part2.webm" id="p2-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 03</span>
+<span class="rec-title">Topic Development</span>
+</div>
+<div class="audio-player-wrapper" id="p3-player-container">
+<audio controls="" id="p3-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part3.webm" id="p3-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Right Panel: Feedback -->
+<div class="review-notes-panel">
+<h3><i class="fa-solid fa-comment-medical"></i> ĐÁNH GIÁ CHUNG</h3>
+<div class="teacher-feedback-box">
+<label for="teacher-feedback">Học viên tự đánh giá mức độ hoàn thành bài nói:</label>
+<textarea id="teacher-feedback" placeholder="Bạn đã hoàn thành tất cả nội dung bài thi hay chưa? Bạn có tự tin với bài nói của mình hay không?" style="min-height: 200px;"></textarea>
+</div>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="review-actions">
+<button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
+<i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
+                        </button>
+<button class="btn btn-secondary" id="btn-restart-test">
+<i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
+                        </button>
+</div>
+</div>
+</section>
+<!-- SCREEN 6: SOLUTION SCREEN -->
+<section class="screen-view" id="view-solution">
+<div class="glass-card instruction-card" style="max-width: 900px; margin: 20px auto;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+<h2 style="color: var(--color-red); margin-bottom: 0;"><i class="fa-solid fa-book-open"></i> BÀI GIẢI CHI TIẾT</h2>
+<span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 15</span>
+</div>
+<div class="solution-tab-container">
+<div class="solution-tab-buttons">
+<button class="sol-tab-btn active" onclick="switchSolTab(1)">PART 01: SOCIAL INTERACTION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(2)">PART 02: SOLUTION DISCUSSION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(3)">PART 03: TOPIC DEVELOPMENT</button>
+</div>
+<!-- Panel Part 1 -->
+<div class="sol-tab-content active" id="sol-panel-1">
+    <!-- Topic 1 -->
+    <div class="sol-topic-section">
+        <div class="sol-topic-header">
+            <i class="fa-solid fa-utensils"></i> Topic 1: Let's talk about going to restaurants <span class="sol-translation">(Hãy nói về việc đi ăn nhà hàng)</span>
+        </div>
+        
+        <div class="sol-question-item">
+            <div class="sol-question-text">1. How often do you go to restaurants? <span class="sol-translation">(Bạn có thường xuyên đi ăn nhà hàng không?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    I <strong style="color: #00b0f0;">go to restaurants</strong> about <strong style="color: #00b0f0;">once or twice a month</strong>. I usually <strong style="color: #00b0f0;">go there with my family or friends</strong>. It's a nice way to <strong style="color: #00b0f0;">enjoy good food together</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Tôi <strong style="color: #00b0f0;">đi ăn nhà hàng</strong> khoảng <strong style="color: #00b0f0;">một hoặc hai lần một tháng</strong>. Tôi thường <strong style="color: #00b0f0;">đi cùng gia đình hoặc bạn bè</strong>. Đó là một cách tuyệt vời để <strong style="color: #00b0f0;">cùng nhau thưởng thức đồ ăn ngon</strong>.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    I usually go to restaurants <strong style="color: #70ad47;">once or twice a month</strong>. I often <strong style="color: #70ad47;">eat out with my family or friends</strong> <strong style="color: #70ad47;">on weekends</strong> or <strong style="color: #70ad47;">special occasions</strong>. It's a great way to <strong style="color: #70ad47;">relax and spend quality time together</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Tôi thường đi ăn nhà hàng <strong style="color: #70ad47;">một hoặc hai lần một tháng</strong>. Tôi thường <strong style="color: #70ad47;">đi ăn ngoài với gia đình hoặc bạn bè</strong> vào <strong style="color: #70ad47;">những ngày cuối tuần</strong> hoặc <strong style="color: #70ad47;">các dịp đặc biệt</strong>. Đó là một cách tuyệt vời để <strong style="color: #70ad47;">thư giãn và dành thời gian chất lượng bên nhau</strong>.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sol-question-item">
+            <div class="sol-question-text">2. How do you feel when you eat at a restaurant? <span class="sol-translation">(Bạn cảm thấy thế nào khi đi ăn ở nhà hàng?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    I feel <strong style="color: #00b0f0;">happy and relaxed</strong>. This is because I <strong style="color: #00b0f0;">enjoy trying different dishes</strong>, and eating delicious food always helps me <strong style="color: #00b0f0;">improve my mood</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Tôi cảm thấy <strong style="color: #00b0f0;">vui vẻ và thư giãn</strong>. Điều này là do tôi <strong style="color: #00b0f0;">thích thử các món ăn khác nhau</strong>, và việc ăn đồ ăn ngon luôn giúp tôi <strong style="color: #00b0f0;">cải thiện tâm trạng của mình</strong>.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    I usually <strong style="color: #70ad47;">feel relaxed and excited</strong> when eating at a restaurant. I <strong style="color: #70ad47;">enjoy trying new dishes and experiencing different types of cuisine</strong>. It also gives me a chance to <strong style="color: #70ad47;">socialize with</strong> <strong style="color: #70ad47;">family or friends</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Tôi thường <strong style="color: #70ad47;">cảm thấy thư giãn và hào hứng</strong> khi ăn ở nhà hàng. Tôi <strong style="color: #70ad47;">thích thử các món ăn mới và trải nghiệm các loại ẩm thực khác nhau</strong>. Nó cũng cho tôi cơ hội để <strong style="color: #70ad47;">giao lưu với</strong> <strong style="color: #70ad47;">gia đình hoặc bạn bè</strong>.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sol-question-item">
+            <div class="sol-question-text">3. Do you prefer eating at restaurants or eating at home? Why? <span class="sol-translation">(Bạn thích ăn ở nhà hàng hay ăn ở nhà hơn? Tại sao?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    I'd rather <strong style="color: #00b0f0;">eat at home</strong>. The food is <strong style="color: #00b0f0;">healthier</strong> and <strong style="color: #00b0f0;">less expensive</strong>. I also <strong style="color: #00b0f0;">enjoy home-cooked</strong> <strong style="color: #00b0f0;">meals with my family</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Tôi thích <strong style="color: #00b0f0;">ăn ở nhà hơn</strong>. Đồ ăn <strong style="color: #00b0f0;">lành mạnh hơn</strong> và <strong style="color: #00b0f0;">ít tốn kém hơn</strong>. Tôi cũng <strong style="color: #00b0f0;">thích thưởng thức những bữa cơm tự nấu</strong> <strong style="color: #00b0f0;">cùng gia đình</strong>.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    I'd rather <strong style="color: #70ad47;">eat at home</strong> because it's <strong style="color: #70ad47;">healthier</strong> and <strong style="color: #70ad47;">more economical</strong>. I can <strong style="color: #70ad47;">choose fresh</strong> <strong style="color: #70ad47;">ingredients</strong> and <strong style="color: #70ad47;">prepare food the way I like</strong>. Besides, eating at home <strong style="color: #70ad47;">gives me more time</strong> <strong style="color: #70ad47;">with my family</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Tôi thích <strong style="color: #70ad47;">ăn ở nhà hơn</strong> vì nó <strong style="color: #70ad47;">lành mạnh hơn</strong> và <strong style="color: #70ad47;">tiết kiệm hơn</strong>. Tôi có thể <strong style="color: #70ad47;">tự chọn nguyên liệu</strong> <strong style="color: #70ad47;">tươi ngon</strong> và <strong style="color: #70ad47;">chế biến món ăn theo cách mình thích</strong>. Ngoài ra, việc ăn ở nhà <strong style="color: #70ad47;">cho tôi nhiều thời gian hơn</strong> <strong style="color: #70ad47;">bên gia đình</strong>.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Topic 2 -->
+    <div class="sol-topic-section" style="margin-top: 30px;">
+        <div class="sol-topic-header">
+            <i class="fa-solid fa-globe"></i> Topic 2: Let's talk about the Internet <span class="sol-translation">(Hãy nói về Internet)</span>
+        </div>
+        
+        <div class="sol-question-item">
+            <div class="sol-question-text">1. How often do you use the Internet? <span class="sol-translation">(Bạn có thường xuyên sử dụng Internet không?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    I use the Internet <strong style="color: #00b0f0;">every day</strong>. I <strong style="color: #00b0f0;">use it for studying, working, and entertainment</strong>. It's an <strong style="color: #00b0f0;">important part of my daily life</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Tôi sử dụng Internet <strong style="color: #00b0f0;">mỗi ngày</strong>. Tôi <strong style="color: #00b0f0;">sử dụng nó để học tập, làm việc và giải trí</strong>. Đó là một <strong style="color: #00b0f0;">phần quan trọng trong cuộc sống hàng ngày của tôi</strong>.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    I use the Internet <strong style="color: #70ad47;">every day for both work and personal purposes</strong>. It helps me <strong style="color: #70ad47;">study</strong>, <strong style="color: #70ad47;">communicate with others</strong>, and <strong style="color: #70ad47;">find information quickly</strong>. I <strong style="color: #70ad47;">can't imagine my daily life without</strong> <strong style="color: #70ad47;">it</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Tôi sử dụng Internet <strong style="color: #70ad47;">mỗi ngày cho cả công việc và mục đích cá nhân</strong>. Nó giúp tôi <strong style="color: #70ad47;">học tập</strong>, <strong style="color: #70ad47;">giao tiếp với người khác</strong>, và <strong style="color: #70ad47;">tìm kiếm thông tin nhanh chóng</strong>. Tôi <strong style="color: #70ad47;">không thể tưởng tượng cuộc sống hàng ngày của mình mà thiếu</strong> <strong style="color: #70ad47;">nó</strong>.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sol-question-item">
+            <div class="sol-question-text">2. What do you usually do when you go online? <span class="sol-translation">(Bạn thường làm gì khi lên mạng?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    I usually <strong style="color: #00b0f0;">search for information</strong>, <strong style="color: #00b0f0;">watch videos</strong>, and <strong style="color: #00b0f0;">chat with my friends</strong>. Sometimes I <strong style="color: #00b0f0;">read the news online</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Tôi thường <strong style="color: #00b0f0;">tìm kiếm thông tin</strong>, <strong style="color: #00b0f0;">xem video</strong>, và <strong style="color: #00b0f0;">trò chuyện với bạn bè</strong>. Đôi khi tôi <strong style="color: #00b0f0;">đọc tin tức trực tuyến</strong>.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    When I'm online, I usually <strong style="color: #70ad47;">search for information</strong>, <strong style="color: #70ad47;">read the news</strong>, and <strong style="color: #70ad47;">watch educational</strong> <strong style="color: #70ad47;">videos</strong>. I also <strong style="color: #70ad47;">use social media</strong> to <strong style="color: #70ad47;">stay in touch with my friends and family</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Khi trực tuyến, tôi thường <strong style="color: #70ad47;">tìm kiếm thông tin</strong>, <strong style="color: #70ad47;">đọc tin tức</strong>, và <strong style="color: #70ad47;">xem các video</strong> <strong style="color: #70ad47;">giáo dục</strong>. Tôi cũng <strong style="color: #70ad47;">sử dụng mạng xã hội</strong> để <strong style="color: #70ad47;">giữ liên lạc với bạn bè và gia đình</strong>.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sol-question-item">
+            <div class="sol-question-text">3. Do you prefer reading online or reading printed materials? Why? <span class="sol-translation">(Bạn thích đọc trực tuyến hay đọc tài liệu in hơn? Tại sao?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    I'd rather <strong style="color: #00b0f0;">read printed materials</strong>. They're easier on my eyes. I can also <strong style="color: #00b0f0;">concentrate better</strong> when reading books or newspapers.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Tôi thích <strong style="color: #00b0f0;">đọc tài liệu in hơn</strong>. Chúng dễ chịu hơn cho mắt của tôi. Tôi cũng có thể <strong style="color: #00b0f0;">tập trung tốt hơn</strong> khi đọc sách hoặc báo.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    I'd rather <strong style="color: #70ad47;">read printed materials</strong> because they're <strong style="color: #70ad47;">more comfortable for long reading</strong> <strong style="color: #70ad47;">sessions</strong>. They help me <strong style="color: #70ad47;">stay focused without being distracted by notifications</strong>. I also find it easier to <strong style="color: #70ad47;">remember what I've read</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Tôi thích <strong style="color: #70ad47;">đọc tài liệu in hơn</strong> vì chúng <strong style="color: #70ad47;">thoải mái hơn cho các buổi đọc sách kéo dài</strong>. Chúng giúp tôi <strong style="color: #70ad47;">giữ tập trung mà không bị phân tâm bởi các thông báo</strong>. Tôi cũng thấy dễ dàng hơn để <strong style="color: #70ad47;">ghi nhớ những gì mình đã đọc</strong>.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Panel Part 2 -->
+<div class="sol-tab-content" id="sol-panel-2">
+    <div class="sol-topic-section">
+        <div class="sol-topic-header">
+            <i class="fa-solid fa-circle-info"></i> SITUATION <span class="sol-translation">(tình huống)</span>
+        </div>
+        <div class="sol-situation-box">
+            Your friend is deciding what to read next. She is considering three options: a science fiction book, an adventure novel, and a science non-fiction book. Which one would you recommend, and why?
+            <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-size: 13.5px;">(Bạn của bạn đang quyết định xem nên đọc gì tiếp theo. Cô ấy đang cân nhắc ba lựa chọn: sách khoa học viễn tưởng, tiểu thuyết phiêu lưu, và sách khoa học thường thức. Bạn sẽ khuyên dùng cuốn nào và tại sao?)</span>
+        </div>
+        
+        <div class="sol-topic-header" style="margin-top: 20px;">
+            <i class="fa-solid fa-graduation-cap"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+        </div>
+        
+        <div class="sol-level-box level-b1">
+            <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+            <div class="level-content" style="white-space: pre-line;">
+                Well, if I had to <strong style="color: #ee0000;">suggest a book for my friend to improve her imagination</strong>, I'd <strong style="color: #ee0000;">recommend a science fiction book</strong>.
+
+                First of all, <strong style="color: #00b0f0;">it's an entertaining book</strong> because it <strong style="color: #00b0f0;">contains many exciting stories and unusual ideas</strong>. This <strong style="color: #00b0f0;">makes reading more interesting</strong>. So, she can <strong style="color: #00b0f0;">enjoy the book more</strong>.
+
+                Secondly, it can <strong style="color: #00b0f0;">improve her imagination</strong> because it <strong style="color: #00b0f0;">introduces new worlds</strong>, <strong style="color: #00b0f0;">advanced technology</strong>, and <strong style="color: #00b0f0;">future life</strong>. This encourages her to <strong style="color: #00b0f0;">think beyond real life</strong>. So, she can <strong style="color: #00b0f0;">become more imaginative and creative</strong>.
+
+                I wouldn't recommend <strong style="color: #70ad47;">an adventure novel</strong> because <strong style="color: #70ad47;">it may focus mainly on exciting journeys</strong>. As for <strong style="color: #7030a0;">a science non-fiction book</strong>, it's less suitable because <strong style="color: #7030a0;">it may not improve her imagination as much</strong>.
+
+                In short, I believe <strong style="color: #ee0000;">a science fiction book</strong> is the best choice for this situation.
+                <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="translation-text" style="display: none; white-space: pre-line;">À, nếu tôi phải <strong style="color: #ee0000;">gợi ý một cuốn sách để bạn mình cải thiện trí tưởng tượng</strong>, tôi sẽ <strong style="color: #ee0000;">khuyên bạn ấy chọn sách khoa học viễn tưởng</strong>.
+
+                Trước hết, <strong style="color: #00b0f0;">đó là một cuốn sách mang tính giải trí</strong> vì nó <strong style="color: #00b0f0;">chứa nhiều câu chuyện thú vị và ý tưởng độc đáo</strong>. Điều này <strong style="color: #00b0f0;">làm cho việc đọc sách trở nên hấp dẫn hơn</strong>. Vì vậy, cô ấy có thể <strong style="color: #00b0f0;">thích cuốn sách này hơn</strong>.
+
+                Thứ hai, nó có thể <strong style="color: #00b0f0;">cải thiện trí tưởng tượng của cô ấy</strong> vì nó <strong style="color: #00b0f0;">giới thiệu những thế giới mới</strong>, <strong style="color: #00b0f0;">công nghệ tiên tiến</strong>, và <strong style="color: #00b0f0;">cuộc sống tương lai</strong>. Điều này khuyến khích cô ấy <strong style="color: #00b0f0;">suy nghĩ vượt ra ngoài cuộc sống thực tế</strong>. Do đó, cô ấy có thể <strong style="color: #00b0f0;">trở nên giàu trí tưởng tượng và sáng tạo hơn</strong>.
+
+                Tôi sẽ không khuyên chọn <strong style="color: #70ad47;">tiểu thuyết phiêu lưu</strong> vì <strong style="color: #70ad47;">nó có thể chỉ tập trung chủ yếu vào những chuyến hành trình kỳ thú</strong>. Đối với <strong style="color: #7030a0;">sách khoa học thường thức</strong>, nó ít phù hợp hơn vì <strong style="color: #7030a0;">nó có thể không cải thiện trí tưởng tượng của cô ấy nhiều</strong>.
+
+                Tóm lại, tôi tin rằng <strong style="color: #ee0000;">sách khoa học viễn tưởng</strong> là lựa chọn tốt nhất cho tình huống này.</div>
+            </div>
+        </div>
+        
+        <div class="sol-level-box level-b2" style="margin-top: 20px;">
+            <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+            <div class="level-content" style="white-space: pre-line;">
+                Well, if I had to <strong style="color: #ee0000;">suggest a book for my friend to improve her imagination</strong>, I'd <strong style="color: #ee0000;">recommend a science fiction book</strong>.
+
+                First of all, <strong style="color: #00b0f0;">it’s an imaginative type of book</strong> because it <strong style="color: #00b0f0;">introduces readers to imaginary worlds</strong>, <strong style="color: #00b0f0;">advanced technology</strong>, and <strong style="color: #00b0f0;">life in the future</strong>. Besides, it encourages them to <strong style="color: #00b0f0;">think beyond reality</strong>. This way, they can <strong style="color: #00b0f0;">develop their imagination and creativity</strong>.
+
+                Secondly, <strong style="color: #00b0f0;">it’s both educational and entertaining</strong>. Readers can <strong style="color: #00b0f0;">explore new ideas and different possibilities</strong> while <strong style="color: #00b0f0;">enjoying an exciting story</strong>. As a result, they can <strong style="color: #00b0f0;">broaden their knowledge</strong> and <strong style="color: #00b0f0;">enjoy reading at the same time</strong>.
+
+                I wouldn’t recommend <strong style="color: #7030a0;">a science non-fiction book</strong> because <strong style="color: #7030a0;">it mainly focuses on facts instead of imagination</strong>. As for <strong style="color: #70ad47;">an adventure novel</strong>, it’s less suitable because <strong style="color: #70ad47;">it mainly develops excitement rather than creative thinking</strong>.
+
+                In short, I believe <strong style="color: #ee0000;">a science fiction book</strong> is the best choice for this situation.
+                <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="translation-text" style="display: none; white-space: pre-line;">À, nếu tôi phải <strong style="color: #ee0000;">gợi ý một cuốn sách để bạn mình cải thiện trí tưởng tượng</strong>, tôi sẽ <strong style="color: #ee0000;">khuyên bạn ấy chọn sách khoa học viễn tưởng</strong>.
+
+                Trước hết, <strong style="color: #00b0f0;">đó là một thể loại sách giàu trí tưởng tượng</strong> vì nó <strong style="color: #00b0f0;">giới thiệu cho người đọc những thế giới giả tưởng</strong>, <strong style="color: #00b0f0;">công nghệ tiên tiến</strong>, và <strong style="color: #00b0f0;">cuộc sống trong tương lai</strong>. Bên cạnh đó, nó khuyến khích họ <strong style="color: #00b0f0;">suy nghĩ vượt ra ngoài thực tại</strong>. Bằng cách này, họ có thể <strong style="color: #00b0f0;">phát triển trí tưởng tượng và khả năng sáng tạo của mình</strong>.
+
+                Thứ hai, <strong style="color: #00b0f0;">nó vừa mang tính giáo dục vừa mang tính giải trí</strong>. Người đọc có thể <strong style="color: #00b0f0;">khám phá những ý tưởng mới và các khả năng khác nhau</strong> trong khi <strong style="color: #00b0f0;">thưởng thức một câu chuyện thú vị</strong>. Kết quả là, họ có thể <strong style="color: #00b0f0;">mở rộng kiến thức của mình</strong> và <strong style="color: #00b0f0;">thích đọc sách cùng một lúc</strong>.
+
+                Tôi sẽ không khuyên chọn <strong style="color: #7030a0;">sách khoa học thường thức</strong> vì <strong style="color: #7030a0;">nó chủ yếu tập trung vào các sự thật thực tế thay vì trí tưởng tượng</strong>. Đối với <strong style="color: #70ad47;">tiểu thuyết phiêu lưu</strong>, nó ít phù hợp hơn vì <strong style="color: #70ad47;">nó chủ yếu phát triển sự kịch tính hơn là tư duy sáng tạo</strong>.
+
+                Tóm lại, tôi tin rằng <strong style="color: #ee0000;">sách khoa học viễn tưởng</strong> là lựa chọn tốt nhất cho tình huống này.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Panel Part 3 -->
+<div class="sol-tab-content" id="sol-panel-3">
+    <div class="sol-topic-section">
+        <div class="sol-topic-header">
+            <i class="fa-solid fa-chart-line"></i> TOPIC DEVELOPMENT <span class="sol-translation">(phát triển chủ đề)</span>
+        </div>
+        <div class="sol-situation-box" style="font-weight: 600;">
+            Topic: Maintaining calmness is important for effective communication. <br/>
+            <ul style="margin-top: 8px; margin-bottom: 0; padding-left: 20px; font-weight: normal;">
+                <li>promote active listening</li>
+                <li>solve conflicts</li>
+                <li>help build understanding</li>
+            </ul>
+            <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-weight: normal;">
+                (Chủ đề: Giữ bình tĩnh rất quan trọng để giao tiếp hiệu quả.)<br/>
+                <ul style="margin-top: 4px; margin-bottom: 0; padding-left: 20px;">
+                    <li>thúc đẩy việc lắng nghe tích cực</li>
+                    <li>giải quyết xung đột</li>
+                    <li>giúp xây dựng sự hiểu biết</li>
+                </ul>
+            </span>
+            <span style="color: var(--color-red); font-weight: normal; display: block; margin-top: 8px;">Note (Your own idea) &rarr; Prevent emotional escalations. <span class="sol-translation" style="display: block; margin-top: 4px; margin-left: 0;">(Ý kiến của riêng bạn &rarr; Ngăn chặn sự leo thang của cảm xúc.)</span></span>
+        </div>
+        
+        <div class="sol-topic-header" style="margin-top: 20px;">
+            <i class="fa-solid fa-file-pen"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+        </div>
+        
+        <div class="sol-level-box level-b1">
+            <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+            <div class="level-content" style="white-space: pre-line;">
+                There are some <strong style="color: #00b0f0;">benefits</strong> of <strong style="color: #00b0f0;">maintaining calmness in effective communication</strong>.
+
+                One major advantage is that <strong style="color: #00b0f0;">maintaining calmness can promote active listening</strong>. This is because people can <strong style="color: #00b0f0;">pay more attention to what others are saying</strong>. As a result, they can <strong style="color: #00b0f0;">understand the message more clearly</strong>.
+
+                Another positive aspect is that <strong style="color: #00b0f0;">maintaining calmness can solve conflicts</strong>. This means that people can <strong style="color: #00b0f0;">discuss problems peacefully</strong> <strong style="color: #00b0f0;">instead of arguing</strong>. Therefore, they can <strong style="color: #00b0f0;">find better solutions together</strong>.
+
+                One more beneficial effect is that <strong style="color: #00b0f0;">maintaining calmness</strong> <strong style="color: #00b0f0;">can help build understanding</strong>. In fact, people can <strong style="color: #00b0f0;">respect different opinions</strong> and <strong style="color: #00b0f0;">communicate more effectively</strong>. This helps <strong style="color: #00b0f0;">improve their relationships with others</strong>.
+
+                In short, <strong style="color: #ee0000;">maintaining calmness</strong> has some clear benefits in effective communication, as mentioned above.
+                <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="translation-text" style="display: none; white-space: pre-line;">Có một số <strong style="color: #00b0f0;">lợi ích</strong> của việc <strong style="color: #00b0f0;">giữ bình tĩnh để giao tiếp hiệu quả</strong>.
+
+                Một ưu điểm lớn là <strong style="color: #00b0f0;">việc giữ bình tĩnh có thể thúc đẩy sự lắng nghe tích cực</strong>. Điều này là do mọi người có thể <strong style="color: #00b0f0;">chú ý nhiều hơn đến những gì người khác đang nói</strong>. Nhờ vậy, họ có thể <strong style="color: #00b0f0;">hiểu thông điệp một cách rõ ràng hơn</strong>.
+
+                Một khía cạnh tích cực khác là <strong style="color: #00b0f0;">việc giữ bình tĩnh có thể giải quyết xung đột</strong>. Điều này có nghĩa là mọi người có thể <strong style="color: #00b0f0;">thảo luận các vấn đề trong hòa bình</strong> <strong style="color: #00b0f0;">thay vì tranh cãi</strong>. Do đó, họ có thể <strong style="color: #00b0f0;">cùng nhau tìm ra giải pháp tốt hơn</strong>.
+
+                Một tác động có lợi nữa là <strong style="color: #00b0f0;">việc giữ bình tĩnh</strong> <strong style="color: #00b0f0;">có thể giúp xây dựng sự thấu hiểu</strong>. Trên thực tế, mọi người có thể <strong style="color: #00b0f0;">tôn trọng các ý kiến khác nhau</strong> và <strong style="color: #00b0f0;">giao tiếp hiệu quả hơn</strong>. Điều này giúp <strong style="color: #00b0f0;">cải thiện mối quan hệ của họ với những người khác</strong>.
+
+                Tóm lại, <strong style="color: #ee0000;">giữ bình tĩnh</strong> mang lại một số lợi ích rõ ràng trong giao tiếp hiệu quả, như đã nêu trên.</div>
+            </div>
+        </div>
+        
+        <div class="sol-level-box level-b2" style="margin-top: 20px;">
+            <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+            <div class="level-content" style="white-space: pre-line;">
+                There are some <strong style="color: #70ad47;">benefits</strong> of <strong style="color: #70ad47;">maintaining calmness in effective communication</strong>.
+
+                One major advantage is that <strong style="color: #70ad47;">maintaining calmness promotes active listening</strong>. This is because people can <strong style="color: #70ad47;">pay more attention to what others are saying without interrupting</strong>. As a result, they can <strong style="color: #70ad47;">understand different opinions more effectively</strong>.
+
+                Another positive aspect is that <strong style="color: #70ad47;">maintaining calmness helps solve conflicts</strong>. This means that people are more likely to <strong style="color: #70ad47;">discuss problems calmly instead of arguing</strong>. This can <strong style="color: #70ad47;">lead to</strong> <strong style="color: #70ad47;">better solutions</strong> and <strong style="color: #70ad47;">reduce misunderstandings</strong>.
+
+                One more beneficial effect is that <strong style="color: #70ad47;">maintaining calmness helps build understanding</strong>. In fact, people can <strong style="color: #70ad47;">express their ideas more clearly</strong> and <strong style="color: #70ad47;">respect each other's opinions</strong>. Therefore, they can <strong style="color: #70ad47;">build stronger and healthier relationships</strong>.
+
+                In short, <strong style="color: #ee0000;">maintaining calmness</strong> has some clear benefits in effective communication, as mentioned above.
+                <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="translation-text" style="display: none; white-space: pre-line;">Có một số <strong style="color: #70ad47;">lợi ích</strong> của việc <strong style="color: #70ad47;">giữ bình tĩnh để giao tiếp hiệu quả</strong>.
+
+                Một ưu điểm lớn là <strong style="color: #70ad47;">việc giữ bình tĩnh giúp thúc đẩy sự lắng nghe tích cực</strong>. Điều này là do mọi người có thể <strong style="color: #70ad47;">chú ý nhiều hơn đến những gì người khác đang nói mà không ngắt lời</strong>. Nhờ vậy, họ có thể <strong style="color: #70ad47;">hiểu các ý kiến khác nhau một cách hiệu quả hơn</strong>.
+
+                Một khía cạnh tích cực khác là <strong style="color: #70ad47;">việc giữ bình tĩnh giúp giải quyết xung đột</strong>. Điều này có nghĩa là mọi người có nhiều khả năng <strong style="color: #70ad47;">thảo luận các vấn đề một cách bình tĩnh thay vì tranh cãi</strong>. Điều này có thể <strong style="color: #70ad47;">dẫn đến</strong> <strong style="color: #70ad47;">những giải pháp tốt hơn</strong> và <strong style="color: #70ad47;">giảm thiểu hiểu lầm</strong>.
+
+                Một tác động có lợi nữa là <strong style="color: #70ad47;">việc giữ bình tĩnh giúp xây dựng sự thấu hiểu</strong>. Trên thực tế, mọi người có thể <strong style="color: #70ad47;">bày tỏ ý kiến của mình rõ ràng hơn</strong> và <strong style="color: #70ad47;">tôn trọng ý kiến của nhau</strong>. Do đó, họ có thể <strong style="color: #70ad47;">xây dựng các mối quan hệ bền chặt và lành mạnh hơn</strong>.
+
+                Tóm lại, <strong style="color: #ee0000;">giữ bình tĩnh</strong> mang lại một số lợi ích rõ ràng trong giao tiếp hiệu quả, như đã nêu trên.</div>
+            </div>
+        </div>
+
+        <div class="sol-topic-header" style="margin-top: 30px;">
+            <i class="fa-solid fa-circle-question"></i> FOLLOW-UP QUESTIONS <span class="sol-translation">(câu hỏi mở rộng)</span>
+        </div>
+        
+        <div class="sol-question-item">
+            <div class="sol-question-text">1. What other factors are important for effective communication? <span class="sol-translation">(Những yếu tố nào khác quan trọng để giao tiếp hiệu quả?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    I think <strong style="color: #00b0f0;">good listening</strong> is very important. People should also <strong style="color: #00b0f0;">speak clearly and politely</strong>. This helps <strong style="color: #00b0f0;">avoid misunderstandings</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Tôi nghĩ <strong style="color: #00b0f0;">việc lắng nghe tốt</strong> rất quan trọng. Mọi người cũng nên <strong style="color: #00b0f0;">nói chuyện rõ ràng và lịch sự</strong>. Điều này giúp <strong style="color: #00b0f0;">tránh những hiểu lầm</strong>.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Besides staying calm, I think <strong style="color: #70ad47;">good listening</strong> and <strong style="color: #70ad47;">clear communication</strong> are equally important. People should <strong style="color: #70ad47;">express their ideas respectfully</strong> and <strong style="color: #70ad47;">pay attention to others' opinions</strong>. This <strong style="color: #70ad47;">makes conversations more effective</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Bên cạnh việc giữ bình tĩnh, tôi nghĩ <strong style="color: #70ad47;">việc lắng nghe tốt</strong> và <strong style="color: #70ad47;">giao tiếp rõ ràng</strong> cũng quan trọng không kém. Mọi người nên <strong style="color: #70ad47;">bày tỏ ý kiến của mình một cách tôn trọng</strong> và <strong style="color: #70ad47;">chú ý đến ý kiến của người khác</strong>. Điều này <strong style="color: #70ad47;">giúp các cuộc trò chuyện hiệu quả hơn</strong>.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sol-question-item" style="margin-top: 20px;">
+            <div class="sol-question-text">2. Why do you think some people find it difficult to stay calm in conversations? <span class="sol-translation">(Tại sao bạn nghĩ một số người thấy khó giữ bình tĩnh trong các cuộc trò chuyện?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Some people <strong style="color: #00b0f0;">get angry easily</strong>. Others <strong style="color: #00b0f0;">feel stressed or nervous</strong>. As a result, they <strong style="color: #00b0f0;">may lose</strong> <strong style="color: #00b0f0;">their temper during conversations</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Một số người <strong style="color: #00b0f0;">dễ nổi giận</strong>. Những người khác <strong style="color: #00b0f0;">cảm thấy căng thẳng hoặc lo lắng</strong>. Kết quả là họ <strong style="color: #00b0f0;">có thể mất bình tĩnh trong lúc trò chuyện</strong>.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Some people find it difficult to stay calm because they're <strong style="color: #70ad47;">under pressure</strong> or <strong style="color: #70ad47;">cannot control</strong> <strong style="color: #70ad47;">their emotions well</strong>. When disagreements happen, they may <strong style="color: #70ad47;">react too quickly instead of</strong> <strong style="color: #70ad47;">thinking carefully before speaking</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Một số người thấy khó giữ bình tĩnh vì họ đang <strong style="color: #70ad47;">chịu áp lực</strong> hoặc <strong style="color: #70ad47;">không thể kiểm soát tốt cảm xúc của mình</strong>. Khi bất đồng xảy ra, họ có thể <strong style="color: #70ad47;">phản ứng quá nhanh thay vì suy nghĩ kỹ trước khi nói</strong>.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sol-question-item" style="margin-top: 20px;">
+            <div class="sol-question-text">3. Do you think people should always stay calm when communicating? Why or why not? <span class="sol-translation">(Bạn có nghĩ mọi người nên luôn giữ bình tĩnh khi giao tiếp không? Tại sao có hoặc tại sao không?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Yes, I do. Staying calm helps people <strong style="color: #00b0f0;">communicate more effectively</strong>. It also <strong style="color: #00b0f0;">reduces</strong> <strong style="color: #00b0f0;">arguments and misunderstandings</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Có, tôi nghĩ vậy. Giữ bình tĩnh giúp mọi người <strong style="color: #00b0f0;">giao tiếp hiệu quả hơn</strong>. Nó cũng <strong style="color: #00b0f0;">giảm thiểu tranh cãi và hiểu lầm</strong>.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Yes, I do. Staying calm allows people to <strong style="color: #70ad47;">think clearly</strong> and <strong style="color: #70ad47;">express their ideas</strong> <strong style="color: #70ad47;">more</strong> <strong style="color: #70ad47;">effectively</strong>. Even in difficult situations, <strong style="color: #70ad47;">a calm attitude</strong> makes it easier to <strong style="color: #70ad47;">solve problems</strong> and <strong style="color: #70ad47;">maintain positive relationships</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Có, tôi nghĩ vậy. Giữ bình tĩnh cho phép mọi người <strong style="color: #70ad47;">suy nghĩ rõ ràng</strong> và <strong style="color: #70ad47;">bày tỏ ý kiến của họ một cách hiệu quả hơn</strong>. Ngay cả trong những tình huống khó khăn, <strong style="color: #70ad47;">thái độ bình tĩnh</strong> giúp việc <strong style="color: #70ad47;">giải quyết các vấn đề</strong> và <strong style="color: #70ad47;">duy trì các mối quan hệ tích cực</strong> dễ dàng hơn.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>\n\n                    <!-- Back button -->
+<div style="margin-top: 30px; display: flex; justify-content: center;">
+<button class="btn btn-secondary" onclick="showScreen('review')">
+<i class="fa-solid fa-arrow-left"></i> Quay lại phần kết quả
+                        </button>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Custom Script JS -->
+<script src="../db.js?v=1782327221"></script>
+<script src="app.js?v=1782327221"></script>
+<script>
+  function toggleTranslation(element) {
+   const textNode = element.nextElementSibling;
+   const icon = element.querySelector('i');
+   if (textNode.style.display === 'none') {
+    textNode.style.display = 'block';
+    if (icon) icon.className = 'fa-solid fa-chevron-up';
+   } else {
+    textNode.style.display = 'none';
+    if (icon) icon.className = 'fa-solid fa-chevron-down';
+   }
+  }
+</script>
+</body>
+</html>

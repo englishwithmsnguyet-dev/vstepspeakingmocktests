@@ -1,0 +1,80 @@
+[B|None] SPEAKING MOCK TEST 03
+[B|None] PART 01: SOCIAL INTERACTION
+[B|None] Let's talk about game shows
+[B|None] 1. What gameshow do you often watch?
+[B|None] B1 LEVEL
+[_|None] I’m a big fan of | [_|None]   | [B|00B0F0] 2 Days 1 Night | [_|None] . It | [_|None] ’ | [_|None] s very  | [B|00B0F0] entertaining | [_|None]   | [_|None] and  | [B|00B0F0] funny | [_|None] . It helps me  | [B|00B0F0] relax after | [_|None]   | [B|00B0F0] studying | [_|None]   | [_|None] and  | [B|00B0F0] reduc | [B|00B0F0] e | [B|00B0F0]  stress | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I’m a big fan of | [_|None]   | [B|00B0F0] 2 Days 1 Night | [_|None]   | [_|None] because it | [_|None] ’ | [_|None] s both  | [B|00B0F0] entertaining | [_|None]   | [_|None] and  | [B|00B0F0] engaging | [_|None] .  | [_|None] The cast members  | [B|00B0F0] take part in many exciting activities | [_|None]   | [_|None] and  | [B|00B0F0] visit different places | [_|None] . Watching the show helps me  | [B|00B0F0] relax after a busy day | [_|None] .
+[B|None] 2. Would you prefer to watch it alone or with someone else?
+[B|None] B1 LEVEL
+[_|None] I  | [B|00B0F0] prefer watching it with my family | [_|None] . We can  | [B|00B0F0] laugh together | [_|None]   | [_|None] and  | [B|00B0F0] enjoy the funny moments | [_|None]   | [_|None] in the show. It | [_|None] ’ | [_|None] s a good way to  | [B|00B0F0] spend quality time together | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I would rather  | [B|00B0F0] watch it with my family or friends | [_|None] . Watching the funny activities and interesting trips  | [_|None] with them | [_|None]   | [B|00B0F0] makes the experience more enjoyable | [_|None] . It also gives us  | [_|None] a chance to  | [B|00B0F0] spend quality time together | [_|None]   | [_|None] and | [_|None]   | [B|00B0F0] strengthen our relationships | [_|None] .
+[B|None] 3. What are the benefits of watching a gameshow?
+[B|None] B1 LEVEL
+[_|None] One benefit is that it helps me  | [B|00B0F0] relax after a busy day | [_|None] . Another benefit is that I can  | [B|00B0F0] learn | [_|None]   | [B|00B0F0] many new things | [_|None]   | [_|None] from the program. It | [_|None] ’ | [_|None] s both  | [B|00B0F0] entertaining | [_|None]   | [_|None] and  | [B|00B0F0] educational | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Watching game shows  | [B|00B0F0] offers both entertainment and educational benefits | [_|None] . They help me  | [B|00B0F0] clear my mind | [_|None]   | [_|None] and  | [B|00B0F0] improve my mood | [_|None] . At the same time, I can  | [B|00B0F0] gain useful | [_|None]   | [B|00B0F0] knowledge | [_|None]   | [_|None] and  | [B|00B0F0] learn interesting facts about different topics | [_|None] .
+[B|None] Let's talk about buses
+[B|None] 1. Have you ever traveled by bus?
+[B|None] B1 LEVEL
+[B|00B0F0] Yes | [_|None] , I have. I often  | [B|00B0F0] take a bus | [B|00B0F0]  to get around the city | [_|None] .  | [_|None] It | [_|None] ’ | [_|None] s  | [B|00B0F0] easy to use | [_|None]   | [_|None] and  | [B|00B0F0] available in | [_|None]   | [B|00B0F0] many areas | [_|None] . I usually  | [B|00B0F0] choose it for short trips | [_|None] .
+[B|None] B2 LEVEL
+[B|00B0F0] Yes | [_|None] , I have traveled by bus many times. It | [_|None] ’s | [_|None]   | [B|00B0F0] one of the most affordable means of | [_|None]   | [B|00B0F0] transportation | [_|None] , especially for students and people with a limited budget.
+[B|None] 2. Is bus service good in your country?
+[B|None] B1 LEVEL
+[B|00B0F0] Yes | [_|None] , I think it is quite good. There are  | [B|00B0F0] many bus routes in big cities | [_|None] . The buses  | [B|00B0F0] run | [_|None]   | [B|00B0F0] regularly throughout the day | [_|None] . Many people  | [B|00B0F0] rely on them for daily travel | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Generally,  | [B|00B0F0] yes | [_|None] . Bus services  | [B|00B0F0] have | [_|None]   | [B|00B0F0] improved a lot in recent years | [_|None] . They are more  | [B|00B0F0] accessible | [_|None] ,  | [B|00B0F0] affordable | [_|None] , and  | [B|00B0F0] environmentally friendly | [_|None]   | [_|None] than before.
+[B|None] 3. What are the benefits of traveling by bus?
+[B|None] B1 LEVEL
+[_|None] Traveling by bus has many benefits. It helps people  | [B|00B0F0] save money | [_|None] . It can  | [B|00B0F0] reduce traffic | [_|None]   | [B|00B0F0] jams | [_|None]   | [_|None] and  | [B|00B0F0] protect the environment | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Traveling by bus is beneficial in many ways. It allows people to  | [B|00B0F0] save money | [B|00B0F0]  on transportation | [_|None]   | [_|None] and helps  | [B|00B0F0] reduce traffic congestion | [_|None] . Moreover, it | [_|None] ’s also a practical way to  | [B|00B0F0] protect the environment | [_|None] .
+[B|None] PART 02: SOLUTION DISCUSSION
+[B|None] SITUATION
+[_|None] Your youth club is supposed to invite a speaker to talk about his/her life experience. Three options are suggested: a famous singer, a company president, and an excellent student. Which one is the best choice? 
+[B|None] B1 LEVEL
+[_|None] Well, if I had to  | [B|EE0000] suggest a speaker for our youth club | [_|None] , I would  | [B|EE0000] recommend inviting a | [_|None]   | [B|EE0000] company president | [_|None] .
+[_|None] First of all, a company president usually  | [B|00B0F0] has rich life experience | [_|None] . He or she  | [B|00B0F0] over | [B|00B0F0] came | [_|None]   | [B|00B0F0] many challenges  | [B|00B0F0] before being successful | [_|None] . So, members can  | [B|00B0F0] learn important lessons | [_|None]   | [B|00B0F0] about life and success | [_|None] .
+[_|None] Secondly, the speaker can  | [B|00B0F0] inspire young people to work hard and never give up | [_|None] . His or her story can show that  | [B|00B0F0] success takes time and effort | [_|None] . So, members can  | [B|00B0F0] become more | [_|None]   | [B|00B0F0] motivated | [_|None] .
+[_|None] I wouldn’t recommend  | [B|70AD47] inviting a famous singer | [_|None]   | [_|None] because  | [B|70AD47] the talk may focus too much on | [_|None]   | [B|70AD47] entertainment | [_|None] .  | [_|None] As for  | [B|7030A0] an excellent student | [_|None] ,  | [_|None] it’s less suitable  | [B|7030A0] he or she may not have much life experience  | [B|7030A0] to share | [_|None] .
+[_|None] In short, I believe  | [B|EE0000] a company president | [_|None]   | [_|None] is the best choice for this situation.
+[B|None] B2 LEVEL
+[_|None] Well, if I had to  | [B|EE0000] suggest a speaker for our youth club | [_|None] , I would  | [B|EE0000] recommend inviting a | [_|None]   | [B|EE0000] company president | [_|None] .
+[_|None] First of all,  | [B|00B0F0] it’s an educational choice | [_|None]   | [_|None] because club members can  | [B|00B0F0] listen to real-life | [_|None]   | [B|00B0F0] experiences | [_|None]   | [B|00B0F0] from a successful businessperson | [_|None] . Besides, they can  | [B|00B0F0] learn valuable lessons | [_|None]   | [B|00B0F0] about work and life | [_|None] . This way, they can  | [B|00B0F0] gain useful knowledge for the future | [_|None] .
+[_|None] Secondly,  | [B|00B0F0] it can be very inspiring | [_|None]   | [_|None] because students can  | [B|00B0F0] learn about the speaker’s | [_|None]   | [B|00B0F0] journey to success | [_|None] . Moreover, they can  | [B|00B0F0] understand the importance of hard work and | [_|None]   | [B|00B0F0] determination | [_|None] . As a result, they can  | [B|00B0F0] become more motivated | [_|None]   | [_|None] to  | [B|00B0F0] achieve their goals | [_|None] .
+[_|None] I wouldn’t recommend  | [B|70AD47] inviting a famous singer | [_|None]  because  | [B|70AD47] the talk may focus more | [_|None]   | [_|None] on  | [B|70AD47] entertainment than life lessons | [_|None] . As for  | [B|7030A0] an excellent student | [_|None] , it’s less suitable because  | [B|7030A0] he or she may not have as much life experience as the other speakers | [_|None] .
+[_|None] In short, I believe  | [B|EE0000] a company president | [_|None]   | [_|None] is the best choice for this situation.
+[B|None] PART 03: TOPIC DEVELOPMENT
+[B|None] TOPIC
+[B|None] There are a lot of disadvantages to keeping animals in zoos. | [_|None]  
+[B|None] B1 LEVEL
+[_|None] There are some  | [B|EE0000] drawbacks | [_|None]   | [_|None] of  | [B|EE0000] keeping animals in zoos | [_|None] .
+[_|None] One major disadvantage is that  | [B|00B0F0] animals may face a lack of space | [_|None] . | [_|None]  This is because | [_|None]   | [B|00B0F0] z | [B|00B0F0] oos are usually much | [_|None]   | [B|00B0F0] smaller than natural habitats | [_|None] . As a result, animals  | [B|00B0F0] may not have enough room to move | [_|None]   | [B|00B0F0] around freely | [_|None] .
+[_|None] Another negative aspect is that  | [B|00B0F0] animals may experience a loss of freedom | [_|None] .  | [_|None] This means that t | [_|None] hey  | [B|00B0F0] cannot | [_|None]   | [B|00B0F0] live and move freely in the wild | [_|None] . Therefore, they may  | [B|00B0F0] feel stressed or unhappy | [_|None] .
+[_|None] One more harmful effect is that  | [B|00B0F0] animals may | [_|None]   | [B|00B0F0] experience | [B|00B0F0]  a lack of survival skills | [_|None] .  | [_|None] In fact, t | [_|None] hey  | [B|00B0F0] receive food and protection from zoo staff every day | [_|None] . As a result, they may  | [B|00B0F0] find it | [_|None]   | [B|00B0F0] difficult to survive in the wild | [_|None] .
+[_|None] In short,  | [B|EE0000] keeping animals in zoos | [_|None]   | [_|None] has several clear  | [B|EE0000] drawbacks | [_|None] , as mentioned above.
+[B|None] B2 LEVEL
+[_|None] There are some  | [B|EE0000] drawbacks | [_|None]   | [_|None] of  | [B|EE0000] keeping animals in zoos | [_|None] .
+[_|None] One major disadvantage is that  | [B|00B0F0] animals in zoos often lack space | [_|None] . | [_|None]  This is because m | [_|None] any animals  | [B|00B0F0] live in enclosed areas that are much smaller than their natural habitats | [_|None] . | [_|None]   | [_|None] As a result, they  | [B|00B0F0] may not be able to move freely or behave naturally | [_|None] .
+[_|None] Another negative aspect is that  | [B|00B0F0] animals may lose their freedom | [_|None] . | [_|None]  This means that t | [_|None] hey  | [B|00B0F0] cannot choose where to live or search for food on their own | [_|None] . | [_|None]   | [_|None] This can  | [B|00B0F0] affect their well-being and natural behaviour | [_|None] .
+[_|None] One more harmful effect is that  | [B|00B0F0] animals may lack survival skills | [_|None] . | [_|None]   | [_|None] Because they are cared for by humans, they  | [B|00B0F0] don | [B|00B0F0] ’ | [B|00B0F0] t need to hunt or protect themselves | [_|None] . | [_|None]   | [_|None] Therefore, they may  | [B|00B0F0] find it difficult to survive if they are released into the wild | [_|None] .
+[_|None] In short,  | [B|EE0000] keeping animals in zoos | [_|None]   | [_|None] has several clear  | [B|EE0000] drawbacks | [_|None] , as mentioned above.
+[B|None] FOLLOW-UP QUESTIONS
+[B|None] 1. What kinds of animals are usually kept in zoos?
+[B|None] B1 LEVEL
+[_|None] Zoos usually keep many kinds of animals, such as  | [B|00B0F0] lions | [_|None] ,  | [B|00B0F0] tigers | [_|None] ,  | [B|00B0F0] elephants | [_|None] ,  | [B|00B0F0] monkeys | [_|None] , and  | [B|00B0F0] bears | [_|None] . Some zoos also  | [B|00B0F0] have rare or endangered species | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Zoos usually  | [B|00B0F0] keep a wide variety of animals | [_|None] . | [_|None]   | [_|None] These include  | [B|00B0F0] lions | [_|None] ,  | [B|00B0F0] tigers | [_|None] ,  | [B|00B0F0] elephants | [_|None] ,  | [B|00B0F0] monkeys | [_|None] , and  | [B|00B0F0] many bird species | [_|None] . | [_|None]   | [_|None] Some zoos also  | [B|00B0F0] keep rare or endangered animals | [_|None] .
+[B|None] 2. What are the benefits of keeping animals in zoos?
+[B|None] B1 LEVEL
+[_|None] Zoos can help  | [B|00B0F0] protect endangered animals | [_|None] . They also  | [B|00B0F0] provide educational opportunities | [_|None]   | [B|00B0F0] for visitors | [_|None] . As a result, people can  | [B|00B0F0] learn more about wildlife | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Zoos can help  | [B|00B0F0] protect endangered species through conservation programs | [_|None] . | [_|None]   | [_|None] They also  | [B|00B0F0] provide educational opportunities for visitors | [_|None] . | [_|None]   | [_|None] In addition, zoos  | [B|00B0F0] support scientific | [_|None]   | [B|00B0F0] research | [_|None]   | [B|00B0F0] on animals | [_|000000] .
+[B|None] 3. What can people do to protect wildlife species?
+[B|None] B1 LEVEL
+[_|None] People should  | [B|00B0F0] protect natural habitats | [_|None] . They should also  | [B|00B0F0] avoid hunting wild animals | [_|None]   | [B|00B0F0] illegally | [_|None] . This can  | [B|00B0F0] help wildlife populations survive and grow | [_|None] .
+[B|None] B2 LEVEL
+[_|None] People can help  | [B|00B0F0] protect wildlife by preserving natural habitats | [_|None] . | [_|None]   | [_|None] They should also  | [B|00B0F0] avoid | [_|None]   | [B|00B0F0] buying products made from endangered animals | [_|None] . | [_|None]   | [_|None] In addition,  | [B|00B0F0] supporting conservation | [_|None]   | [B|00B0F0] organizations | [_|None]   | [_|None] can make a positive difference.

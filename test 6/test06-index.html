@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<script>
+        // Block flash of protected content
+        (function() {
+            const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+            const testId = pathMatch ? parseInt(pathMatch[1]) : 1;
+            const TEST_PASSWORDS = {};
+            if (TEST_PASSWORDS[testId] && sessionStorage.getItem('unlocked_test_' + testId) !== 'true') {
+                document.documentElement.style.display = 'none';
+            }
+        })();
+    </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPEAKING MOCK TEST 06 - ENGLISHWITHMISSNGUYET</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome for Premium Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="styles.css?v=1782327221" rel="stylesheet"/>
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<nav class="test-sidebar">
+<div class="sidebar-header">
+<i class="fa-solid fa-list-check"></i> <span>VSTEP MOCK TESTS</span>
+</div>
+<ul class="test-list">
+<li class="test-item">
+<a href="../index.html">
+<span class="test-icon"><i class="fa-solid fa-house"></i></span>
+<span class="test-name">TRANG CHỦ</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="1" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 01</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="2" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 02</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="3" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 03</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="4" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 04</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="5" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 05</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="6" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 06</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="7" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 07</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="8" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 08</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="9" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 09</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="10" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 10</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="11" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 11</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="12" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 12</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="13" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 13</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="14" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 14</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="15" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 15</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="16" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 16</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="17" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 17</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="18" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 18</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="19" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 19</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="20" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 20</span>
+</a>
+</li>
+</ul>
+<a class="sidebar-brand-bottom" href="https://www.facebook.com/nguyetpham28" target="_blank">
+<span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+<span class="brand-text">ENGLISH WITH MISS NGUYET</span>
+</a>
+</nav>
+<!-- Background Chime/Sound Permission Modal (if required, or handled on welcome screen) -->
+<!-- App Wrapper -->
+<div class="app-container">
+<!-- Header Brand -->
+<header class="app-header">
+<div class="header-title-wrapper"></div>
+</header>
+<!-- Progress Timeline Tracker -->
+<div class="progress-timeline">
+<div class="timeline-step active" id="step-welcome">
+<div class="step-num">0</div>
+<div class="step-label">CHUẨN BỊ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part1">
+<div class="step-num">1</div>
+<div class="step-label">PART 01</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part2">
+<div class="step-num">2</div>
+<div class="step-label">PART 02</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part3">
+<div class="step-num">3</div>
+<div class="step-label">PART 03</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-review">
+<div class="step-num">4</div>
+<div class="step-label">KẾT QUẢ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-solution">
+<div class="step-num">5</div>
+<div class="step-label">BÀI GIẢI</div>
+</div>
+</div>
+<!-- Main Workspace -->
+<main class="app-main">
+<!-- SCREEN 1: WELCOME SCREEN -->
+<section class="screen-view active" id="view-welcome">
+<div class="glass-card welcome-card">
+<div class="welcome-header-center">
+<div class="welcome-cat-gif">
+<img alt="Typing Cat" class="typing-cat-img" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"/>
+</div>
+<h1>VSTEP Speaking Practice</h1>
+<div class="mock-test-pill">SPEAKING MOCK TEST 06</div>
+<p class="welcome-desc">Chào mừng bạn đến với hệ thống thi thử VSTEP SPEAKING MOCK TEST tương tác. Giao diện và cách tính giờ được lập trình mô phỏng chính xác phòng thi máy thực tế.</p>
+<p class="welcome-warning" style="margin-top: 12px; color: var(--color-red); font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>LƯU Ý:</strong> Không sử dụng bất kì tài liệu hay công cụ trong lúc thi thử. Mọi sự thảo luận đều không được cho phép trong phòng thi.</p>
+</div>
+<div class="test-outline">
+<h3>Cấu trúc bài thi</h3>
+<div class="outline-grid">
+<div class="outline-item">
+<span class="part-badge">PART 01</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Social Interaction</span> [Giao tiếp xã hội]</h4>
+<p>Thí sinh trả lời 02 chủ đề bất kì, mỗi chủ đề có 03 câu hỏi. Không có thời gian chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 3 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 02</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Solution Discussion</span> [Thảo luận giải pháp]</h4>
+<p>Thí sinh thảo luận phương án tốt nhất cho một tình huống giả định bất kì với 03 sự lựa chọn. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 4 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 03</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Topic Development</span> [Phát triển chủ đề]</h4>
+<p>Thí sinh phát triển một chủ đề bất kì dựa vào sơ đồ gợi ý và 03 câu hỏi mở rộng. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 5 phút</span>
+</div>
+</div>
+</div>
+<!-- Student Info Input -->
+<div class="student-form">
+<div class="input-group">
+<label for="student-name"><i class="fa-solid fa-user-pen"></i> Họ và tên học viên:</label>
+<input autocomplete="off" id="student-name" placeholder="Nhập họ tên của bạn..." type="text"/>
+</div>
+</div>
+<!-- Action and Sound Check -->
+<div class="audio-check-section">
+<div class="mic-status-msg" id="mic-status">
+<i class="fa-solid fa-circle-info"></i> Hãy cấp quyền truy cập Microphone để hệ thống ghi âm bài làm của bạn.
+                        </div>
+<button class="btn btn-primary" id="btn-start-test">
+<span>BẮT ĐẦU BÀI THI</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 2: PART 1 SCREEN -->
+<section class="screen-view" id="view-part1">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 01: <span style="color: var(--color-red);">SOCIAL INTERACTION</span></div>
+<div class="part1-topics"><div class="topic-box"><h3 class="topic-title"><i class="fa-solid fa-plane"></i> <span>Let's talk about <strong>traveling</strong>:</span></h3><ul class="question-list"><li><span class="q-num">1</span> What is your favorite trip that you have taken?</li><li><span class="q-num">2</span> Do you often try local food when you travel?</li><li><span class="q-num">3</span> What are your favorite activities to do when you travel?</li></ul></div><div class="topic-box"><h3 class="topic-title"><i class="fa-solid fa-recycle"></i> <span>Let's talk about <strong>recycling</strong>:</span></h3><ul class="question-list"><li><span class="q-num">4</span> What kinds of things do you usually recycle?</li><li><span class="q-num">5</span> Do people in your area often recycle?</li><li><span class="q-num">6</span> How does the government encourage people to recycle?</li></ul></div></div>
+</div>
+<!-- Right: Control Panel (Timer, Mic, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator recording" id="p1-status">
+<span class="status-dot"></span>
+<span class="status-text">Hệ thống đang ghi âm bài nói của bạn</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p1-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p1-time-val">03:00</span>
+<span class="time-label">TỔNG THỜI GIAN</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p1-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 3: PART 2 SCREEN -->
+<section class="screen-view" id="view-part2">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 02: <span style="color: var(--color-red);">SOLUTION DISCUSSION</span></div>
+<!-- Situation Card -->
+<div class="situation-box">
+<h3 class="section-subtitle"><i class="fa-solid fa-circle-question"></i> Situation:</h3>
+<p class="situation-desc">Your friend is looking for a place to study. There are three options: <strong>a quiet bedroom</strong>, <strong>a living room</strong>, and <strong>a library</strong>. Which one would you recommend, and why?</p>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Prep state, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p2-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p2-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p2-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p2-time-val">01:00</span>
+<span class="time-label" id="p2-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p2-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p2-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 4: PART 3 SCREEN -->
+<section class="screen-view" id="view-part3">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 03: <span style="color: var(--color-red);">TOPIC DEVELOPMENT</span></div>
+<div class="topic-header">
+<h3 class="topic-heading-red">Topic:</h3>
+<p class="topic-desc">There are several reasons why responsibility is important.</p>
+</div>
+<!-- CSS Grid Mindmap -->
+<div class="mindmap-wrapper">
+<div class="mindmap-container">
+<!-- Center Node -->
+<div class="mindmap-node node-center">
+<span>Responsibility</span>
+</div>
+<!-- Connectors -->
+<div class="mindmap-line line-top"></div>
+<div class="mindmap-line line-left"></div>
+<div class="mindmap-line line-bottom"></div>
+<div class="mindmap-line line-right"></div>
+<!-- Top Branch -->
+<div class="mindmap-node node-branch branch-top">
+<span>improve teamwork skills</span>
+</div>
+<!-- Left Branch -->
+<div class="mindmap-node node-branch branch-left">
+<span>earn trust from others</span>
+</div>
+<!-- Bottom Branch -->
+<div class="mindmap-node node-branch branch-bottom">
+<span>achieve better results</span>
+</div>
+<!-- Right Branch -->
+<div class="mindmap-node node-branch branch-right">
+<span>[your own idea]</span>
+</div>
+</div>
+</div>
+<!-- Follow-up Questions Box -->
+<div class="follow-up-box">
+<h4><i class="fa-solid fa-circle-question"></i> Follow-up questions:</h4>
+<ul class="question-list"><li><span class="q-num">1</span> What are some responsibilities that young people should have?</li><li><span class="q-num">2</span> Do you think people today are more or less responsible than in the past? Why?</li><li><span class="q-num">3</span> How can parents or schools teach children to become more responsible?</li></ul>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Scratchpad, Finish button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p3-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p3-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p3-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p3-time-val">01:00</span>
+<span class="time-label" id="p3-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p3-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-success" id="btn-p3-next">
+<span>Hoàn thành bài thi</span> <i class="fa-solid fa-circle-check"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 5: REVIEW SCREEN -->
+<section class="screen-view" id="view-review">
+<div class="glass-card review-card">
+<div class="success-banner">
+<div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+<h2>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI THI NÓI!</h2>
+<p style="margin-bottom: 8px;">Bạn có 10s để khóc trước khi xem phần BÀI GIẢI.</p>
+<p id="review-student-info" style="font-size: 13px; opacity: 0.7; margin-top: 4px;"></p>
+</div>
+<!-- Summary Grid: Audio Files & Notes -->
+<div class="review-grid">
+<!-- Left Panel: Playback recordings -->
+<div class="review-recordings-panel">
+<h3><i class="fa-solid fa-microphone-lines"></i> Nghe lại bài nói của bạn</h3>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 01</span>
+<span class="rec-title">Social Interaction</span>
+</div>
+<div class="audio-player-wrapper" id="p1-player-container">
+<!-- Dynamic custom Audio Player or native audio element styled -->
+<audio controls="" id="p1-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part1.webm" id="p1-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 02</span>
+<span class="rec-title">Solution Discussion</span>
+</div>
+<div class="audio-player-wrapper" id="p2-player-container">
+<audio controls="" id="p2-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part2.webm" id="p2-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 03</span>
+<span class="rec-title">Topic Development</span>
+</div>
+<div class="audio-player-wrapper" id="p3-player-container">
+<audio controls="" id="p3-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part3.webm" id="p3-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Right Panel: Feedback -->
+<div class="review-notes-panel">
+<h3><i class="fa-solid fa-comment-medical"></i> ĐÁNH GIÁ CHUNG</h3>
+<div class="teacher-feedback-box">
+<label for="teacher-feedback">Học viên tự đánh giá mức độ hoàn thành bài nói:</label>
+<textarea id="teacher-feedback" placeholder="Bạn đã hoàn thành tất cả nội dung bài thi hay chưa? Bạn có tự tin với bài nói của mình hay không?" style="min-height: 200px;"></textarea>
+</div>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="review-actions">
+<button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
+<i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
+                        </button>
+<button class="btn btn-secondary" id="btn-restart-test">
+<i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
+                        </button>
+</div>
+</div>
+</section>
+<!-- SCREEN 6: SOLUTION SCREEN -->
+<section class="screen-view" id="view-solution">
+<div class="glass-card instruction-card" style="max-width: 900px; margin: 20px auto;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+<h2 style="color: var(--color-red); margin-bottom: 0;"><i class="fa-solid fa-book-open"></i> BÀI GIẢI CHI TIẾT</h2>
+<span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 06</span>
+</div>
+<div class="solution-tab-container">
+<div class="solution-tab-buttons">
+<button class="sol-tab-btn active" onclick="switchSolTab(1)">PART 01: SOCIAL INTERACTION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(2)">PART 02: SOLUTION DISCUSSION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(3)">PART 03: TOPIC DEVELOPMENT</button>
+</div>
+<!-- Panel Part 1 -->
+<div class="sol-tab-content active" id="sol-panel-1">
+<!-- Topic 1 -->
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-plane"></i> Topic 1: Let's talk about traveling <span class="sol-translation">(Hãy nói về đi du lịch)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What is your favorite trip that you have taken? <span class="sol-translation">(Chuyến đi yêu thích nhất của bạn là chuyến đi nào?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">My favorite trip was <strong style="color: #00b0f0;">a trip to Da Nang with my family</strong>. We <strong style="color: #00b0f0;">visited many famous places</strong> and <strong style="color: #00b0f0;">tried local food</strong>. It was <strong style="color: #00b0f0;">a memorable experience</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Chuyến đi yêu thích của tôi là <strong style="color: #00b0f0;">chuyến đi đến Đà Nẵng cùng gia đình</strong>. Chúng tôi đã <strong style="color: #00b0f0;">đến thăm nhiều địa điểm nổi tiếng</strong> và <strong style="color: #00b0f0;">thử đồ ăn địa phương</strong>. Đó là <strong style="color: #00b0f0;">một trải nghiệm đáng nhớ</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">My favorite trip was <strong style="color: #70ad47;">a family vacation to Da Nang a few years ago</strong>. We <strong style="color: #70ad47;">visited some famous places</strong>, <strong style="color: #70ad47;">enjoyed beautiful beaches</strong>, and <strong style="color: #70ad47;">experienced the local culture</strong>. It was <strong style="color: #70ad47;">an unforgettable trip</strong> because I could <strong style="color: #70ad47;">relax</strong> and <strong style="color: #70ad47;">spend quality time with my family</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Chuyến đi yêu thích của tôi là <strong style="color: #70ad47;">kỳ nghỉ cùng gia đình tại Đà Nẵng vài năm trước</strong>. Chúng tôi đã <strong style="color: #70ad47;">ghé thăm</strong> <strong style="color: #70ad47;">một số</strong> <strong style="color: #70ad47;">địa điểm</strong> <strong style="color: #70ad47;">nổi tiếng</strong>, <strong style="color: #70ad47;">tận hưởng những bãi biển tuyệt đẹp</strong> và <strong style="color: #70ad47;">trải nghiệm văn hóa địa phương</strong>. Đó là <strong style="color: #70ad47;">một chuyến đi khó quên</strong> vì tôi <strong style="color: #70ad47;">có</strong> thể <strong style="color: #70ad47;">thư giãn</strong> và <strong style="color: #70ad47;">dành thời gian chất lượng bên</strong> <strong style="color: #70ad47;">gia đình</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. Do you often try local food when you travel? <span class="sol-translation">(Bạn có thường thử các món ăn địa phương khi đi du lịch không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Yes, I do. I <strong style="color: #00b0f0;">enjoy trying local food</strong> because it's usually <strong style="color: #00b0f0;">delicious</strong> and <strong style="color: #00b0f0;">unique</strong>. It also allows me to <strong style="color: #00b0f0;">learn more about the local culture</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi <strong style="color: #00b0f0;">có</strong>. Tôi <strong style="color: #00b0f0;">thích thử đồ ăn địa phương</strong> vì nó thường <strong style="color: #00b0f0;">ngon</strong> và <strong style="color: #00b0f0;">độc đáo</strong>. Nó cũng cho phép tôi <strong style="color: #00b0f0;">tìm hiểu</strong> <strong style="color: #00b0f0;">thêm về văn hóa địa phương</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Yes, I do. I <strong style="color: #70ad47;">always try local food</strong> whenever I <strong style="color: #70ad47;">visit a new place</strong>. The main reason is that it allows me to <strong style="color: #70ad47;">experience the local culture</strong>. It also helps me <strong style="color: #70ad47;">discover new flavors</strong> and <strong style="color: #70ad47;">make my trip more memorable</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi <strong style="color: #70ad47;">có</strong>. Tôi <strong style="color: #70ad47;">luôn thử đồ ăn địa phương</strong> mỗi khi <strong style="color: #70ad47;">đến thăm một nơi mới</strong>. Lý do chính là nó cho phép tôi <strong style="color: #70ad47;">trải nghiệm văn hóa địa phương</strong>. Nó cũng giúp tôi <strong style="color: #70ad47;">khám phá những hương vị mới</strong> và <strong style="color: #70ad47;">làm cho chuyến đi của tôi trở nên đáng nhớ hơn</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. What are your favorite activities to do when you travel? <span class="sol-translation">(Các hoạt động yêu thích của bạn khi đi du lịch là gì?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I like <strong style="color: #00b0f0;">visiting tourist attractions</strong> and <strong style="color: #00b0f0;">taking photos</strong>. I also enjoy <strong style="color: #00b0f0;">trying local food</strong> and <strong style="color: #00b0f0;">buying souvenirs</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi thích <strong style="color: #00b0f0;">tham quan các điểm du lịch</strong> và <strong style="color: #00b0f0;">chụp ảnh</strong>. Tôi cũng <strong style="color: #00b0f0;">thích thử đồ ăn địa phương</strong> và <strong style="color: #00b0f0;">mua quà lưu niệm</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">My favorite activities are <strong style="color: #70ad47;">visiting famous attractions</strong> and <strong style="color: #70ad47;">trying local food</strong>. I enjoy them because they allow me to <strong style="color: #70ad47;">have new experiences</strong>. They also help me <strong style="color: #70ad47;">create unforgettable memories</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Các hoạt động yêu thích của tôi là <strong style="color: #70ad47;">tham quan các điểm thu hút nổi tiếng</strong> và <strong style="color: #70ad47;">thử đồ ăn địa phương</strong>. Tôi thích chúng vì chúng cho phép tôi <strong style="color: #70ad47;">có những trải nghiệm mới</strong>. Chúng cũng giúp tôi <strong style="color: #70ad47;">tạo ra những</strong> <strong style="color: #70ad47;">kỷ niệm</strong> <strong style="color: #70ad47;">khó quên</strong>.</div></div>
+</div>
+</div>
+</div>
+<!-- Topic 2 -->
+<div class="sol-topic-section" style="margin-top: 30px;">
+<div class="sol-topic-header">
+<i class="fa-solid fa-recycle"></i> Topic 2: Let's talk about recycling <span class="sol-translation">(Hãy nói về việc tái chế)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What kinds of things do you usually recycle? <span class="sol-translation">(Bạn thường tái chế những loại đồ vật nào?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I usually <strong style="color: #00b0f0;">recycle plastic bottles</strong>, <strong style="color: #00b0f0;">paper</strong>, and <strong style="color: #00b0f0;">cans</strong>. These items can <strong style="color: #00b0f0;">be reused</strong> and help <strong style="color: #00b0f0;">reduce waste</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi thường <strong style="color: #00b0f0;">tái chế chai nhựa</strong>, <strong style="color: #00b0f0;">giấy</strong> và <strong style="color: #00b0f0;">lon</strong>. Những vật dụng này <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">được</strong> <strong style="color: #00b0f0;">tái sử dụng</strong> và giúp <strong style="color: #00b0f0;">giảm lượng rác thải</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I usually <strong style="color: #70ad47;">recycle plastic bottles</strong>, <strong style="color: #70ad47;">paper products</strong>, and <strong style="color: #70ad47;">aluminum cans</strong>. Recycling these materials helps <strong style="color: #70ad47;">reduce environmental pollution</strong> and <strong style="color: #70ad47;">encourages a more sustainable lifestyle</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi thường <strong style="color: #70ad47;">tái chế chai nhựa</strong>, <strong style="color: #70ad47;">các sản phẩm từ giấy</strong> và <strong style="color: #70ad47;">lon nhôm</strong>. Việc tái chế các vật liệu này giúp <strong style="color: #70ad47;">giảm ô nhiễm môi trường</strong> và <strong style="color: #70ad47;">khuyến khích một</strong> <strong style="color: #70ad47;">lối sống</strong> <strong style="color: #70ad47;">bền vững hơn</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. Do people in your area often recycle? <span class="sol-translation">(Người dân ở khu vực của bạn có thường tái chế không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Yes, many people do. They often <strong style="color: #00b0f0;">separate recyclable waste from household rubbish</strong>. This helps <strong style="color: #00b0f0;">keep the environment cleaner</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Vâng, nhiều người làm vậy. Họ thường <strong style="color: #00b0f0;">phân loại rác thải có thể tái chế khỏi rác sinh hoạt gia đình</strong>. Điều này giúp <strong style="color: #00b0f0;">giữ cho môi trường sạch sẽ hơn</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Yes, they do. Many people in my area recycle because they want to <strong style="color: #70ad47;">protect the environment</strong>. They often <strong style="color: #70ad47;">separate recyclable waste from household rubbish</strong>. As a result, the area is <strong style="color: #70ad47;">becoming cleaner</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Vâng, họ <strong style="color: #70ad47;">có</strong>. Nhiều người trong khu vực của tôi tái chế vì họ muốn <strong style="color: #70ad47;">bảo vệ</strong> <strong style="color: #70ad47;">môi trường</strong>. Họ thường <strong style="color: #70ad47;">phân loại rác thải có thể tái chế khỏi rác sinh hoạt gia đình</strong>. Kết quả là, khu vực này đang <strong style="color: #70ad47;">trở nên sạch sẽ hơn</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. How does the government encourage people to recycle? <span class="sol-translation">(Chính phủ khuyến khích người dân tái chế bằng cách nào?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">The governmentcan <strong style="color: #00b0f0;">organize environmental campaigns and educational programs</strong>. They also <strong style="color: #00b0f0;">place recycling bins in public areas</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Chính phủ <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">tổ chức các chiến dịch môi trường và các chương trình giáo dục</strong>. Họ cũng <strong style="color: #00b0f0;">đặt các thùng rác tái chế ở những khu vực công cộng</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">The government encourages recycling through <strong style="color: #70ad47;">public awareness campaigns</strong> and <strong style="color: #70ad47;">environmental education programs</strong>. In addition, <strong style="color: #70ad47;">recycling bins are provided in many public places</strong> to make recycling <strong style="color: #70ad47;">more convenient for citizens</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Chính phủ khuyến khích việc tái chế thông qua <strong style="color: #70ad47;">các chiến dịch nâng cao nhận thức của công chúng</strong> và <strong style="color: #70ad47;">các chương trình giáo dục môi trường</strong>. Ngoài ra, <strong style="color: #70ad47;">các thùng rác tái chế được cung cấp ở nhiều nơi công cộng</strong> để giúp việc tái chế <strong style="color: #70ad47;">thuận tiện hơn cho người dân</strong>.</div></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 2 -->
+<div class="sol-tab-content" id="sol-panel-2">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-circle-info"></i> SITUATION <span class="sol-translation">(tình huống)</span>
+</div>
+<div class="sol-situation-box">
+                                    Your friend is looking for a place to study. There are three options: <strong><em>a quiet bedroom</em></strong>, <strong><em>a living room</em></strong>, and <strong><em>a library</em></strong>. Which one would you recommend, and why?
+                                    <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-size: 13.5px;">(Bạn của bạn đang tìm một nơi để học tập. Có ba lựa chọn: <strong><em>một phòng ngủ yên tĩnh</em></strong>, <strong><em>một phòng khách</em></strong> và <strong><em>một thư viện</em></strong>. Bạn khuyên họ nên chọn địa điểm nào và tại sao?)</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-graduation-cap"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">Well, if I had to <strong style="color: #ee0000;">suggest a place for my friend to study</strong>, I would <strong style="color: #ee0000;">recommend a library</strong>.<br/><br/>First of all, <strong style="color: #00b0f0;">it’s a quiet place</strong> because everyone <strong style="color: #00b0f0;">studies quietly</strong> there. This helps her <strong style="color: #00b0f0;">concentrate better</strong>. So, she can <strong style="color: #00b0f0;">study more effectively</strong>.<br/><br/>Secondly, <strong style="color: #00b0f0;">it’s a good learning environment</strong> because she can <strong style="color: #00b0f0;">use many books and study materials</strong>. This helps her <strong style="color: #00b0f0;">learn new things</strong> more easily. So, she can <strong style="color: #00b0f0;">improve her knowledge</strong>.<br/><br/>I wouldn’t recommend <strong style="color: #70ad47;">a quiet bedroom</strong> because <strong style="color: #70ad47;">there may be many distractions at home</strong>. As for <strong style="color: #7030a0;">a living room</strong>, it's less suitable because <strong style="color: #7030a0;">it’s often noisy when other family members are at home</strong>.<br/><br/>In short, I believe <strong style="color: #ee0000;">a library</strong> is the best choice for this situation.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">À, nếu tôi phải <strong style="color: #ee0000;">gợi ý một địa điểm cho bạn tôi học tập</strong>, tôi sẽ <strong style="color: #ee0000;">khuyên chọn một thư viện</strong>.
+
+Trước hết, <strong style="color: #00b0f0;">nó là một nơi yên tĩnh</strong> vì mọi người đều <strong style="color: #00b0f0;">học tập một cách yên lặng</strong> <strong style="color: #70ad47;">ở</strong> đó. Điều này giúp cô ấy <strong style="color: #00b0f0;">tập trung tốt hơn</strong>. Vì vậy, cô ấy <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">học tập hiệu quả hơn</strong>.
+
+Thứ hai, <strong style="color: #00b0f0;">nó là một môi trường học tập tốt</strong> vì cô ấy <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">sử dụng nhiều sách và tài liệu</strong> <strong style="color: #00b0f0;">học tập</strong>. Điều này giúp cô ấy <strong style="color: #00b0f0;">học hỏi những điều mới</strong> <strong style="color: #00b0f0;">dễ dàng hơn</strong>. Vì vậy, cô ấy <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">cải thiện</strong> <strong style="color: #00b0f0;">kiến thức</strong> của mình.
+
+Tôi không khuyên chọn <strong style="color: #70ad47;">một phòng ngủ yên tĩnh</strong> vì <strong style="color: #70ad47;">có thể có nhiều sự xao nhãng</strong> <strong style="color: #7030a0;">ở nhà</strong>. Đối với <strong style="color: #7030a0;">một phòng khách</strong>, nó kém phù hợp hơn vì <strong style="color: #7030a0;">nó thường ồn ào khi các thành viên khác trong gia đình</strong> <strong style="color: #7030a0;">ở nhà</strong>.
+
+Tóm lại, tôi tin rằng <strong style="color: #ee0000;">một thư viện</strong> là lựa chọn tốt nhất cho tình huống này.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">Well, if I had to <strong style="color: #ee0000;">suggest a place for my friend to study</strong>, I would <strong style="color: #ee0000;">recommend a library</strong>.<br/><br/>First of all, <strong style="color: #00b0f0;">it’s a quiet place</strong> because people are expected to <strong style="color: #00b0f0;">keep silent</strong>. Besides, there are <strong style="color: #00b0f0;">fewer distractions</strong> than at home. This way, she can <strong style="color: #00b0f0;">concentrate better</strong> and <strong style="color: #00b0f0;">study more effectively</strong>.<br/><br/>Secondly, it <strong style="color: #00b0f0;">provides a good learning environment</strong>. She can <strong style="color: #00b0f0;">access a wide range of books and study materials</strong> whenever she needs them. As a result, she can <strong style="color: #00b0f0;">gain more knowledge</strong> and <strong style="color: #00b0f0;">improve her academic performance</strong>.<br/><br/>I wouldn’t recommend <strong style="color: #70ad47;">studying in a living room</strong> because <strong style="color: #70ad47;">it may be noisy and distracting</strong>. As for <strong style="color: #7030a0;">a quiet bedroom</strong>, it’s less suitable because <strong style="color: #7030a0;">she may feel sleepy or lose motivation while studying alone</strong>.<br/><br/>In short, I believe <strong style="color: #ee0000;">a library</strong> is the best choice for this situation.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">À, nếu tôi phải <strong style="color: #ee0000;">gợi ý một địa điểm cho bạn tôi học tập</strong>, tôi sẽ <strong style="color: #ee0000;">khuyên chọn một thư viện</strong>.
+
+Trước hết, <strong style="color: #00b0f0;">nó là một nơi yên tĩnh</strong> vì mọi người <strong style="color: #00b0f0;">được</strong> mong đợi sẽ <strong style="color: #00b0f0;">giữ im lặng</strong>. Bên cạnh đó, <strong style="color: #00b0f0;">có</strong> <strong style="color: #00b0f0;">ít sự xao nhãng hơn</strong> so với <strong style="color: #7030a0;">ở nhà</strong>. Bằng cách này, cô ấy <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">tập trung tốt hơn</strong> và <strong style="color: #00b0f0;">học tập hiệu quả hơn</strong>.
+
+Thứ hai, nó <strong style="color: #00b0f0;">cung cấp một môi trường học tập tốt</strong>. Cô ấy <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">tiếp cận nhiều loại sách</strong> <strong style="color: #00b0f0;">và tài liệu học tập</strong> bất cứ khi nào cô ấy cần. Kết quả là, cô ấy <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">thu nhận thêm</strong> <strong style="color: #00b0f0;">kiến thức</strong> và <strong style="color: #00b0f0;">cải thiện thành tích học tập của mình</strong>.
+
+Tôi không khuyên <strong style="color: #70ad47;">học trong một phòng khách</strong> vì <strong style="color: #70ad47;">nó có thể ồn ào và gây xao nhãng</strong>. Đối với <strong style="color: #70ad47;">một phòng ngủ yên tĩnh</strong>, nó kém phù hợp hơn vì <strong style="color: #7030a0;">cô ấy có thể cảm thấy buồn ngủ hoặc mất</strong> <strong style="color: #7030a0;">động lực khi học một mình</strong>.
+
+Tóm lại, tôi tin rằng <strong style="color: #ee0000;">một thư viện</strong> là lựa chọn tốt nhất cho tình huống này.</div></div>
+</div>
+</div>
+</div>
+<!-- Panel Part 3 -->
+<div class="sol-tab-content" id="sol-panel-3">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-chart-line"></i> TOPIC DEVELOPMENT <span class="sol-translation">(phát triển chủ đề)</span>
+</div>
+<div class="sol-situation-box" style="font-weight: 600;">
+                                    Topic: There are several reasons why responsibility is important.<br/>
+<ul style="margin-top: 8px; margin-bottom: 0; padding-left: 20px; font-weight: normal;">
+<li><strong><em>improve teamwork skills</em></strong></li>
+<li><strong><em>earn trust from others</em></strong></li>
+<li><strong><em>achieve better results</em></strong></li>
+</ul>
+<span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-weight: normal;">
+                                        (Chủ đề: Có một vài lý do tại sao tinh thần trách nhiệm lại quan trọng.)<br/>
+<ul style="margin-top: 4px; margin-bottom: 0; padding-left: 20px;">
+<li><strong><em>cải thiện kỹ năng làm việc nhóm</em></strong></li>
+<li><strong><em>giành được sự tin tưởng từ người khác</em></strong></li>
+<li><strong><em>đạt được kết quả tốt hơn</em></strong></li>
+</ul>
+</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-file-pen"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">There are some <strong style="color: #70ad47;">reasons why responsibility is important</strong>.<br/><br/>One major factor is that <strong style="color: #00b0f0;">responsibility helps people improve teamwork skills</strong>. This is because <strong style="color: #00b0f0;">responsible people</strong> always <strong style="color: #00b0f0;">complete their tasks on time</strong>. As a result, teams can <strong style="color: #00b0f0;">work more effectively</strong>.<br/><br/>Another contributing reason is that <strong style="color: #00b0f0;">responsibility helps people earn trust from others</strong>. This is means people trust those who <strong style="color: #00b0f0;">keep their promises</strong> and <strong style="color: #00b0f0;">do their jobs well</strong>. Therefore, they can <strong style="color: #00b0f0;">build stronger relationships</strong>.<br/><br/>One more underlying issue is that <strong style="color: #00b0f0;">responsibility helps people achieve better results</strong>. In fact, <strong style="color: #00b0f0;">responsible people</strong> always <strong style="color: #00b0f0;">work harder</strong> and <strong style="color: #00b0f0;">take their duties seriously</strong>. This helps them <strong style="color: #00b0f0;">succeed in their studies and careers</strong>.<br/><br/>In short, there are some <strong style="color: #70ad47;">clear reasons why responsibility is important</strong>,as mentioned above.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Có <strong style="color: #00b0f0;">một số</strong> <strong style="color: #70ad47;">lý do</strong> <strong style="color: #ee0000;">tại sao tinh thần trách nhiệm là quan trọng</strong>.
+
+Một yếu tố chính là <strong style="color: #00b0f0;">tinh thần trách nhiệm giúp mọi người cải thiện kỹ năng làm việc nhóm</strong>. Điều này là do <strong style="color: #00b0f0;">những người có trách nhiệm</strong> luôn <strong style="color: #00b0f0;">hoàn thành nhiệm vụ của họ đúng hạn</strong>. Kết quả là, các nhóm <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">làm việc hiệu quả hơn</strong>.
+
+Một <strong style="color: #70ad47;">lý do</strong> đóng góp khác là <strong style="color: #00b0f0;">tinh thần trách nhiệm giúp mọi người giành được sự tin tưởng từ người khác</strong>. Điều này <strong style="color: #00b0f0;">có</strong> nghĩa là mọi người tin tưởng những người <strong style="color: #00b0f0;">giữ lời hứa</strong> và <strong style="color: #00b0f0;">làm tốt công việc của họ</strong>. Do đó, họ <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">xây dựng các mối quan hệ bền chặt hơn</strong>.
+
+Một vấn đề cơ bản nữa là <strong style="color: #00b0f0;">tinh thần trách nhiệm giúp mọi người đạt được kết quả tốt hơn</strong>. Thực tế, <strong style="color: #00b0f0;">những người có trách nhiệm</strong> luôn <strong style="color: #00b0f0;">làm việc chăm chỉ hơn</strong> và <strong style="color: #00b0f0;">thực hiện nghĩa vụ của họ một cách nghiêm túc</strong>. Điều này giúp họ <strong style="color: #00b0f0;">thành công trong học tập và sự nghiệp</strong>.
+
+Tóm lại, <strong style="color: #00b0f0;">có</strong> <strong style="color: #00b0f0;">một số</strong> <strong style="color: #70ad47;">lý do</strong> <strong style="color: #70ad47;">rõ ràng</strong> <strong style="color: #ee0000;">tại sao tinh thần trách nhiệm là quan trọng</strong>, như đã đề cập <strong style="color: #70ad47;">ở</strong> trên.</div></div></div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">There are some <strong style="color: #70ad47;">reasons why responsibility is important</strong>.<br/><br/>One major factor is that <strong style="color: #00b0f0;">responsibility helps improve teamwork skills</strong>.This is because <strong style="color: #00b0f0;">responsible people</strong> always <strong style="color: #00b0f0;">complete their tasks on time</strong> and <strong style="color: #00b0f0;">support other team members</strong>. As a result, the whole team can <strong style="color: #00b0f0;">work more effectively</strong>.<br/><br/>Another important explanation is that <strong style="color: #00b0f0;">responsibility helps people earn trust from others</strong>. When people <strong style="color: #00b0f0;">keep their promises</strong> and <strong style="color: #00b0f0;">do their duties well</strong>, others are more likely to <strong style="color: #00b0f0;">trust them</strong>. This can <strong style="color: #00b0f0;">lead to stronger personal and professional relationships</strong>.<br/><br/>One more possible contributor is that <strong style="color: #00b0f0;">responsibility helps people achieve better results</strong>. Responsible people often <strong style="color: #00b0f0;">work harder</strong> and <strong style="color: #00b0f0;">pay more attention to their tasks</strong>. Therefore, they can <strong style="color: #00b0f0;">reach their goals more easily</strong>.<br/><br/>In short, there are some <strong style="color: #70ad47;">clear reasons why responsibility is important</strong>,as mentioned above.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Có <strong style="color: #00b0f0;">một số</strong> <strong style="color: #70ad47;">lý do</strong> <strong style="color: #ee0000;">tại sao tinh thần trách nhiệm là quan trọng</strong>.
+
+Một yếu tố chính là <strong style="color: #00b0f0;">tinh thần trách nhiệm giúp cải thiện kỹ năng làm việc nhóm</strong>. Điều này là do <strong style="color: #00b0f0;">những người có trách nhiệm</strong> luôn <strong style="color: #00b0f0;">hoàn thành nhiệm vụ của họ đúng</strong> <strong style="color: #00b0f0;">thời hạn</strong> và <strong style="color: #00b0f0;">hỗ trợ các</strong> <strong style="color: #00b0f0;">thành viên</strong> <strong style="color: #00b0f0;">khác trong nhóm</strong>. Kết quả là, toàn bộ nhóm <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">làm việc hiệu quả hơn</strong>.
+
+Một lời giải thích quan trọng khác là <strong style="color: #00b0f0;">tinh thần trách nhiệm giúp mọi người giành được sự tin tưởng từ người khác</strong>. Khi mọi người <strong style="color: #00b0f0;">giữ lời hứa</strong> và <strong style="color: #00b0f0;">làm tốt nghĩa vụ của họ</strong>, <strong style="color: #00b0f0;">người khác</strong> <strong style="color: #00b0f0;">có</strong> nhiều khả năng <strong style="color: #00b0f0;">tin tưởng họ</strong> hơn. Điều này <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">dẫn đến các mối quan hệ cá nhân và nghề nghiệp bền chặt hơn</strong>.
+
+Một yếu tố đóng góp khả thi nữa là <strong style="color: #00b0f0;">tinh thần trách nhiệm giúp mọi người đạt được kết quả tốt hơn</strong>. Những người <strong style="color: #00b0f0;">có</strong> trách nhiệm thường <strong style="color: #00b0f0;">làm việc chăm chỉ hơn</strong> và <strong style="color: #00b0f0;">chú ý nhiều hơn đến nhiệm vụ của họ</strong>. Do đó, họ <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">đạt được mục tiêu của mình</strong> <strong style="color: #00b0f0;">dễ dàng hơn</strong>.
+
+Tóm lại, <strong style="color: #00b0f0;">có</strong> <strong style="color: #00b0f0;">một số</strong> <strong style="color: #70ad47;">lý do</strong> <strong style="color: #70ad47;">rõ ràng</strong> <strong style="color: #ee0000;">tại sao tinh thần trách nhiệm là quan trọng</strong>, như đã đề cập <strong style="color: #70ad47;">ở</strong> trên.</div></div></div>
+<div class="sol-topic-header" style="margin-top: 30px;">
+<i class="fa-solid fa-circle-question"></i> FOLLOW-UP QUESTIONS <span class="sol-translation">(câu hỏi mở rộng)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What are some responsibilities that young people should have? <span class="sol-translation">(Một số trách nhiệm mà người trẻ nên có là gì?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Young people should <strong style="color: #00b0f0;">study seriously</strong>, <strong style="color: #00b0f0;">respect their parents</strong>, and <strong style="color: #00b0f0;">help with household chores</strong>. These responsibilities help them <strong style="color: #00b0f0;">become more mature</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Người trẻ tuổi nên <strong style="color: #00b0f0;">học tập nghiêm túc</strong>, <strong style="color: #00b0f0;">tôn trọng cha mẹ</strong> và <strong style="color: #00b0f0;">giúp đỡ công việc</strong> <strong style="color: #00b0f0;">nhà</strong>. Những trách nhiệm này giúp họ <strong style="color: #00b0f0;">trở nên trưởng thành hơn</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Young people should <strong style="color: #70ad47;">take responsibility for their studies</strong>, <strong style="color: #70ad47;">respect family members</strong>, and <strong style="color: #70ad47;">contribute to household tasks</strong>. In addition, they should <strong style="color: #70ad47;">learn to manage their time effectively</strong> and <strong style="color: #70ad47;">make responsible decisions</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Người trẻ tuổi nên <strong style="color: #70ad47;">chịu trách nhiệm cho việc học của họ</strong>, <strong style="color: #70ad47;">tôn trọng các thành viên trong gia đình</strong> và <strong style="color: #70ad47;">đóng góp vào các công việc nhà</strong>. Ngoài ra, họ nên <strong style="color: #70ad47;">học cách quản lý thời gian</strong> <strong style="color: #70ad47;">hiệu quả</strong> và <strong style="color: #70ad47;">đưa ra những quyết định có trách nhiệm</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item" style="margin-top: 20px;">
+<div class="sol-question-text">2. Do you think people today are more or less responsible than in the past? Why? <span class="sol-translation">(Bạn nghĩ con người ngày nay có trách nhiệm hơn hay ít trách nhiệm hơn so với quá khứ? Tại sao?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I think people today are <strong style="color: #00b0f0;">more responsible</strong> because they <strong style="color: #00b0f0;">have more access to education and information</strong>. These things help them <strong style="color: #00b0f0;">understand their duties better</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi nghĩ những người ngày nay <strong style="color: #00b0f0;">có trách nhiệm hơn</strong> vì họ <strong style="color: #00b0f0;">có nhiều quyền truy cập vào giáo dục</strong> <strong style="color: #00b0f0;">và thông tin</strong> hơn. Những điều này giúp họ <strong style="color: #00b0f0;">hiểu rõ hơn về nghĩa vụ của mình</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I think responsibility <strong style="color: #70ad47;">depends more on individuals than on generations</strong>. However, people today may <strong style="color: #70ad47;">have greater awareness of their responsibilities</strong> because they <strong style="color: #70ad47;">have easier access to education</strong>, <strong style="color: #70ad47;">information</strong>, and <strong style="color: #70ad47;">social issues</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi nghĩ tinh thần trách nhiệm <strong style="color: #70ad47;">phụ thuộc vào cá nhân nhiều hơn là vào các thế hệ</strong>. Tuy nhiên, những người ngày nay <strong style="color: #70ad47;">có</strong> thể <strong style="color: #70ad47;">có nhận thức lớn hơn về trách nhiệm của họ</strong> vì họ dễ dàng tiếp cận hơn với giáo dục, <strong style="color: #70ad47;">thông tin</strong> và <strong style="color: #70ad47;">các vấn đề xã hội</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item" style="margin-top: 20px;">
+<div class="sol-question-text">3. How can parents or schools teach children to become more responsible? <span class="sol-translation">(Cha mẹ hoặc nhà trường có thể dạy trẻ em trở nên có trách nhiệm hơn bằng cách nào?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Parents and schools can <strong style="color: #00b0f0;">give children simple tasks</strong> and <strong style="color: #00b0f0;">encourage them to complete those tasks independently</strong>. They should also <strong style="color: #00b0f0;">teach children to accept responsibility for their actions</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Cha mẹ và <strong style="color: #00b0f0;">nhà</strong> trường <strong style="color: #00b0f0;">có</strong> thể <strong style="color: #00b0f0;">giao cho trẻ những nhiệm vụ đơn giản</strong> và <strong style="color: #00b0f0;">khuyến khích chúng hoàn thành</strong> <strong style="color: #00b0f0;">những nhiệm vụ đó một cách độc lập</strong>. Họ cũng nên <strong style="color: #00b0f0;">dạy trẻ chấp nhận trách nhiệm cho</strong> <strong style="color: #00b0f0;">hành động của mình</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Parents and schools can help children <strong style="color: #70ad47;">become more responsible by assigning age-appropriate tasks</strong> and <strong style="color: #70ad47;">encouraging them to make their own decisions</strong>. Moreover, children should be taught to <strong style="color: #70ad47;">accept the consequences of their actions</strong> and <strong style="color: #70ad47;">learn from their mistakes</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Cha mẹ và <strong style="color: #70ad47;">nhà</strong> trường <strong style="color: #70ad47;">có</strong> thể giúp trẻ <strong style="color: #70ad47;">trở nên có trách nhiệm hơn bằng cách giao những nhiệm vụ phù hợp với lứa tuổi</strong> và <strong style="color: #70ad47;">khuyến khích chúng tự đưa ra quyết định</strong>. Hơn nữa, trẻ em nên <strong style="color: #70ad47;">được</strong> dạy để <strong style="color: #70ad47;">chấp nhận hậu quả cho hành động của chúng</strong> và <strong style="color: #70ad47;">học hỏi từ</strong> <strong style="color: #70ad47;">những sai lầm của chúng</strong>.</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Back button -->
+<div style="margin-top: 30px; display: flex; justify-content: center;">
+<button class="btn btn-secondary" onclick="showScreen('review')">
+<i class="fa-solid fa-arrow-left"></i> Quay lại phần kết quả
+                        </button>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Custom Script JS -->
+<script src="../db.js?v=1782327221"></script>
+<script src="app.js?v=1782327221"></script>
+<script>
+      function toggleTranslation(element) {
+          const textNode = element.nextElementSibling;
+          const icon = element.querySelector('i');
+          if (textNode.style.display === 'none') {
+              textNode.style.display = 'block';
+              if (icon) icon.className = 'fa-solid fa-chevron-up';
+          } else {
+              textNode.style.display = 'none';
+              if (icon) icon.className = 'fa-solid fa-chevron-down';
+          }
+      }
+</script>
+</body>
+</html>

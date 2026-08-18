@@ -1,0 +1,81 @@
+[B|None] SPEAKING MOCK TEST 04
+[B|None] PART 01: SOCIAL INTERACTION
+[B|None] Let's talk about your favorite singer
+[B|None] 1. Who is your favorite singer?
+[B|None] B1 LEVEL
+[_|None] My favorite singer is  | [B|00B0F0] Sơn Tùng M-TP | [_|None] . He is  | [B|00B0F0] one of the most popular singers in Vietnam | [_|None] . I enjoy listening to his songs in my free time.
+[B|None] B2 LEVEL
+[_|None] My favorite singer is  | [B|00B0F0] Sơn Tùng M-TP | [_|None] . He is  | [B|00B0F0] well-known for his unique music style and impressive performances | [_|None] . I have been a fan of his music for many years.
+[B|None] 2. Why do you like him/her?
+[B|None] B1 LEVEL
+[_|None] I like him because  | [_|None] he  | [B|00B0F0] has a unique voice | [_|None] . Besides,  | [B|00B0F0] his songs are catchy and meaningful | [_|None] . I  | [_|None] always | [_|None]  listen to his music when I want to  | [B|00B0F0] improve my mood | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I like him because  | [B|00B0F0] his songs are creative and inspiring | [_|None] . Listening to his music helps me  | [B|00B0F0] improve my mood | [_|None]   | [_|None] and  | [B|00B0F0] escape from daily stress | [_|None] . In addition, I  | [B|00B0F0] admire his dedication and hard work | [_|None] .
+[B|None] 3. Can you describe him/her?
+[B|None] B1 LEVEL
+[_|None] He is  | [B|00B0F0] talented | [_|None] ,  | [B|00B0F0] hardworking | [_|None] , and  | [B|00B0F0] confident | [_|None] .  | [_|None] Moreover, h | [_|None] e  | [B|00B0F0] has a unique fashion style | [_|None] .  | [_|None] He | [_|None]  also  | [B|00B0F0] has a positive influence on many young people | [_|None] .
+[B|None] B2 LEVEL
+[_|None] He is | [_|None]   | [B|00B0F0] talented | [_|None] ,  | [B|00B0F0] ambitious | [_|None] , and  | [B|00B0F0] creative | [_|None] . He  | [B|00B0F0] has a distinctive musical style | [_|None]   | [_|None] and always  | [B|00B0F0] tries new ideas in his work | [_|None] . These qualities have helped him  | [B|00B0F0] achieve great success | [_|None] .
+[B|None] Let's talk about Vietnamese actors
+[B|None] 1. Who is your favorite actor in Vietnam? Why do you like them?
+[B|None] B1 LEVEL
+[_|None] My favorite actor in Vietnam is  | [B|00B0F0] Trấn Thành | [_|None] . I like him because he  | [B|00B0F0] acts very naturally | [_|None] . Moreover, he is very  | [B|00B0F0] professional | [_|None] .
+[B|None] B2 LEVEL
+[_|None] My favorite Vietnamese actor is  | [B|00B0F0] Trấn Thành | [_|None] . I admire him because he is  | [B|00B0F0] versatile | [_|None]   | [_|None] and can  | [B|00B0F0] perform many different roles successfully | [_|None] . He also  | [B|00B0F0] works very hard to improve his skills | [_|None] .
+[B|None] 2. What factors make an actor famous?
+[B|None] B1 LEVEL
+[_|None] I think  | [B|00B0F0] talent | [_|None]   | [_|None] is the most important factor. Besides that, actors need to  | [B|00B0F0] work hard | [_|None]   | [_|None] and  | [B|00B0F0] communicate well with their fans | [_|None] .
+[B|None] B2 LEVEL
+[_|None] In my opinion,  | [B|00B0F0] talent | [_|None] ,  | [B|00B0F0] dedication | [_|None] , and  | [B|00B0F0] a professional attitude | [_|None]   | [_|None] are the key factors. In addition,  | [B|00B0F0] social media | [_|None]   | [_|None] and  | [B|00B0F0] public image | [_|None]   | [_|None] also play important roles in helping actors become famous.
+[B|None] 3. Is the film industry in your country developing? Why?
+[B|None] B1 LEVEL
+[_|None] Yes, it is. More  | [B|00B0F0] high-quality  | [B|00B0F0] Vietnamese films | [_|None]   | [_|None] are being produced every year. | [_|None]   | [_|None] It also  | [B|00B0F0] creates more opportunities for actors and filmmakers | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Yes, I believe it | [_|None] ’ | [_|None] s developing rapidly. Film producers are  | [B|00B0F0] investing more in technology | [_|None] ,  | [B|00B0F0] storytelling | [_|None] ,  | [B|00B0F0] and acting quality | [_|None] . As a result,  | [B|00B0F0] Vietnamese films | [_|None]   | [_|None] are becoming  | [B|00B0F0] more | [_|None]   | [B|00B0F0] competitive | [_|None] .
+[B|None] PART 02: SOLUTION DISCUSSION
+[B|None] SITUATION
+[_|None] Your friend is thinking about a gift to celebrate his parents' 30th wedding anniversary. Three options are: a trip abroad, a couple’s watch, and a family photoshoot. Which one would you recommend him? 
+[B|None] B1 LEVEL
+[_|None] Well, if I had to  | [B|EE0000] suggest a gift for my friend's parents on their 30th wedding anniversary | [_|None] , I would  | [B|EE0000] recommend a family photoshoot | [_|None] .
+[_|None] First of all,  | [B|00B0F0] it | [B|00B0F0] ’s | [B|00B0F0]  a meaningful gift | [_|None]   | [_|None] because it helps them  | [B|00B0F0] keep good memories with their family | [_|None] . They can  | [B|00B0F0] look at the photos in the future | [_|None]   | [_|None] and  | [B|00B0F0] remember this special occasion | [_|None] . So, the gift can  | [B|00B0F0] become more valuable over time | [_|None] .
+[_|None] Secondly,  | [B|00B0F0] it | [B|00B0F0] ’ | [B|00B0F0] s a unique gift because | [_|None]   | [_|None] it  | [B|00B0F0] creates a special experience | [_|None]   | [B|00B0F0] for the whole family | [_|None] . Everyone can  | [B|00B0F0] spend time together | [_|None]   | [_|None] and  | [B|00B0F0] enjoy the photoshoot | [_|None] . So, it can  | [B|00B0F0] make the | [_|None]   | [B|00B0F0] anniversary more memorable | [_|None] .
+[_|None] I wouldn’t recommend  | [B|70AD47] a trip abroad  | [_|None] because  | [B|70AD47] it may be too expensive and take a lot of time to prepare | [_|None] . As for  | [B|7030A0] a couple’s watch | [_|None] , | [_|None]  it’s less suitable because | [_|None]   | [B|7030A0] it may be a common gift | [B|7030A0]  and have nothing special | [_|None] .
+[_|None] In short, I believe  | [B|EE0000] a family photoshoot | [_|None]   | [_|None] is the best choice for this situation.
+[B|None] B2 LEVEL
+[_|None] Well, if I had to  | [B|EE0000] suggest a gift for my friend’s parents on their 30th wedding anniversary | [_|None] , I | [_|None]  would | [_|None]   | [B|EE0000] recommend a family photoshoot | [_|None] .
+[_|None] First of all,  | [B|00B0F0] it’s a meaningful | [_|None]   | [B|00B0F0] gift | [_|None]   | [_|None] because it  | [B|00B0F0] reflects his love and appreciation for his parents | [_|None] . The value of the gift  | [B|00B0F0] lies not in its price | [_|None] ,  | [B|00B0F0] but in the memories it creates | [_|None] . Therefore, it can  | [B|00B0F0] remind them of this special occasion for many years | [_|None] .
+[_|None] Secondly,  | [B|00B0F0] it’s a unique gift | [_|None]   | [_|None] because the whole family can  | [B|00B0F0] take photos together | [_|None]   | [_|None] and  | [B|00B0F0] create | [_|None]   | [B|00B0F0] lasting memories | [_|None] . This  | [B|00B0F0] makes the gift more personal and special than ordinary | [_|None]   | [B|00B0F0] presents | [_|None] . As a result, it can  | [B|00B0F0] leave a stronger impression | [_|None] .
+[_|None] I wouldn’t recommend  | [B|70AD47] a trip abroad | [_|None]   | [_|None] because  | [B|70AD47] it may be too expensive | [_|None] . As for  | [B|7030A0] a couple’s | [_|None]   | [B|7030A0] watch | [_|None] , it’s less suitable because  | [B|7030A0] his parents may already have watches at home | [_|None] .
+[_|None] In short, I believe  | [B|7030A0] a family photoshoot | [_|None]   | [_|None] is the best choice for this situation
+[B|None] PART 03: TOPIC DEVELOPMENT
+[B|None] TOPIC
+[B|None] Living on campus is beneficial to college students. | [_|None]  
+[B|None] NOTE: Your own idea  | [B|None] → | [B|None]  It helps students become more independent.
+[B|None] B1 LEVEL
+[_|None] There are  | [_|None] some | [_|None]   | [B|EE0000] benefits | [_|None]   | [_|None] of  | [B|EE0000] living on campus | [_|None] .
+[_|None] One major advantage is that  | [B|00B0F0] living on campus is convenient | [_|None] . Students can  | [B|00B0F0] easily go to | [_|None]   | [B|00B0F0] classes, libraries, and other facilities | [_|None] . As a result, they can  | [B|00B0F0] save a lot of time | [_|None] .
+[_|None] Another positive aspect is that  | [B|00B0F0] living on campus provides networking opportunities | [_|None] . Students can  | [B|00B0F0] meet new friends | [_|None]   | [_|None] and  | [B|00B0F0] interact with many people | [_|None] . Therefore, they can  | [B|00B0F0] build | [_|None]   | [B|00B0F0] valuable relationships | [_|None] .
+[_|None] One more beneficial effect is that  | [B|00B0F0] living on campus has a reasonable cost | [_|None] . Students usually  | [B|00B0F0] spend less money on transportation | [_|None] . This helps them  | [B|00B0F0] reduce their living | [_|None]   | [B|00B0F0] expenses | [_|None] .
+[_|None] In short,  | [B|EE0000] living on campus | [_|None]   | [_|None] has several clear  | [B|EE0000] benefits | [_|None] , as mentioned above.
+[B|None] B2 LEVEL
+[_|None] There are  | [_|None] some | [_|None]   | [B|EE0000] benefits | [_|None]   | [_|None] of  | [B|EE0000] living on campus | [_|None] .
+[_|None] One major advantage is that  | [B|00B0F0] living on campus is convenient | [_|None] . | [_|None]   | [_|None] Students can  | [B|00B0F0] easily access | [_|None]   | [B|00B0F0] classrooms, libraries, and other campus facilities | [_|None] . | [_|None]   | [_|None] As a result, they can  | [B|00B0F0] save time | [_|None]   | [_|None] and  | [B|00B0F0] focus more on their studies | [_|None] .
+[_|None] Another positive aspect is that  | [B|00B0F0] living on campus provides networking opportunities | [_|None] . | [_|None]  Students can  | [B|00B0F0] meet new people | [_|None]   | [_|None] and  | [B|00B0F0] build relationships with classmates | [_|None] . | [_|None]  This helps them  | [B|00B0F0] expand their social networks | [_|None]   | [_|None] and  | [B|00B0F0] learn from others | [_|None] .
+[_|None] One more beneficial effect is that  | [B|00B0F0] living on campus  | [B|00B0F0] has a reasonable cost | [_|None] . | [_|None]  In fact, t | [_|None] he cost of campus accommodation is often  | [B|00B0F0] lower than renting a private apartment | [_|None] . | [_|None]   | [_|None] Therefore, students can  | [B|00B0F0] reduce their living expenses | [_|None] .
+[_|None] In short,  | [B|EE0000] living on campus | [_|None]   | [_|None] has several clear  | [B|EE0000] benefits | [_|None] , as mentioned above.
+[B|None] FOLLOW-UP QUESTIONS
+[B|None] 1. What are the disadvantages of living on campus?
+[B|None] B1 LEVEL
+[_|None] One disadvantage is that students may  | [B|00B0F0] have less privacy | [_|None] . Another drawback is that  | [B|00B0F0] dormitories can be noisy | [_|None] . This may  | [B|00B0F0] affect students' concentration | [_|None] .
+[B|None] B2 LEVEL
+[_|None] One disadvantage is  | [B|00B0F0] the lack of privacy | [_|None]   | [_|None] because students often  | [B|00B0F0] share rooms with others | [_|None] . In addition, dormitories can  | [B|00B0F0] sometimes be crowded and noisy | [_|None] , which may  | [B|00B0F0] make | [_|None]   | [B|00B0F0] studying more difficult | [_|None] .
+[B|None] 2. What are the advantages and disadvantages of living off campus?
+[B|None] B1 LEVEL
+[_|None] Living off campus  | [B|00B0F0] gives students more freedom and privacy | [_|None] . However, it can  | [B|00B0F0] be more | [_|None]   | [B|00B0F0] expensive and less convenient | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Living off campus  | [B|00B0F0] offers greater independence and privacy | [_|None] . However, students usually need to  | [B|00B0F0] spend more money on accommodation and transportation | [_|None] . They may also  | [B|00B0F0] feel | [_|None]   | [B|00B0F0] less connected to campus life | [_|None] .
+[B|None] 3. Do you prefer living on campus or living off campus?
+[B|None] B1 LEVEL
+[_|None] I  | [B|00B0F0] prefer living on campus | [_|None]   | [_|None] because it | [_|None] ’ | [_|None] s  | [B|00B0F0] convenient and affordable | [_|None] . It also helps me  | [B|00B0F0] make | [_|None]   | [B|00B0F0] more friends | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I would  | [B|00B0F0] prefer living on campus | [_|None]   | [_|None] because it  | [B|00B0F0] provides easy access to university facilities | [_|None]   | [_|None] and  | [B|00B0F0] creates more opportunities to socialize | [_|None] . In addition, it | [_|None] ’ | [_|None] s usually  | [B|00B0F0] more cost-effective | [_|None]   | [_|None] than living off campus.

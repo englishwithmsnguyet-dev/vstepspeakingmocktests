@@ -1,0 +1,72 @@
+[1]
+ENG: I would choose <strong>white</strong> for my house. It looks <strong>clean and bright</strong>. It also makes the house feel <strong>more comfortable</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi sẽ chọn màu trắng cho ngôi nhà của mình. Nó trông sạch sẽ và sáng sủa. Nó cũng làm cho ngôi nhà có cảm giác thoải mái hơn.
+
+[2]
+ENG: I would probably choose <strong>white or light beige</strong> for my house. These colors create a <strong>calm and welcoming atmosphere</strong>. Besides, they make rooms look <strong>more spacious</strong> and are easy to combine with different types of furniture.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi có lẽ sẽ chọn màu trắng hoặc màu be nhạt cho ngôi nhà của mình. Những màu sắc này tạo ra một bầu không khí yên bình và chào đón. Ngoài ra, chúng làm cho các căn phòng trông rộng rãi hơn và dễ kết hợp với các loại đồ nội thất khác nhau.
+
+[3]
+ENG: I usually choose <strong>black and blue clothes</strong>. They are simple and <strong>easy to match</strong> with other items.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường chọn quần áo màu đen và xanh dương. Chúng đơn giản và dễ phối đồ với các món đồ khác.
+
+[4]
+ENG: I usually wear clothes in <strong>neutral colors</strong> such as black, blue, and gray. These colors <strong>look elegant</strong> and are suitable for many different occasions. In addition, they are practical because they can be <strong>easily matched</strong> with other pieces of clothing.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường mặc quần áo có màu trung tính như đen, xanh dương và xám. Những màu này trông thanh lịch và phù hợp cho nhiều dịp khác nhau. Ngoài ra, chúng rất tiện dụng vì có thể dễ dàng phối với các trang phục khác.
+
+[5]
+ENG: Yes, I do. Some colors can make people <strong>feel relaxed</strong>, while others can make them <strong>feel energetic</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi có. Một số màu sắc có thể làm mọi người cảm thấy thư giãn, trong khi những màu khác có thể làm họ cảm thấy tràn đầy năng lượng.
+
+[6]
+ENG: Yes, I believe colors can have a <strong>significant impact on people's emotions</strong>. For example, <strong>soft colors often create a sense of calmness</strong>, whereas <strong>bright colors can boost energy and enthusiasm</strong>. That is why colors are often used carefully in homes, workplaces, and public spaces.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi tin rằng màu sắc có thể ảnh hưởng lớn đến cảm xúc của con người. Ví dụ, những tông màu dịu thường tạo cảm giác yên bình, trong khi những màu sáng có thể tăng cường năng lượng và sự hứng khởi. Đó là lý do tại sao màu sắc thường được sử dụng một cách cẩn thận trong nhà ở, nơi làm việc và không gian công cộng.
+
+[7]
+ENG: Yes, I do. I usually go there when I need a <strong>quiet place to study</strong>. It helps me <strong>focus better</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi có. Tôi thường đến đó khi cần một nơi yên tĩnh để học. Nó giúp tôi tập trung tốt hơn.
+
+[8]
+ENG: Yes, I do. I often visit the library when I need a <strong>quiet and productive environment</strong> for studying or reading. It is a great place to <strong>concentrate without distractions</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi có. Tôi thường ghé thăm thư viện khi cần một môi trường yên tĩnh và làm việc hiệu quả để học tập hoặc đọc sách. Đó là một nơi tuyệt vời để tập trung mà không bị phân tâm.
+
+[9]
+ENG: I usually <strong>read books and do my homework</strong>. Sometimes, I also <strong>look for information</strong> for my studies.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường đọc sách và làm bài tập về nhà. Đôi khi tôi cũng tìm kiếm thông tin cho việc học của mình.
+
+[10]
+ENG: I usually read books, <strong>work on assignments</strong>, and search for academic materials. Besides, I sometimes use the library as a place to prepare for exams because the atmosphere is very <strong>conducive to learning</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường đọc sách, làm bài tập và tìm kiếm các tài liệu học thuật. Ngoài ra, thỉnh thoảng tôi cũng sử dụng thư viện làm nơi chuẩn bị cho các kỳ thi vì không khí ở đó rất thuận lợi cho việc học tập.
+
+[11]
+ENG: I feel <strong>relaxed and comfortable</strong>. The <strong>quiet environment</strong> helps me concentrate on my work.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi cảm thấy thư giãn và thoải mái. Môi trường yên tĩnh giúp tôi tập trung vào công việc của mình.
+
+[12]
+ENG: I feel <strong>calm and focused</strong> whenever I am in the library. The <strong>peaceful atmosphere</strong> allows me to concentrate better and <strong>be more productive</strong>. As a result, I often accomplish more work there than at home.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi cảm thấy điềm tĩnh và tập trung mỗi khi ở thư viện. Bầu không khí yên bình cho phép tôi tập trung tốt hơn và làm việc hiệu quả hơn. Kết quả là tôi thường hoàn thành nhiều việc ở đó hơn là ở nhà.
+
+[13]
+ENG: One challenge is the <strong>lack of privacy</strong> because students often share rooms with others. Another challenge is that dormitories can sometimes be <strong>noisy</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Một thách thức là thiếu sự riêng tư vì sinh viên thường phải chung phòng với những người khác. Một thách thức khác là ký túc xá đôi khi có thể ồn ào.
+
+[14]
+ENG: One major challenge is the <strong>lack of privacy</strong>, especially when students share living spaces with roommates. In addition, <strong>noise and differences in lifestyles</strong> can occasionally lead to conflicts or distractions.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Một thách thức lớn là thiếu sự riêng tư, đặc biệt là khi sinh viên chia sẻ không gian sống với bạn cùng phòng. Ngoài ra, tiếng ồn và sự khác biệt trong lối sống đôi khi có thể dẫn đến xung đột hoặc gây phân tâm.
+
+[15]
+ENG: No, I don't think so. Different students have <strong>different needs and preferences</strong>. Some may prefer living with their families or renting private accommodation.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Không, tôi không nghĩ vậy. Các sinh viên khác nhau có nhu cầu và sở thích khác nhau. Một số người có thể thích sống với gia đình hoặc thuê chỗ ở riêng.
+
+[16]
+ENG: No, I do not think dormitory living is suitable for everyone. While it offers many benefits, some students may <strong>prefer greater privacy</strong> or need a <strong>different living environment</strong> that better supports their personal circumstances.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Không, tôi không nghĩ việc sống trong ký túc xá phù hợp với tất cả mọi người. Mặc dù nó mang lại nhiều lợi ích, một số sinh viên có thể thích sự riêng tư lớn hơn hoặc cần một môi trường sống khác hỗ trợ tốt hơn cho hoàn cảnh cá nhân của họ.
+
+[17]
+ENG: Students should <strong>communicate openly</strong> and <strong>respect each other's opinions</strong>. They should also try to find solutions together.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Sinh viên nên giao tiếp cởi mở và tôn trọng ý kiến của nhau. Họ cũng nên cố gắng cùng nhau tìm ra giải pháp.
+
+[18]
+ENG: Students can resolve conflicts by <strong>communicating honestly and respectfully</strong> with one another. In addition, <strong>setting clear rules and discussing problems early</strong> can help prevent misunderstandings from becoming more serious.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Sinh viên có thể giải quyết xung đột bằng cách giao tiếp trung thực và tôn trọng lẫn nhau. Ngoài ra, việc thiết lập các quy tắc rõ ràng và thảo luận sớm các vấn đề có thể giúp ngăn ngừa những hiểu lầm trở nên nghiêm trọng hơn.
+

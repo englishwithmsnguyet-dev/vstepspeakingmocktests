@@ -1,0 +1,80 @@
+[B|None] SPEAKING MOCK TEST 05
+[B|None] PART 01: SOCIAL INTERACTION
+[B|None] Let's talk about green tea
+[B|None] 1. Do you often drink green tea?
+[B|None] B1 LEVEL
+[_|None] Yes, I do. I usually  | [B|00B0F0] drink green tea a few times a week | [_|None] . I like it because it  | [B|00B0F0] tastes | [_|None]   | [B|00B0F0] refreshing | [_|None]   | [_|None] and helps me | [_|None]   | [B|00B0F0] feel | [_|None]   | [B|00B0F0] relax | [B|00B0F0] ed | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Yes, I do. Green tea is actually  | [B|00B0F0] one of my favorite drinks | [_|None] . I  | [_|None] drink it quite often | [_|None]  because it helps me  | [B|00B0F0] feel refreshed and focused throughout the day | [_|None] . Besides, I believe it | [_|None] ’ | [_|None] s  | [B|00B0F0] a healthier alternative to many sugary drinks | [_|None] .
+[B|None] 2. When do you usually drink it?
+[B|None] B1 LEVEL
+[_|None] I usually  | [B|00B0F0] drink green tea in the morning or after lunch | [_|None] . It helps me  | [B|00B0F0] feel refreshed | [_|None]   | [B|00B0F0] and | [_|None]   | [B|00B0F0] focused throughout the day | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I normally  | [B|00B0F0] drink green tea in the morning or during short breaks while working | [_|None] . It helps me  | [B|00B0F0] stay alert | [_|None]   | [_|None] and  | [B|00B0F0] maintain my concentration | [_|None] . As a result, I can  | [B|00B0F0] work more effectively | [_|None]   | [_|None] and  | [B|00B0F0] feel more productive | [_|None] .
+[B|None] 3. Do people in your country often drink green tea?
+[B|None] B1 LEVEL
+[_|None] Yes, they do. Green tea is  | [B|00B0F0] a popular drink | [_|None]   | [_|None] in my country. Many people  | [B|00B0F0] drink it every | [_|None]   | [B|00B0F0] day | [_|None] ,  | [B|00B0F0] especially | [_|None]   | [B|00B0F0] older people | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Yes, green tea is  | [B|00B0F0] extremely popular | [_|None]   | [_|None] in my country. Many people  | [B|00B0F0] drink it  | [B|00B0F0] every day | [_|None]   | [_|None] because it | [_|None] ’ | [_|None] s  | [B|00B0F0] affordable | [_|None] ,  | [B|00B0F0] refreshing | [_|None] , and believed to  | [B|00B0F0] offer various health benefits | [_|None] . In addition, it has  | [B|00B0F0] become an important part of Vietnamese culture | [_|None] .
+[B|None] Let's talk about crowded places
+[B|None] 1. Have you ever been to a crowded place?
+[B|None] B1 LEVEL
+[_|None] Yes, I have. I've been to  | [B|00B0F0] a crowded shopping mall | [_|None]   | [_|None] before, and it was  | [B|00B0F0] a very exciting | [_|None]   | [B|00B0F0] experience | [_|None] . It helped me  | [B|00B0F0] enjoy my free time | [_|None]   | [_|None] and  | [B|00B0F0] buy many things I needed | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Yes, I have. I have  | [B|00B0F0] visited many crowded places | [_|None]  such as  | [B|00B0F0] shopping malls | [_|None] ,  | [B|00B0F0] music festivals | [_|None] , and  | [B|00B0F0] public events | [_|None] . These places are usually  | [B|00B0F0] full of energy | [_|None]   | [_|None] and  | [B|00B0F0] attract a large number | [_|None]   | [B|00B0F0] of | [_|None]   | [B|00B0F0] people | [_|None] .
+[B|None] 2. How did you feel when you were there?
+[B|None] B1 LEVEL
+[_|None] I felt excited because there were  | [B|00B0F0] many people | [_|None]   | [_|None] and  | [B|00B0F0] a lot | [B|00B0F0]  of interesting activities | [_|None] . It also gave me a chance to  | [B|00B0F0] explore different stores | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I  | [B|00B0F0] felt quite excited at first | [_|None]   | [_|None] because  | [B|00B0F0] the atmosphere was lively and energetic | [_|None] . However, after spending a long time there, I started to  | [B|00B0F0] feel overwhelmed by the noise and the large | [_|None]   | [B|00B0F0] crowds | [_|None] . Therefore, I usually  | [B|00B0F0] prefer not to stay in  | [B|00B0F0] these | [B|00B0F0]  places for too long | [_|None] .
+[B|None] 3. Do you prefer crowded places or quiet places? Why?
+[B|None] B1 LEVEL
+[_|None] I  | [B|00B0F0] prefer quiet places | [_|None]   | [_|None] because they're  | [B|00B0F0] more peaceful and comfortabl | [_|None] e. They help me  | [B|00B0F0] relax | [_|None]   | [_|None] and  | [B|00B0F0] focus better on what I'm doing | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I definitely  | [B|00B0F0] prefer quiet places | [_|None] . They  | [B|00B0F0] provide a peaceful atmosphe | [_|None] re where I can  | [B|00B0F0] relax | [_|None] ,  | [B|00B0F0] concentrate on my work | [_|None] , and  | [B|00B0F0] recharge my batteries | [_|None]   | [_|None] after a busy day. That is why I rarely  | [B|00B0F0] spend a lot of time in crowded environments | [_|None] .
+[B|None] PART 02: SOLUTION DISCUSSION
+[B|None] SITUATION
+[_|None] Your younger sister has just finished high school and is planning to study at a university. She wants to choose a university that provides high-quality education. There are three factors she should consider: the university's ranking, the distance from her home, and the tuition fees. Which one do you think is the best choice for her? 
+[B|None] B1 LEVEL
+[_|None] Well, if I had to  | [B|EE0000] suggest a factor for my younger sister when choosing a university | [_|None] , I would  | [B|EE0000] recommend considering the university's ranking | [_|None] .
+[_|None] First of all, a highly ranked university often  | [B|00B0F0] offers a good education | [_|None] . She can  | [B|00B0F0] learn from | [_|None]   | [B|00B0F0] experienced teachers | [_|None]   | [_|None] and  | [B|00B0F0] use better learning materials | [_|None] . As a result, she can  | [B|00B0F0] improve | [_|None]   | [B|00B0F0] her knowledge and skills | [_|None] .
+[_|None] Secondly, a highly ranked university usually  | [B|00B0F0] has better facilities and learning resources | [_|None] . For example, she can  | [B|00B0F0] use modern libraries, laboratories, and study | [_|None]   | [B|00B0F0] materials | [_|None] . So, she can  | [B|00B0F0] study | [B|00B0F0]  more effectively | [_|None] .
+[_|None] I wouldn’t recommend  | [B|70AD47] choosing a university based on the distance from home | [_|None]  because  | [B|70AD47] education quality is more important | [_|None] . As for  | [B|7030A0] tuition fees | [_|None] , | [_|None]  it’s less suitable | [_|None]   | [B|7030A0] a cheaper university | [_|None]   | [B|7030A0] may not always provide the best education | [_|None] .
+[_|None] In short, I believe  | [B|EE0000] the university's ranking | [_|None]   | [_|None] is the best choice for this situation | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Well, if I had to  | [B|EE0000] suggest a factor for my younger sister when choosing a university | [_|None] , I would  | [B|EE0000] recommend considering the university's ranking | [_|None] .
+[_|None] First of all, a highly ranked university usually  | [B|00B0F0] provides high-quality education | [_|None] . This means that students can  | [B|00B0F0] learn from experienced lecturers | [_|None]   | [_|None] and  | [B|00B0F0] access better learning | [_|None]   | [B|00B0F0] resources | [_|None] . As a result, they can  | [B|00B0F0] develop knowledge and skills more effectively | [_|None] .
+[_|None] Secondly, studying at a highly ranked university can  | [B|00B0F0] be beneficial for her future career | [_|None] . This is because many companies  | [B|00B0F0] prefer students from well-known universities | [_|None] . As a result, she may  | [B|00B0F0] find a good job more easily after graduation | [_|None] .
+[_|None] I wouldn’t recommend  | [B|70AD47] choosing a university based mainly on the distance from home | [_|None]   | [_|None] because  | [B|70AD47] a nearby university may not provide the best learning environment | [_|None] . As for  | [B|7030A0] tuition fees | [_|None] , they are less important because  | [B|7030A0] students can often find scholarships | [_|None]   | [B|7030A0] or financial support | [_|None] .
+[_|None] In short, I believe  | [B|EE0000] the university's ranking | [_|None]   | [_|None] is the best choice for this situation | [_|None] .
+[B|None] PART 03: TOPIC DEVELOPMENT
+[B|None] TOPIC
+[B|None] There are several factors to consider when applying for a job. | [_|None]  
+[B|None] B1 LEVEL
+[_|None] There are  | [_|None] some | [_|None]   | [B|EE0000] factors | [_|None]   | [_|None] to  | [B|EE0000] consider when applying for a job | [_|None] .
+[_|None] One major factor is  | [B|00B0F0] the salary | [_|None] . A good salary can help them  | [B|00B0F0] meet their financial needs | [_|None] . As a result, they may  | [B|00B0F0] have a better quality of life | [_|None] .
+[_|None] Another contributing reason is  | [B|00B0F0] the | [B|00B0F0]  job location | [_|None] . A convenient location can  | [B|00B0F0] save time and | [_|None]   | [B|00B0F0] transportation costs | [_|None] . Therefore, they may  | [B|00B0F0] have a more comfortable daily routine | [_|None] .
+[_|None] One more underlying issue is  | [B|00B0F0] the working environment | [_|None] . A positive workplace can help employees  | [B|00B0F0] feel motivated and productive | [_|None] . This may  | [B|00B0F0] improve their job satisfaction | [_|None] .
+[_|None] In short, there are  | [_|None] some | [_|None]   | [B|EE0000] factors | [_|None]   | [_|None] to  | [B|EE0000] consider when applying for a | [_|None]   | [B|EE0000] job | [_|None] , as mentioned above.
+[B|None] B2 LEVEL
+[_|None] There are  | [_|None] some | [_|None]   | [B|EE0000] factors | [_|None]   | [_|None] to  | [B|EE0000] consider when applying for a job | [_|None] .
+[_|None] One major factor is  | [B|00B0F0] the | [B|00B0F0]  salary | [_|None] . | [_|None]  This is because a | [_|None]  good salary helps employees  | [B|00B0F0] cover their | [_|None]   | [B|00B0F0] living expenses | [_|None]   | [_|None] and  | [B|00B0F0] improve their quality of life | [_|None] . | [_|None]   | [_|None] As a result, they may  | [B|00B0F0] feel more | [_|None]   | [B|00B0F0] motivated to work | [_|None] .
+[_|None] Another contributing reason is  | [B|00B0F0] the job location | [_|None] . | [_|None]   | [_|None] In fact,  | [B|00B0F0] w | [B|00B0F0] orking close to home | [_|None]   | [_|None] can  | [B|00B0F0] save | [_|None]   | [B|00B0F0] time | [_|None]   | [_|None] and  | [B|00B0F0] reduce transportation costs | [_|None] . | [_|None]   | [_|None] This can help employees  | [B|00B0F0] maintain a better work-life balance | [_|None] .
+[_|None] One more underlying issue is the working environment. | [_|None]   | [_|None] This means that  | [B|00B0F0] a | [B|00B0F0]  positive | [_|None]   | [B|00B0F0] workplace | [_|None]   | [_|None] allows employees to  | [B|00B0F0] feel comfortable and supported | [_|None] . | [_|None]   | [_|None] Therefore, they can  | [B|00B0F0] work more effectively | [_|None]  and  | [B|00B0F0] enjoy their jobs | [_|None] .
+[_|None] In short, there are  | [_|None] some | [_|None]   | [B|EE0000] factors | [_|None]   | [_|None] to  | [B|EE0000] consider when applying for a | [_|None]   | [B|EE0000] job | [_|None] , as mentioned above.
+[B|None] FOLLOW-UP QUESTIONS
+[B|None] 1. What skills are necessary when applying for a job?
+[B|None] B1 LEVEL
+[_|None] I think  | [B|00B0F0] communication  | [_|None] and  | [B|00B0F0] teamwork skills | [_|None]   | [_|None] are very important. In addition,  | [B|00B0F0] problem-solving skills | [_|None]   | [_|None] can help employees  | [B|00B0F0] work more effectively | [_|None] .
+[B|None] B2 LEVEL
+[_|None] In my opinion,  | [B|00B0F0] communication | [_|None] ,  | [B|00B0F0] teamwork | [_|None] , and  | [B|00B0F0] problem-solving skills | [_|None]   | [_|None] are essential when applying for a job. Besides, candidates should  | [B|00B0F0] be adaptable | [_|None]   | [_|None] and  | [B|00B0F0] willing to learn | [_|None]   | [B|00B0F0] new things | [_|None] . These qualities can help them  | [B|00B0F0] perform well in a professional environment | [_|None] .
+[B|None] 2. What kinds of jobs are well-paid in your country?
+[B|None] B1 LEVEL
+[_|None] Jobs in  | [B|00B0F0] information technology | [_|None] ,  | [B|00B0F0] medicine | [_|None] , and  | [B|00B0F0] finance | [_|None]   | [_|None] are usually well-paid. These jobs often  | [B|00B0F0] require specialized knowledge and skills | [_|None] .
+[B|None] B2 LEVEL
+[_|None] In my country, careers in  | [B|00B0F0] information technology | [_|None] ,  | [B|00B0F0] healthcare | [_|None] ,  | [B|00B0F0] finance | [_|None] , and  | [B|00B0F0] business | [_|None]   | [B|00B0F0] management | [_|None]   | [_|None] tend to  | [B|00B0F0] offer attractive | [_|None]   | [B|00B0F0] salaries | [_|None] . These professions usually  | [B|00B0F0] require strong | [_|None]   | [B|00B0F0] qualifications and extensive professional expertise | [_|None] .
+[B|None] 3. How has technology helped people with their jobs nowadays?
+[B|None] B1 LEVEL
+[_|None] Technology helps people  | [B|00B0F0] complete tasks more quickly and efficiently | [_|None] . It also  | [B|00B0F0] makes | [_|None]   | [B|00B0F0] communication easier in the workplace | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Technology  | [B|00B0F0] has greatly improved workplace efficiency | [_|None] . | [_|None]   | [_|None] It helps employees  | [B|00B0F0] complete | [_|None]   | [B|00B0F0] tasks more quickly | [_|None]   | [_|None] and  | [B|00B0F0] communicate more effectively | [_|None] . | [_|None]   | [_|None] As a result, many people can  | [B|00B0F0] achieve better work performance | [_|None] .

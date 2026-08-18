@@ -1,0 +1,72 @@
+[1]
+ENG: I usually <strong>call my family and close friends</strong>. I talk to them <strong>several times a week</strong>. It helps us <strong>stay in touch</strong> with each other.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường gọi điện cho gia đình và bạn bè thân thiết. Tôi nói chuyện với họ vài lần một tuần. Việc này giúp chúng tôi giữ liên lạc với nhau.
+
+[2]
+ENG: I usually call my <strong>family members and a few close friends</strong>. I talk to them <strong>several times a week</strong> to catch up on our daily lives and share important news. This helps me <strong>maintain strong relationships</strong> with the people I care about.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường gọi cho các thành viên trong gia đình và một vài người bạn thân. Tôi nói chuyện với họ vài lần một tuần để cập nhật cuộc sống hàng ngày và chia sẻ những tin tức quan trọng. Điều này giúp tôi duy trì mối quan hệ bền chặt với những người tôi yêu thương.
+
+[3]
+ENG: We usually talk about our <strong>studies, work, and daily activities</strong>. Sometimes, we also discuss our <strong>future plans</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Chúng tôi thường nói về việc học hành, công việc và các hoạt động hàng ngày. Đôi khi chúng tôi cũng thảo luận về những kế hoạch tương lai.
+
+[4]
+ENG: We often talk about <strong>work, studies, family matters</strong>, and recent events in our lives. Sometimes, we also <strong>exchange advice or discuss future plans</strong>. These conversations help us <strong>understand and support each other</strong> better.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Chúng tôi thường trò chuyện về công việc, học tập, chuyện gia đình và những sự kiện gần đây trong cuộc sống. Đôi khi chúng tôi cũng trao đổi lời khuyên hoặc thảo luận về kế hoạch tương lai. Những cuộc trò chuyện này giúp chúng tôi hiểu và hỗ trợ nhau tốt hơn.
+
+[5]
+ENG: I prefer talking on the phone because it is <strong>faster and more personal</strong>. I can <strong>express my feelings more clearly</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thích nói chuyện qua điện thoại hơn vì nó nhanh hơn và mang tính cá nhân hơn. Tôi có thể bày tỏ cảm xúc của mình rõ ràng hơn.
+
+[6]
+ENG: I prefer talking on the phone because communication is <strong>more direct and interactive</strong>. I can hear the other person's voice and respond immediately, which helps <strong>avoid misunderstandings</strong>. Besides, it feels <strong>more personal</strong> than sending messages.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thích nói chuyện điện thoại hơn vì giao tiếp trực tiếp và tương tác tốt hơn. Tôi có thể nghe thấy giọng nói của người kia và phản hồi ngay lập tức, điều này giúp tránh hiểu lầm. Ngoài ra, nó mang lại cảm giác cá nhân hơn là gửi tin nhắn.
+
+[7]
+ENG: I usually go shopping for clothes <strong>every few months</strong>. I buy new clothes <strong>when I need them</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường đi mua sắm quần áo vài tháng một lần. Tôi mua quần áo mới khi thấy cần thiết.
+
+[8]
+ENG: I normally go shopping for clothes <strong>every few months</strong> rather than very frequently. I usually buy new clothes <strong>when the seasons change</strong> or when I need something for a <strong>special occasion</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường đi mua sắm quần áo vài tháng một lần thay vì đi quá thường xuyên. Tôi thường mua quần áo mới khi giao mùa hoặc khi cần đồ cho một dịp đặc biệt.
+
+[9]
+ENG: I usually buy new clothes for <strong>holidays, family events</strong>, or special celebrations. I also buy them when my old clothes <strong>wear out</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường mua quần áo mới cho các ngày lễ, sự kiện gia đình hoặc các dịp kỷ niệm đặc biệt. Tôi cũng mua chúng khi quần áo cũ đã sờn rách.
+
+[10]
+ENG: I often buy new clothes for <strong>important occasions</strong> such as holidays, weddings, birthdays, or professional events. In addition, I sometimes purchase clothes when I want to <strong>refresh my wardrobe</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường mua quần áo mới cho các dịp quan trọng như ngày lễ, đám cưới, sinh nhật hoặc sự kiện công việc. Ngoài ra, thỉnh thoảng tôi cũng mua quần áo khi muốn làm mới tủ đồ của mình.
+
+[11]
+ENG: I usually buy <strong>casual clothes</strong> such as T-shirts, jeans, and jackets. They are <strong>comfortable and practical</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường mua quần áo thông thường như áo thun, quần jean và áo khoác. Chúng rất thoải mái và thiết thực.
+
+[12]
+ENG: I mainly buy <strong>casual clothes</strong> because they are comfortable and suitable for everyday use. However, I also invest in <strong>formal outfits</strong> for work-related events or special occasions.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi chủ yếu mua quần áo mặc thường ngày vì chúng thoải mái và phù hợp để sử dụng hàng ngày. Tuy nhiên, tôi cũng đầu tư vào những bộ trang phục trang trọng cho các sự kiện liên quan đến công việc hoặc các dịp đặc biệt.
+
+[13]
+ENG: I mostly use <strong>messaging applications</strong> on my smartphone. They are <strong>convenient</strong> and help me communicate with others quickly.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi chủ yếu sử dụng các ứng dụng tin nhắn trên điện thoại thông minh của mình. Chúng rất tiện lợi và giúp tôi giao tiếp với người khác nhanh chóng.
+
+[14]
+ENG: I mainly use <strong>messaging applications and social media platforms</strong> because they allow me to communicate instantly with friends, family, and colleagues. They are <strong>convenient and easy to access</strong> from anywhere.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi chủ yếu sử dụng các ứng dụng tin nhắn và nền tảng mạng xã hội vì chúng cho phép tôi giao tiếp ngay lập tức với bạn bè, gia đình và đồng nghiệp. Chúng rất tiện lợi và dễ dàng truy cập từ bất cứ đâu.
+
+[15]
+ENG: No, I don't think so. Face-to-face communication is <strong>more personal</strong> and helps people <strong>build stronger relationships</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Không, tôi không nghĩ vậy. Giao tiếp trực tiếp mang tính cá nhân hơn và giúp mọi người xây dựng các mối quan hệ bền chặt hơn.
+
+[16]
+ENG: No, I do not believe technology will completely replace face-to-face communication. Although technology is convenient, <strong>direct interaction remains important</strong> for building trust, expressing emotions, and <strong>maintaining meaningful relationships</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Không, tôi không tin công nghệ sẽ thay thế hoàn toàn giao tiếp trực tiếp. Mặc dù công nghệ rất tiện lợi, nhưng sự tương tác trực tiếp vẫn đóng vai trò quan trọng trong việc xây dựng lòng tin, bày tỏ cảm xúc và duy trì các mối quan hệ có ý nghĩa.
+
+[17]
+ENG: People should <strong>communicate clearly</strong> and <strong>think carefully before sending messages</strong>. They should also spend more time talking to others in person.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Mọi người nên giao tiếp rõ ràng và suy nghĩ cẩn thận trước khi gửi tin nhắn. Họ cũng nên dành nhiều thời gian hơn để nói chuyện trực tiếp với người khác.
+
+[18]
+ENG: People can avoid these problems by <strong>communicating clearly and respectfully online</strong>. In addition, they should <strong>verify information before sharing it</strong> and maintain a <strong>healthy balance</strong> between online and face-to-face communication. This can help reduce misunderstandings and strengthen relationships.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Mọi người có thể tránh các vấn đề này bằng cách giao tiếp trực tuyến một cách rõ ràng và tôn trọng. Ngoài ra, họ nên xác minh thông tin trước khi chia sẻ và duy trì sự cân bằng lành mạnh giữa giao tiếp trực tuyến và trực tiếp. Điều này có thể giúp giảm bớt hiểu lầm và thắt chặt các mối quan hệ.
+

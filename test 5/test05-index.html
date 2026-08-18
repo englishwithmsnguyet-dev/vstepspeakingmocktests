@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<script>
+        // Block flash of protected content
+        (function() {
+            const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+            const testId = pathMatch ? parseInt(pathMatch[1]) : 1;
+            const TEST_PASSWORDS = {};
+            if (TEST_PASSWORDS[testId] && sessionStorage.getItem('unlocked_test_' + testId) !== 'true') {
+                document.documentElement.style.display = 'none';
+            }
+        })();
+    </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPEAKING MOCK TEST 05 - ENGLISHWITHMISSNGUYET</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome for Premium Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="styles.css?v=1782327221" rel="stylesheet"/>
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<nav class="test-sidebar">
+<div class="sidebar-header">
+<i class="fa-solid fa-list-check"></i> <span>VSTEP MOCK TESTS</span>
+</div>
+<ul class="test-list">
+<li class="test-item">
+<a href="../index.html">
+<span class="test-icon"><i class="fa-solid fa-house"></i></span>
+<span class="test-name">TRANG CHỦ</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="1" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 01</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="2" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 02</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="3" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 03</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="4" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 04</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="5" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 05</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="6" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 06</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="7" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 07</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="8" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 08</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="9" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 09</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="10" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 10</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="11" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 11</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="12" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 12</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="13" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 13</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="14" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 14</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="15" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 15</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="16" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 16</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="17" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 17</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="18" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 18</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="19" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 19</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="20" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 20</span>
+</a>
+</li>
+</ul>
+<a class="sidebar-brand-bottom" href="https://www.facebook.com/nguyetpham28" target="_blank">
+<span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+<span class="brand-text">ENGLISH WITH MISS NGUYET</span>
+</a>
+</nav>
+<!-- Background Chime/Sound Permission Modal (if required, or handled on welcome screen) -->
+<!-- App Wrapper -->
+<div class="app-container">
+<!-- Header Brand -->
+<header class="app-header">
+<div class="header-title-wrapper"></div>
+</header>
+<!-- Progress Timeline Tracker -->
+<div class="progress-timeline">
+<div class="timeline-step active" id="step-welcome">
+<div class="step-num">0</div>
+<div class="step-label">CHUẨN BỊ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part1">
+<div class="step-num">1</div>
+<div class="step-label">PART 01</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part2">
+<div class="step-num">2</div>
+<div class="step-label">PART 02</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part3">
+<div class="step-num">3</div>
+<div class="step-label">PART 03</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-review">
+<div class="step-num">4</div>
+<div class="step-label">KẾT QUẢ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-solution">
+<div class="step-num">5</div>
+<div class="step-label">BÀI GIẢI</div>
+</div>
+</div>
+<!-- Main Workspace -->
+<main class="app-main">
+<!-- SCREEN 1: WELCOME SCREEN -->
+<section class="screen-view active" id="view-welcome">
+<div class="glass-card welcome-card">
+<div class="welcome-header-center">
+<div class="welcome-cat-gif">
+<img alt="Typing Cat" class="typing-cat-img" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"/>
+</div>
+<h1>VSTEP Speaking Practice</h1>
+<div class="mock-test-pill">SPEAKING MOCK TEST 05</div>
+<p class="welcome-desc">Chào mừng bạn đến với hệ thống thi thử VSTEP SPEAKING MOCK TEST tương tác. Giao diện và cách tính giờ được lập trình mô phỏng chính xác phòng thi máy thực tế.</p>
+<p class="welcome-warning" style="margin-top: 12px; color: var(--color-red); font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>LƯU Ý:</strong> Không sử dụng bất kì tài liệu hay công cụ trong lúc thi thử. Mọi sự thảo luận đều không được cho phép trong phòng thi.</p>
+</div>
+<div class="test-outline">
+<h3>Cấu trúc bài thi</h3>
+<div class="outline-grid">
+<div class="outline-item">
+<span class="part-badge">PART 01</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Social Interaction</span> [Giao tiếp xã hội]</h4>
+<p>Thí sinh trả lời 02 chủ đề bất kì, mỗi chủ đề có 03 câu hỏi. Không có thời gian chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 3 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 02</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Solution Discussion</span> [Thảo luận giải pháp]</h4>
+<p>Thí sinh thảo luận phương án tốt nhất cho một tình huống giả định bất kì với 03 sự lựa chọn. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 4 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 03</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Topic Development</span> [Phát triển chủ đề]</h4>
+<p>Thí sinh phát triển một chủ đề bất kì dựa vào sơ đồ gợi ý và 03 câu hỏi mở rộng. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 5 phút</span>
+</div>
+</div>
+</div>
+<!-- Student Info Input -->
+<div class="student-form">
+<div class="input-group">
+<label for="student-name"><i class="fa-solid fa-user-pen"></i> Họ và tên học viên:</label>
+<input autocomplete="off" id="student-name" placeholder="Nhập họ tên của bạn..." type="text"/>
+</div>
+</div>
+<!-- Action and Sound Check -->
+<div class="audio-check-section">
+<div class="mic-status-msg" id="mic-status">
+<i class="fa-solid fa-circle-info"></i> Hãy cấp quyền truy cập Microphone để hệ thống ghi âm bài làm của bạn.
+                        </div>
+<button class="btn btn-primary" id="btn-start-test">
+<span>BẮT ĐẦU BÀI THI</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 2: PART 1 SCREEN -->
+<section class="screen-view" id="view-part1">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 01: <span style="color: var(--color-red);">SOCIAL INTERACTION</span></div>
+<div class="part1-topics"><div class="topic-box"><h3 class="topic-title"><i class="fa-solid fa-leaf"></i> <span>Let's talk about <strong>green tea</strong>:</span></h3><ul class="question-list"><li><span class="q-num">1</span> Do you often drink green tea?</li><li><span class="q-num">2</span> When do you usually drink it?</li><li><span class="q-num">3</span> Do people in your country often drink green tea?</li></ul></div><div class="topic-box"><h3 class="topic-title"><i class="fa-solid fa-users-line"></i> <span>Let's talk about <strong>crowded places</strong>:</span></h3><ul class="question-list"><li><span class="q-num">4</span> Have you ever been to a crowded place?</li><li><span class="q-num">5</span> How did you feel when you were there?</li><li><span class="q-num">6</span> Do you prefer crowded places or quiet places? Why?</li></ul></div></div>
+</div>
+<!-- Right: Control Panel (Timer, Mic, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator recording" id="p1-status">
+<span class="status-dot"></span>
+<span class="status-text">Hệ thống đang ghi âm bài nói của bạn</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p1-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p1-time-val">03:00</span>
+<span class="time-label">TỔNG THỜI GIAN</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p1-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 3: PART 2 SCREEN -->
+<section class="screen-view" id="view-part2">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 02: <span style="color: var(--color-red);">SOLUTION DISCUSSION</span></div>
+<!-- Situation Card -->
+<div class="situation-box">
+<h3 class="section-subtitle"><i class="fa-solid fa-circle-question"></i> Situation:</h3>
+<p class="situation-desc">Your younger sister has just finished high school and is planning to study at a university. She wants to choose a university that provides high-quality education. There are three factors she should consider: <strong>the university's ranking</strong>, <strong>the distance from her home</strong>, and <strong>the tuition fees</strong>. Which one do you think is the best choice for her?</p>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Prep state, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p2-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p2-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p2-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p2-time-val">01:00</span>
+<span class="time-label" id="p2-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p2-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p2-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 4: PART 3 SCREEN -->
+<section class="screen-view" id="view-part3">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 03: <span style="color: var(--color-red);">TOPIC DEVELOPMENT</span></div>
+<div class="topic-header">
+<h3 class="topic-heading-red">Topic:</h3>
+<p class="topic-desc">There are several factors to consider when applying for a job.</p>
+</div>
+<!-- CSS Grid Mindmap -->
+<div class="mindmap-wrapper">
+<div class="mindmap-container">
+<!-- Center Node -->
+<div class="mindmap-node node-center">
+<span>Applying for a job</span>
+</div>
+<!-- Connectors -->
+<div class="mindmap-line line-top"></div>
+<div class="mindmap-line line-left"></div>
+<div class="mindmap-line line-bottom"></div>
+<div class="mindmap-line line-right"></div>
+<!-- Top Branch -->
+<div class="mindmap-node node-branch branch-top">
+<span>salary</span>
+</div>
+<!-- Left Branch -->
+<div class="mindmap-node node-branch branch-left">
+<span>location</span>
+</div>
+<!-- Bottom Branch -->
+<div class="mindmap-node node-branch branch-bottom">
+<span>working environment</span>
+</div>
+<!-- Right Branch -->
+<div class="mindmap-node node-branch branch-right">
+<span>[your own idea]</span>
+</div>
+</div>
+</div>
+<!-- Follow-up Questions Box -->
+<div class="follow-up-box">
+<h4><i class="fa-solid fa-circle-question"></i> Follow-up questions:</h4>
+<ul class="question-list"><li><span class="q-num">1</span> What skills are necessary when applying for a job?</li><li><span class="q-num">2</span> What kinds of jobs are well-paid in your country?</li><li><span class="q-num">3</span> How has technology helped people with their jobs nowadays?</li></ul>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Scratchpad, Finish button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p3-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p3-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p3-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p3-time-val">01:00</span>
+<span class="time-label" id="p3-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p3-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-success" id="btn-p3-next">
+<span>Hoàn thành bài thi</span> <i class="fa-solid fa-circle-check"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 5: REVIEW SCREEN -->
+<section class="screen-view" id="view-review">
+<div class="glass-card review-card">
+<div class="success-banner">
+<div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+<h2>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI THI NÓI!</h2>
+<p style="margin-bottom: 8px;">Bạn có 10s để khóc trước khi xem phần BÀI GIẢI.</p>
+<p id="review-student-info" style="font-size: 13px; opacity: 0.7; margin-top: 4px;"></p>
+</div>
+<!-- Summary Grid: Audio Files & Notes -->
+<div class="review-grid">
+<!-- Left Panel: Playback recordings -->
+<div class="review-recordings-panel">
+<h3><i class="fa-solid fa-microphone-lines"></i> Nghe lại bài nói của bạn</h3>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 01</span>
+<span class="rec-title">Social Interaction</span>
+</div>
+<div class="audio-player-wrapper" id="p1-player-container">
+<!-- Dynamic custom Audio Player or native audio element styled -->
+<audio controls="" id="p1-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part1.webm" id="p1-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 02</span>
+<span class="rec-title">Solution Discussion</span>
+</div>
+<div class="audio-player-wrapper" id="p2-player-container">
+<audio controls="" id="p2-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part2.webm" id="p2-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 03</span>
+<span class="rec-title">Topic Development</span>
+</div>
+<div class="audio-player-wrapper" id="p3-player-container">
+<audio controls="" id="p3-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part3.webm" id="p3-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Right Panel: Feedback -->
+<div class="review-notes-panel">
+<h3><i class="fa-solid fa-comment-medical"></i> ĐÁNH GIÁ CHUNG</h3>
+<div class="teacher-feedback-box">
+<label for="teacher-feedback">Học viên tự đánh giá mức độ hoàn thành bài nói:</label>
+<textarea id="teacher-feedback" placeholder="Bạn đã hoàn thành tất cả nội dung bài thi hay chưa? Bạn có tự tin với bài nói của mình hay không?" style="min-height: 200px;"></textarea>
+</div>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="review-actions">
+<button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
+<i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
+                        </button>
+<button class="btn btn-secondary" id="btn-restart-test">
+<i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
+                        </button>
+</div>
+</div>
+</section>
+<!-- SCREEN 6: SOLUTION SCREEN -->
+<section class="screen-view" id="view-solution">
+<div class="glass-card instruction-card" style="max-width: 900px; margin: 20px auto;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+<h2 style="color: var(--color-red); margin-bottom: 0;"><i class="fa-solid fa-book-open"></i> BÀI GIẢI CHI TIẾT</h2>
+<span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 05</span>
+</div>
+<div class="solution-tab-container">
+<div class="solution-tab-buttons">
+<button class="sol-tab-btn active" onclick="switchSolTab(1)">PART 01: SOCIAL INTERACTION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(2)">PART 02: SOLUTION DISCUSSION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(3)">PART 03: TOPIC DEVELOPMENT</button>
+</div>
+<!-- Panel Part 1 -->
+<div class="sol-tab-content active" id="sol-panel-1">
+<!-- Topic 1 -->
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-leaf"></i> Topic 1: Let's talk about green tea <span class="sol-translation">(Hãy nói về trà xanh)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. Do you often drink green tea? <span class="sol-translation">(Bạn có thường uống trà xanh không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Yes, I do. I usually <strong style="color: #00b0f0;">drink green tea a few times a week</strong>. I like it because it <strong style="color: #00b0f0;">tastes refreshing</strong> and helps me <strong style="color: #00b0f0;">feel relaxed</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi có. Tôi thường <strong style="color: #00b0f0;">uống trà xanh vài lần một tuần</strong>. Tôi thích nó vì <strong style="color: #00b0f0;">hương vị thanh mát</strong> và giúp tôi <strong style="color: #00b0f0;">cảm thấy thư giãn</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Yes, I do. Green tea is actually <strong style="color: #70ad47;">one of my favorite drinks</strong>. I drink it quite often because it helps me <strong style="color: #70ad47;">feel refreshed and focused throughout the day</strong>. Besides, I believe it’s <strong style="color: #70ad47;">a healthier alternative to many sugary drinks</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi có. Trà xanh thực sự là <strong style="color: #70ad47;">một trong những đồ uống yêu thích của tôi</strong>. Tôi thường uống nó khá thường xuyên vì nó giúp tôi <strong style="color: #70ad47;">cảm thấy sảng khoái và tập trung suốt cả ngày</strong>. Ngoài ra, tôi tin rằng nó là <strong style="color: #70ad47;">một sự thay thế lành mạnh hơn cho nhiều loại đồ uống có đường</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. When do you usually drink it? <span class="sol-translation">(Bạn thường uống nó khi nào?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I usually <strong style="color: #00b0f0;">drink green tea in the morning or after lunch</strong>. It helps me <strong style="color: #00b0f0;">feel refreshed and focused throughout the day</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi thường <strong style="color: #00b0f0;">uống trà xanh vào buổi sáng hoặc sau bữa trưa</strong>. Nó giúp tôi <strong style="color: #00b0f0;">cảm thấy sảng khoái và tập trung suốt cả ngày</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I normally <strong style="color: #70ad47;">drink green tea in the morning or during short breaks while working</strong>. It helps me <strong style="color: #70ad47;">stay alert</strong> and <strong style="color: #70ad47;">maintain my concentration</strong>. As a result, I can <strong style="color: #70ad47;">work more effectively</strong> and <strong style="color: #70ad47;">feel more productive</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi thường <strong style="color: #70ad47;">uống trà xanh vào buổi sáng hoặc trong những giờ nghỉ giải lao ngắn khi làm việc</strong>. Nó giúp tôi <strong style="color: #70ad47;">tỉnh táo</strong> và <strong style="color: #70ad47;">duy trì sự tập trung</strong>. Kết quả là, tôi có thể <strong style="color: #70ad47;">làm việc hiệu quả hơn</strong> và <strong style="color: #70ad47;">cảm thấy năng suất hơn</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. Do people in your country often drink green tea? <span class="sol-translation">(Người dân ở nước bạn có thường uống trà xanh không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Yes, they do. Green tea is <strong style="color: #00b0f0;">a popular drink</strong> in my country. Many people <strong style="color: #00b0f0;">drink it every day</strong>, <strong style="color: #00b0f0;">especially older people</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Vâng, đúng vậy. Trà xanh là <strong style="color: #00b0f0;">một thức uống phổ biến</strong> ở nước tôi. Nhiều người <strong style="color: #00b0f0;">uống nó mỗi ngày</strong>, <strong style="color: #00b0f0;">đặc biệt là những người lớn tuổi</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Yes, green tea is <strong style="color: #70ad47;">extremely popular</strong> in my country. Many people <strong style="color: #70ad47;">drink it every day</strong> because it’s <strong style="color: #70ad47;">affordable</strong>, <strong style="color: #70ad47;">refreshing</strong>, and believed to <strong style="color: #70ad47;">offer various health benefits</strong>. In addition, it has <strong style="color: #70ad47;">become an important part of Vietnamese culture</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Vâng, trà xanh <strong style="color: #70ad47;">vô cùng phổ biến</strong> ở nước tôi. Nhiều người <strong style="color: #70ad47;">uống nó hàng ngày</strong> vì nó <strong style="color: #70ad47;">phải chăng</strong>, <strong style="color: #70ad47;">thanh mát</strong> và được tin là <strong style="color: #70ad47;">mang lại nhiều lợi ích cho sức khỏe</strong>. Ngoài ra, nó đã <strong style="color: #70ad47;">trở thành một phần quan trọng của văn hóa Việt Nam</strong>.</div></div>
+</div>
+</div>
+</div>
+<!-- Topic 2 -->
+<div class="sol-topic-section" style="margin-top: 30px;">
+<div class="sol-topic-header">
+<i class="fa-solid fa-users-line"></i> Topic 2: Let's talk about crowded places <span class="sol-translation">(Hãy nói về những nơi đông người)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. Have you ever been to a crowded place? <span class="sol-translation">(Bạn đã từng đến một nơi đông người chưa?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Yes, I have. I've been to <strong style="color: #00b0f0;">a crowded shopping mall</strong> before, and it was <strong style="color: #00b0f0;">a very exciting experience</strong>. It helped me <strong style="color: #00b0f0;">enjoy my free time</strong> and <strong style="color: #00b0f0;">buy many things I needed</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi đã từng. Tôi đã từng đến <strong style="color: #00b0f0;">một trung tâm mua sắm đông đúc</strong> trước đây, và đó là <strong style="color: #00b0f0;">một trải nghiệm rất thú vị</strong>. Nó giúp tôi <strong style="color: #00b0f0;">tận hưởng thời gian rảnh rỗi</strong> và <strong style="color: #00b0f0;">mua nhiều thứ tôi cần</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Yes, I have. I have <strong style="color: #70ad47;">visited many crowded places</strong> such as <strong style="color: #70ad47;">shopping malls</strong>, <strong style="color: #70ad47;">music festivals</strong>, and <strong style="color: #70ad47;">public events</strong>. These places are usually <strong style="color: #70ad47;">full of energy</strong> and <strong style="color: #70ad47;">attract a large number of people</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi đã từng. Tôi đã <strong style="color: #70ad47;">ghé thăm nhiều nơi đông đúc</strong> như <strong style="color: #70ad47;">trung tâm thương mại</strong>, <strong style="color: #70ad47;">lễ hội âm nhạc</strong> và <strong style="color: #70ad47;">các sự kiện công cộng</strong>. Những nơi này thường <strong style="color: #70ad47;">tràn đầy năng lượng</strong> và <strong style="color: #70ad47;">thu hút số lượng lớn người tham gia</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. How did you feel when you were there? <span class="sol-translation">(Bạn cảm thấy thế nào khi ở đó?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I felt excited because there were <strong style="color: #00b0f0;">many people</strong> and <strong style="color: #00b0f0;">a lot of interesting activities</strong>. It also gave me a chance to <strong style="color: #00b0f0;">explore different stores</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi cảm thấy hào hứng vì có <strong style="color: #00b0f0;">nhiều người</strong> và <strong style="color: #00b0f0;">rất nhiều hoạt động thú vị</strong>. Nó cũng cho tôi cơ hội <strong style="color: #00b0f0;">khám phá các cửa hàng khác nhau</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I <strong style="color: #70ad47;">felt quite excited at first</strong> because <strong style="color: #70ad47;">the atmosphere was lively and energetic</strong>. However, after spending a long time there, I started to <strong style="color: #70ad47;">feel overwhelmed by the noise and the large crowds</strong>. Therefore, I usually <strong style="color: #70ad47;">prefer not to stay in these places for too long</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Ban đầu tôi <strong style="color: #70ad47;">cảm thấy khá phấn khích</strong> vì <strong style="color: #70ad47;">bầu không khí sôi động và tràn đầy năng lượng</strong>. Tuy nhiên, sau khi ở đó một thời gian dài, tôi bắt đầu <strong style="color: #70ad47;">cảm thấy ngột ngạt vì tiếng ồn và những đám đông lớn</strong>. Vì vậy, tôi thường <strong style="color: #70ad47;">không thích ở những nơi này quá lâu</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. Do you prefer crowded places or quiet places? Why? <span class="sol-translation">(Bạn thích những nơi đông người hay những nơi yên tĩnh hơn? Tại sao?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I <strong style="color: #00b0f0;">prefer quiet places</strong> because they're <strong style="color: #00b0f0;">more peaceful and comfortable</strong>. They help me <strong style="color: #00b0f0;">relax</strong> and <strong style="color: #00b0f0;">focus better on what I'm doing</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi <strong style="color: #00b0f0;">thích những nơi yên tĩnh hơn</strong> vì chúng <strong style="color: #00b0f0;">thanh bình và thoải mái hơn</strong>. Chúng giúp tôi <strong style="color: #00b0f0;">thư giãn</strong> và <strong style="color: #00b0f0;">tập trung tốt hơn vào những gì tôi đang làm</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I definitely <strong style="color: #70ad47;">prefer quiet places</strong>. They <strong style="color: #70ad47;">provide a peaceful atmosphere</strong> where I can <strong style="color: #70ad47;">relax</strong>, <strong style="color: #70ad47;">concentrate on my work</strong>, and <strong style="color: #70ad47;">recharge my batteries</strong> after a busy day. That is why I rarely <strong style="color: #70ad47;">spend a lot of time in crowded environments</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi chắc chắn <strong style="color: #70ad47;">thích những nơi yên tĩnh hơn</strong>. Chúng <strong style="color: #70ad47;">mang lại một bầu không khí thanh bình</strong>, nơi tôi có thể <strong style="color: #70ad47;">thư giãn</strong>, <strong style="color: #70ad47;">tập trung vào công việc</strong> và <strong style="color: #70ad47;">nạp lại năng lượng</strong> sau một ngày bận rộn. Đó là lý do tại sao tôi hiếm khi <strong style="color: #70ad47;">dành nhiều thời gian ở môi trường đông đúc</strong>.</div></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 2 -->
+<div class="sol-tab-content" id="sol-panel-2">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-circle-info"></i> SITUATION <span class="sol-translation">(tình huống)</span>
+</div>
+<div class="sol-situation-box">
+                                    Your younger sister has just finished high school and is planning to study at a university. She wants to choose a university that provides high-quality education. There are three factors she should consider: <strong><em>the university's ranking</em></strong>, <strong><em>the distance from her home</em></strong>, and <strong><em>the tuition fees</em></strong>. Which one do you think is the best choice for her?
+                                    <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-size: 13.5px;">(Em gái bạn vừa tốt nghiệp trung học phổ thông và chuẩn bị học đại học. Cô ấy muốn chọn trường đại học có chất lượng đào tạo tốt. Có ba yếu tố cô ấy nên cân nhắc: <strong><em>xếp hạng của trường</em></strong>, <strong><em>khoảng cách từ nhà</em></strong> và <strong><em>học phí</em></strong>. Bạn nghĩ yếu tố nào là lựa chọn tốt nhất?)</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-graduation-cap"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">Well, if I had to <strong style="color: #ee0000;">suggest a factor for my younger sister when choosing a university</strong>, I would <strong style="color: #ee0000;">recommend considering the university's ranking</strong>.<br/><br/>First of all, a highly ranked university often <strong style="color: #00b0f0;">offers a good education</strong>. She can <strong style="color: #00b0f0;">learn from experienced teachers</strong> and <strong style="color: #00b0f0;">use better learning materials</strong>. As a result, she can <strong style="color: #00b0f0;">improve her knowledge and skills</strong>.<br/><br/>Secondly, a highly ranked university usually <strong style="color: #00b0f0;">has better facilities and learning resources</strong>. For example, she can <strong style="color: #00b0f0;">use modern libraries, laboratories, and study materials</strong>. So, she can <strong style="color: #00b0f0;">study more effectively</strong>.<br/><br/>I wouldn’t recommend <strong style="color: #70ad47;">choosing a university based on the distance from home</strong> because <strong style="color: #70ad47;">education quality is more important</strong>. As for <strong style="color: #7030a0;">tuition fees</strong>, it’s less suitable <strong style="color: #7030a0;">a cheaper university may not always provide the best education</strong>.<br/><br/>In short, I believe <strong style="color: #ee0000;">the university's ranking</strong> is the best choice for this situation.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">À, nếu tôi phải <strong style="color: #ee0000;">gợi ý một yếu tố cho em gái tôi khi chọn trường đại học</strong>, tôi sẽ <strong style="color: #ee0000;">khuyên cân nhắc xếp hạng của trường đại học</strong>.
+
+Trước hết, một trường đại học có xếp hạng cao thường <strong style="color: #00b0f0;">mang lại một nền giáo dục tốt</strong>. Em ấy có thể <strong style="color: #00b0f0;">học hỏi từ những giáo viên giàu kinh nghiệm</strong> và <strong style="color: #00b0f0;">sử dụng tài liệu học tập tốt hơn</strong>. Kết quả là, em ấy có thể <strong style="color: #00b0f0;">cải thiện kiến thức và kỹ năng</strong> của mình.
+
+Thứ hai, một trường đại học có xếp hạng cao thường <strong style="color: #00b0f0;">có cơ sở vật chất và nguồn tài liệu học tập tốt hơn</strong>. Ví dụ, em ấy có thể <strong style="color: #00b0f0;">sử dụng thư viện, phòng thí nghiệm hiện đại và tài liệu học tập</strong>. Vì vậy, em ấy có thể <strong style="color: #00b0f0;">học tập hiệu quả hơn</strong>.
+
+Tôi không khuyên <strong style="color: #70ad47;">chọn một trường đại học dựa trên khoảng cách từ nhà</strong> vì <strong style="color: #70ad47;">chất lượng giáo dục quan trọng hơn</strong>. Đối với <strong style="color: #7030a0;">học phí</strong>, phương án này kém phù hợp hơn vì <strong style="color: #7030a0;">một trường đại học rẻ hơn có thể không luôn mang lại nền giáo dục tốt nhất</strong>.
+
+Tóm lại, tôi tin rằng <strong style="color: #ee0000;">xếp hạng của trường đại học</strong> là lựa chọn tốt nhất cho tình huống này.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">Well, if I had to <strong style="color: #ee0000;">suggest a factor for my younger sister when choosing a university</strong>, I would <strong style="color: #ee0000;">recommend considering the university's ranking</strong>.<br/><br/>First of all, a highly ranked university usually <strong style="color: #00b0f0;">provides high-quality education</strong>. This means that students can <strong style="color: #00b0f0;">learn from experienced lecturers</strong> and <strong style="color: #00b0f0;">access better learning resources</strong>. As a result, they can <strong style="color: #00b0f0;">develop knowledge and skills more effectively</strong>.<br/><br/>Secondly, studying at a highly ranked university can <strong style="color: #00b0f0;">be beneficial for her future career</strong>. This is because many companies <strong style="color: #00b0f0;">prefer students from well-known universities</strong>. As a result, she may <strong style="color: #00b0f0;">find a good job more easily after graduation</strong>.<br/><br/>I wouldn’t recommend <strong style="color: #70ad47;">choosing a university based mainly on the distance from home</strong> because <strong style="color: #70ad47;">a nearby university may not provide the best learning environment</strong>. As for <strong style="color: #7030a0;">tuition fees</strong>, they are less important because <strong style="color: #7030a0;">students can often find scholarships or financial support</strong>.<br/><br/>In short, I believe <strong style="color: #ee0000;">the university's ranking</strong> is the best choice for this situation.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">À, nếu tôi phải <strong style="color: #ee0000;">gợi ý một yếu tố cho em gái tôi khi chọn trường đại học</strong>, tôi sẽ <strong style="color: #ee0000;">khuyên cân nhắc xếp hạng của trường đại học</strong>.
+
+Trước hết, một trường đại học có thứ hạng cao thường <strong style="color: #00b0f0;">cung cấp nền giáo dục chất lượng cao</strong>. Điều này có nghĩa là sinh viên có thể <strong style="color: #00b0f0;">học hỏi từ những giảng viên giàu kinh nghiệm</strong> và <strong style="color: #00b0f0;">tiếp cận các nguồn tài liệu học tập tốt hơn</strong>. Kết quả là, họ có thể <strong style="color: #00b0f0;">phát triển kiến thức và kỹ năng hiệu quả hơn</strong>.
+
+Thứ hai, học tập tại một trường đại học có thứ hạng cao có thể <strong style="color: #00b0f0;">có lợi cho sự nghiệp tương lai của em ấy</strong>. Điều này là do nhiều công ty <strong style="color: #00b0f0;">thích sinh viên từ các trường đại học danh tiếng</strong>. Kết quả là, em ấy có thể <strong style="color: #00b0f0;">tìm được một công việc tốt dễ dàng hơn sau khi tốt nghiệp</strong>.
+
+Tôi không khuyên <strong style="color: #70ad47;">chọn một trường đại học chủ yếu dựa trên khoảng cách từ nhà</strong> vì <strong style="color: #70ad47;">một trường đại học gần đó có thể không cung cấp môi trường học tập tốt nhất</strong>. Đối với <strong style="color: #7030a0;">học phí</strong>, chúng ít quan trọng hơn vì <strong style="color: #7030a0;">sinh viên thường có thể tìm thấy học bổng hoặc hỗ trợ tài chính</strong>.
+
+Tóm lại, tôi tin rằng <strong style="color: #ee0000;">xếp hạng của trường đại học</strong> là lựa chọn tốt nhất cho tình huống này.</div></div>
+</div>
+</div>
+</div>
+<!-- Panel Part 3 -->
+<div class="sol-tab-content" id="sol-panel-3">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-chart-line"></i> TOPIC DEVELOPMENT <span class="sol-translation">(phát triển chủ đề)</span>
+</div>
+<div class="sol-situation-box" style="font-weight: 600;">
+                                    Topic: There are several factors to consider when applying for a job.<br/>
+<ul style="margin-top: 8px; margin-bottom: 0; padding-left: 20px; font-weight: normal;">
+<li><strong><em>the salary</em></strong></li>
+<li><strong><em>the job location</em></strong></li>
+<li><strong><em>the working environment</em></strong></li>
+</ul>
+<span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-weight: normal;">
+                                        (Chủ đề: Có một vài yếu tố cần cân nhắc khi nộp đơn xin việc.)<br/>
+<ul style="margin-top: 4px; margin-bottom: 0; padding-left: 20px;">
+<li><strong><em>mức lương</em></strong></li>
+<li><strong><em>địa điểm làm việc</em></strong></li>
+<li><strong><em>môi trường làm việc</em></strong></li>
+</ul>
+</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-file-pen"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">There are some <strong style="color: #ee0000;">factors</strong> to <strong style="color: #ee0000;">consider when applying for a job</strong>.<br/><br/>One major factor is <strong style="color: #00b0f0;">the salary</strong>. A good salary can help them <strong style="color: #00b0f0;">meet their financial needs</strong>. As a result, they may <strong style="color: #00b0f0;">have a better quality of life</strong>.<br/><br/>Another contributing reason is <strong style="color: #00b0f0;">the job location</strong>. A convenient location can <strong style="color: #00b0f0;">save time and transportation costs</strong>. Therefore, they may <strong style="color: #00b0f0;">have a more comfortable daily routine</strong>.<br/><br/>One more underlying issue is <strong style="color: #00b0f0;">the working environment</strong>. A positive workplace can help employees <strong style="color: #00b0f0;">feel motivated and productive</strong>. This may <strong style="color: #00b0f0;">improve their job satisfaction</strong>.<br/><br/>In short, there are some <strong style="color: #ee0000;">factors</strong> to <strong style="color: #ee0000;">consider when applying for a job</strong>, as mentioned above.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Có một số <strong style="color: #ee0000;">yếu tố</strong> cần <strong style="color: #ee0000;">cân nhắc khi nộp đơn xin việc</strong>.
+
+Một <strong style="color: #ee0000;">yếu tố</strong> chính là <strong style="color: #00b0f0;">mức lương</strong>. Một <strong style="color: #00b0f0;">mức lương</strong> tốt có thể giúp họ <strong style="color: #00b0f0;">đáp ứng nhu cầu tài chính</strong> của mình. Kết quả là, họ có thể <strong style="color: #00b0f0;">có chất lượng cuộc sống tốt hơn</strong>.
+
+Một lý do đóng góp khác là <strong style="color: #00b0f0;">vị trí công việc</strong>. Một vị trí thuận tiện có thể <strong style="color: #00b0f0;">tiết kiệm thời gian và chi phí đi lại</strong>. Do đó, họ có thể <strong style="color: #00b0f0;">có một thói quen hàng ngày thoải mái hơn</strong>.
+
+Một vấn đề cơ bản nữa là <strong style="color: #00b0f0;">môi trường làm việc</strong>. Một nơi làm việc tích cực có thể giúp nhân viên <strong style="color: #00b0f0;">cảm thấy có động lực và làm việc hiệu quả</strong>. Điều này có thể <strong style="color: #00b0f0;">cải thiện sự hài lòng trong công việc của họ</strong>.
+
+Tóm lại, có một số <strong style="color: #ee0000;">yếu tố</strong> cần <strong style="color: #ee0000;">cân nhắc khi nộp đơn xin việc</strong>, như đã đề cập ở trên.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">There are some <strong style="color: #ee0000;">factors</strong> to <strong style="color: #ee0000;">consider when applying for a job</strong>.<br/><br/>One major factor is <strong style="color: #00b0f0;">the salary</strong>. This is because a good salary helps employees <strong style="color: #00b0f0;">cover their living expenses</strong> and <strong style="color: #00b0f0;">improve their quality of life</strong>. As a result, they may <strong style="color: #00b0f0;">feel more motivated to work</strong>.<br/><br/>Another contributing reason is <strong style="color: #00b0f0;">the job location</strong>. In fact, <strong style="color: #00b0f0;">working close to home</strong> can <strong style="color: #00b0f0;">save time</strong> and <strong style="color: #00b0f0;">reduce transportation costs</strong>. This can help employees <strong style="color: #00b0f0;">maintain a better work-life balance</strong>.<br/><br/>One more underlying issue is the working environment. This means that <strong style="color: #00b0f0;">a positive workplace</strong> allows employees to <strong style="color: #00b0f0;">feel comfortable and supported</strong>. Therefore, they can <strong style="color: #00b0f0;">work more effectively</strong> and <strong style="color: #00b0f0;">enjoy their jobs</strong>.<br/><br/>In short, there are some <strong style="color: #ee0000;">factors</strong> to <strong style="color: #ee0000;">consider when applying for a job</strong>, as mentioned above.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Có một số <strong style="color: #ee0000;">yếu tố</strong> cần <strong style="color: #ee0000;">cân nhắc khi nộp đơn xin việc</strong>.
+
+Một <strong style="color: #ee0000;">yếu tố</strong> chính là <strong style="color: #00b0f0;">mức lương</strong>. Điều này là do một <strong style="color: #00b0f0;">mức lương</strong> tốt giúp nhân viên <strong style="color: #00b0f0;">trang trải chi phí sinh hoạt</strong> của họ và <strong style="color: #00b0f0;">cải thiện chất lượng cuộc sống</strong>. Kết quả là, họ có thể <strong style="color: #00b0f0;">cảm thấy có động lực làm việc hơn</strong>.
+
+Một lý do đóng góp khác là <strong style="color: #00b0f0;">vị trí công việc</strong>. Thực tế, <strong style="color: #00b0f0;">làm việc gần nhà</strong> có thể <strong style="color: #00b0f0;">tiết kiệm thời gian</strong> và <strong style="color: #00b0f0;">giảm chi phí đi lại</strong>. Điều này có thể giúp nhân viên <strong style="color: #00b0f0;">duy trì sự cân bằng công việc - cuộc sống tốt hơn</strong>.
+
+Một vấn đề cơ bản nữa là <strong style="color: #00b0f0;">môi trường làm việc</strong>. Điều này có nghĩa là <strong style="color: #00b0f0;">một nơi làm việc tích cực</strong> cho phép nhân viên <strong style="color: #00b0f0;">cảm thấy thoải mái và được hỗ trợ</strong>. Do đó, họ có thể <strong style="color: #00b0f0;">làm việc hiệu quả hơn</strong> và <strong style="color: #00b0f0;">tận hưởng công việc của mình</strong>.
+
+Tóm lại, có một số <strong style="color: #ee0000;">yếu tố</strong> cần <strong style="color: #ee0000;">cân nhắc khi nộp đơn xin việc</strong>, như đã đề cập ở trên.</div></div>
+</div>
+<div class="sol-topic-header" style="margin-top: 30px;">
+<i class="fa-solid fa-circle-question"></i> FOLLOW-UP QUESTIONS <span class="sol-translation">(câu hỏi mở rộng)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What skills are necessary when applying for a job? <span class="sol-translation">(Những kỹ năng nào là cần thiết khi nộp đơn xin việc?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I think <strong style="color: #00b0f0;">communication </strong>and <strong style="color: #00b0f0;">teamwork skills</strong> are very important. In addition, <strong style="color: #00b0f0;">problem-solving skills</strong> can help employees <strong style="color: #00b0f0;">work more effectively</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi nghĩ <strong style="color: #00b0f0;">kỹ năng giao tiếp</strong> và <strong style="color: #00b0f0;">kỹ năng làm việc nhóm</strong> là rất quan trọng. Ngoài ra, <strong style="color: #00b0f0;">kỹ năng giải quyết vấn đề</strong> có thể giúp nhân viên <strong style="color: #00b0f0;">làm việc hiệu quả hơn</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">In my opinion, <strong style="color: #70ad47;">communication</strong>, <strong style="color: #70ad47;">teamwork</strong>, and <strong style="color: #70ad47;">problem-solving skills</strong> are essential when applying for a job. Besides, candidates should <strong style="color: #70ad47;">be adaptable</strong> and <strong style="color: #70ad47;">willing to learn new things</strong>. These qualities can help them <strong style="color: #70ad47;">perform well in a professional environment</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Theo tôi, <strong style="color: #70ad47;">kỹ năng giao tiếp</strong>, <strong style="color: #70ad47;">làm việc nhóm</strong> và <strong style="color: #70ad47;">kỹ năng giải quyết vấn đề</strong> là rất cần thiết khi nộp đơn xin việc. Bên cạnh đó, ứng viên cần <strong style="color: #70ad47;">có khả năng thích nghi</strong> và <strong style="color: #70ad47;">sẵn sàng học hỏi những điều mới</strong>. Những phẩm chất này có thể giúp họ <strong style="color: #70ad47;">làm việc tốt trong môi trường chuyên nghiệp</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item" style="margin-top: 20px;">
+<div class="sol-question-text">2. What kinds of jobs are well-paid in your country? <span class="sol-translation">(Những loại công việc nào có thu nhập cao ở nước bạn?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Jobs in <strong style="color: #00b0f0;">information technology</strong>, <strong style="color: #00b0f0;">medicine</strong>, and <strong style="color: #00b0f0;">finance</strong> are usually well-paid. These jobs often <strong style="color: #00b0f0;">require specialized knowledge and skills</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Các công việc trong ngành <strong style="color: #00b0f0;">công nghệ thông tin</strong>, <strong style="color: #00b0f0;">y học</strong> và <strong style="color: #00b0f0;">tài chính</strong> thường được trả lương cao. Những công việc này thường <strong style="color: #00b0f0;">đòi hỏi kiến thức và kỹ năng chuyên môn sâu</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">In my country, careers in <strong style="color: #70ad47;">information technology</strong>, <strong style="color: #70ad47;">healthcare</strong>, <strong style="color: #70ad47;">finance</strong>, and <strong style="color: #70ad47;">business management</strong> tend to <strong style="color: #70ad47;">offer attractive salaries</strong>. These professions usually <strong style="color: #70ad47;">require strong qualifications and extensive professional expertise</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Ở nước tôi, các nghề nghiệp trong lĩnh vực <strong style="color: #70ad47;">công nghệ thông tin</strong>, <strong style="color: #70ad47;">chăm sóc sức khỏe</strong>, <strong style="color: #70ad47;">tài chính</strong> và <strong style="color: #70ad47;">quản lý kinh doanh</strong> có xu hướng <strong style="color: #70ad47;">đưa ra mức lương hấp dẫn</strong>. Những nghề này thường <strong style="color: #70ad47;">đòi hỏi bằng cấp tốt và chuyên môn sâu rộng</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item" style="margin-top: 20px;">
+<div class="sol-question-text">3. How has technology helped people with their jobs nowadays? <span class="sol-translation">(Công nghệ đã giúp ích thế nào cho công việc của mọi người ngày nay?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Technology helps people <strong style="color: #00b0f0;">complete tasks more quickly and efficiently</strong>. It also <strong style="color: #00b0f0;">makes communication easier in the workplace</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Công nghệ giúp mọi người <strong style="color: #00b0f0;">hoàn thành các nhiệm vụ nhanh chóng và hiệu quả hơn</strong>. Nó cũng <strong style="color: #00b0f0;">giúp giao tiếp trong công việc dễ dàng hơn</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Technology <strong style="color: #70ad47;">has greatly improved workplace efficiency</strong>. It helps employees <strong style="color: #70ad47;">complete tasks more quickly</strong> and <strong style="color: #70ad47;">communicate more effectively</strong>. As a result, many people can <strong style="color: #70ad47;">achieve better work performance</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Công nghệ <strong style="color: #70ad47;">đã cải thiện đáng kể hiệu quả nơi làm việc</strong>. Nó giúp nhân viên <strong style="color: #70ad47;">hoàn thành các nhiệm vụ nhanh hơn</strong> và <strong style="color: #70ad47;">giao tiếp hiệu quả hơn</strong>. Kết quả là, <strong style="color: #70ad47;">nhiều người</strong> có thể <strong style="color: #70ad47;">đạt được hiệu suất công việc tốt hơn</strong>.</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Back button -->
+<div style="margin-top: 30px; display: flex; justify-content: center;">
+<button class="btn btn-secondary" onclick="showScreen('review')">
+<i class="fa-solid fa-arrow-left"></i> Quay lại phần kết quả
+                        </button>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Custom Script JS -->
+<script src="../db.js?v=1782327221"></script>
+<script src="app.js?v=1782327221"></script>
+<script>
+      function toggleTranslation(element) {
+          const textNode = element.nextElementSibling;
+          const icon = element.querySelector('i');
+          if (textNode.style.display === 'none') {
+              textNode.style.display = 'block';
+              if (icon) icon.className = 'fa-solid fa-chevron-up';
+          } else {
+              textNode.style.display = 'none';
+              if (icon) icon.className = 'fa-solid fa-chevron-down';
+          }
+      }
+</script>
+</body>
+</html>

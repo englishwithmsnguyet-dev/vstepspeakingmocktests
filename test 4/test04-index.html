@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<script>
+        // Block flash of protected content
+        (function() {
+            const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+            const testId = pathMatch ? parseInt(pathMatch[1]) : 1;
+            const TEST_PASSWORDS = {};
+            if (TEST_PASSWORDS[testId] && sessionStorage.getItem('unlocked_test_' + testId) !== 'true') {
+                document.documentElement.style.display = 'none';
+            }
+        })();
+    </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPEAKING MOCK TEST 04 - ENGLISHWITHMISSNGUYET</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome for Premium Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="styles.css?v=1782327221" rel="stylesheet"/>
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<nav class="test-sidebar">
+<div class="sidebar-header">
+<i class="fa-solid fa-list-check"></i> <span>VSTEP MOCK TESTS</span>
+</div>
+<ul class="test-list">
+<li class="test-item">
+<a href="../index.html">
+<span class="test-icon"><i class="fa-solid fa-house"></i></span>
+<span class="test-name">TRANG CHỦ</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="1" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 01</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="2" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 02</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="3" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 03</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="4" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 04</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="5" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 05</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="6" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 06</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="7" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 07</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="8" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 08</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="9" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 09</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="10" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 10</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="11" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 11</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="12" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 12</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="13" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 13</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="14" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 14</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="15" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 15</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="16" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 16</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="17" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 17</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="18" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 18</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="19" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 19</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="20" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 20</span>
+</a>
+</li>
+</ul>
+<a class="sidebar-brand-bottom" href="https://www.facebook.com/nguyetpham28" target="_blank">
+<span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+<span class="brand-text">ENGLISH WITH MISS NGUYET</span>
+</a>
+</nav>
+<!-- Background Chime/Sound Permission Modal (if required, or handled on welcome screen) -->
+<!-- App Wrapper -->
+<div class="app-container">
+<!-- Header Brand -->
+<header class="app-header">
+<div class="header-title-wrapper"></div>
+</header>
+<!-- Progress Timeline Tracker -->
+<div class="progress-timeline">
+<div class="timeline-step active" id="step-welcome">
+<div class="step-num">0</div>
+<div class="step-label">CHUẨN BỊ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part1">
+<div class="step-num">1</div>
+<div class="step-label">PART 01</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part2">
+<div class="step-num">2</div>
+<div class="step-label">PART 02</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part3">
+<div class="step-num">3</div>
+<div class="step-label">PART 03</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-review">
+<div class="step-num">4</div>
+<div class="step-label">KẾT QUẢ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-solution">
+<div class="step-num">5</div>
+<div class="step-label">BÀI GIẢI</div>
+</div>
+</div>
+<!-- Main Workspace -->
+<main class="app-main">
+<!-- SCREEN 1: WELCOME SCREEN -->
+<section class="screen-view active" id="view-welcome">
+<div class="glass-card welcome-card">
+<div class="welcome-header-center">
+<div class="welcome-cat-gif">
+<img alt="Typing Cat" class="typing-cat-img" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"/>
+</div>
+<h1>VSTEP Speaking Practice</h1>
+<div class="mock-test-pill">SPEAKING MOCK TEST 04</div>
+<p class="welcome-desc">Chào mừng bạn đến với hệ thống thi thử VSTEP SPEAKING MOCK TEST tương tác. Giao diện và cách tính giờ được lập trình mô phỏng chính xác phòng thi máy thực tế.</p>
+<p class="welcome-warning" style="margin-top: 12px; color: var(--color-red); font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>LƯU Ý:</strong> Không sử dụng bất kì tài liệu hay công cụ trong lúc thi thử. Mọi sự thảo luận đều không được cho phép trong phòng thi.</p>
+</div>
+<div class="test-outline">
+<h3>Cấu trúc bài thi</h3>
+<div class="outline-grid">
+<div class="outline-item">
+<span class="part-badge">PART 01</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Social Interaction</span> [Giao tiếp xã hội]</h4>
+<p>Thí sinh trả lời 02 chủ đề bất kì, mỗi chủ đề có 03 câu hỏi. Không có thời gian chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 3 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 02</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Solution Discussion</span> [Thảo luận giải pháp]</h4>
+<p>Thí sinh thảo luận phương án tốt nhất cho một tình huống giả định bất kì với 03 sự lựa chọn. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 4 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 03</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Topic Development</span> [Phát triển chủ đề]</h4>
+<p>Thí sinh phát triển một chủ đề bất kì dựa vào sơ đồ gợi ý và 03 câu hỏi mở rộng. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 5 phút</span>
+</div>
+</div>
+</div>
+<!-- Student Info Input -->
+<div class="student-form">
+<div class="input-group">
+<label for="student-name"><i class="fa-solid fa-user-pen"></i> Họ và tên học viên:</label>
+<input autocomplete="off" id="student-name" placeholder="Nhập họ tên của bạn..." type="text"/>
+</div>
+</div>
+<!-- Action and Sound Check -->
+<div class="audio-check-section">
+<div class="mic-status-msg" id="mic-status">
+<i class="fa-solid fa-circle-info"></i> Hãy cấp quyền truy cập Microphone để hệ thống ghi âm bài làm của bạn.
+                        </div>
+<button class="btn btn-primary" id="btn-start-test">
+<span>BẮT ĐẦU BÀI THI</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 2: PART 1 SCREEN -->
+<section class="screen-view" id="view-part1">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 01: <span style="color: var(--color-red);">SOCIAL INTERACTION</span></div>
+<div class="part1-topics">
+<!-- Topic 1 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-music"></i> <span>Let's talk about <strong>your favorite singer</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">1</span> Who is your favorite singer?</li>
+<li><span class="q-num">2</span> Why do you like him/her?</li>
+<li><span class="q-num">3</span> Can you describe him/her?</li>
+</ul>
+</div>
+<!-- Topic 2 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-masks-theater"></i> <span>Let's talk about <strong>Vietnamese actors</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">4</span> Who is your favorite actor in Vietnam? Why do you like them?</li>
+<li><span class="q-num">5</span> What factors make an actor famous?</li>
+<li><span class="q-num">6</span> Is the film industry in your country developing? Why?</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Mic, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator recording" id="p1-status">
+<span class="status-dot"></span>
+<span class="status-text">Hệ thống đang ghi âm bài nói của bạn</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p1-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p1-time-val">03:00</span>
+<span class="time-label">TỔNG THỜI GIAN</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p1-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 3: PART 2 SCREEN -->
+<section class="screen-view" id="view-part2">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 02: <span style="color: var(--color-red);">SOLUTION DISCUSSION</span></div>
+<!-- Situation Card -->
+<div class="situation-box">
+<h3 class="section-subtitle"><i class="fa-solid fa-circle-question"></i> Situation:</h3>
+<p class="situation-desc">
+                                Your friend is thinking about a gift to celebrate his parents' 30th wedding anniversary. Three options are: <strong>a trip abroad</strong>, <strong>a couple’s watch</strong>, or <strong>a family photoshoot</strong>. Which one would you recommend him?
+                            </p>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Prep state, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p2-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p2-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p2-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p2-time-val">01:00</span>
+<span class="time-label" id="p2-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p2-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p2-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 4: PART 3 SCREEN -->
+<section class="screen-view" id="view-part3">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 03: <span style="color: var(--color-red);">TOPIC DEVELOPMENT</span></div>
+<div class="topic-header">
+<h3 class="topic-heading-red">Topic:</h3>
+<p class="topic-desc">Living on campus is beneficial to college students.</p>
+</div>
+<!-- CSS Grid Mindmap -->
+<div class="mindmap-wrapper">
+<div class="mindmap-container">
+<!-- Center Node -->
+<div class="mindmap-node node-center">
+<span>Living on campus</span>
+</div>
+<!-- Connectors -->
+<div class="mindmap-line line-top"></div>
+<div class="mindmap-line line-left"></div>
+<div class="mindmap-line line-bottom"></div>
+<div class="mindmap-line line-right"></div>
+<!-- Top Branch -->
+<div class="mindmap-node node-branch branch-top">
+<span>convenience</span>
+</div>
+<!-- Left Branch -->
+<div class="mindmap-node node-branch branch-left">
+<span>networking</span>
+</div>
+<!-- Bottom Branch -->
+<div class="mindmap-node node-branch branch-bottom">
+<span>reasonable cost</span>
+</div>
+<!-- Right Branch -->
+<div class="mindmap-node node-branch branch-right">
+<span>[your own idea]</span>
+</div>
+</div>
+</div>
+<!-- Follow-up Questions Box -->
+<div class="follow-up-box">
+<h4><i class="fa-solid fa-circle-question"></i> Follow-up questions:</h4>
+<ul class="question-list">
+<li><span class="q-num">1</span> What are the disadvantages of living on campus?</li>
+<li><span class="q-num">2</span> What are the advantages and disadvantages of living off campus?</li>
+<li><span class="q-num">3</span> Do you prefer living on campus or living off campus?</li>
+</ul>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Scratchpad, Finish button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p3-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p3-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p3-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p3-time-val">01:00</span>
+<span class="time-label" id="p3-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p3-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-success" id="btn-p3-next">
+<span>Hoàn thành bài thi</span> <i class="fa-solid fa-circle-check"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 5: REVIEW SCREEN -->
+<section class="screen-view" id="view-review">
+<div class="glass-card review-card">
+<div class="success-banner">
+<div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+<h2>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI THI NÓI!</h2>
+<p style="margin-bottom: 8px;">Bạn có 10s để khóc trước khi xem phần BÀI GIẢI.</p>
+<p id="review-student-info" style="font-size: 13px; opacity: 0.7; margin-top: 4px;"></p>
+</div>
+<!-- Summary Grid: Audio Files & Notes -->
+<div class="review-grid">
+<!-- Left Panel: Playback recordings -->
+<div class="review-recordings-panel">
+<h3><i class="fa-solid fa-microphone-lines"></i> Nghe lại bài nói của bạn</h3>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 01</span>
+<span class="rec-title">Social Interaction</span>
+</div>
+<div class="audio-player-wrapper" id="p1-player-container">
+<!-- Dynamic custom Audio Player or native audio element styled -->
+<audio controls="" id="p1-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part1.webm" id="p1-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 02</span>
+<span class="rec-title">Solution Discussion</span>
+</div>
+<div class="audio-player-wrapper" id="p2-player-container">
+<audio controls="" id="p2-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part2.webm" id="p2-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 03</span>
+<span class="rec-title">Topic Development</span>
+</div>
+<div class="audio-player-wrapper" id="p3-player-container">
+<audio controls="" id="p3-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part3.webm" id="p3-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Right Panel: Feedback -->
+<div class="review-notes-panel">
+<h3><i class="fa-solid fa-comment-medical"></i> ĐÁNH GIÁ CHUNG</h3>
+<div class="teacher-feedback-box">
+<label for="teacher-feedback">Học viên tự đánh giá mức độ hoàn thành bài nói:</label>
+<textarea id="teacher-feedback" placeholder="Bạn đã hoàn thành tất cả nội dung bài thi hay chưa? Bạn có tự tin với bài nói của mình hay không?" style="min-height: 200px;"></textarea>
+</div>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="review-actions">
+<button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
+<i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
+                        </button>
+<button class="btn btn-secondary" id="btn-restart-test">
+<i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
+                        </button>
+</div>
+</div>
+</section>
+<!-- SCREEN 6: SOLUTION SCREEN -->
+<section class="screen-view" id="view-solution">
+<div class="glass-card instruction-card" style="max-width: 900px; margin: 20px auto;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+<h2 style="color: var(--color-red); margin-bottom: 0;"><i class="fa-solid fa-book-open"></i> BÀI GIẢI CHI TIẾT</h2>
+<span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 04</span>
+</div>
+<div class="solution-tab-container">
+<div class="solution-tab-buttons">
+<button class="sol-tab-btn active" onclick="switchSolTab(1)">PART 01: SOCIAL INTERACTION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(2)">PART 02: SOLUTION DISCUSSION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(3)">PART 03: TOPIC DEVELOPMENT</button>
+</div>
+<!-- Panel Part 1 -->
+<div class="sol-tab-content active" id="sol-panel-1">
+<!-- Topic 1 -->
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-music"></i> Topic 1: Let's talk about your favorite singer <span class="sol-translation">(Hãy nói về ca sĩ yêu thích của bạn)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. Who is your favorite singer? <span class="sol-translation">(Ai là ca sĩ yêu thích của bạn?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        My favorite singer is <strong style="color: #00b0f0;">Sơn Tùng M-TP</strong>. He is <strong style="color: #00b0f0;">one of the most popular singers in Vietnam</strong>. I enjoy listening to his songs in my free time.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Ca sĩ yêu thích của tôi là Sơn Tùng M-TP. Anh ấy là một trong những ca sĩ nổi tiếng nhất Việt Nam. Tôi thích nghe các bài hát của anh ấy trong thời gian rảnh.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        My favorite singer is <strong style="color: #70ad47;">Sơn Tùng M-TP</strong>. He is <strong style="color: #70ad47;">well-known for his unique music style and impressive performances</strong>. I have been a fan of his music for many years.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Ca sĩ yêu thích của tôi là Sơn Tùng M-TP. Anh ấy nổi tiếng với phong cách âm nhạc độc đáo và những màn trình diễn ấn tượng. Tôi đã là người hâm mộ âm nhạc của anh ấy trong nhiều năm.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. Why do you like him/her? <span class="sol-translation">(Tại sao bạn thích anh ấy/cô ấy?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        I like him because he <strong style="color: #00b0f0;">has a unique voice</strong>. Besides, <strong style="color: #00b0f0;">his songs are catchy and meaningful</strong>. I always listen to his music when I want to <strong style="color: #00b0f0;">improve my mood</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thích anh ấy vì các bài hát của anh ấy bắt tai và ý nghĩa. Tôi thường nghe nhạc của anh ấy khi muốn thư giãn. Các bài hát của anh ấy cũng giúp tôi cải thiện tâm trạng.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        I like him because <strong style="color: #70ad47;">his songs are creative and inspiring</strong>. Listening to his music helps me <strong style="color: #70ad47;">improve my mood</strong> and <strong style="color: #70ad47;">escape from daily stress</strong>. In addition, I <strong style="color: #70ad47;">admire his dedication and hard work</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thích anh ấy vì các bài hát của anh ấy sáng tạo và truyền cảm hứng. Nghe nhạc của anh ấy giúp tôi thư giãn và thoát khỏi căng thẳng hàng ngày. Ngoài ra, tôi ngưỡng mộ sự cống hiến và làm việc chăm chỉ của anh ấy.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. Can you describe him/her? <span class="sol-translation">(Bạn có thể miêu tả về anh ấy/cô ấy không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        He is <strong style="color: #00b0f0;">talented</strong>, <strong style="color: #00b0f0;">hardworking</strong>, and <strong style="color: #00b0f0;">confident</strong>. Moreover, he <strong style="color: #00b0f0;">has a unique fashion style</strong>. He also <strong style="color: #00b0f0;">has a positive influence on many young people</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Anh ấy là người tài năng, chăm chỉ và tự tin. Anh ấy có phong cách thời trang độc đáo và phong thái biểu diễn mạnh mẽ trên sân khấu. Đó là lý do tại sao nhiều người ngưỡng mộ anh ấy.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        He is <strong style="color: #70ad47;">talented</strong>, <strong style="color: #70ad47;">ambitious</strong>, and <strong style="color: #70ad47;">creative</strong>. He <strong style="color: #70ad47;">has a distinctive musical style</strong> and always <strong style="color: #70ad47;">tries new ideas in his work</strong>. These qualities have helped him <strong style="color: #70ad47;">achieve great success</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi sẽ miêu tả anh ấy là người tài năng, đầy tham vọng và sáng tạo. Anh ấy có một phong cách âm nhạc đặc trưng và luôn thử nghiệm những ý tưởng mới trong tác phẩm của mình. Những phẩm chất này đã giúp anh ấy đạt được thành công lớn.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Topic 2 -->
+<div class="sol-topic-section" style="margin-top: 30px;">
+<div class="sol-topic-header">
+<i class="fa-solid fa-masks-theater"></i> Topic 2: Let's talk about Vietnamese actors <span class="sol-translation">(Hãy nói về các diễn viên Việt Nam)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. Who is your favorite actor in Vietnam? Why do you like them? <span class="sol-translation">(Ai là diễn viên yêu thích của bạn ở Việt Nam? Tại sao bạn thích họ?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        My favorite actor in Vietnam is <strong style="color: #00b0f0;">Trấn Thành</strong>. I like him because he <strong style="color: #00b0f0;">acts very naturally</strong>. Moreover, he is very <strong style="color: #00b0f0;">professional</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Diễn viên yêu thích của tôi là Trấn Thành. Tôi thích anh ấy vì anh ấy tài năng và hài hước. Các vai diễn của anh ấy luôn mang tính giải trí cao.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        My favorite Vietnamese actor is <strong style="color: #70ad47;">Trấn Thành</strong>. I admire him because he is <strong style="color: #70ad47;">versatile</strong> and can <strong style="color: #70ad47;">perform many different roles successfully</strong>. He also <strong style="color: #70ad47;">works very hard to improve his skills</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Diễn viên Việt Nam yêu thích của tôi là Trấn Thành. Tôi ngưỡng mộ anh ấy vì anh ấy đa tài và có thể hóa thân thành công vào nhiều vai diễn khác nhau. Anh ấy cũng làm việc rất chăm chỉ để cải thiện các kỹ năng của mình.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. What factors make an actor famous? <span class="sol-translation">(Những yếu tố nào giúp một diễn viên trở nên nổi tiếng?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        I think <strong style="color: #00b0f0;">talent</strong> is the most important factor. Besides that, actors need to <strong style="color: #00b0f0;">work hard</strong> and <strong style="color: #00b0f0;">communicate well with their fans</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi nghĩ tài năng là yếu tố quan trọng nhất. Bên cạnh đó, diễn viên cần phải làm việc chăm chỉ và giao tiếp tốt với người hâm mộ của họ.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        In my opinion, <strong style="color: #70ad47;">talent</strong>, <strong style="color: #70ad47;">dedication</strong>, and <strong style="color: #70ad47;">a professional attitude</strong> are the key factors. In addition, <strong style="color: #70ad47;">social media</strong> and <strong style="color: #70ad47;">public image</strong> also play important roles in helping actors become famous.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Theo tôi, tài năng, sự cống hiến và thái độ làm việc chuyên nghiệp là những yếu tố then chốt. Ngoài ra, mạng xã hội và hình ảnh trước công chúng cũng đóng vai trò quan trọng giúp các diễn viên trở nên nổi tiếng.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. Is the film industry in your country developing? Why? <span class="sol-translation">(Ngành công nghiệp điện ảnh nước bạn có đang phát triển không? Tại sao?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        Yes, it is. More <strong style="color: #00b0f0;">high-quality Vietnamese films</strong> are being produced every year. It also <strong style="color: #00b0f0;">creates more opportunities for actors and filmmakers</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, đúng vậy. Nhiều bộ phim Việt Nam đang được sản xuất mỗi năm. Nhiều bộ phim trong số đó thu hút một lượng lớn khán giả.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        Yes, I believe it’s developing rapidly. Film producers are <strong style="color: #70ad47;">investing more in technology</strong>, <strong style="color: #70ad47;">storytelling</strong>, <strong style="color: #70ad47;">and acting quality</strong>. As a result, <strong style="color: #70ad47;">Vietnamese films</strong> are becoming <strong style="color: #70ad47;">more competitive</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi tin rằng ngành này đang phát triển nhanh chóng. Các nhà sản xuất phim đang đầu tư nhiều hơn vào công nghệ, cách kể chuyện và chất lượng diễn xuất. Nhờ đó, phim Việt Nam đang ngày càng trở nên cạnh tranh hơn.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 2 -->
+<div class="sol-tab-content" id="sol-panel-2">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-circle-info"></i> SITUATION <span class="sol-translation">(tình huống)</span>
+</div>
+<div class="sol-situation-box">
+                                    Your friend is thinking about a gift to celebrate his parents' 30th wedding anniversary. Three options are: <strong>a trip abroad</strong>, <strong>a couple’s watch</strong>, or <strong>a family photoshoot</strong>. Which one would you recommend him?
+                                    <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-size: 13.5px;">(Bạn của bạn đang suy nghĩ về món quà kỷ niệm 30 năm ngày cưới của bố mẹ mình. Ba phương án là: <strong>một chuyến đi nước ngoài</strong>, <strong>một cặp đồng hồ đôi</strong>, <strong>một buổi chụp ảnh gia đình</strong>. Bạn khuyên họ nên chọn cái nào?)</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-graduation-cap"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Well, if I had to <strong style="color: #ee0000;">suggest a gift for my friend's parents on their 30th wedding anniversary</strong>, I would <strong style="color: #ee0000;">recommend a family photoshoot</strong>.<br/><br/>First of all, <strong style="color: #00b0f0;">it’s a meaningful gift</strong> because it helps them <strong style="color: #00b0f0;">keep good memories with their family</strong>. They can <strong style="color: #00b0f0;">look at the photos in the future</strong> and <strong style="color: #00b0f0;">remember this special occasion</strong>. So, the gift can <strong style="color: #00b0f0;">become more valuable over time</strong>.<br/><br/>Secondly, <strong style="color: #00b0f0;">it’s a unique gift because</strong> it <strong style="color: #00b0f0;">creates a special experience for the whole family</strong>. Everyone can <strong style="color: #00b0f0;">spend time together</strong> and <strong style="color: #00b0f0;">enjoy the photoshoot</strong>. So, it can <strong style="color: #00b0f0;">make the anniversary more memorable</strong>.<br/><br/>I wouldn’t recommend <strong style="color: #70ad47;">a trip abroad </strong>because <strong style="color: #70ad47;">it may be too expensive and take a lot of time to prepare</strong>. As for <strong style="color: #7030a0;">a couple’s watch</strong>, it’s less suitable because <strong style="color: #7030a0;">it may be a common gift and have nothing special</strong>.<br/><br/>In short, I believe <strong style="color: #ee0000;">a family photoshoot</strong> is the best choice for this situation.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">À, nếu tôi phải gợi ý một món quà cho bố mẹ của bạn mình nhân kỷ niệm 30 năm ngày cưới, tôi sẽ khuyên chọn chụp ảnh gia đình. Trước hết, đó là một món quà ý nghĩa vì nó thể hiện tình yêu và sự trân trọng đối với gia đình. Vấn đề không nằm ở giá cả mà là ở tình cảm gửi gắm sau món quà. Vì vậy, nó có thể nhắc nhở họ về những kỷ niệm gia đình hạnh phúc. Thứ hai, đây là một món quà độc đáo vì họ không thể tạo lại những kỷ niệm tương tự một lần nữa. Những bức ảnh sẽ trở thành những kỷ vật đặc biệt mà họ có thể ngắm nhìn trong tương lai. Tôi không khuyên đi du lịch nước ngoài vì nó quá đắt đỏ. Nó cũng có thể đòi hỏi rất nhiều thời gian để lên kế hoạch. Đối với đồng hồ đôi, nó ít phù hợp hơn vì họ có thể đã có đồng hồ ở nhà. Tóm lại, tôi tin rằng chụp ảnh gia đình là lựa chọn tốt nhất cho tình huống này.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Well, if I had to <strong style="color: #ee0000;">suggest a gift for my friend’s parents on their 30th wedding anniversary</strong>, I would <strong style="color: #ee0000;">recommend a family photoshoot</strong>.<br/><br/>First of all, <strong style="color: #00b0f0;">it’s a meaningful gift</strong> because it <strong style="color: #00b0f0;">reflects his love and appreciation for his parents</strong>. The value of the gift <strong style="color: #00b0f0;">lies not in its price</strong>, <strong style="color: #00b0f0;">but in the memories it creates</strong>. Therefore, it can <strong style="color: #00b0f0;">remind them of this special occasion for many years</strong>.<br/><br/>Secondly, <strong style="color: #00b0f0;">it’s a unique gift</strong> because the whole family can <strong style="color: #00b0f0;">take photos together</strong> and <strong style="color: #00b0f0;">create lasting memories</strong>. This <strong style="color: #00b0f0;">makes the gift more personal and special than ordinary presents</strong>. As a result, it can <strong style="color: #00b0f0;">leave a stronger impression</strong>.<br/><br/>I wouldn’t recommend <strong style="color: #70ad47;">a trip abroad</strong> because <strong style="color: #70ad47;">it may be too expensive</strong>. As for <strong style="color: #7030a0;">a couple’s watch</strong>, it’s less suitable because <strong style="color: #7030a0;">his parents may already have watches at home</strong>.<br/><br/>In short, I believe <strong style="color: #ee0000;">a family photoshoot</strong> is the best choice for this situation
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">À, nếu tôi phải gợi ý một món quà cho bố mẹ bạn tôi nhân kỷ niệm 30 năm ngày cưới, tôi sẽ khuyên chọn chụp ảnh gia đình. Trước hết, đó là một món quà ý nghĩa vì nó phản ánh tình yêu, sự trân trọng và sự gắn kết gia đình. Giá trị của món quà không nằm ở giá tiền mà ở những kỷ niệm mà nó tạo ra. Do đó, nó có thể nhắc nhở họ về một cột mốc quan trọng trong cuộc đời họ. Thứ hai, đó là một món quà độc đáo và đáng nhớ. Các bức ảnh có thể lưu giữ những khoảnh khắc đặc biệt và trở thành những kỷ niệm quý giá trong nhiều năm. Không giống như những món quà thông thường, những kỷ niệm này sẽ tồn tại mãi mãi. Tôi không khuyên đi du lịch nước ngoài vì nó có thể vượt quá ngân sách của gia đình và đòi hỏi phải lên kế hoạch đáng kể. Ngoài ra, việc đi lại không phải lúc nào cũng thuận tiện cho người lớn tuổi. Đối với đồng hồ đôi, nó ít phù hợp hơn vì là món quà phổ biến và có thể không có giá trị cảm xúc tương tự như chụp ảnh gia đình. Tóm lại, tôi tin rằng chụp ảnh gia đình là lựa chọn phù hợp nhất cho tình huống này.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 3 -->
+<div class="sol-tab-content" id="sol-panel-3">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-chart-line"></i> TOPIC DEVELOPMENT <span class="sol-translation">(phát triển chủ đề)</span>
+</div>
+<div class="sol-situation-box" style="font-weight: 600;">
+                                    Topic: Living on campus is beneficial to college students. <br/>
+<ul style="margin-top: 8px; margin-bottom: 0; padding-left: 20px; font-weight: normal;"><li>convenience</li><li>networking</li><li>reasonable cost</li></ul>
+<span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-weight: normal;">(Chủ đề: Sống trong khuôn viên trường mang lại nhiều lợi ích cho sinh viên đại học.)<br/>
+<ul style="margin-top: 4px; margin-bottom: 0; padding-left: 20px;"><li>sự tiện lợi</li><li>tạo dựng mối quan hệ</li><li>chi phí hợp lý</li></ul>
+</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-file-pen"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        There are some <strong style="color: #ee0000;">benefits</strong> of <strong style="color: #ee0000;">living on campus</strong>.<br/><br/>One major advantage is that <strong style="color: #00b0f0;">living on campus is convenient</strong>. Students can <strong style="color: #00b0f0;">easily go to classes, libraries, and other facilities</strong>. As a result, they can <strong style="color: #00b0f0;">save a lot of time</strong>.<br/><br/>Another positive aspect is that <strong style="color: #00b0f0;">living on campus provides networking opportunities</strong>. Students can <strong style="color: #00b0f0;">meet new friends</strong> and <strong style="color: #00b0f0;">interact with many people</strong>. Therefore, they can <strong style="color: #00b0f0;">build valuable relationships</strong>.<br/><br/>One more beneficial effect is that <strong style="color: #00b0f0;">living on campus has a reasonable cost</strong>. Students usually <strong style="color: #00b0f0;">spend less money on transportation</strong>. This helps them <strong style="color: #00b0f0;">reduce their living expenses</strong>.<br/><br/>In short, <strong style="color: #ee0000;">living on campus</strong> has several clear <strong style="color: #ee0000;">benefits</strong>, as mentioned above.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Có một số lợi ích của việc sống trong khuôn viên trường. Một lợi thế lớn là sự tiện lợi. Điều này là do sinh viên sống gần lớp học và các cơ sở vật chất của trường. Kết quả là họ có thể tiết kiệm thời gian di chuyển. Một khía cạnh tích cực khác là mở rộng mạng lưới quan hệ. Điều này có nghĩa là sinh viên có thể dễ dàng gặp gỡ bạn cùng lớp và kết bạn mới. Do đó, họ có thể xây dựng mối quan hệ bền chặt hơn. Một tác động có lợi nữa là chi phí hợp lý. Sống trong ký túc xá thường rẻ hơn thuê một căn hộ bên ngoài. Điều này giúp sinh viên tiết kiệm tiền. Một lợi ích bổ sung là nó giúp sinh viên trở nên độc lập hơn. Thực tế, họ phải tự quản lý cuộc sống hàng ngày và tự giải quyết các vấn đề. Nhờ đó, họ trở nên có trách nhiệm hơn. Tóm lại, sống trong khuôn viên trường mang lại nhiều lợi ích quan trọng cho sinh viên đại học.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        There are some <strong style="color: #ee0000;">benefits</strong> of <strong style="color: #ee0000;">living on campus</strong>.<br/><br/>One major advantage is that <strong style="color: #00b0f0;">living on campus is convenient</strong>. Students can <strong style="color: #00b0f0;">easily access classrooms, libraries, and other campus facilities</strong>. As a result, they can <strong style="color: #00b0f0;">save time</strong> and <strong style="color: #00b0f0;">focus more on their studies</strong>.<br/><br/>Another positive aspect is that <strong style="color: #00b0f0;">living on campus provides networking opportunities</strong>. Students can <strong style="color: #00b0f0;">meet new people</strong> and <strong style="color: #00b0f0;">build relationships with classmates</strong>. This helps them <strong style="color: #00b0f0;">expand their social networks</strong> and <strong style="color: #00b0f0;">learn from others</strong>.<br/><br/>One more beneficial effect is that <strong style="color: #00b0f0;">living on campus has a reasonable cost</strong>. In fact, the cost of campus accommodation is often <strong style="color: #00b0f0;">lower than renting a private apartment</strong>. Therefore, students can <strong style="color: #00b0f0;">reduce their living expenses</strong>.<br/><br/>In short, <strong style="color: #ee0000;">living on campus</strong> has several clear <strong style="color: #ee0000;">benefits</strong>, as mentioned above.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Sống trong khuôn viên trường mang lại một số lợi ích. Một ưu điểm lớn là sự tiện lợi. Vì sinh viên sống gần lớp học, thư viện và các cơ sở vật chất khác nên họ có thể tiết kiệm một lượng thời gian và công sức đáng kể. Điều này cho phép họ tập trung nhiều hơn vào việc học. Một khía cạnh tích cực khác là cơ hội kết nối mạng lưới quan hệ. Điều này có nghĩa là sống trong khuôn viên trường cho phép sinh viên tương tác với bạn học, các khóa trên và giảng viên thường xuyên hơn. Kết quả là họ có thể xây dựng các mối quan hệ quý giá và mở rộng vòng kết nối xã hội của mình. Một tác động có lợi nữa là chi phí hợp lý. So với việc thuê chỗ ở tư nhân, nhà ở trong ký túc xá thường rẻ hơn. Do đó, sinh viên có thể quản lý chi tiêu của mình hiệu quả hơn. Một lợi ích bổ sung là sống trong khuôn viên trường giúp sinh viên xây dựng tính độc lập và sự tự tin. Họ học cách quản lý thời gian biểu, tổ chức các hoạt động hàng ngày và tự chịu trách nhiệm về các quyết định của mình. Những trải nghiệm này giúp họ chuẩn bị cho cuộc sống trưởng thành. Tóm lại, sống trong khuôn viên trường cung cấp một số lợi thế quan trọng cho sinh viên đại học.</div>
+</div>
+</div>
+<div class="sol-topic-header" style="margin-top: 30px;">
+<i class="fa-solid fa-circle-question"></i> FOLLOW-UP QUESTIONS <span class="sol-translation">(câu hỏi mở rộng)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What are the disadvantages of living on campus? <span class="sol-translation">(Những nhược điểm của việc sống trong ký túc xá/trong khuôn viên trường là gì?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        One disadvantage is that students may <strong style="color: #00b0f0;">have less privacy</strong>. Another drawback is that <strong style="color: #00b0f0;">dormitories can be noisy</strong>. This may <strong style="color: #00b0f0;">affect students' concentration</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Một bất lợi là sinh viên có thể có ít sự riêng tư hơn. Một hạn chế khác là ký túc xá có thể ồn ào. Điều này có thể ảnh hưởng đến sự tập trung của sinh viên.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        One disadvantage is <strong style="color: #70ad47;">the lack of privacy</strong> because students often <strong style="color: #70ad47;">share rooms with others</strong>. In addition, dormitories can <strong style="color: #70ad47;">sometimes be crowded and noisy</strong>, which may <strong style="color: #70ad47;">make studying more difficult</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Một bất lợi là thiếu sự riêng tư vì sinh viên thường phải chung phòng với những người khác. Ngoài ra, ký túc xá đôi khi có thể đông đúc và ồn ào, điều này có thể khiến việc học trở nên khó khăn hơn.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. What are the advantages and disadvantages of living off campus? <span class="sol-translation">(Những ưu điểm và nhược điểm của việc sống ngoài khuôn viên trường là gì?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        Living off campus <strong style="color: #00b0f0;">gives students more freedom and privacy</strong>. However, it can <strong style="color: #00b0f0;">be more expensive and less convenient</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Sống ngoài khuôn viên trường mang lại cho sinh viên nhiều tự do và riêng tư hơn. Tuy nhiên, nó có thể đắt hơn và kém thuận tiện hơn.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        Living off campus <strong style="color: #70ad47;">offers greater independence and privacy</strong>. However, students usually need to <strong style="color: #70ad47;">spend more money on accommodation and transportation</strong>. They may also <strong style="color: #70ad47;">feel less connected to campus life</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Sống ngoài khuôn viên trường mang lại sự độc lập và riêng tư lớn hơn. Tuy nhiên, sinh viên thường phải chi nhiều tiền hơn cho chỗ ở và đi lại. Họ cũng có thể cảm thấy ít kết nối hơn với cuộc sống trong trường.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. Do you prefer living on campus or living off campus? <span class="sol-translation">(Bạn thích sống trong khuôn viên trường hay ngoài khuôn viên trường hơn?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        I <strong style="color: #00b0f0;">prefer living on campus</strong> because it’s <strong style="color: #00b0f0;">convenient and affordable</strong>. It also helps me <strong style="color: #00b0f0;">make more friends</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thích sống trong khuôn viên trường hơn vì nó tiện lợi và giá cả phải chăng. Nó cũng giúp tôi kết bạn nhiều hơn.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">
+                                        I would <strong style="color: #70ad47;">prefer living on campus</strong> because it <strong style="color: #70ad47;">provides easy access to university facilities</strong> and <strong style="color: #70ad47;">creates more opportunities to socialize</strong>. In addition, it’s usually <strong style="color: #70ad47;">more cost-effective</strong> than living off campus.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi sẽ thích sống trong khuôn viên trường hơn vì nó giúp dễ dàng tiếp cận các cơ sở vật chất của trường đại học và tạo ra nhiều cơ hội giao lưu hơn. Ngoài ra, nó thường tiết kiệm chi phí hơn so với sống ngoài khuôn viên trường.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Custom Script JS -->
+<script src="../db.js?v=1782327221"></script>
+<script src="app.js?v=1782327221"></script>
+<script>
+      function toggleTranslation(element) {
+          const textNode = element.nextElementSibling;
+          const icon = element.querySelector('i');
+          if (textNode.style.display === 'none') {
+              textNode.style.display = 'block';
+              if (icon) icon.className = 'fa-solid fa-chevron-up';
+          } else {
+              textNode.style.display = 'none';
+              if (icon) icon.className = 'fa-solid fa-chevron-down';
+          }
+      }
+</script>
+</body>
+</html>

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<script>
+        // Block flash of protected content
+        (function() {
+            const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+            const testId = pathMatch ? parseInt(pathMatch[1]) : 1;
+            const TEST_PASSWORDS = {};
+            if (TEST_PASSWORDS[testId] && sessionStorage.getItem('unlocked_test_' + testId) !== 'true') {
+                document.documentElement.style.display = 'none';
+            }
+        })();
+    </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPEAKING MOCK TEST 10 - ENGLISHWITHMISSNGUYET</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome for Premium Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="styles.css?v=1782327221" rel="stylesheet"/>
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<nav class="test-sidebar">
+<div class="sidebar-header">
+<i class="fa-solid fa-list-check"></i> <span>VSTEP MOCK TESTS</span>
+</div>
+<ul class="test-list">
+<li class="test-item">
+<a href="../index.html">
+<span class="test-icon"><i class="fa-solid fa-house"></i></span>
+<span class="test-name">TRANG CHỦ</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="1" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 01</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="2" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 02</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="3" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 03</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="4" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 04</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="5" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 05</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="6" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 06</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="7" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 07</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="8" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 08</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="9" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 09</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="10" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 10</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="11" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 11</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="12" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 12</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="13" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 13</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="14" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 14</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="15" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 15</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="16" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 16</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="17" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 17</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="18" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 18</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="19" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 19</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="20" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 20</span>
+</a>
+</li>
+</ul>
+<a class="sidebar-brand-bottom" href="https://www.facebook.com/nguyetpham28" target="_blank">
+<span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+<span class="brand-text">ENGLISH WITH MISS NGUYET</span>
+</a>
+</nav>
+<!-- Background Chime/Sound Permission Modal (if required, or handled on welcome screen) -->
+<!-- App Wrapper -->
+<div class="app-container">
+<!-- Header Brand -->
+<header class="app-header">
+<div class="header-title-wrapper"></div>
+</header>
+<!-- Progress Timeline Tracker -->
+<div class="progress-timeline">
+<div class="timeline-step active" id="step-welcome">
+<div class="step-num">0</div>
+<div class="step-label">CHUẨN BỊ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part1">
+<div class="step-num">1</div>
+<div class="step-label">PART 01</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part2">
+<div class="step-num">2</div>
+<div class="step-label">PART 02</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part3">
+<div class="step-num">3</div>
+<div class="step-label">PART 03</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-review">
+<div class="step-num">4</div>
+<div class="step-label">KẾT QUẢ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-solution">
+<div class="step-num">5</div>
+<div class="step-label">BÀI GIẢI</div>
+</div>
+</div>
+<!-- Main Workspace -->
+<main class="app-main">
+<!-- SCREEN 1: WELCOME SCREEN -->
+<section class="screen-view active" id="view-welcome">
+<div class="glass-card welcome-card">
+<div class="welcome-header-center">
+<div class="welcome-cat-gif">
+<img alt="Typing Cat" class="typing-cat-img" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"/>
+</div>
+<h1>VSTEP Speaking Practice</h1>
+<div class="mock-test-pill">SPEAKING MOCK TEST 10</div>
+<p class="welcome-desc">Chào mừng bạn đến với hệ thống thi thử VSTEP SPEAKING MOCK TEST tương tác. Giao diện và cách tính giờ được lập trình mô phỏng chính xác phòng thi máy thực tế.</p>
+<p class="welcome-warning" style="margin-top: 12px; color: var(--color-red); font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>LƯU Ý:</strong> Không sử dụng bất kì tài liệu hay công cụ trong lúc thi thử. Mọi sự thảo luận đều không được cho phép trong phòng thi.</p>
+</div>
+<div class="test-outline">
+<h3>Cấu trúc bài thi</h3>
+<div class="outline-grid">
+<div class="outline-item">
+<span class="part-badge">PART 01</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Social Interaction</span> [Giao tiếp xã hội]</h4>
+<p>Thí sinh trả lời 02 chủ đề bất kì, mỗi chủ đề có 03 câu hỏi. Không có thời gian chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 3 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 02</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Solution Discussion</span> [Thảo luận giải pháp]</h4>
+<p>Thí sinh thảo luận phương án tốt nhất cho một tình huống giả định bất kì với 03 sự lựa chọn. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 4 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 03</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Topic Development</span> [Phát triển chủ đề]</h4>
+<p>Thí sinh phát triển một chủ đề bất kì dựa vào sơ đồ gợi ý và 03 câu hỏi mở rộng. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 5 phút</span>
+</div>
+</div>
+</div>
+<!-- Student Info Input -->
+<div class="student-form">
+<div class="input-group">
+<label for="student-name"><i class="fa-solid fa-user-pen"></i> Họ và tên học viên:</label>
+<input autocomplete="off" id="student-name" placeholder="Nhập họ tên của bạn..." type="text"/>
+</div>
+</div>
+<!-- Action and Sound Check -->
+<div class="audio-check-section">
+<div class="mic-status-msg" id="mic-status">
+<i class="fa-solid fa-circle-info"></i> Hãy cấp quyền truy cập Microphone để hệ thống ghi âm bài làm của bạn.
+                        </div>
+<button class="btn btn-primary" id="btn-start-test">
+<span>BẮT ĐẦU BÀI THI</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 2: PART 1 SCREEN -->
+<section class="screen-view" id="view-part1">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 01: <span style="color: var(--color-red);">SOCIAL INTERACTION</span></div>
+<div class="part1-topics">
+<!-- Topic 1 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-square-rss"></i> <span>Let's talk about <strong>online blogs</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">1</span> Do you often read online blogs?</li>
+<li><span class="q-num">2</span> What topics do you usually read about?</li>
+<li><span class="q-num">3</span> What do you learn from reading those blogs?</li>
+</ul>
+</div>
+<!-- Topic 2 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-laptop-code"></i> <span>Let's talk about <strong>online learning</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">4</span> Have you ever taken an online course?</li>
+<li><span class="q-num">5</span> Do you enjoy learning online? Why or why not?</li>
+<li><span class="q-num">6</span> What are some disadvantages of online learning?</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Mic, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator recording" id="p1-status">
+<span class="status-dot"></span>
+<span class="status-text">Hệ thống đang ghi âm bài nói của bạn</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p1-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p1-time-val">03:00</span>
+<span class="time-label">TỔNG THỜI GIAN</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p1-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 3: PART 2 SCREEN -->
+<section class="screen-view" id="view-part2">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 02: <span style="color: var(--color-red);">SOLUTION DISCUSSION</span></div>
+<!-- Situation Card -->
+<div class="situation-box">
+<h3 class="section-subtitle"><i class="fa-solid fa-circle-question"></i> Situation:</h3>
+<p class="situation-desc">
+                                Your co-worker is going to retire next month. Your team wants to choose a meaningful gift for him. There are three options: <strong style="color: #70ad47;">a handwritten card</strong>, <strong style="color: #ee0000;">a picture of him with colleagues</strong>, and <strong style="color: #7030a0;">a meal at the best restaurant in your city</strong>. Which one do you think is the best choice, and why?
+                            </p>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Prep state, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p2-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p2-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p2-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p2-time-val">01:00</span>
+<span class="time-label" id="p2-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p2-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p2-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 4: PART 3 SCREEN -->
+<section class="screen-view" id="view-part3">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 03: <span style="color: var(--color-red);">TOPIC DEVELOPMENT</span></div>
+<div class="topic-header">
+<h3 class="topic-heading-red">Topic:</h3>
+<p class="topic-desc">There are several solutions to reduce obesity.</p>
+</div>
+<!-- CSS Grid Mindmap -->
+<div class="mindmap-wrapper">
+<div class="mindmap-container">
+<!-- Center Node -->
+<div class="mindmap-node node-center">
+<span>Reduce obesity</span>
+</div>
+<!-- Connectors -->
+<div class="mindmap-line line-top"></div>
+<div class="mindmap-line line-left"></div>
+<div class="mindmap-line line-bottom"></div>
+<div class="mindmap-line line-right"></div>
+<!-- Top Branch -->
+<div class="mindmap-node node-branch branch-top">
+<span>cook at home</span>
+</div>
+<!-- Left Branch -->
+<div class="mindmap-node node-branch branch-left">
+<span>limit fast food consumption</span>
+</div>
+<!-- Bottom Branch -->
+<div class="mindmap-node node-branch branch-bottom">
+<span>do more physical exercise</span>
+</div>
+<!-- Right Branch -->
+<div class="mindmap-node node-branch branch-right">
+<span>[your own idea]</span>
+</div>
+</div>
+</div>
+<!-- Follow-up Questions Box -->
+<div class="follow-up-box">
+<h4><i class="fa-solid fa-circle-question"></i> Follow-up questions:</h4>
+<ul class="question-list">
+<li><span class="q-num">1</span> What types of fast food are popular in your country?</li>
+<li><span class="q-num">2</span> Why do many people choose to eat fast food?</li>
+<li><span class="q-num">3</span> What can governments do to encourage people to live a healthier lifestyle?</li>
+</ul>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Scratchpad, Finish button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p3-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p3-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p3-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p3-time-val">01:00</span>
+<span class="time-label" id="p3-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p3-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-success" id="btn-p3-next">
+<span>Hoàn thành bài thi</span> <i class="fa-solid fa-circle-check"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 5: REVIEW SCREEN -->
+<section class="screen-view" id="view-review">
+<div class="glass-card review-card">
+<div class="success-banner">
+<div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+<h2>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI THI NÓI!</h2>
+<p style="margin-bottom: 8px;">Bạn có 10s để khóc trước khi xem phần BÀI GIẢI.</p>
+<p id="review-student-info" style="font-size: 13px; opacity: 0.7; margin-top: 4px;"></p>
+</div>
+<!-- Summary Grid: Audio Files & Notes -->
+<div class="review-grid">
+<!-- Left Panel: Playback recordings -->
+<div class="review-recordings-panel">
+<h3><i class="fa-solid fa-microphone-lines"></i> Nghe lại bài nói của bạn</h3>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 01</span>
+<span class="rec-title">Social Interaction</span>
+</div>
+<div class="audio-player-wrapper" id="p1-player-container">
+<!-- Dynamic custom Audio Player or native audio element styled -->
+<audio controls="" id="p1-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part1.webm" id="p1-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 02</span>
+<span class="rec-title">Solution Discussion</span>
+</div>
+<div class="audio-player-wrapper" id="p2-player-container">
+<audio controls="" id="p2-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part2.webm" id="p2-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 03</span>
+<span class="rec-title">Topic Development</span>
+</div>
+<div class="audio-player-wrapper" id="p3-player-container">
+<audio controls="" id="p3-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part3.webm" id="p3-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Right Panel: Feedback -->
+<div class="review-notes-panel">
+<h3><i class="fa-solid fa-comment-medical"></i> ĐÁNH GIÁ CHUNG</h3>
+<div class="teacher-feedback-box">
+<label for="teacher-feedback">Học viên tự đánh giá mức độ hoàn thành bài nói:</label>
+<textarea id="teacher-feedback" placeholder="Bạn đã hoàn thành tất cả nội dung bài thi hay chưa? Bạn có tự tin với bài nói của mình hay không?" style="min-height: 200px;"></textarea>
+</div>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="review-actions">
+<button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
+<i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
+                        </button>
+<button class="btn btn-secondary" id="btn-restart-test">
+<i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
+                        </button>
+</div>
+</div>
+</section>
+<!-- SCREEN 6: SOLUTION SCREEN -->
+<section class="screen-view" id="view-solution">
+<div class="glass-card instruction-card" style="max-width: 900px; margin: 20px auto;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+<h2 style="color: var(--color-red); margin-bottom: 0;"><i class="fa-solid fa-book-open"></i> BÀI GIẢI CHI TIẾT</h2>
+<span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 10</span>
+</div>
+<div class="solution-tab-container">
+<div class="solution-tab-buttons">
+<button class="sol-tab-btn active" onclick="switchSolTab(1)">PART 01: SOCIAL INTERACTION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(2)">PART 02: SOLUTION DISCUSSION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(3)">PART 03: TOPIC DEVELOPMENT</button>
+</div>
+<!-- Panel Part 1 -->
+<div class="sol-tab-content active" id="sol-panel-1">
+<!-- Topic 1 -->
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-square-rss"></i> Topic 1: Let's talk about online blogs <span class="sol-translation">(Hãy nói về blog trực tuyến)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. Do you often read online blogs? <span class="sol-translation">(Bạn có thường đọc blog trực tuyến không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Yes, I do. I read <strong style="color: #00b0f0;">online blogs</strong> several times a week. They are a <strong style="color: #00b0f0;">convenient way</strong> to <strong style="color: #00b0f0;">learn new information</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi có. Tôi đọc <strong style="color: #00b0f0;">các <strong style="color: #00b0f0;">blog trực tuyến</strong> vài lần một tuần. Chúng là một <strong style="color: #00b0f0;">phương thức tiện lợi</strong> để <strong style="color: #00b0f0;">tìm hiểu <strong style="color: #00b0f0;">thông tin mới</strong>.</strong></strong></div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Yes, I do. I often read <strong style="color: #70ad47;">online blogs</strong> in my <strong style="color: #70ad47;">free time</strong> because they provide <strong style="color: #70ad47;">useful information</strong> on a <strong style="color: #70ad47;">wide range of topics</strong>. Besides, they allow me to learn from <strong style="color: #70ad47;">other people's experiences</strong> and perspectives.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi có. Tôi thường đọc <strong style="color: #70ad47;">blog trực tuyến</strong> trong <strong style="color: #70ad47;"><strong style="color: #70ad47;">thời gian rảnh</strong> rỗi</strong> vì chúng cung cấp <strong style="color: #70ad47;">thông tin hữu ích</strong> về <strong style="color: #70ad47;">nhiều chủ đề khác nhau</strong>. Ngoài ra, chúng cho phép tôi học hỏi từ <strong style="color: #70ad47;">kinh nghiệm</strong> và góc nhìn của người khác.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. What topics do you usually read about? <span class="sol-translation">(Bạn thường đọc về những chủ đề nào?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        I usually read blogs about <strong style="color: #00b0f0;">education, travel, and health</strong>. These topics are both interesting and useful.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường đọc các blog về <strong style="color: #00b0f0;">giáo dục, du lịch và sức khỏe</strong>. Những chủ đề này vừa thú vị vừa hữu ích.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        I mainly read blogs about education, <strong style="color: #70ad47;">personal development</strong>, and travel. These topics help me <strong style="color: #70ad47;">broaden my horizons</strong> and <strong style="color: #70ad47;">gain practical knowledge</strong> that I can apply to my daily life.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi chủ yếu đọc blog về giáo dục, <strong style="color: #70ad47;">phát triển bản thân</strong> và du lịch. Những chủ đề này giúp tôi <strong style="color: #70ad47;">mở rộng tầm mắt</strong> và có được <strong style="color: #70ad47;">kiến thức thực tế</strong> mà tôi có thể áp dụng vào cuộc sống hàng ngày.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. What do you learn from reading those blogs? <span class="sol-translation">(Bạn học hỏi được gì từ việc đọc các blog đó?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        I <strong style="color: #00b0f0;">learn new information</strong> and <strong style="color: #00b0f0;">useful tips</strong>. Sometimes, I also learn how to <strong style="color: #00b0f0;">solve everyday problems</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi học được nhiều <strong style="color: #00b0f0;">thông tin mới</strong> và những <strong style="color: #00b0f0;">mẹo hữu ích</strong>. Đôi khi tôi cũng học cách <strong style="color: #00b0f0;">giải quyết các vấn đề hàng ngày</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        I can learn a <strong style="color: #70ad47;">variety of useful things</strong>, such as <strong style="color: #70ad47;">study strategies</strong>, <strong style="color: #70ad47;">travel experiences</strong>, and <strong style="color: #70ad47;">self-improvement techniques</strong>. As a result, reading blogs helps me <strong style="color: #70ad47;">expand my knowledge</strong> and develop a <strong style="color: #70ad47;">wider perspective</strong> on different issues.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi có thể học được <strong style="color: #70ad47;">nhiều điều bổ ích</strong> như <strong style="color: #70ad47;">chiến lược học tập</strong>, <strong style="color: #70ad47;">trải nghiệm du lịch</strong> và <strong style="color: #70ad47;">kỹ năng hoàn thiện bản thân</strong>. Kết quả là việc đọc blog giúp tôi <strong style="color: #70ad47;">mở rộng kiến thức</strong> và có được <strong style="color: #70ad47;">cái nhìn rộng lớn hơn</strong> về các vấn đề khác nhau.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Topic 2 -->
+<div class="sol-topic-section" style="margin-top: 30px;">
+<div class="sol-topic-header">
+<i class="fa-solid fa-laptop-code"></i> Topic 2: Let's talk about online learning <span class="sol-translation">(Hãy nói về việc học trực tuyến)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. Have you ever taken an online course? <span class="sol-translation">(Bạn đã từng tham gia một khóa học trực tuyến nào chưa?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Yes, I have. I have taken several <strong style="color: #00b0f0;">online courses</strong> to <strong style="color: #00b0f0;">improve my English skills</strong>. They were very convenient.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi đã từng. Tôi đã tham gia một vài <strong style="color: #00b0f0;">khóa học trực tuyến</strong> để <strong style="color: #00b0f0;">cải thiện kỹ năng tiếng Anh của mình</strong>. Chúng rất tiện lợi.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Yes, I have taken a number of <strong style="color: #70ad47;">online courses</strong>, especially related to <strong style="color: #70ad47;">language learning</strong> and <strong style="color: #70ad47;">professional development</strong>. They allowed me to <strong style="color: #70ad47;">learn at my own pace</strong> and <strong style="color: #70ad47;">access materials</strong> from anywhere.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi đã tham gia nhiều <strong style="color: #70ad47;">khóa học trực tuyến</strong>, đặc biệt là các khóa học liên quan đến <strong style="color: #70ad47;">việc học ngôn ngữ</strong> và <strong style="color: #70ad47;">phát triển nghề nghiệp</strong>. Chúng cho phép tôi <strong style="color: #70ad47;">học theo tốc độ của riêng mình</strong> và <strong style="color: #70ad47;">tiếp cận tài liệu</strong> từ bất cứ đâu.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. Do you enjoy learning online? Why or why not? <span class="sol-translation">(Bạn có thích học trực tuyến không? Tại sao hay tại sao không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Yes, I do. It is <strong style="color: #00b0f0;">convenient and flexible</strong>. I can study whenever I have <strong style="color: #00b0f0;">free time</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi thích. Nó <strong style="color: #00b0f0;">tiện lợi và linh hoạt</strong>. Tôi có thể học bất cứ khi nào có <strong style="color: #00b0f0;">thời gian rảnh</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Yes, I enjoy online learning because it offers a great deal of <strong style="color: #70ad47;">flexibility</strong>. I can <strong style="color: #70ad47;">organize my study schedule</strong> according to my needs and learn from <strong style="color: #70ad47;">high-quality resources</strong> without having to travel. As a result, it <strong style="color: #70ad47;">saves both time and effort</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi thích học trực tuyến vì nó mang lại <strong style="color: #70ad47;">sự linh hoạt</strong> rất lớn. Tôi có thể <strong style="color: #70ad47;">tự sắp xếp lịch học</strong> theo nhu cầu của mình và học hỏi từ các <strong style="color: #70ad47;">nguồn chất lượng cao</strong> mà không cần phải di chuyển. Kết quả là nó <strong style="color: #70ad47;">tiết kiệm cả thời gian và công sức</strong>.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. What are some disadvantages of online learning? <span class="sol-translation">(Một số nhược điểm của việc học trực tuyến là gì?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        One disadvantage is that students can <strong style="color: #00b0f0;">get distracted easily</strong>. Another drawback is the <strong style="color: #00b0f0;">lack of face-to-face interaction</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Một bất lợi là sinh viên <strong style="color: #00b0f0;">dễ bị phân tâm</strong>. Một hạn chế khác là <strong style="color: #00b0f0;">thiếu sự tương tác trực tiếp</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        One disadvantage is that learners may struggle to <strong style="color: #70ad47;">stay focused</strong> because there are many <strong style="color: #70ad47;">distractions at home</strong>. In addition, online learning reduces face-to-face interaction, which can make <strong style="color: #70ad47;">communication and collaboration</strong> more <strong style="color: #70ad47;">challenging</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Một bất lợi là người học có thể gặp khó khăn để <strong style="color: #70ad47;">tập trung</strong> vì có <strong style="color: #70ad47;">nhiều phiền nhiễu ở nhà</strong>. Ngoài ra, việc học trực tuyến làm giảm tương tác trực tiếp, điều này có thể khiến việc <strong style="color: #70ad47;">giao tiếp và cộng tác</strong> trở nên <strong style="color: #70ad47;">thách thức hơn</strong>.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 2 -->
+<div class="sol-tab-content" id="sol-panel-2">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-circle-info"></i> SITUATION <span class="sol-translation">(tình huống)</span>
+</div>
+<div class="sol-situation-box">
+                                    Your co-worker is going to retire next month. Your team wants to choose a meaningful gift for him. There are three options: <strong style="color: #70ad47;">a handwritten card</strong>, <strong style="color: #00b0f0;">a picture of him with colleagues</strong>, and <strong style="color: #7030a0;">a meal at the best restaurant in your city</strong>. Which one do you think is the best choice, and why?
+                                    <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-size: 13.5px;">(Đồng nghiệp của bạn sẽ nghỉ hưu vào tháng tới. Nhóm của bạn muốn chọn một món quà ý nghĩa cho anh ấy. Có ba lựa chọn: <strong style="color: #00b0f0;">một thiệp viết tay</strong>, <strong style="color: #00b0f0;">một bức ảnh chụp chung của anh ấy với các đồng nghiệp</strong>, và <strong style="color: #00b0f0;">một bữa ăn tại nhà hàng tốt nhất trong thành phố của bạn</strong>. Bạn nghĩ lựa chọn nào là tốt nhất và tại sao?)</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-graduation-cap"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Well, if I had to <strong style="color: #ee0000;">choose a gift for my retiring co-worker</strong>, I would <strong style="color: #ee0000;">recommend a picture of him with colleagues</strong>.<br/><br/>First of all, it is a <strong style="color: #00b0f0;">meaningful gift</strong> because it <strong style="color: #00b0f0;">reminds him of the time</strong> he spent working with his colleagues. Besides, it can help him remember many <strong style="color: #00b0f0;">happy moments</strong>. As a result, the gift becomes more special.<br/><br/>Secondly, it is a <strong style="color: #00b0f0;">unique gift</strong> because it <strong style="color: #00b0f0;">preserves valuable memories</strong>. He can keep it for many years and look at it whenever he wants. Therefore, it has <strong style="color: #00b0f0;">long-lasting emotional value</strong>.<br/><br/>I wouldn’t choose a <strong style="color: #00b0f0;">handwritten card</strong> because it is quite simple and may not feel special enough for such an important occasion.<br/><br/>As for a <strong style="color: #00b0f0;">meal at the best restaurant</strong>, it is less suitable because the experience only lasts for a short time and cannot be kept as a memory.<br/><br/>In short, I believe a <strong style="color: #00b0f0;">picture of him with colleagues</strong> is the best choice for this situation.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">À, nếu phải <strong style="color: #ee0000;">chọn một món quà cho người đồng nghiệp sắp nghỉ hưu của mình</strong>, tôi sẽ <strong style="color: #ee0000;">đề xuất một bức ảnh chụp ông ấy cùng các đồng nghiệp</strong>.<br/><br/>Trước hết, đó là một <strong style="color: #00b0f0;">món quà ý nghĩa</strong> vì nó gợi nhắc ông về thời gian làm việc cùng đồng nghiệp. Bên cạnh đó, nó giúp ông nhớ về nhiều khoảnh khắc hạnh phúc. Nhờ vậy, món quà trở nên đặc biệt hơn.<br/><br/>Thứ hai, đó là <strong style="color: #00b0f0;">món quà độc đáo</strong> vì nó <strong style="color: #00b0f0;">lưu giữ những kỷ niệm quý giá</strong>. Ông có thể giữ nó trong nhiều năm và ngắm nhìn bất cứ khi nào muốn. Do đó, nó có giá trị tình cảm lâu dài.<br/><br/>Tôi sẽ không chọn một tấm <strong style="color: #70ad47;">thiệp viết tay</strong> vì nó khá đơn giản và có thể không đủ đặc biệt cho một dịp quan trọng như thế này. Về một <strong style="color: #7030a0;">bữa ăn tại nhà hàng</strong> sang trọng, nó ít phù hợp hơn vì trải nghiệm đó chỉ kéo dài trong một thời gian ngắn và không thể lưu lại làm kỷ niệm.<br/><br/>Tóm lại, tôi tin rằng một bức ảnh chụp cùng đồng nghiệp là lựa chọn tốt nhất cho tình huống này.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Well, if I had to <strong style="color: #ee0000;">choose a gift for my retiring co-worker</strong>, I would <strong style="color: #ee0000;">recommend a picture of him with colleagues</strong>.<br/><br/>First of all, it is a highly <strong style="color: #00b0f0;">meaningful gift</strong> because it <strong style="color: #00b0f0;">captures the relationships</strong> and memories built throughout his career. Besides, it serves as a reminder of the friendships and experiences he shared with his colleagues. As a result, it can have significant emotional value.<br/><br/>Secondly, a photograph is a <strong style="color: #00b0f0;">lasting keepsake</strong> that he can treasure for many years. Unlike material gifts, it preserves important moments that cannot be recreated. Therefore, it becomes a meaningful symbol of <strong style="color: #00b0f0;">appreciation and respect</strong>.<br/><br/>I wouldn’t choose a <strong style="color: #00b0f0;">handwritten card</strong> because, although thoughtful, it may not have the same long-term impact as a memorable photograph.<br/><br/>As for a <strong style="color: #00b0f0;">meal at the best restaurant</strong>, it is less suitable because the experience is <strong style="color: #7030a0;">temporary</strong>. While it may be enjoyable, it does not provide a lasting reminder of his time with the team.<br/><br/>In short, I believe a <strong style="color: #00b0f0;">picture of him with colleagues</strong> is the best choice for this situation.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">À, nếu phải <strong style="color: #ee0000;">chọn một món quà cho người đồng nghiệp sắp nghỉ hưu của mình</strong>, tôi sẽ <strong style="color: #ee0000;">đề xuất một bức ảnh chụp chung của ông ấy với các đồng nghiệp</strong>.<br/><br/>Trước hết, đó là một món quà vô cùng ý nghĩa vì nó ghi lại những mối quan hệ và kỷ niệm được tạo dựng trong suốt sự nghiệp của ông. Bên cạnh đó, nó là một lời nhắc nhở về tình bạn và những trải nghiệm ông đã chia sẻ cùng các đồng nghiệp của mình. Kết quả là nó có giá trị tình cảm vô cùng to lớn.<br/><br/>Thứ hai, một bức ảnh là một kỷ vật lâu dài mà ông có thể trân quý trong nhiều năm. Không giống như những món quà vật chất khác, nó lưu giữ những khoảnh khắc quan trọng không thể tái hiện. Vì vậy, nó trở thành biểu tượng ý nghĩa của <strong style="color: #00b0f0;">sự trân trọng và kính trọng</strong>.<br/><br/>Tôi sẽ không chọn một tấm <strong style="color: #70ad47;">thiệp viết tay</strong> vì mặc dù chu đáo nhưng nó có thể không có sức ảnh hưởng lâu dài như một bức ảnh chụp đáng nhớ. Về một <strong style="color: #7030a0;">bữa ăn tại nhà hàng</strong> tốt nhất, nó ít phù hợp hơn vì trải nghiệm này chỉ <strong style="color: #7030a0;">mang tính <strong style="color: #7030a0;">tạm thời</strong>. Dù có thể thú vị nhưng nó không mang lại một lời nhắc nhở lâu dài về thời gian ông làm việc cùng cả đội.<br/><br/>Tóm lại, tôi tin rằng một bức ảnh chụp cùng đồng nghiệp là lựa chọn tốt nhất cho tình huống này.</strong></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 3 -->
+<div class="sol-tab-content" id="sol-panel-3">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-chart-line"></i> TOPIC DEVELOPMENT <span class="sol-translation">(phát triển chủ đề)</span>
+</div>
+<div class="sol-situation-box">
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-file-pen"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;"> There are several <strong style="color: #00b0f0;">solutions to reduce obesity</strong>.<br/><br/>One major solution is to <strong style="color: #00b0f0;">limit fast food consumption</strong>. <strong>fast food</strong> often contains a lot of fat, sugar, and calories. As a result, eating less fast food can help people <strong>maintain a healthy weight</strong>.<br/><br/>Another effective solution is to <strong style="color: #00b0f0;">cook at home</strong>. Home-cooked meals are usually healthier because people can choose <strong>fresh ingredients</strong> and control portion sizes. Therefore, they can develop healthier eating habits.<br/><br/>One more solution is to eat a <strong style="color: #00b0f0;">balanced diet</strong>. People should consume enough <strong>vegetables, fruits, and protein</strong> instead of relying on unhealthy foods. This helps improve overall health and prevent weight gain.<br/><br/>One additional solution is to <strong style="color: #00b0f0;">exercise regularly</strong>. Physical activities such as walking, jogging, or playing sports help burn calories and <strong>improve fitness</strong>. As a result, people can <strong>maintain a healthy lifestyle</strong>.<br/><br/>In short, there are several <strong style="color: #00b0f0;">solutions to reduce obesity</strong>, as mentioned above. <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Có một số <strong>giải pháp để giảm béo phì</strong>.<br/><br/>Một giải pháp chính là hạn chế tiêu thụ thức ăn nhanh. <strong>Thức ăn nhanh</strong> thường chứa nhiều chất béo, đường và calo. Do đó, ăn ít <strong>thức ăn nhanh</strong> có thể giúp mọi người duy trì cân nặng hợp lý.<br/><br/>Một giải pháp hiệu quả khác là tự <strong>nấu ăn tại nhà</strong>. <strong>Bữa ăn tự nấu</strong> thường lành mạnh hơn vì mọi người có thể tự chọn nguyên liệu tươi sạch và kiểm soát khẩu phần ăn. Vì vậy, họ có thể xây dựng <strong>thói quen ăn uống lành mạnh hơn</strong>.<br/><br/>Một giải pháp nữa là ăn một chế độ ăn uống cân bằng. Mọi người nên tiêu thụ đủ <strong>rau xanh, trái cây và protein</strong> thay vì phụ thuộc vào thực phẩm không lành mạnh. Việc này giúp cải thiện sức khỏe tổng thể và ngăn ngừa tăng cân.<br/><br/>Một giải pháp bổ sung là <strong>tập thể dục thường xuyên</strong>. <strong>Các hoạt động thể chất</strong> như đi bộ, chạy bộ hoặc chơi thể thao giúp đốt cháy calo và cải thiện thể lực. Kết quả là mọi người có thể duy trì một <strong>lối sống lành mạnh</strong>.<br/><br/>Tóm lại, có một số <strong>giải pháp để giảm béo phì</strong>, như đã nêu trên.</div>
+</div></div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;"> There are several <strong style="color: #ee0000;">solutions to reduce obesity</strong>.<br/><br/>One major solution is to <strong style="color: #ee0000;">limit fast food consumption</strong>. Since <strong style="color: #00b0f0;">fast food</strong> is often high in calories, fat, and sugar, eating it too frequently can contribute to weight gain. As a result, reducing <strong style="color: #00b0f0;">fast food</strong> intake can help people maintain a healthier weight.<br/><br/>Another effective solution is to <strong style="color: #ee0000;">cook at home</strong>. Preparing meals at home allows people to choose healthier ingredients and control the nutritional value of their food. Therefore, they can develop better eating habits and improve their overall well-being.<br/><br/>One more solution is to follow a <strong style="color: #ee0000;">balanced diet</strong>. People should consume a variety of <strong style="color: #00b0f0;">nutritious foods</strong>, including vegetables, fruits, and <strong style="color: #00b0f0;">lean protein</strong>. Consequently, they can receive the nutrients they need while avoiding <strong style="color: #00b0f0;">excessive calorie intake</strong>.<br/><br/>One additional solution is to <strong style="color: #ee0000;">exercise regularly</strong>. Activities such as <strong style="color: #00b0f0;">running, cycling, or playing sports</strong> help people stay <strong style="color: #00b0f0;">physically active</strong> and <strong style="color: #00b0f0;">burn calories</strong>. Besides improving physical health, regular exercise can also <strong style="color: #00b0f0;">boost emotional well-being</strong>.<br/><br/>In short, there are several <strong style="color: #ee0000;">solutions to reduce obesity</strong>, as mentioned above. <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Có một số <strong>giải pháp để giảm tỷ lệ béo phì</strong>.<br/><br/>Một giải pháp chính là hạn chế tiêu thụ thức ăn nhanh. Vì <strong>thức ăn nhanh</strong> thường chứa nhiều calo, chất béo và đường nên việc ăn nó quá thường xuyên có thể góp phần làm tăng cân. Kết quả là việc giảm ăn <strong>thức ăn nhanh</strong> có thể giúp mọi người duy trì cân nặng lành mạnh hơn.<br/><br/>Một giải pháp hiệu quả khác là nấu ăn tại nhà. Việc tự <strong>chuẩn bị bữa ăn tại nhà</strong> cho phép mọi người lựa chọn các <strong>nguyên liệu tốt cho sức khỏe</strong> và kiểm soát giá trị dinh dưỡng của thực phẩm. Vì vậy, họ có thể phát triển thói quen ăn uống tốt hơn và <strong>cải thiện sức khỏe tổng thể</strong> của mình.<br/><br/>Một giải pháp nữa là tuân theo chế độ ăn uống cân bằng. Mọi người nên tiêu thụ nhiều loại <strong>thực phẩm giàu dinh dưỡng</strong>, bao gồm rau, trái cây và protein nạc. Do đó, họ có thể nhận được các chất dinh dưỡng cần thiết trong khi tránh <strong>nạp quá nhiều calo</strong>.<br/><br/>Một giải pháp bổ sung là <strong>tập thể dục thường xuyên</strong>. Các hoạt động như chạy bộ, đạp xe hoặc chơi thể thao giúp mọi người duy trì hoạt động thể chất và đốt cháy calo. Bên cạnh việc cải thiện sức khỏe thể chất, <strong>tập thể dục thường xuyên</strong> cũng có thể nâng cao sức khỏe cảm xúc.<br/><br/>Tóm lại, có một số <strong>giải pháp để giảm tỷ lệ béo phì</strong>, như đã nêu trên.</div>
+</div></div>
+<div class="sol-topic-header" style="margin-top: 30px;">
+<i class="fa-solid fa-circle-question"></i> FOLLOW-UP QUESTIONS <span class="sol-translation">(câu hỏi mở rộng)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What types of fast food are popular in your country? <span class="sol-translation">(Những loại thức ăn nhanh nào phổ biến ở nước bạn?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+<strong style="color: #00b0f0;">Hamburgers, fried chicken, pizza, and bubble tea</strong> are very popular in my country, especially among <strong style="color: #00b0f0;">young people</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Hăm-bơ-gơ, gà rán, pizza và trà sữa rất phổ biến ở nước tôi, đặc biệt là trong giới trẻ.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+<strong style="color: #70ad47;">Fast foods</strong> such as fried chicken, hamburgers, pizza, and various <strong style="color: #70ad47;">convenience foods</strong> are extremely popular, particularly among <strong style="color: #70ad47;">young people</strong>. These foods are attractive because they are <strong style="color: #70ad47;">convenient, affordable, and widely available</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;"><strong style="color: #70ad47;">Thức ăn nhanh</strong> như gà rán, bánh mì kẹp thịt, pizza và các loại thực phẩm tiện lợi khác vô cùng phổ biến, đặc biệt là đối với giới trẻ. Những thực phẩm này hấp dẫn vì chúng tiện lợi, giá cả phải chăng và có sẵn ở nhiều nơi.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. Why do many people choose to eat fast food? <span class="sol-translation">(Tại sao nhiều người lại chọn ăn thức ăn nhanh?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Many people choose <strong style="color: #00b0f0;">fast food</strong> because it is convenient and <strong style="color: #00b0f0;">saves time</strong>. It is also easy to find.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Nhiều người chọn <strong style="color: #00b0f0;">thức ăn nhanh</strong> vì nó tiện lợi và tiết kiệm thời gian. Nó cũng rất dễ tìm.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Many people choose <strong style="color: #70ad47;">fast food</strong> because it is <strong style="color: #70ad47;">quick, convenient</strong>, and often reasonably priced. In today's <strong style="color: #70ad47;">busy society</strong>, people may not have enough time to prepare meals at home, so <strong style="color: #70ad47;">fast food</strong> becomes an attractive option.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Nhiều người chọn <strong style="color: #70ad47;">thức ăn nhanh</strong> vì nó nhanh chóng, tiện lợi và thường có giá hợp lý. Trong xã hội bận rộn ngày nay, mọi người có thể không có đủ thời gian để chuẩn bị bữa ăn ở nhà, nên <strong style="color: #70ad47;">thức ăn nhanh</strong> trở thành một lựa chọn hấp dẫn.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. What can governments do to encourage people to live a healthier lifestyle? <span class="sol-translation">(Chính phủ có thể làm gì để khuyến khích mọi người sống một lối sống lành mạnh hơn?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Governments can organize <strong style="color: #00b0f0;">health campaigns</strong> and encourage people to <strong style="color: #00b0f0;">exercise regularly</strong>. They can also educate people about <strong style="color: #00b0f0;">healthy eating habits</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Chính phủ có thể tổ chức các chiến dịch sức khỏe và khuyến khích người dân <strong style="color: #00b0f0;">tập thể dục thường xuyên</strong>. Họ cũng có thể giáo dục người dân về thói quen ăn uống lành mạnh.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Governments can promote healthy lifestyles through <strong style="color: #70ad47;">public awareness campaigns</strong>, <strong style="color: #70ad47;">nutrition education programs</strong>, and <strong style="color: #70ad47;">investments in sports facilities</strong>. In addition, they can encourage <strong style="color: #70ad47;">healthier eating habits</strong> by providing better access to <strong style="color: #70ad47;">nutritious foods</strong> and supporting <strong style="color: #70ad47;">community health initiatives</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Chính phủ có thể thúc đẩy <strong style="color: #70ad47;">lối sống lành mạnh</strong> thông qua các chiến dịch nâng cao nhận thức cộng đồng, các chương trình giáo dục dinh dưỡng và đầu tư vào cơ sở vật chất thể thao. Ngoài ra, họ có thể khuyến khích <strong style="color: #70ad47;">thói quen ăn uống lành mạnh hơn</strong> bằng cách tạo điều kiện tiếp cận tốt hơn với thực phẩm bổ dưỡng và hỗ trợ các sáng kiến sức khỏe cộng đồng.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Custom Script JS -->
+<script src="../db.js?v=1782327221"></script>
+<script src="app.js?v=1782327221"></script>
+<script>
+      function toggleTranslation(element) {
+          const textNode = element.nextElementSibling;
+          const icon = element.querySelector('i');
+          if (textNode.style.display === 'none') {
+              textNode.style.display = 'block';
+              if (icon) icon.className = 'fa-solid fa-chevron-up';
+          } else {
+              textNode.style.display = 'none';
+              if (icon) icon.className = 'fa-solid fa-chevron-down';
+          }
+      }
+</script>
+</body>
+</html>

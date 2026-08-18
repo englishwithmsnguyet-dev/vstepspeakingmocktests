@@ -1,0 +1,72 @@
+[1]
+ENG: Yes, I do. I read <strong>online blogs</strong> several times a week. They are a <strong>convenient way</strong> to <strong>learn new information</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi có. Tôi đọc các blog trực tuyến vài lần một tuần. Chúng là một phương thức tiện lợi để tìm hiểu thông tin mới.
+
+[2]
+ENG: Yes, I do. I often read <strong>online blogs</strong> in my <strong>free time</strong> because they provide <strong>useful information</strong> on a <strong>wide range of topics</strong>. Besides, they allow me to learn from <strong>other people's experiences</strong> and perspectives.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi có. Tôi thường đọc blog trực tuyến trong thời gian rảnh rỗi vì chúng cung cấp thông tin hữu ích về nhiều chủ đề khác nhau. Ngoài ra, chúng cho phép tôi học hỏi từ kinh nghiệm và góc nhìn của người khác.
+
+[3]
+ENG: I usually read blogs about <strong>education, travel, and health</strong>. These topics are both interesting and useful.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường đọc các blog về giáo dục, du lịch và sức khỏe. Những chủ đề này vừa thú vị vừa hữu ích.
+
+[4]
+ENG: I mainly read blogs about education, <strong>personal development</strong>, and travel. These topics help me <strong>broaden my horizons</strong> and <strong>gain practical knowledge</strong> that I can apply to my daily life.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi chủ yếu đọc blog về giáo dục, phát triển bản thân và du lịch. Những chủ đề này giúp tôi mở rộng tầm mắt và có được kiến thức thực tế mà tôi có thể áp dụng vào cuộc sống hàng ngày.
+
+[5]
+ENG: I <strong>learn new information</strong> and <strong>useful tips</strong>. Sometimes, I also learn how to <strong>solve everyday problems</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi học được nhiều thông tin mới và những mẹo hữu ích. Đôi khi tôi cũng học cách giải quyết các vấn đề hàng ngày.
+
+[6]
+ENG: I can learn a <strong>variety of useful things</strong>, such as <strong>study strategies</strong>, <strong>travel experiences</strong>, and <strong>self-improvement techniques</strong>. As a result, reading blogs helps me <strong>expand my knowledge</strong> and develop a <strong>wider perspective</strong> on different issues.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi có thể học được nhiều điều bổ ích như chiến lược học tập, trải nghiệm du lịch và kỹ năng hoàn thiện bản thân. Kết quả là việc đọc blog giúp tôi mở rộng kiến thức và có được cái nhìn rộng lớn hơn về các vấn đề khác nhau.
+
+[7]
+ENG: Yes, I have. I have taken several <strong>online course</strong>s to <strong>improve my English skills</strong>. They were very convenient.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi đã từng. Tôi đã tham gia một vài khóa học trực tuyến để cải thiện kỹ năng tiếng Anh của mình. Chúng rất tiện lợi.
+
+[8]
+ENG: Yes, I have taken a number of <strong>online course</strong>s, especially related to <strong>language learning</strong> and <strong>professional development</strong>. They allowed me to <strong>learn at my own pace</strong> and <strong>access materials</strong> from anywhere.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi đã tham gia nhiều khóa học trực tuyến, đặc biệt là các khóa học liên quan đến việc học ngôn ngữ và phát triển nghề nghiệp. Chúng cho phép tôi học theo tốc độ của riêng mình và tiếp cận tài liệu từ bất cứ đâu.
+
+[9]
+ENG: Yes, I do. It is <strong>convenient and flexible</strong>. I can study whenever I have <strong>free time</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi thích. Nó tiện lợi và linh hoạt. Tôi có thể học bất cứ khi nào có thời gian rảnh.
+
+[10]
+ENG: Yes, I enjoy online learning because it offers a great deal of <strong>flexibility</strong>. I can <strong>organize my study schedule</strong> according to my needs and learn from <strong>high-quality resources</strong> without having to travel. As a result, it <strong>saves both time and effort</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi thích học trực tuyến vì nó mang lại sự linh hoạt rất lớn. Tôi có thể tự sắp xếp lịch học theo nhu cầu của mình và học hỏi từ các nguồn chất lượng cao mà không cần phải di chuyển. Kết quả là nó tiết kiệm cả thời gian và công sức.
+
+[11]
+ENG: One disadvantage is that students can <strong>get distracted easily</strong>. Another drawback is the <strong>lack of face-to-face interaction</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Một bất lợi là sinh viên dễ bị phân tâm. Một hạn chế khác là thiếu sự tương tác trực tiếp.
+
+[12]
+ENG: One disadvantage is that learners may struggle to <strong>stay focused</strong> because there are many <strong>distractions at home</strong>. In addition, online learning reduces face-to-face interaction, which can make <strong>communication and collaboration</strong> more <strong>challenging</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Một bất lợi là người học có thể gặp khó khăn để tập trung vì có nhiều phiền nhiễu ở nhà. Ngoài ra, việc học trực tuyến làm giảm tương tác trực tiếp, điều này có thể khiến việc giao tiếp và cộng tác trở nên thách thức hơn.
+
+[13]
+ENG: <strong>Hamburgers, fried chicken, pizza, and bubble tea</strong> are very popular in my country, especially among <strong>young people</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Hăm-bơ-gơ, gà rán, pizza và trà sữa rất phổ biến ở nước tôi, đặc biệt là trong giới trẻ.
+
+[14]
+ENG: <strong>Fast food</strong>s such as fried chicken, hamburgers, pizza, and various <strong>convenience foods</strong> are extremely popular, particularly among <strong>young people</strong>. These foods are attractive because they are <strong>convenient, affordable, and widely available</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Thức ăn nhanh như gà rán, bánh mì kẹp thịt, pizza và các loại thực phẩm tiện lợi khác vô cùng phổ biến, đặc biệt là đối với giới trẻ. Những thực phẩm này hấp dẫn vì chúng tiện lợi, giá cả phải chăng và có sẵn ở nhiều nơi.
+
+[15]
+ENG: Many people choose <strong>fast food</strong> because it is convenient and <strong>saves time</strong>. It is also easy to find.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Nhiều người chọn thức ăn nhanh vì nó tiện lợi và tiết kiệm thời gian. Nó cũng rất dễ tìm.
+
+[16]
+ENG: Many people choose <strong>fast food</strong> because it is <strong>quick, convenient</strong>, and often reasonably priced. In today's <strong>busy society</strong>, people may not have enough time to prepare meals at home, so <strong>fast food</strong> becomes an attractive option.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Nhiều người chọn thức ăn nhanh vì nó nhanh chóng, tiện lợi và thường có giá hợp lý. Trong xã hội bận rộn ngày nay, mọi người có thể không có đủ thời gian để chuẩn bị bữa ăn ở nhà, nên thức ăn nhanh trở thành một lựa chọn hấp dẫn.
+
+[17]
+ENG: Governments can organize <strong>health campaigns</strong> and encourage people to <strong>exercise regularly</strong>. They can also educate people about <strong>healthy eating habits</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Chính phủ có thể tổ chức các chiến dịch sức khỏe và khuyến khích người dân tập thể dục thường xuyên. Họ cũng có thể giáo dục người dân về thói quen ăn uống lành mạnh.
+
+[18]
+ENG: Governments can promote healthy lifestyles through <strong>public awareness campaigns</strong>, <strong>nutrition education programs</strong>, and <strong>investments in sports facilities</strong>. In addition, they can encourage <strong>healthier eating habits</strong> by providing better access to <strong>nutritious foods</strong> and supporting <strong>community health initiatives</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Chính phủ có thể thúc đẩy lối sống lành mạnh thông qua các chiến dịch nâng cao nhận thức cộng đồng, các chương trình giáo dục dinh dưỡng và đầu tư vào cơ sở vật chất thể thao. Ngoài ra, họ có thể khuyến khích thói quen ăn uống lành mạnh hơn bằng cách tạo điều kiện tiếp cận tốt hơn với thực phẩm bổ dưỡng và hỗ trợ các sáng kiến sức khỏe cộng đồng.
+

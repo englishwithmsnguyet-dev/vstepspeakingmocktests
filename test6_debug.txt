@@ -1,0 +1,64 @@
+[1]
+ENG: My favorite trip was <strong style="color: #00b0f0;">a trip to Da Nang with my family</strong>. We <strong style="color: #00b0f0;">visited many famous places</strong> and <strong style="color: #00b0f0;">tried local food</strong>. It was <strong style="color: #00b0f0;">a memorable experience</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[2]
+ENG: My favorite trip was <strong style="color: #00b0f0;">a family vacation to Da Nang a few years ago</strong>. We <strong style="color: #00b0f0;">visited some famous places</strong>, <strong style="color: #00b0f0;">enjoyed beautiful beaches</strong>, and <strong style="color: #00b0f0;">experienced the local culture</strong>. It was <strong style="color: #00b0f0;">an unforgettable trip</strong> because I could <strong style="color: #00b0f0;">relax</strong> and <strong style="color: #00b0f0;">spend quality time with my family</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[3]
+ENG: Yes, I do. I <strong style="color: #00b0f0;">enjoy trying local food</strong> because it's usually <strong style="color: #00b0f0;">delicious</strong> and <strong style="color: #00b0f0;">unique</strong>. It also allows me to <strong style="color: #00b0f0;">learn more about the local culture</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[4]
+ENG: Yes, I do. I <strong style="color: #00b0f0;">always try local food</strong>whenever I <strong style="color: #00b0f0;">visit a new place</strong>. The main reason is that it allows me to <strong style="color: #00b0f0;">experience the local culture</strong>. It also helps me <strong style="color: #00b0f0;">discover new flavors</strong> and <strong style="color: #00b0f0;">make my trip more memorable</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[5]
+ENG: I like <strong style="color: #00b0f0;">visiting tourist attractions</strong> and <strong style="color: #00b0f0;">taking photos</strong>. I also enjoy <strong style="color: #00b0f0;">trying local food</strong> and <strong style="color: #00b0f0;">buying souvenirs</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[6]
+ENG: My favorite activities are <strong style="color: #00b0f0;">visiting famous attractions</strong> and <strong style="color: #00b0f0;">trying local food</strong>. I enjoy them because they allow me to <strong style="color: #00b0f0;">have new experiences</strong>. They also help me <strong style="color: #00b0f0;">create unforgettable memories</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[7]
+ENG: I usually <strong style="color: #00b0f0;">recycle plastic bottles</strong>, <strong style="color: #00b0f0;">paper</strong>, and <strong style="color: #00b0f0;">cans</strong>. These items can <strong style="color: #00b0f0;">be reused</strong> and help <strong style="color: #00b0f0;">reduce waste</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[8]
+ENG: I usually <strong style="color: #00b0f0;">recycle plastic bottles</strong>, <strong style="color: #00b0f0;">paper products</strong>, and <strong style="color: #00b0f0;">aluminum cans</strong>. Recycling these materials helps <strong style="color: #00b0f0;">reduce environmental pollution</strong> and <strong style="color: #00b0f0;">encourages a more sustainable lifestyle</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[9]
+ENG: Yes, many people do. They often <strong style="color: #00b0f0;">separate recyclable waste from household rubbish</strong>. This helps <strong style="color: #00b0f0;">keep the environment cleaner</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[10]
+ENG: Yes, they do. Many people in my area recycle because they want to <strong style="color: #00b0f0;">protect the environment</strong>. They often <strong style="color: #00b0f0;">separate recyclable waste from household rubbish</strong>. As a result, the area is <strong style="color: #00b0f0;">becoming cleaner</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[11]
+ENG: The governmentcan <strong style="color: #00b0f0;">organize environmental campaigns and educational programs</strong>. They also <strong style="color: #00b0f0;">place recycling bins in public areas</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[12]
+ENG: Young people should <strong style="color: #00b0f0;">study seriously</strong>, <strong style="color: #00b0f0;">respect their parents</strong>, and <strong style="color: #00b0f0;">help with household chores</strong>. These responsibilities help them <strong style="color: #00b0f0;">become more mature</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[13]
+ENG: Young people should <strong style="color: #00b0f0;">take responsibility for their studies</strong>, <strong style="color: #00b0f0;">respect family members</strong>, and <strong style="color: #00b0f0;">contribute to household tasks</strong>. In addition, they should <strong style="color: #00b0f0;">learn to manage their time effectively</strong> and <strong style="color: #00b0f0;">make responsible decisions</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[14]
+ENG: I think people today are <strong style="color: #00b0f0;">more responsible</strong> because they <strong style="color: #00b0f0;">have more access to education and information</strong>. These things help them <strong style="color: #00b0f0;">understand their duties better</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[15]
+ENG: I think responsibility <strong style="color: #00b0f0;">depends more on individuals than on generations</strong>. However, people today may <strong style="color: #00b0f0;">have greater awareness of their responsibilities</strong> because they <strong style="color: #00b0f0;">have easier access to education</strong>, <strong style="color: #00b0f0;">information</strong>, and <strong style="color: #00b0f0;">social issues</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+
+[16]
+ENG: Parents and schools can <strong style="color: #00b0f0;">give children simple tasks</strong> and <strong style="color: #00b0f0;">encourage them to complete those tasks independently</strong>. They should also <strong style="color: #00b0f0;">teach children to accept responsibility for their actions</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: .
+

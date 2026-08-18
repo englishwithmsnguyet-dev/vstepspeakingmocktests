@@ -1,0 +1,72 @@
+[1]
+ENG: I usually feel sad when I have problems in my studies or when something does not go as planned. It can make me feel disappointed for a short time.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường cảm thấy buồn khi gặp vấn đề trong học tập hoặc khi mọi việc không đi đúng kế hoạch. Nó có thể khiến tôi cảm thấy thất vọng trong một thời gian ngắn.
+
+[2]
+ENG: I usually feel sad when I fail to achieve an important goal or when people close to me face difficulties. These situations can be emotionally challenging. However, I try to stay positive and focus on finding solutions instead of dwelling on the problem.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường cảm thấy buồn khi thất bại trong việc đạt được một mục tiêu quan trọng hoặc khi những người thân thiết với tôi gặp khó khăn. Những tình huống này có thể là thử thách lớn về mặt cảm xúc. Tuy nhiên, tôi cố gắng giữ thái độ tích cực và tập trung vào việc tìm kiếm giải pháp thay vì dằn vặt về vấn đề đó.
+
+[3]
+ENG: I often <strong>listen to music</strong> or talk to my friends. These activities help me <strong>feel better</strong> and reduce stress.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi thường nghe nhạc hoặc trò chuyện với bạn bè. Những hoạt động này giúp tôi cảm thấy tốt hơn và giảm bớt căng thẳng.
+
+[4]
+ENG: When I feel sad, I usually <strong>listen to music</strong>, go for a walk, or talk to someone I trust. These activities help me <strong>clear my mind</strong> and improve my emotional well-being. As a result, I can regain a more positive outlook.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Khi cảm thấy buồn, tôi thường nghe nhạc, đi dạo hoặc trò chuyện với người mà tôi tin tưởng. Những hoạt động này giúp tôi giải tỏa đầu óc và nâng cao sức khỏe cảm xúc của mình. Kết quả là tôi có thể lấy lại một cái nhìn tích cực hơn.
+
+[5]
+ENG: No, I don't think so. Sadness is a normal emotion that everyone experiences. It can help people understand their feelings better.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Không, tôi không nghĩ vậy. Nỗi buồn là một cảm xúc bình thường mà ai cũng trải qua. Nó có thể giúp mọi người hiểu rõ hơn về cảm xúc của mình.
+
+[6]
+ENG: No, I do not think sadness is necessarily a bad emotion. In fact, it can help people reflect on their experiences and better understand themselves. Sometimes, overcoming sadness can even make people more resilient and emotionally mature.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Không, tôi không nghĩ nỗi buồn nhất thiết là một cảm xúc xấu. Thực tế, nó có thể giúp mọi người suy ngẫm về trải nghiệm của họ và hiểu rõ hơn về bản thân. Đôi khi, việc vượt qua nỗi buồn thậm chí có thể giúp mọi người trở nên kiên cường và trưởng thành hơn về mặt cảm xúc.
+
+[7]
+ENG: Yes, I do. I use <strong>AI tools</strong> for studying and searching for information. They help me complete tasks more quickly.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi có. Tôi sử dụng các công cụ AI để học tập và tìm kiếm thông tin. Chúng giúp tôi hoàn thành công việc nhanh chóng hơn.
+
+[8]
+ENG: Yes, I use <strong>AI tools</strong> quite frequently, especially for learning and work-related purposes. They help me access information quickly and improve my productivity. Besides, they can support me when I need explanations or suggestions.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi sử dụng các công cụ AI khá thường xuyên, đặc biệt là cho mục đích học tập và công việc. Chúng giúp tôi tiếp cận thông tin nhanh chóng và nâng cao năng suất. Ngoài ra, chúng có thể hỗ trợ tôi khi tôi cần giải thích hoặc gợi ý.
+
+[9]
+ENG: I think it is very useful. AI can help learners practice vocabulary, grammar, and pronunciation. It also makes learning more convenient.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi nghĩ nó rất hữu ích. AI có thể giúp người học thực hành từ vựng, ngữ pháp và phát âm. Nó cũng làm cho việc học tập trở nên thuận tiện hơn.
+
+[10]
+ENG: I think AI is a valuable tool for learning English. It provides <strong>instant feedback</strong>, <strong>personalized learning</strong> opportunities, and access to a wide range of resources. As a result, learners can develop their language skills more efficiently.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Tôi nghĩ AI là một công cụ có giá trị để học tiếng Anh. Nó cung cấp phản hồi tức thì, cơ hội học tập cá nhân hóa và quyền tiếp cận với một loạt các tài nguyên. Kết quả là người học có thể phát triển kỹ năng ngôn ngữ của mình một cách hiệu quả hơn.
+
+[11]
+ENG: No, I don't think so. AI can <strong>support learning</strong>, but teachers can understand <strong>students' needs and emotions</strong> better.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Không, tôi không nghĩ vậy. AI có thể hỗ trợ học tập, nhưng giáo viên có thể hiểu được nhu cầu và cảm xúc của học sinh tốt hơn.
+
+[12]
+ENG: No, I do not believe AI can completely <strong>replace human teachers</strong>. Although AI can provide information and learning support, teachers play an important role in motivating students, addressing individual needs, and creating meaningful learning experiences. Therefore, AI should be viewed as a helpful tool rather than a replacement.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Không, tôi không tin AI có thể thay thế hoàn toàn giáo viên con người. Mặc dù AI có thể cung cấp thông tin và hỗ trợ học tập, giáo viên đóng vai trò quan trọng trong việc thúc đẩy học sinh, giải quyết các nhu cầu cá nhân và tạo ra trải nghiệm học tập có ý nghĩa. Do đó, AI nên được xem như một công cụ hữu ích hơn là một sự thay thế.
+
+[13]
+ENG: Yes, I think they should. Internships help students gain practical experience and <strong>prepare for future careers</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi nghĩ họ nên làm vậy. Thực tập giúp sinh viên tích lũy kinh nghiệm thực tế và chuẩn bị cho sự nghiệp tương lai.
+
+[14]
+ENG: Yes, I believe internships should be encouraged before graduation because they allow students to gain valuable experience and apply classroom knowledge in real-world situations. As a result, students can be better prepared for the job market.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Vâng, tôi tin rằng kỳ thực tập nên được khuyến khích trước khi tốt nghiệp vì chúng cho phép sinh viên tích lũy kinh nghiệm quý giá và áp dụng kiến thức lớp học vào các tình huống thực tế. Kết quả là sinh viên có thể chuẩn bị tốt hơn cho thị trường việc làm.
+
+[15]
+ENG: Internships help students <strong>develop useful skills</strong> and <strong>gain work experience</strong>. This can make them <strong>more attractive to employers</strong>.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Thực tập giúp sinh viên phát triển các kỹ năng hữu ích và tích lũy kinh nghiệm làm việc. Điều này có thể làm cho họ trở nên hấp dẫn hơn đối với các nhà tuyển dụng.
+
+[16]
+ENG: Internships can significantly improve future job opportunities because they provide practical experience, <strong>professional network</strong>s, and industry knowledge. These advantages often make candidates more competitive when applying for jobs.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Thực tập có thể cải thiện đáng kể cơ hội việc làm trong tương lai vì chúng cung cấp kinh nghiệm thực tế, mạng lưới chuyên nghiệp và kiến thức ngành. Những lợi thế này thường giúp ứng viên cạnh tranh hơn khi nộp đơn xin việc.
+
+[17]
+ENG: <strong>Universities</strong> can <strong>cooperate with companies</strong> and provide more internship opportunities. They can also offer guidance before students start their internships.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Các trường đại học có thể hợp tác với các công ty và cung cấp nhiều cơ hội thực tập hơn. Họ cũng có thể đưa ra hướng dẫn trước khi sinh viên bắt đầu thực tập.
+
+[18]
+ENG: <strong>Universities</strong> can strengthen partnerships with companies to provide <strong>high-quality internship</strong> opportunities. In addition, they should offer career guidance, preparation <strong>workshop</strong>s, and ongoing support to ensure students gain meaningful experiences from their internships.                                             <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+VIE: Các trường đại học có thể tăng cường quan hệ đối tác với các công ty để cung cấp các cơ hội thực tập chất lượng cao. Ngoài ra, họ nên đưa ra các hướng dẫn nghề nghiệp, hội thảo chuẩn bị và hỗ trợ liên tục để đảm bảo sinh viên có được những trải nghiệm ý nghĩa từ kỳ thực tập của mình.
+

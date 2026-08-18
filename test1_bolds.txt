@@ -1,0 +1,106 @@
+--- Ans 0 ---
+Bolds: ['eat street food in the evening with my friends', 'delicious', 'affordable', 'try different local dishes', 'Vietnamese meaning']
+Trans: Vâng, tôi có. Tôi thường ăn thức ăn đường phố vào buổi tối cùng với bạn bè. Tôi thích nó vì nó ngon và giá cả phải chăng. Nó cũng cho tôi cơ hội thử các món ăn địa phương khác nhau.
+--- Ans 1 ---
+Bolds: ['enjoy eating street food whenever I have free time', 'especially in the evening', 'delicious', 'affordable', 'easy to find', 'experience local culture and cuisine', 'Vietnamese meaning']
+Trans: Vâng, tôi có. Tôi thích ăn thức ăn đường phố bất cứ khi nào có thời gian rảnh. Nó thường ngon, rẻ và dễ tìm. Ngoài ra, việc thử các món ăn đường phố khác nhau giúp tôi trải nghiệm văn hóa và ẩm thực địa phương.
+--- Ans 2 ---
+Bolds: ['bánh mì', 'phở', 'bánh xèo', 'tasty', 'easy to find', 'Vietnamese meaning']
+Trans: Có rất nhiều món ăn đường phố nổi tiếng ở nước tôi. Một số món phổ biến là bánh mì, phở và bánh tráng nướng. Nhiều người thích chúng vì chúng ngon và dễ tìm.
+--- Ans 3 ---
+Bolds: ['bánh mì', 'phở', 'bánh xèo', 'flavorful', 'convenient', 'reasonably', 'priced', 'considered important parts of Vietnamese food culture', 'Vietnamese meaning']
+Trans: Có rất nhiều món ăn đường phố nổi tiếng ở Việt Nam, như bánh mì, phở và bánh tráng nướng. Những món ăn này phổ biến vì chúng đậm đà hương vị, tiện lợi và giá cả hợp lý. Chúng cũng được coi là phần quan trọng của văn hóa ẩm thực Việt Nam.
+--- Ans 4 ---
+Bolds: ['cheaper than eating at restaurants', 'saves time', 'prepared quickly', 'experience local culture through traditional dishes', 'Vietnamese meaning']
+Trans: Một lợi ích là nó thường rẻ hơn so với ăn ở nhà hàng. Một ưu điểm khác là tiết kiệm thời gian vì thức ăn được chuẩn bị nhanh chóng. Nó cũng giúp mọi người trải nghiệm văn hóa địa phương thông qua các món ăn truyền thống.
+--- Ans 5 ---
+Bolds: ['more affordable than restaurant meals', 'convenient', 'buy food quickly', 'learn more about local traditions and culinary culture', 'Vietnamese meaning']
+Trans: Một lợi ích lớn là thức ăn đường phố thường có giá phải chăng hơn bữa ăn ở nhà hàng. Ngoài ra, nó rất tiện lợi vì mọi người có thể mua đồ ăn nhanh chóng khi bận rộn. Hơn nữa, thức ăn đường phố giúp mọi người tìm hiểu thêm về truyền thống địa phương và văn hóa ẩm thực.
+--- Ans 6 ---
+Bolds: ['usually go to coffee shops', 'in my free time', 'especially', 'on weekends', 'enjoy the', 'relaxing atmosphere', 'reduce stress after a busy week', 'Vietnamese meaning']
+Trans: Vâng, tôi có. Tôi thường đi cà phê vào cuối tuần. Tôi tận hưởng không khí thư giãn, và điều đó giúp tôi giảm bớt căng thẳng sau một tuần bận rộn.
+--- Ans 7 ---
+Bolds: ['visit coffee shops in my free time', 'especially on weekends', 'provide a comfortable and relaxing', 'atmosphere', 'unwind', 'enjoy a drink', 'escape from daily stress', 'Vietnamese meaning']
+Trans: Vâng, tôi có. Tôi thường ghé các quán cà phê trong thời gian rảnh vì chúng mang lại không gian thoải mái và thư giãn. Đó là những nơi tuyệt vời để giải tỏa đầu óc, thưởng thức đồ uống và thoát khỏi căng thẳng hàng ngày.
+--- Ans 8 ---
+Bolds: ['go there with my friends', 'chat about our studies and daily lives', 'strengthen our friendship', 'Vietnamese meaning']
+Trans: Tôi thường đến đó với bạn bè. Chúng tôi thường trò chuyện về việc học tập và cuộc sống hàng ngày. Đó là một cách tốt để thắt chặt tình bạn của chúng tôi.
+--- Ans 9 ---
+Bolds: ['go there with my friends or', 'co-workers', 'catch up', 'exchange', 'ideas', 'spend time together', 'strengthen our relationships', 'Vietnamese meaning']
+Trans: Tôi thường đến đó với bạn bè hoặc đồng nghiệp. Chúng tôi thường gặp nhau để cập nhật tin tức, trao đổi ý kiến, hoặc đơn giản là dành thời gian bên nhau. Những cuộc gặp gỡ này giúp củng cố mối quan hệ của chúng tôi.
+--- Ans 10 ---
+Bolds: ['drink coffee', 'talk with my friends', 'read books', 'do some', 'work', 'stay focused and productive', 'Vietnamese meaning']
+Trans: Tôi thường uống cà phê và nói chuyện với bạn bè. Đôi khi, tôi cũng đọc sách hoặc làm việc. Nó giúp tôi tập trung và làm việc hiệu quả hơn.
+--- Ans 11 ---
+Bolds: ['enjoy a cup of coffee while reading books', 'working on my tasks', 'chatting with friends', 'use the quiet atmosphere to concentrate on important work', 'Vietnamese meaning']
+Trans: Tôi thường thưởng thức một tách cà phê khi đang đọc sách, làm việc hoặc trò chuyện với bạn bè. Đôi khi, tôi cũng tận dụng không gian yên tĩnh để tập trung vào những công việc quan trọng.
+--- Ans 12 ---
+Bolds: ['suggest what my brother should do after graduation', 'recommend', 'going to work', 'Vietnamese meaning']
+Trans: À, nếu tôi phải đưa ra lời khuyên về những gì em trai tôi nên làm sau khi tốt nghiệp, tôi sẽ khuyên anh ấy đi làm.
+
+Trước hết, đi làm giúp anh ấy tích lũy kinh nghiệm thực tế. Thực tế, anh ấy có thể học hỏi các kỹ năng chuyên môn và hiểu rõ môi trường làm việc thực tế. Từ đó, anh ấy chuẩn bị tốt hơn cho sự nghiệp tương lai.
+
+Thứ hai, anh ấy có thể kiếm tiền và trở nên độc lập hơn. Kết quả là, anh ấy tự nuôi sống bản thân và giảm gánh nặng tài chính cho gia đình.
+
+Tôi không khuyên học thạc sĩ vì việc này có thể tốn kém. Ngoài ra, anh ấy có thể cần một số kinh nghiệm làm việc trước khi tiếp tục học tập.
+
+Còn về việc nghỉ một năm (gap year), phương án này kém phù hợp hơn vì anh ấy có thể mất động lực và lãng phí thời gian quý báu.
+
+Tóm lại, tôi tin rằng đi làm là lựa chọn tốt nhất trong tình huống này.
+--- Ans 13 ---
+Bolds: ['suggest what my brother should do after graduation', 'recommend', 'going to work', 'Vietnamese meaning']
+Trans: À, nếu tôi phải gợi ý những gì em trai tôi nên làm sau khi tốt nghiệp, tôi sẽ khuyên anh ấy đi làm.
+
+Trước hết, việc có một công việc sẽ giúp anh ấy tích lũy được những kinh nghiệm thực tế quý báu. Bằng cách làm việc trong môi trường chuyên nghiệp, anh ấy có thể phát triển các kỹ năng quan trọng, học cách vận hành của doanh nghiệp và hiểu rõ hơn về sở thích nghề nghiệp của mình. Kinh nghiệm này sẽ rất hữu ích cho sự phát triển lâu dài của anh ấy.
+
+Thứ hai, đi làm giúp anh ấy trở nên độc lập về tài chính. Anh ấy có thể tự kiếm thu nhập, tự trang trải cuộc sống và giảm bớt gánh nặng tài chính cho gia đình. Ngoài ra, đi làm có thể giúp anh ấy xây dựng mạng lưới quan hệ chuyên nghiệp cho các cơ hội tương lai.
+
+Tôi không khuyên học thạc sĩ vì nó đòi hỏi sự đầu tư lớn về thời gian và tiền bạc. Nếu không có đủ kinh nghiệm làm việc, anh ấy có thể không được hưởng lợi đầy đủ từ việc học nâng cao.
+
+Còn về việc nghỉ một năm (gap year), phương án này ít phù hợp hơn vì anh ấy có thể mất thói quen học tập và làm việc. Hơn nữa, việc dành một năm không có mục tiêu rõ ràng có thể làm chậm tiến trình sự nghiệp.
+
+Tóm lại, tôi tin rằng đi làm là lựa chọn tốt nhất trong tình huống này.
+--- Ans 14 ---
+Bolds: ['benefits', 'having lunch at the school canteen', 'Vietnamese meaning']
+Trans: Ăn trưa tại căng tin trường học mang lại một số lợi ích.
+
+Một ưu điểm lớn là nó rất tiện lợi. Điều này là do học sinh không cần phải rời trường để tìm kiếm thức ăn. Nhờ vậy, họ có thể ăn trưa dễ dàng và thoải mái hơn.
+
+Một khía cạnh tích cực khác là tiết kiệm thời gian. Vì căng tin nằm trong khuôn viên trường nên học sinh có thể mua bữa ăn nhanh chóng. Do đó, họ có nhiều thời gian hơn để nghỉ ngơi hoặc chuẩn bị cho các tiết học tiếp theo.
+
+Một tác động có lợi nữa là các bữa ăn tại căng tin thường rẻ. Điều này có nghĩa là học sinh có thể thưởng thức bữa trưa với giá cả hợp lý. Điều này giúp họ tiết kiệm tiền.
+
+Một lợi ích bổ sung là học sinh có thể dành nhiều thời gian hơn cho bạn bè của mình. Ví dụ, họ có thể ăn trưa cùng nhau và trò chuyện về việc học tập hoặc cuộc sống hàng ngày. Kết quả là, họ có thể xây dựng các mối quan hệ bền chặt hơn.
+
+Tóm lại, ăn trưa tại căng tin trường học có một số lợi ích rõ ràng như đã nêu trên.
+--- Ans 15 ---
+Bolds: ['benefits', 'having lunch at the school canteen', 'Vietnamese meaning']
+Trans: Ăn trưa tại căng tin trường học mang lại một số lợi ích.
+
+Một ưu điểm lớn là nó cực kỳ tiện lợi cho học sinh. Vì căng tin nằm ngay trong khuôn viên trường nên học sinh không cần di chuyển ra ngoài để mua đồ ăn. Điều này giúp giờ ăn trưa trở nên thoải mái và ít căng thẳng hơn.
+
+Một khía cạnh tích cực khác là ăn uống tại căng tin giúp tiết kiệm một lượng thời gian đáng kể. Điều này là do học sinh có thể nhanh chóng mua bữa ăn của mình và quay lại với các hoạt động học tập. Nhờ vậy, họ có nhiều thời gian hơn để thư giãn hoặc chuẩn bị cho các bài học sắp tới.
+
+Một tác động có lợi nữa là các bữa ăn ở căng tin thường có giá cả phải chăng. So với nhiều nhà hàng hoặc quán cà phê, đồ ăn căng tin thường có giá hợp lý. Do đó, học sinh có thể quản lý chi tiêu hàng ngày hiệu quả hơn.
+
+Một lợi ích bổ sung là học sinh có thể dành nhiều thời gian hơn cho bạn bè của họ. Việc ăn trưa cùng nhau mang lại cơ hội giao lưu và tương tác xã hội. Do đó, học sinh có thể củng cố tình bạn và phát triển các mối quan hệ tốt hơn với bạn học của mình.
+
+Tóm lại, ăn trưa tại căng tin trường học có một số lợi ích rõ ràng như đã nêu trên.
+--- Ans 16 ---
+Bolds: ['provide', 'delicious', 'and affordable food', 'offer more food', 'choices', 'choose to eat there', 'Vietnamese meaning']
+Trans: Tôi nghĩ nhà trường nên cung cấp thức ăn ngon và đa dạng thực đơn. Họ cũng nên giữ giá cả phải chăng và duy trì môi trường ăn uống sạch sẽ. Kết quả là, nhiều học sinh hơn có thể chọn ăn tại căng tin.
+--- Ans 17 ---
+Bolds: ['improving both the quality and variety of food', 'maintaining reasonable prices and a clean environment', 'collect students’ feedback to better meet their needs', 'Vietnamese meaning']
+Trans: Trường học có thể thu hút nhiều học sinh hơn bằng cách cải thiện cả chất lượng và sự đa dạng của thực phẩm. Ngoài ra, việc duy trì giá cả hợp lý và môi trường sạch sẽ là rất quan trọng. Nhà trường cũng nên thường xuyên thu thập phản hồi của học sinh để đáp ứng nhu cầu của họ tốt hơn.
+--- Ans 18 ---
+Bolds: ['may be crowded during lunchtime', 'have limited food', 'choices', 'may not enjoy eating there', 'Vietnamese meaning']
+Trans: Một bất lợi là căng tin có thể rất đông đúc trong giờ ăn trưa. Học sinh có thể phải đợi lâu để mua đồ ăn. Một hạn chế khác là một số học sinh có thể không thích sự lựa chọn đồ ăn bị hạn chế.
+--- Ans 19 ---
+Bolds: ['school canteens are often crowded', 'especially during peak', 'hours', 'spend time waiting in long lines', 'may not always satisfy different tastes or dietary needs', 'Vietnamese meaning']
+Trans: Một bất lợi là căng tin trường học thường đông đúc, đặc biệt là vào giờ cao điểm. Kết quả là học sinh phải tốn thời gian xếp hàng chờ đợi lâu. Một hạn chế khác là thực đơn có thể không phải lúc nào cũng thỏa mãn các khẩu vị hoặc nhu cầu ăn kiêng khác nhau.
+--- Ans 20 ---
+Bolds: ['use fresh ingredients', 'keep the canteen clean', 'stay healthy', 'Vietnamese meaning']
+Trans: Nhà trường nên sử dụng nguyên liệu tươi ngon và tuân thủ các quy định về an toàn thực phẩm. Họ cũng nên giữ nhà bếp sạch sẽ và thường xuyên kiểm tra chất lượng thực phẩm. Ngoài ra, nhà trường nên cung cấp các bữa ăn cân bằng với rau, thịt và trái cây.
+--- Ans 21 ---
+Bolds: ['strictly follow food safety standards', 'regularly inspect the quality of', 'ingredients', 'ensure that food is prepared in a clean environment by trained staff', 'provide balanced meals containing sufficient', 'nutrients', 'Vietnamese meaning']
+Trans: Nhà trường nên tuân thủ nghiêm ngặt các tiêu chuẩn an toàn thực phẩm và thường xuyên kiểm tra chất lượng nguyên liệu. Họ cũng nên đảm bảo thức ăn được chuẩn bị trong môi trường sạch sẽ bởi nhân viên được đào tạo. Hơn nữa, nhà trường nên cung cấp các bữa ăn cân đối chứa đầy đủ chất dinh dưỡng để hỗ trợ sức khỏe và sự phát triển của học sinh.

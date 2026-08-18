@@ -1,0 +1,102 @@
+[B|None]   PART 01: SOCIAL INTERACTION 
+[_|None] Let's talk about  | [B|None] remembering things | [_|None] :
+[_|None] • How do you usually remember important things?
+[_|None] • Have you ever forgotten something important? What happened?
+[_|None] • Do you think people remember things better now or in the past? Why?
+[_|None] Let's talk about  | [B|None] public transport | [_|None] :
+[_|None] • Do you often use public transport?
+[_|None] • Do you prefer public transport or private vehicles? Why?
+[_|None] • What are the advantages of using public transport?
+[B|None]    PART 02: SOLUTION DISCUSSION | [_|None] 	
+[B|None]   PART 03: TOPIC DEVELOPMENT
+[B|None] TOPIC:  | [_|None] There are several ways to make the world a better place | [_|None] .
+[B|None] Follow-up questions:
+[_|None] - | [_|None]  What environmental problems are most serious in your country?
+[_|None] - | [_|None]  Do you think individuals or the government should take more responsibility for improving society? 
+[_|None] - | [_|None]  How can young people help create a better future for the world? | [_|None]  
+[B|None] PART 1 – SOCIAL INTERACTION
+[B|None] Let's talk about remembering things
+[B|None] 1. How do you usually remember important things?
+[B|None] B1 LEVEL
+[_|None] I usually  | [B|00B0F0] write important things in a notebook | [_|None] . It helps me  | [B|00B0F0] remember my tasks and | [_|None]   | [B|00B0F0] appointments | [_|None] . I  | [B|00B0F0] check it every day | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I usually  | [B|00B0F0] use a notebook or my phone to keep track of important things | [_|None] . Writing things down helps me  | [B|00B0F0] stay organized | [_|None]  and  | [B|00B0F0] avoid forgetting important tasks | [_|None] . It is a habit that I find very useful.
+[B|None] 2. Have you ever forgotten something important? What happened?
+[B|None] B1 LEVEL
+[_|None] Yes, I have. Once, I  | [B|00B0F0] forgot my friend's birthday | [_|None] . She was  | [B|00B0F0] a little disappointed | [_|None] . I  | [B|00B0F0] apologized | [_|None]   | [_|None] and  | [B|00B0F0] bought her a small gift later | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Yes, I have. A few years ago, I  | [B|00B0F0] forgot an important meeting | [_|None]   | [_|None] because I  | [B|00B0F0] did | [B|00B0F0] n’ | [B|00B0F0] t check | [_|None]   | [_|None] my  | [B|00B0F0] schedule carefully | [_|None] . As a result, I  | [B|00B0F0] arrived late | [_|None]   | [_|None] and  | [B|00B0F0] had to apologize | [_|None] . Since then, I  | [B|00B0F0] have | [_|None]   | [B|00B0F0] become more careful about managing my time | [_|None] .
+[B|None] 3. Do you think people remember things better now or in the past? Why?
+[B|None] B1 LEVEL
+[_|None] I think  | [B|00B0F0] people remembered things better in the past | [_|None] . They  | [B|00B0F0] did | [B|00B0F0] n’ | [B|00B0F0] t depend on technology | [_|None]   | [B|00B0F0] as much as we do today | [_|None] . As a result, they  | [B|00B0F0] had to remember things by themselves | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I believe people  | [B|00B0F0] remembered things better in the past | [_|None]   | [_|None] because they  | [B|00B0F0] relied more on their | [_|None]   | [B|00B0F0] memory | [_|None] . Nowadays, many people  | [B|00B0F0] depend heavily on smartphones and digital devices | [_|None] . This can  | [B|00B0F0] make them less likely to remember information on their own | [_|None] .
+[B|None] Let's talk about public transport
+[B|None] 1. Do you often use public transport?
+[B|None] B1 LEVEL
+[_|None] Yes, I do. I  | [B|00B0F0] sometimes use buses to get around the city | [_|None] . They are  | [B|00B0F0] easy to use | [_|None]   | [_|None] and  | [B|00B0F0] available | [_|None]   | [B|00B0F0] in many areas | [_|None] . I usually  | [B|00B0F0] choose them for short trips | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Yes, I do. I  | [B|00B0F0] sometimes use public transport | [_|None] , especially  | [B|00B0F0] buses | [_|None] , to  | [B|00B0F0] get around the city | [_|None] . It is  | [B|00B0F0] a convenient option for short trips | [_|None] . Besides, I  | [B|00B0F0] do | [B|00B0F0] n’ | [B|00B0F0] t have to worry about parking | [_|None] .
+[B|None] 2. Do you prefer public transport or private vehicles? Why?
+[B|None] B1 LEVEL
+[_|None] I  | [B|00B0F0] prefer private vehicles | [_|None] . They are  | [B|00B0F0] more convenient and flexible | [_|None] . I can  | [B|00B0F0] travel whenever | [_|None]   | [B|00B0F0] I want | [_|None] . They also  | [_|None] help me  | [B|00B0F0] save time | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I | [_|None]   | [B|00B0F0] prefer private vehicles | [_|None]   | [_|None] because they  | [B|00B0F0] give me more freedom when traveling | [_|None] .  | [_|None] This means  | [_|None] I  | [B|00B0F0] don't have to follow a fixed schedule  | [_|None] or  | [B|00B0F0] wait for public transport | [_|None] . This  | [_|None] helps  | [_|None]  me | [_|None]   | [B|00B0F0] save | [B|00B0F0]  a lot of time | [_|None] , especially on busy | [B|00B0F0]  days | [_|None] .
+[B|None] 3. What are the advantages of using public transport?
+[B|None] B1 LEVEL
+[_|None] Public transport has many benefits. It helps people  | [B|00B0F0] save money | [_|None] . It also  | [B|00B0F0] reduces traffic | [_|None]   | [B|00B0F0] jams | [_|None]   | [_|None] and  | [B|00B0F0] protects the environment | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Public transport offers several advantages. It allows people to  | [B|00B0F0] save money on | [_|None]   | [B|00B0F0] transportation costs | [_|None] . It can also  | [B|00B0F0] reduce traffic congestion | [_|None]   | [_|None] and help  | [B|00B0F0] protect the | [_|None]   | [B|00B0F0] environment | [_|None]   | [_|None] by lowering pollution levels.
+[B|None] PART 2 – SOLUTION DISCUSSION
+[B|None] Situation
+[_|None] You want to improve your English skills. You are considering three options:
+[_|None] joining an English club 
+[_|None] talking with native speakers 
+[_|None] travelling abroad 
+[_|None] Which option do you think is the most effective, and why?
+[B|None] B1 LEVEL
+[_|None] Well, if I had to  | [B|EE0000] choose a way to improve my English skills | [_|None] , I would  | [B|EE0000] go for joining an English club | [_|None] .
+[_|None] First of all,  | [B|00B0F0] it | [B|00B0F0] ’ | [B|00B0F0] s an educational activity | [_|None]  because it gives me a chance to  | [B|00B0F0] practice English | [_|None]   | [B|00B0F0] regularly | [_|None] . I can  | [B|00B0F0] learn new words | [_|None]  and  | [B|00B0F0] improve my speaking skills | [_|None] . So, I can  | [B|00B0F0] become more | [_|None]   | [B|00B0F0] confident in using English | [_|None] .
+[_|None] Secondly,  | [B|00B0F0] it | [B|00B0F0] ’ | [B|00B0F0] s a social activity | [_|None]   | [_|None] because I can  | [B|00B0F0] meet people who have the same interest in | [_|None]   | [B|00B0F0] English | [_|None] . We can  | [B|00B0F0] learn from each other | [_|None]   | [_|None] and  | [B|00B0F0] share useful experiences | [_|None] . So, I can  | [B|00B0F0] stay | [_|None]   | [B|00B0F0] motivated to learn English | [_|None] .
+[_|None] I wouldn’t choose  | [B|70AD47] talking with native speakers | [_|None]   | [_|None] because  | [B|70AD47] I may not have many chances to | [_|None]   | [B|70AD47] meet them | [_|None] . As for  | [B|7030A0] travelling abroad | [_|None] , | [_|None]  it’s less suitable becaus | [_|None]   | [B|7030A0] it can be very expensive | [_|None] .
+[_|None] In short, I believe  | [B|EE0000] joining an English club | [_|None]   | [_|None] is the best choice for this situation.
+[B|None] B2 LEVEL
+[_|None] Well, if I had to  | [B|EE0000] choose a way to improve my English skills | [_|None] , I would  | [B|EE0000] go for joining an English club | [_|None] .
+[_|None] First of all,  | [B|00B0F0] it’s an educational activity | [_|None]   | [_|None] because it allows me to  | [B|00B0F0] practice speaking English | [_|None]   | [B|00B0F0] regularly | [_|None] . Besides, it helps me  | [B|00B0F0] improve pronunciation and communication skills | [_|None] . This way, I can  | [B|00B0F0] become more confident when using English | [_|None] .
+[_|None] Secondly,  | [B|00B0F0] it’s a social activity | [_|None]   | [_|None] because it gives me a chance to  | [B|00B0F0] meet people with similar | [_|None]   | [B|00B0F0] interests | [_|None] . Moreover, I can  | [B|00B0F0] share learning experiences | [_|None]   | [_|None] and  | [B|00B0F0] discuss different topics in | [_|None]   | [B|00B0F0] English | [_|None] . As a result, I can  | [B|00B0F0] stay motivated | [_|None]   | [_|None] and  | [B|00B0F0] improve my English more effectively | [_|None] .
+[_|None] I wouldn’t choose  | [B|70AD47] travelling abroad | [_|None]   | [_|None] because  | [B|70AD47] it may be too expensive | [_|None] . As for  | [B|7030A0] talking with native speakers | [_|None] , it’s less suitable because  | [B|7030A0] some learners may feel shy or nervous | [_|None]   | [B|7030A0] when speaking with strangers | [_|None] .
+[_|None] In short, I believe  | [B|EE0000] joining an English club | [_|None]   | [_|None] is the best choice for this situation.
+[B|None] PART 3 – TOPIC DEVELOPMENT
+[B|None] There are several ways to make the world a better place.
+[_|None] reduce pollution 
+[_|None] do volunteer work 
+[_|None] follow laws and regulations 
+[_|None] (your own idea) 
+[B|None] B1 LEVEL
+[_|None] There are some  | [B|EE0000] ways | [_|None]   | [_|None] to  | [B|EE0000] make the world a better place | [_|None] .
+[_|None] One effective measure is to  | [B|00B0F0] reduce pollution | [_|None] .  | [_|None] For example, p | [_|None] eople should  | [B|00B0F0] use less plastic | [_|None]   | [_|None] and  | [B|00B0F0] recycle | [_|None]   | [B|00B0F0] more waste | [_|None] . As a result, the environment can  | [B|00B0F0] become cleaner | [_|None] .
+[_|None] Another practical method is to  | [B|00B0F0] do volunteer work | [_|None] .  | [_|None] For instance, p | [_|None] eople can  | [B|00B0F0] help  | [B|00B0F0] needy | [B|00B0F0]  families | [_|None]   | [_|None] and  | [B|00B0F0] support community activities | [_|None] . Therefore, society can  | [B|00B0F0] become more caring | [_|None]   | [B|00B0F0] and | [_|None]   | [B|00B0F0] supportive | [_|None] .
+[_|None] One more useful approach is to  | [B|00B0F0] follow laws and regulations | [_|None] . This helps  | [B|00B0F0] maintain order | [_|None]   | [B|00B0F0] and | [_|None]   | [B|00B0F0] safety in society | [_|None] . As a result, people can  | [B|00B0F0] enjoy a better quality of life | [_|None] .
+[_|None] In short, there are | [_|None]  some | [_|None]   | [B|EE0000] effective ways | [_|None]   | [_|None] to  | [B|EE0000] make the world a better place | [_|None] , as mentioned above.
+[B|None] B2 LEVEL
+[_|None] There are  | [_|None] some | [_|None]   | [B|EE0000] ways | [_|None]   | [_|None] to  | [B|EE0000] make the world a better place | [_|None] .
+[_|None] One effective measure is to  | [B|00B0F0] reduce pollution | [_|None] . | [_|None]  For example, p | [_|None] eople can  | [B|00B0F0] recycle waste | [_|None]   | [_|None] and  | [B|00B0F0] use | [_|None]   | [B|00B0F0] environmentally friendly products | [_|None] . | [_|None]   | [_|None] As a result, the environment can  | [B|00B0F0] become cleaner | [_|None]   | [B|00B0F0] and healthier | [_|None] .
+[_|None] Another practical method is to  | [B|00B0F0] do volunteer work | [_|None] . | [_|None]  For instance, v | [_|None] olunteers can  | [B|00B0F0] help  | [B|00B0F0] needy | [_|None]   | [B|00B0F0] people | [_|None]   | [_|None] and  | [B|00B0F0] support community activities | [_|None] . | [_|None]   | [_|None] This can  | [B|00B0F0] improve people's lives | [_|None]   | [_|None] and  | [B|00B0F0] strengthen communities | [_|None] .
+[_|None] One more useful approach is to  | [B|00B0F0] follow laws and regulations | [_|None] . | [_|None]   | [_|None] When people  | [B|None] obey the law | [_|None] , society  | [B|00B0F0] becomes more organized and stable | [_|None] . | [_|None]   | [_|None] Therefore, everyone can  | [B|00B0F0] live in a safer | [_|None]   | [B|00B0F0] environment | [_|None] .
+[_|None] In short, there are  | [_|None] some | [_|None]   | [B|EE0000] effective ways | [_|None]   | [_|None] to  | [B|EE0000] make the world a better place | [_|None] .
+[B|None] FOLLOW-UP QUESTIONS
+[B|None] 1. What environmental problems are most serious in your country?
+[B|None] B1 LEVEL
+[_|None] I think  | [B|00B0F0] air pollution | [_|None]   | [_|None] is  | [B|00B0F0] one of the most serious environmental problems in my country | [_|None] . It  | [B|00B0F0] affects people's health | [_|None]   | [B|00B0F0] and quality of life | [_|None] . In some cities,  | [B|00B0F0] the air is not very clean | [_|None] .
+[B|None] B2 LEVEL
+[_|None] In my opinion,  | [B|00B0F0] air pollution | [_|None]   | [_|None] and  | [B|00B0F0] water pollution | [_|None]   | [_|None] are the most serious environmental problems. | [_|None]   | [_|None] They can  | [B|00B0F0] affect people's health | [_|None]  and  | [B|00B0F0] damage ecosystems | [_|None] . | [_|None]   | [_|None] As a result, many communities  | [B|00B0F0] face environmental challenges | [_|None] .
+[B|None] 2. Do you think individuals or the government should take more responsibility for improving society?
+[B|None] B1 LEVEL
+[_|None] I think  | [B|00B0F0] both should take responsibility | [_|None] .  | [B|00B0F0] The government | [_|None]   | [_|None] can  | [B|00B0F0] create laws and policies | [_|None] .  | [B|00B0F0] Individuals | [_|None]   | [_|None] should  | [B|00B0F0] follow the rules | [_|None]  and  | [B|00B0F0] contribute to society | [_|None] .
+[B|None] B2 LEVEL
+[_|None] I think  | [B|00B0F0] both individuals and the government | [_|None]   | [_|None] should  | [B|00B0F0] share responsibility | [_|None] . | [_|None]   | [_|None] The government can  | [B|00B0F0] create policies | [_|None] , while individuals can  | [B|00B0F0] take positive actions in daily life | [_|None] . | [_|None]   | [_|None] Only through  | [B|00B0F0] cooperation | [_|None]   | [_|None] can society  | [B|00B0F0] improve effectively | [_|None] .
+[B|None] 3. How can young people help create a better future for the world?
+[B|None] B1 LEVEL
+[_|None] Young people can help by  | [B|00B0F0] protecting the environment | [_|None]   | [_|None] and  | [B|00B0F0] helping others | [_|None] . They can also  | [B|00B0F0] study hard | [_|None]   | [_|None] and  | [B|00B0F0] develop useful skills | [_|None] . These actions can  | [B|00B0F0] make society better | [_|None] .
+[B|None] B2 LEVEL
+[_|None] Young people can help by  | [B|00B0F0] protecting the environment | [_|None]   | [_|None] and  | [B|00B0F0] participating in volunteer | [_|None]   | [B|00B0F0] activities | [_|None] . | [_|None]   | [_|None] They can also  | [B|00B0F0] continue learning and developing useful skills | [_|None] . | [_|None]   | [_|None] In this way, they can  | [B|00B0F0] make positive contributions to society in the future | [_|None] .

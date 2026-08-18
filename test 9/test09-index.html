@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<script>
+        // Block flash of protected content
+        (function() {
+            const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+            const testId = pathMatch ? parseInt(pathMatch[1]) : 1;
+            const TEST_PASSWORDS = {};
+            if (TEST_PASSWORDS[testId] && sessionStorage.getItem('unlocked_test_' + testId) !== 'true') {
+                document.documentElement.style.display = 'none';
+            }
+        })();
+    </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPEAKING MOCK TEST 09 - ENGLISHWITHMISSNGUYET</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome for Premium Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="styles.css?v=1782327221" rel="stylesheet"/>
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<nav class="test-sidebar">
+<div class="sidebar-header">
+<i class="fa-solid fa-list-check"></i> <span>VSTEP MOCK TESTS</span>
+</div>
+<ul class="test-list">
+<li class="test-item">
+<a href="../index.html">
+<span class="test-icon"><i class="fa-solid fa-house"></i></span>
+<span class="test-name">TRANG CHỦ</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="1" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 01</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="2" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 02</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="3" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 03</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="4" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 04</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="5" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 05</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="6" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 06</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="7" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 07</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="8" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 08</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="9" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 09</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="10" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 10</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="11" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 11</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="12" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 12</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="13" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 13</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="14" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 14</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="15" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 15</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="16" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 16</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="17" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 17</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="18" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 18</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="19" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 19</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="20" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 20</span>
+</a>
+</li>
+</ul>
+<a class="sidebar-brand-bottom" href="https://www.facebook.com/nguyetpham28" target="_blank">
+<span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+<span class="brand-text">ENGLISH WITH MISS NGUYET</span>
+</a>
+</nav>
+<!-- Background Chime/Sound Permission Modal (if required, or handled on welcome screen) -->
+<!-- App Wrapper -->
+<div class="app-container">
+<!-- Header Brand -->
+<header class="app-header">
+<div class="header-title-wrapper"></div>
+</header>
+<!-- Progress Timeline Tracker -->
+<div class="progress-timeline">
+<div class="timeline-step active" id="step-welcome">
+<div class="step-num">0</div>
+<div class="step-label">CHUẨN BỊ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part1">
+<div class="step-num">1</div>
+<div class="step-label">PART 01</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part2">
+<div class="step-num">2</div>
+<div class="step-label">PART 02</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part3">
+<div class="step-num">3</div>
+<div class="step-label">PART 03</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-review">
+<div class="step-num">4</div>
+<div class="step-label">KẾT QUẢ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-solution">
+<div class="step-num">5</div>
+<div class="step-label">BÀI GIẢI</div>
+</div>
+</div>
+<!-- Main Workspace -->
+<main class="app-main">
+<!-- SCREEN 1: WELCOME SCREEN -->
+<section class="screen-view active" id="view-welcome">
+<div class="glass-card welcome-card">
+<div class="welcome-header-center">
+<div class="welcome-cat-gif">
+<img alt="Typing Cat" class="typing-cat-img" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"/>
+</div>
+<h1>VSTEP Speaking Practice</h1>
+<div class="mock-test-pill">SPEAKING MOCK TEST 09</div>
+<p class="welcome-desc">Chào mừng bạn đến với hệ thống thi thử VSTEP SPEAKING MOCK TEST tương tác. Giao diện và cách tính giờ được lập trình mô phỏng chính xác phòng thi máy thực tế.</p>
+<p class="welcome-warning" style="margin-top: 12px; color: var(--color-red); font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>LƯU Ý:</strong> Không sử dụng bất kì tài liệu hay công cụ trong lúc thi thử. Mọi sự thảo luận đều không được cho phép trong phòng thi.</p>
+</div>
+<div class="test-outline">
+<h3>Cấu trúc bài thi</h3>
+<div class="outline-grid">
+<div class="outline-item">
+<span class="part-badge">PART 01</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Social Interaction</span> [Giao tiếp xã hội]</h4>
+<p>Thí sinh trả lời 02 chủ đề bất kì, mỗi chủ đề có 03 câu hỏi. Không có thời gian chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 3 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 02</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Solution Discussion</span> [Thảo luận giải pháp]</h4>
+<p>Thí sinh thảo luận phương án tốt nhất cho một tình huống giả định bất kì với 03 sự lựa chọn. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 4 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 03</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Topic Development</span> [Phát triển chủ đề]</h4>
+<p>Thí sinh phát triển một chủ đề bất kì dựa vào sơ đồ gợi ý và 03 câu hỏi mở rộng. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 5 phút</span>
+</div>
+</div>
+</div>
+<!-- Student Info Input -->
+<div class="student-form">
+<div class="input-group">
+<label for="student-name"><i class="fa-solid fa-user-pen"></i> Họ và tên học viên:</label>
+<input autocomplete="off" id="student-name" placeholder="Nhập họ tên của bạn..." type="text"/>
+</div>
+</div>
+<!-- Action and Sound Check -->
+<div class="audio-check-section">
+<div class="mic-status-msg" id="mic-status">
+<i class="fa-solid fa-circle-info"></i> Hãy cấp quyền truy cập Microphone để hệ thống ghi âm bài làm của bạn.
+                        </div>
+<button class="btn btn-primary" id="btn-start-test">
+<span>BẮT ĐẦU BÀI THI</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 2: PART 1 SCREEN -->
+<section class="screen-view" id="view-part1">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 01: <span style="color: var(--color-red);">SOCIAL INTERACTION</span></div>
+<div class="part1-topics">
+<!-- Topic 1 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-face-sad-tear"></i> <span>Let's talk about <strong>feeling sad</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">1</span> What things usually make you feel sad?</li>
+<li><span class="q-num">2</span> What do you usually do when you feel sad?</li>
+<li><span class="q-num">3</span> Do you think sadness is a bad emotion? Why or why not?</li>
+</ul>
+</div>
+<!-- Topic 2 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-robot"></i> <span>Let's talk about <strong>using AI tools</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">4</span> Do you often use AI tools?</li>
+<li><span class="q-num">5</span> What do you think about using AI to learn English?</li>
+<li><span class="q-num">6</span> Do you think AI can replace human teachers? Why or why not?</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Mic, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator recording" id="p1-status">
+<span class="status-dot"></span>
+<span class="status-text">Hệ thống đang ghi âm bài nói của bạn</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p1-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p1-time-val">03:00</span>
+<span class="time-label">TỔNG THỜI GIAN</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p1-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 3: PART 2 SCREEN -->
+<section class="screen-view" id="view-part2">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 02: <span style="color: var(--color-red);">SOLUTION DISCUSSION</span></div>
+<!-- Situation Card -->
+<div class="situation-box">
+<h3 class="section-subtitle"><i class="fa-solid fa-circle-question"></i> Situation:</h3>
+<p class="situation-desc">
+                                You are going to organize a workshop about healthy living. You need to choose a suitable guest speaker. There are three options: <strong style="color: #ee0000;">a nutritionist</strong>, <strong style="color: #70ad47;">a gym trainer</strong>, and <strong style="color: #7030a0;">a yoga instructor</strong>. Which one would you choose, and why?
+                            </p>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Prep state, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p2-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p2-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p2-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p2-time-val">01:00</span>
+<span class="time-label" id="p2-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p2-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p2-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 4: PART 3 SCREEN -->
+<section class="screen-view" id="view-part3">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 03: <span style="color: var(--color-red);">TOPIC DEVELOPMENT</span></div>
+<div class="topic-header">
+<h3 class="topic-heading-red">Topic:</h3>
+<p class="topic-desc">There are several drawbacks of internships.</p>
+</div>
+<!-- CSS Grid Mindmap -->
+<div class="mindmap-wrapper">
+<div class="mindmap-container">
+<!-- Center Node -->
+<div class="mindmap-node node-center">
+<span>Internships</span>
+</div>
+<!-- Connectors -->
+<div class="mindmap-line line-top"></div>
+<div class="mindmap-line line-left"></div>
+<div class="mindmap-line line-bottom"></div>
+<div class="mindmap-line line-right"></div>
+<!-- Top Branch -->
+<div class="mindmap-node node-branch branch-top">
+<span>unpaid or low-paid work</span>
+</div>
+<!-- Left Branch -->
+<div class="mindmap-node node-branch branch-left">
+<span>heavy workload and pressure</span>
+</div>
+<!-- Bottom Branch -->
+<div class="mindmap-node node-branch branch-bottom">
+<span>limited guidance</span>
+</div>
+<!-- Right Branch -->
+<div class="mindmap-node node-branch branch-right">
+<span>[your own idea]</span>
+</div>
+</div>
+</div>
+<!-- Follow-up Questions Box -->
+<div class="follow-up-box">
+<h4><i class="fa-solid fa-circle-question"></i> Follow-up questions:</h4>
+<ul class="question-list">
+<li><span class="q-num">1</span> Do you think students should be required to complete an internship before graduation? Why?</li>
+<li><span class="q-num">2</span> How do internships influence students’ future job opportunities?</li>
+<li><span class="q-num">3</span> What can universities do to help students have better internship experiences?</li>
+</ul>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Scratchpad, Finish button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p3-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p3-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p3-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p3-time-val">01:00</span>
+<span class="time-label" id="p3-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p3-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-success" id="btn-p3-next">
+<span>Hoàn thành bài thi</span> <i class="fa-solid fa-circle-check"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 5: REVIEW SCREEN -->
+<section class="screen-view" id="view-review">
+<div class="glass-card review-card">
+<div class="success-banner">
+<div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+<h2>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI THI NÓI!</h2>
+<p style="margin-bottom: 8px;">Bạn có 10s để khóc trước khi xem phần BÀI GIẢI.</p>
+<p id="review-student-info" style="font-size: 13px; opacity: 0.7; margin-top: 4px;"></p>
+</div>
+<!-- Summary Grid: Audio Files & Notes -->
+<div class="review-grid">
+<!-- Left Panel: Playback recordings -->
+<div class="review-recordings-panel">
+<h3><i class="fa-solid fa-microphone-lines"></i> Nghe lại bài nói của bạn</h3>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 01</span>
+<span class="rec-title">Social Interaction</span>
+</div>
+<div class="audio-player-wrapper" id="p1-player-container">
+<!-- Dynamic custom Audio Player or native audio element styled -->
+<audio controls="" id="p1-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part1.webm" id="p1-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 02</span>
+<span class="rec-title">Solution Discussion</span>
+</div>
+<div class="audio-player-wrapper" id="p2-player-container">
+<audio controls="" id="p2-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part2.webm" id="p2-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 03</span>
+<span class="rec-title">Topic Development</span>
+</div>
+<div class="audio-player-wrapper" id="p3-player-container">
+<audio controls="" id="p3-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part3.webm" id="p3-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Right Panel: Feedback -->
+<div class="review-notes-panel">
+<h3><i class="fa-solid fa-comment-medical"></i> ĐÁNH GIÁ CHUNG</h3>
+<div class="teacher-feedback-box">
+<label for="teacher-feedback">Học viên tự đánh giá mức độ hoàn thành bài nói:</label>
+<textarea id="teacher-feedback" placeholder="Bạn đã hoàn thành tất cả nội dung bài thi hay chưa? Bạn có tự tin với bài nói của mình hay không?" style="min-height: 200px;"></textarea>
+</div>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="review-actions">
+<button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
+<i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
+                        </button>
+<button class="btn btn-secondary" id="btn-restart-test">
+<i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
+                        </button>
+</div>
+</div>
+</section>
+<!-- SCREEN 6: SOLUTION SCREEN -->
+<section class="screen-view" id="view-solution">
+<div class="glass-card instruction-card" style="max-width: 900px; margin: 20px auto;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+<h2 style="color: var(--color-red); margin-bottom: 0;"><i class="fa-solid fa-book-open"></i> BÀI GIẢI CHI TIẾT</h2>
+<span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 09</span>
+</div>
+<div class="solution-tab-container">
+<div class="solution-tab-buttons">
+<button class="sol-tab-btn active" onclick="switchSolTab(1)">PART 01: SOCIAL INTERACTION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(2)">PART 02: SOLUTION DISCUSSION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(3)">PART 03: TOPIC DEVELOPMENT</button>
+</div>
+<!-- Panel Part 1 -->
+<div class="sol-tab-content active" id="sol-panel-1">
+<!-- Topic 1 -->
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-face-sad-tear"></i> Topic 1: Let's talk about feeling sad <span class="sol-translation">(Hãy nói về cảm giác buồn bã)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What things usually make you feel sad? <span class="sol-translation">(Những điều gì thường khiến bạn cảm thấy buồn?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        I usually feel sad when I have problems in my studies or when something does not go as planned. It can make me feel disappointed for a short time.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường cảm thấy buồn khi gặp vấn đề trong học tập hoặc khi mọi việc không đi đúng kế hoạch. Nó có thể khiến tôi cảm thấy thất vọng trong một thời gian ngắn.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        I usually feel sad when I fail to achieve an important goal or when people close to me face difficulties. These situations can be emotionally challenging. However, I try to stay positive and focus on finding solutions instead of dwelling on the problem.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường cảm thấy buồn khi thất bại trong việc đạt được một mục tiêu quan trọng hoặc khi những người thân thiết với tôi gặp khó khăn. Những tình huống này có thể là thử thách lớn về mặt cảm xúc. Tuy nhiên, tôi cố gắng giữ thái độ tích cực và tập trung vào việc tìm kiếm giải pháp thay vì dằn vặt về vấn đề đó.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. What do you usually do when you feel sad? <span class="sol-translation">(Bạn thường làm gì khi cảm thấy buồn?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        I often <strong style="color: #00b0f0;">listen to music</strong> or talk to my friends. These activities help me <strong style="color: #00b0f0;">feel better</strong> and reduce stress.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi thường <strong style="color: #00b0f0;">nghe nhạc</strong> hoặc trò chuyện với bạn bè. Những hoạt động này giúp tôi <strong style="color: #00b0f0;">cảm thấy tốt hơn</strong> và giảm bớt căng thẳng.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        When I feel sad, I usually <strong style="color: #70ad47;">listen to music</strong>, go for a walk, or talk to someone I trust. These activities help me <strong style="color: #70ad47;">clear my mind</strong> and improve my emotional well-being. As a result, I can regain a more positive outlook.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Khi cảm thấy buồn, tôi thường <strong style="color: #70ad47;">nghe nhạc</strong>, đi dạo hoặc trò chuyện với người mà tôi tin tưởng. Những hoạt động này giúp tôi <strong style="color: #70ad47;">giải tỏa đầu óc</strong> và nâng cao sức khỏe cảm xúc của mình. Kết quả là tôi có thể lấy lại một cái nhìn tích cực hơn.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. Do you think sadness is a bad emotion? Why or why not? <span class="sol-translation">(Bạn có nghĩ buồn bã là một cảm xúc xấu không? Tại sao hay tại sao không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        No, I don't think so. Sadness is a normal emotion that everyone experiences. It can help people understand their feelings better.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Không, tôi không nghĩ vậy. Nỗi buồn là một cảm xúc bình thường mà ai cũng trải qua. Nó có thể giúp mọi người hiểu rõ hơn về cảm xúc của mình.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        No, I do not think sadness is necessarily a bad emotion. In fact, it can help people reflect on their experiences and better understand themselves. Sometimes, overcoming sadness can even make people more resilient and emotionally mature.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Không, tôi không nghĩ nỗi buồn nhất thiết là một cảm xúc xấu. Thực tế, nó có thể giúp mọi người suy ngẫm về trải nghiệm của họ và hiểu rõ hơn về bản thân. Đôi khi, việc vượt qua nỗi buồn thậm chí có thể giúp mọi người trở nên kiên cường và trưởng thành hơn về mặt cảm xúc.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Topic 2 -->
+<div class="sol-topic-section" style="margin-top: 30px;">
+<div class="sol-topic-header">
+<i class="fa-solid fa-robot"></i> Topic 2: Let's talk about using AI tools <span class="sol-translation">(Hãy nói về việc sử dụng các công cụ trí tuệ nhân tạo)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. Do you often use AI tools? <span class="sol-translation">(Bạn có thường sử dụng các công cụ AI không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Yes, I do. I use <strong style="color: #00b0f0;">AI tools</strong> for studying and searching for information. They help me complete tasks more quickly.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi có. Tôi sử dụng các <strong style="color: #00b0f0;">công cụ AI</strong> để học tập và tìm kiếm thông tin. Chúng giúp tôi hoàn thành công việc nhanh chóng hơn.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Yes, I use <strong style="color: #70ad47;">AI tools</strong> quite frequently, especially for learning and work-related purposes. They help me access information quickly and improve my productivity. Besides, they can support me when I need explanations or suggestions.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi sử dụng các <strong style="color: #70ad47;">công cụ AI</strong> khá thường xuyên, đặc biệt là cho mục đích học tập và công việc. Chúng giúp tôi tiếp cận thông tin nhanh chóng và nâng cao năng suất. Ngoài ra, chúng có thể hỗ trợ tôi khi tôi cần giải thích hoặc gợi ý.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. What do you think about using AI to learn English? <span class="sol-translation">(Bạn nghĩ gì về việc sử dụng AI để học tiếng Anh?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        I think it is very useful. AI can help learners practice vocabulary, grammar, and pronunciation. It also makes learning more convenient.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi nghĩ nó rất hữu ích. AI có thể giúp người học thực hành từ vựng, ngữ pháp và phát âm. Nó cũng làm cho việc học tập trở nên thuận tiện hơn.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        I think AI is a valuable tool for learning English. It provides <strong style="color: #70ad47;">instant feedback</strong>, <strong style="color: #70ad47;">personalized learning</strong> opportunities, and access to a wide range of resources. As a result, learners can develop their language skills more efficiently.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Tôi nghĩ AI là một công cụ có giá trị để học tiếng Anh. Nó cung cấp <strong style="color: #70ad47;">phản hồi tức thì</strong>, cơ hội <strong style="color: #70ad47;">học tập cá nhân hóa</strong> và quyền tiếp cận với một loạt các tài nguyên. Kết quả là người học có thể phát triển kỹ năng ngôn ngữ của mình một cách hiệu quả hơn.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. Do you think AI can replace human teachers? Why or why not? <span class="sol-translation">(Bạn có nghĩ AI có thể thay thế giáo viên con người không? Tại sao hay tại sao không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        No, I don't think so. AI can <strong style="color: #00b0f0;">support learning</strong>, but teachers can understand <strong style="color: #00b0f0;">students' needs and emotions</strong> better.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Không, tôi không nghĩ vậy. AI có thể <strong style="color: #00b0f0;">hỗ trợ học tập</strong>, nhưng giáo viên có thể hiểu được <strong style="color: #00b0f0;">nhu cầu và cảm xúc của học sinh</strong> tốt hơn.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        No, I do not believe AI can completely <strong style="color: #70ad47;">replace human teachers</strong>. Although AI can provide information and learning support, teachers play an important role in motivating students, addressing individual needs, and creating meaningful learning experiences. Therefore, AI should be viewed as a helpful tool rather than a replacement.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Không, tôi không tin AI có thể <strong style="color: #70ad47;">thay thế hoàn toàn giáo viên con người</strong>. Mặc dù AI có thể cung cấp thông tin và <strong style="color: #70ad47;">hỗ trợ học tập</strong>, giáo viên đóng vai trò quan trọng trong việc thúc đẩy học sinh, giải quyết các nhu cầu cá nhân và tạo ra trải nghiệm học tập có ý nghĩa. Do đó, AI nên được xem như một công cụ hữu ích hơn là một sự thay thế.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 2 -->
+<div class="sol-tab-content" id="sol-panel-2">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-circle-info"></i> SITUATION <span class="sol-translation">(tình huống)</span>
+</div>
+<div class="sol-situation-box">
+                                    You are going to organize a workshop about healthy living. You need to choose a suitable guest speaker. There are three options: <strong style="color: #00b0f0;">a nutritionist</strong>, <strong style="color: #70ad47;">a gym trainer</strong>, and <strong style="color: #7030a0;">a yoga instructor</strong>. Which one would you choose, and why?
+                                    <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-size: 13.5px;">(Bạn dự định tổ chức một hội thảo về lối sống lành mạnh. Bạn cần chọn một diễn giả phù hợp. Có ba lựa chọn: <strong style="color: #00b0f0;">một chuyên gia dinh dưỡng</strong>, <strong style="color: #00b0f0;">một huấn luyện viên thể hình</strong> và <strong style="color: #00b0f0;">một người hướng dẫn yoga</strong>. Bạn sẽ chọn ai và tại sao?)</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-graduation-cap"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Well, if I had to <strong style="color: #ee0000;">choose a guest speaker for a workshop about healthy living</strong>, I would <strong style="color: #ee0000;">recommend a nutritionist</strong>.<br/><br/>First of all, a <strong style="color: #00b0f0;">nutritionist</strong> can provide useful knowledge about healthy eating habits. Besides, participants can learn how to choose nutritious foods and maintain a balanced diet. As a result, they can improve their health.<br/><br/>Secondly, a <strong style="color: #00b0f0;">nutritionist</strong> can help people prevent health problems through proper nutrition. Therefore, participants can learn practical ways to maintain a <strong style="color: #00b0f0;">healthy lifestyle</strong>.<br/><br/>I wouldn’t choose a <strong style="color: #00b0f0;">gym trainer</strong> because exercise is only one aspect of <strong style="color: #00b0f0;">healthy living</strong>.<br/><br/>As for a <strong style="color: #00b0f0;">yoga instructor</strong>, it is less suitable because yoga mainly focuses on flexibility and relaxation rather than overall nutrition and health.<br/><br/>In short, I believe a <strong style="color: #00b0f0;">nutritionist</strong> is the best choice for this situation.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">À, nếu phải <strong style="color: #ee0000;">chọn diễn giả khách mời cho một buổi thảo luận về sống lành mạnh</strong>, tôi sẽ <strong style="color: #ee0000;">đề xuất một chuyên gia dinh dưỡng</strong>.<br/><br/>Trước hết, <strong style="color: #00b0f0;">chuyên gia dinh dưỡng</strong> có thể cung cấp <strong style="color: #00b0f0;">kiến thức hữu ích về thói quen ăn uống lành mạnh</strong>. Ngoài ra, người tham gia có thể học cách chọn thực phẩm bổ dưỡng và duy trì một chế độ ăn uống cân bằng. Kết quả là họ có thể cải thiện sức khỏe của mình.<br/><br/>Thứ hai, <strong style="color: #00b0f0;">chuyên gia dinh dưỡng</strong> có thể giúp mọi người ngăn ngừa các vấn đề sức khỏe thông qua chế độ dinh dưỡng hợp lý. Do đó, người tham gia có thể học được những cách thiết thực để duy trì <strong style="color: #00b0f0;">lối sống lành mạnh</strong>.<br/><br/>Tôi sẽ không chọn một <strong style="color: #70ad47;">huấn luyện viên thể hình</strong> vì <strong style="color: #70ad47;">tập thể dục</strong> chỉ là một khía cạnh của cuộc sống lành mạnh. Còn về <strong style="color: #7030a0;">huấn luyện viên yoga</strong>, phương án này ít phù hợp hơn vì yoga chủ yếu tập trung vào sự dẻo dai và thư giãn hơn là dinh dưỡng và sức khỏe tổng thể.<br/><br/>Tóm lại, tôi tin rằng <strong style="color: #00b0f0;">chuyên gia dinh dưỡng</strong> là lựa chọn tốt nhất cho tình huống này.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Well, if I had to <strong style="color: #ee0000;">choose a guest speaker for a workshop about healthy living</strong>, I would <strong style="color: #ee0000;">recommend a nutritionist</strong>.<br/><br/>First of all, healthy eating is one of the most important foundations of a <strong style="color: #00b0f0;">healthy lifestyle</strong>. A <strong style="color: #00b0f0;">nutritionist</strong> can provide reliable information about balanced diets, healthy food choices, and proper eating habits. As a result, participants can gain practical knowledge that they can apply in their daily lives.<br/><br/>Secondly, a <strong style="color: #00b0f0;">nutritionist</strong> can help people understand how nutrition affects both physical and mental well-being. Besides learning how to maintain a <strong style="color: #00b0f0;">healthy lifestyle</strong>, participants can also learn how to prevent certain health problems through better dietary choices.<br/><br/>I wouldn’t choose a <strong style="color: #00b0f0;">gym trainer</strong> because <strong style="color: #70ad47;">physical exercise</strong> represents only one part of <strong style="color: #00b0f0;">healthy living</strong>. Participants may benefit more from broader knowledge that applies to everyone.<br/><br/>As for a <strong style="color: #00b0f0;">yoga instructor</strong>, it is less suitable because the discussion may focus mainly on relaxation and flexibility. While these topics are useful, they do not cover <strong style="color: #00b0f0;">healthy living</strong> as comprehensively as nutrition does.<br/><br/>In short, I believe a <strong style="color: #00b0f0;">nutritionist</strong> is the best choice for this situation.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">À, nếu tôi phải <strong style="color: #ee0000;">chọn diễn giả khách mời cho một buổi thảo luận về sống lành mạnh</strong>, tôi sẽ <strong style="color: #ee0000;">đề xuất một chuyên gia dinh dưỡng</strong>.<br/><br/>Trước hết, ăn uống lành mạnh là một trong những nền tảng quan trọng nhất của <strong style="color: #00b0f0;">lối sống lành mạnh</strong>. Chuyên gia dinh dưỡng có thể cung cấp <strong style="color: #00b0f0;">thông tin đáng tin cậy về chế độ ăn uống cân bằng, lựa chọn thực phẩm lành mạnh và thói quen ăn uống hợp lý</strong>. Kết quả là người tham gia có thể tích lũy kiến thức thực tế mà họ có thể áp dụng vào cuộc sống hàng ngày.<br/><br/>Thứ hai, một <strong style="color: #00b0f0;">chuyên gia dinh dưỡng</strong> có thể giúp mọi người hiểu dinh dưỡng ảnh hưởng thế nào đến cả sức khỏe thể chất và tinh thần. Bên cạnh việc học cách duy trì <strong style="color: #00b0f0;">lối sống lành mạnh</strong>, người tham gia còn có thể học cách ngăn ngừa một số vấn đề sức khỏe thông qua các lựa chọn chế độ ăn uống tốt hơn. Tôi không chọn một <strong style="color: #70ad47;">huấn luyện viên thể hình</strong> vì tập luyện thể chất chỉ đại diện cho một phần của <strong style="color: #00b0f0;">lối sống lành mạnh</strong>. Người tham gia có thể được hưởng lợi nhiều hơn từ kiến thức rộng hơn áp dụng cho tất cả mọi người.<br/><br/>Còn đối với một người hướng dẫn yoga, phương án này ít phù hợp hơn vì cuộc thảo luận có thể tập trung chủ yếu vào sự thư giãn và dẻo dai. Dù các chủ đề này hữu ích nhưng chúng không bao quát sống lành mạnh một cách toàn diện như dinh dưỡng.<br/><br/>Tóm lại, tôi tin rằng <strong style="color: #00b0f0;">chuyên gia dinh dưỡng</strong> là lựa chọn tốt nhất cho tình huống này.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 3 -->
+<div class="sol-tab-content" id="sol-panel-3">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-chart-line"></i> TOPIC DEVELOPMENT <span class="sol-translation">(phát triển chủ đề)</span>
+</div>
+<div class="sol-situation-box">
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-file-pen"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;"> There are several <strong style="color: #00b0f0;">drawbacks of internships</strong>. One major drawback is <strong style="color: #00b0f0;">limited guidance</strong>. Some interns do not receive enough support from supervisors. As a result, they may find it difficult to complete their tasks effectively. Another negative aspect is the <strong style="color: #00b0f0;">heavy workload and pressure</strong>. Interns often need to balance work responsibilities with their studies. Therefore, they may <strong>feel stressed</strong> and tired. One more drawback is <strong style="color: #00b0f0;">unpaid or low-paid</strong> work. Many internships offer little or no financial support. Besides, interns still have to cover their living expenses. One additional drawback is that interns may have limited opportunities to make important decisions. They are often assigned simple tasks instead of meaningful responsibilities. As a result, they may not fully develop their decision-making skills.<br/><br/>In short, internships have several clear drawbacks, as mentioned above. <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Có một số <strong style="color: #00b0f0;">hạn chế của việc thực tập</strong>. Một hạn chế lớn là sự hướng dẫn hạn chế. Một số thực tập sinh không nhận được đủ sự hỗ trợ từ người giám sát. Kết quả là họ có thể gặp khó khăn để hoàn thành công việc một cách hiệu quả. Một khía cạnh tiêu cực khác là khối lượng công việc nặng nề và áp lực. Thực tập sinh thường cần cân bằng giữa trách nhiệm công việc và học tập. Vì vậy, họ có thể cảm thấy căng thẳng và mệt mỏi. Một hạn chế nữa là công việc không lương hoặc lương thấp. Nhiều kỳ thực tập cung cấp ít hoặc không có hỗ trợ tài chính. Bên cạnh đó, thực tập sinh vẫn phải tự trang trải chi phí sinh hoạt. Một bất lợi bổ sung là thực tập sinh có thể có ít cơ hội đưa ra các quyết định quan trọng. Họ thường được giao những công việc đơn giản thay vì những trách nhiệm ý nghĩa. Kết quả là họ có thể không phát triển được đầy đủ các kỹ năng ra quyết định của mình.<br/><br/>Tóm lại, việc thực tập có một số hạn chế rõ ràng như đã nêu trên.</div>
+</div></div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;"> There are several <strong style="color: #ee0000;">drawbacks of internships</strong>. One major drawback is <strong style="color: #ee0000;">limited guidance</strong>. In some organizations, interns do not receive sufficient support or mentoring from experienced staff. As a result, they may struggle to learn effectively and gain the most from the experience. Another negative aspect is the <strong style="color: #ee0000;">heavy workload and pressure</strong>. Many interns need to balance academic responsibilities with workplace expectations. Consequently, they may experience stress and difficulty managing their time. One more drawback is <strong style="color: #ee0000;">unpaid or low-paid</strong> work. Despite contributing to the organization, many interns receive little financial compensation. This can create financial pressure, especially for students who need to support themselves. One additional drawback is that interns may have limited opportunities to make important decisions. Because they are often assigned basic tasks, they may not be fully involved in meaningful projects. Therefore, they may miss opportunities to develop leadership and decision-making skills.<br/><br/>In short, internships have several clear drawbacks, as mentioned above. <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Có một số <strong style="color: #ee0000;">hạn chế của việc thực tập</strong>. Một hạn chế lớn là <strong style="color: #00b0f0;">hướng dẫn hạn chế</strong>. Ở một số tổ chức, thực tập sinh không nhận được sự hỗ trợ hoặc hướng dẫn đầy đủ từ các nhân viên giàu kinh nghiệm. Kết quả là họ có thể gặp khó khăn trong việc học hỏi một cách hiệu quả và thu hút được nhiều nhất từ trải nghiệm đó. Một khía cạnh tiêu cực khác là khối lượng công việc nặng nề và áp lực. Nhiều thực tập sinh phải cân bằng giữa trách nhiệm học thuật và kỳ vọng tại nơi làm việc. Do đó, họ có thể gặp căng thẳng và gặp khó khăn trong việc quản lý thời gian. Một hạn chế nữa là công việc không lương hoặc lương thấp. Dù đã đóng góp cho tổ chức nhưng nhiều thực tập sinh nhận được rất ít hỗ trợ tài chính. Điều này có thể tạo ra áp lực tài chính, đặc biệt là đối với các sinh viên tự lập. Một bất lợi bổ sung là thực tập sinh có thể có ít cơ hội để đưa ra các quyết định quan trọng. Vì họ thường được giao những công việc cơ bản nên họ có thể không được tham gia đầy đủ vào các dự án ý nghĩa. Do đó, họ có thể bỏ lỡ cơ hội phát triển kỹ năng lãnh đạo và ra quyết định.<br/><br/>Tóm lại, việc thực tập có một số hạn chế rõ ràng như đã nêu trên.</div>
+</div></div>
+<div class="sol-topic-header" style="margin-top: 30px;">
+<i class="fa-solid fa-circle-question"></i> FOLLOW-UP QUESTIONS <span class="sol-translation">(câu hỏi mở rộng)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. Do you think students should be required to complete an internship before graduation? Why? <span class="sol-translation">(Bạn có nghĩ sinh viên bắt buộc phải hoàn thành thực tập trước khi tốt nghiệp không? Tại sao?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Yes, I think they should. Internships help students gain practical experience and <strong style="color: #00b0f0;">prepare for future careers</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi nghĩ họ nên làm vậy. Thực tập giúp sinh viên tích lũy kinh nghiệm thực tế và <strong style="color: #00b0f0;">chuẩn bị cho sự nghiệp tương lai</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Yes, I believe internships should be encouraged before graduation because they allow students to gain valuable experience and apply classroom knowledge in real-world situations. As a result, students can be better prepared for the job market.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Vâng, tôi tin rằng kỳ thực tập nên được khuyến khích trước khi tốt nghiệp vì chúng cho phép sinh viên tích lũy kinh nghiệm quý giá và áp dụng kiến thức lớp học vào các tình huống thực tế. Kết quả là sinh viên có thể chuẩn bị tốt hơn cho thị trường việc làm.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. How do internships influence students’ future job opportunities? <span class="sol-translation">(Thực tập ảnh hưởng thế nào đến cơ hội việc làm trong tương lai của sinh viên?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Internships help students <strong style="color: #00b0f0;">develop useful skills</strong> and <strong style="color: #00b0f0;">gain work experience</strong>. This can make them <strong style="color: #00b0f0;">more attractive to employers</strong>.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Thực tập giúp sinh viên <strong style="color: #00b0f0;">phát triển các kỹ năng hữu ích</strong> và <strong style="color: #00b0f0;">tích lũy kinh nghiệm làm việc</strong>. Điều này có thể làm cho họ trở nên <strong style="color: #00b0f0;">hấp dẫn hơn đối với các nhà tuyển dụng</strong>.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+                                        Internships can significantly improve future job opportunities because they provide practical experience, <strong style="color: #70ad47;">professional networks</strong>, and industry knowledge. These advantages often make candidates more competitive when applying for jobs.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;">Thực tập có thể cải thiện đáng kể cơ hội việc làm trong tương lai vì chúng cung cấp kinh nghiệm thực tế, <strong style="color: #70ad47;">mạng lưới chuyên nghiệp</strong> và kiến thức ngành. Những lợi thế này thường giúp ứng viên cạnh tranh hơn khi nộp đơn xin việc.</div>
+</div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. What can universities do to help students have better internship experiences? <span class="sol-translation">(Các trường đại học có thể làm gì để giúp sinh viên có trải nghiệm thực tập tốt hơn?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+<strong style="color: #00b0f0;">Universities</strong> can <strong style="color: #00b0f0;">cooperate with companies</strong> and provide more internship opportunities. They can also offer guidance before students start their internships.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;"><strong style="color: #00b0f0;">Các trường đại học</strong> có thể <strong style="color: #00b0f0;">hợp tác với các công ty</strong> và cung cấp nhiều cơ hội thực tập hơn. Họ cũng có thể đưa ra hướng dẫn trước khi sinh viên bắt đầu thực tập.</div>
+</div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">
+<strong style="color: #70ad47;">Universities</strong> can strengthen partnerships with companies to provide <strong style="color: #70ad47;">high-quality internship</strong> opportunities. In addition, they should offer career guidance, preparation <strong style="color: #70ad47;">workshops</strong>, and ongoing support to ensure students gain meaningful experiences from their internships.
+                                        <div class="translation-toggle" onclick="toggleTranslation(this)"><strong style="color: #00b0f0;">Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+<div class="translation-text" style="display: none;"><strong style="color: #70ad47;">Các trường đại học</strong> có thể tăng cường quan hệ đối tác với các công ty để cung cấp các <strong style="color: #70ad47;">cơ hội thực tập chất lượng cao</strong>. Ngoài ra, họ nên đưa ra các hướng dẫn nghề nghiệp, <strong style="color: #70ad47;"><strong style="color: #70ad47;">hội thảo</strong> chuẩn bị</strong> và hỗ trợ liên tục để đảm bảo sinh viên có được những trải nghiệm ý nghĩa từ kỳ thực tập của mình.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Custom Script JS -->
+<script src="../db.js?v=1782327221"></script>
+<script src="app.js?v=1782327221"></script>
+<script>
+      function toggleTranslation(element) {
+          const textNode = element.nextElementSibling;
+          const icon = element.querySelector('i');
+          if (textNode.style.display === 'none') {
+              textNode.style.display = 'block';
+              if (icon) icon.className = 'fa-solid fa-chevron-up';
+          } else {
+              textNode.style.display = 'none';
+              if (icon) icon.className = 'fa-solid fa-chevron-down';
+          }
+      }
+</script>
+</body>
+</html>

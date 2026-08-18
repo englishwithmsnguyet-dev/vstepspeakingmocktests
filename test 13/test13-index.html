@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<script>
+        // Block flash of protected content
+        (function() {
+            const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+            const testId = pathMatch ? parseInt(pathMatch[1]) : 1;
+            const TEST_PASSWORDS = {};
+            if (TEST_PASSWORDS[testId] && sessionStorage.getItem('unlocked_test_' + testId) !== 'true') {
+                document.documentElement.style.display = 'none';
+            }
+        })();
+    </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPEAKING MOCK TEST 13 - ENGLISHWITHMISSNGUYET</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome for Premium Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="styles.css?v=1782327221" rel="stylesheet"/>
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<nav class="test-sidebar">
+<div class="sidebar-header">
+<i class="fa-solid fa-list-check"></i> <span>VSTEP MOCK TESTS</span>
+</div>
+<ul class="test-list">
+<li class="test-item">
+<a href="../index.html">
+<span class="test-icon"><i class="fa-solid fa-house"></i></span>
+<span class="test-name">TRANG CHỦ</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="1" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 01</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="2" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 02</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="3" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 03</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="4" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 04</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="5" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 05</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="6" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 06</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="7" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 07</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="8" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 08</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="9" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 09</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="10" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 10</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="11" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 11</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="12" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 12</span>
+</a>
+</li>
+<li class="test-item">
+<a class="active" data-test-id="13" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-file-pen"></i></span>
+<span class="test-name">SPEAKING TEST 13</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="14" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 14</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="15" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 15</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="16" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 16</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="17" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 17</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="18" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 18</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="19" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 19</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="20" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 20</span>
+</a>
+</li>
+</ul>
+<a class="sidebar-brand-bottom" href="https://www.facebook.com/nguyetpham28" target="_blank">
+<span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+<span class="brand-text">ENGLISH WITH MISS NGUYET</span>
+</a>
+</nav>
+<!-- Background Chime/Sound Permission Modal (if required, or handled on welcome screen) -->
+<!-- App Wrapper -->
+<div class="app-container">
+<!-- Header Brand -->
+<header class="app-header">
+<div class="header-title-wrapper"></div>
+</header>
+<!-- Progress Timeline Tracker -->
+<div class="progress-timeline">
+<div class="timeline-step active" id="step-welcome">
+<div class="step-num">0</div>
+<div class="step-label">CHUẨN BỊ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part1">
+<div class="step-num">1</div>
+<div class="step-label">PART 01</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part2">
+<div class="step-num">2</div>
+<div class="step-label">PART 02</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part3">
+<div class="step-num">3</div>
+<div class="step-label">PART 03</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-review">
+<div class="step-num">4</div>
+<div class="step-label">KẾT QUẢ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-solution">
+<div class="step-num">5</div>
+<div class="step-label">BÀI GIẢI</div>
+</div>
+</div>
+<!-- Main Workspace -->
+<main class="app-main">
+<!-- SCREEN 1: WELCOME SCREEN -->
+<section class="screen-view active" id="view-welcome">
+<div class="glass-card welcome-card">
+<div class="welcome-header-center">
+<div class="welcome-cat-gif">
+<img alt="Typing Cat" class="typing-cat-img" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"/>
+</div>
+<h1>VSTEP Speaking Practice</h1>
+<div class="mock-test-pill">SPEAKING MOCK TEST 13</div>
+<p class="welcome-desc">Chào mừng bạn đến với hệ thống thi thử VSTEP SPEAKING MOCK TEST tương tác. Giao diện và cách tính giờ được lập trình mô phỏng chính xác phòng thi máy thực tế.</p>
+<p class="welcome-warning" style="margin-top: 12px; color: var(--color-red); font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>LƯU Ý:</strong> Không sử dụng bất kì tài liệu hay công cụ trong lúc thi thử. Mọi sự thảo luận đều không được cho phép trong phòng thi.</p>
+</div>
+<div class="test-outline">
+<h3>Cấu trúc bài thi</h3>
+<div class="outline-grid">
+<div class="outline-item">
+<span class="part-badge">PART 01</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Social Interaction</span> [Giao tiếp xã hội]</h4>
+<p>Thí sinh trả lời 02 chủ đề bất kì, mỗi chủ đề có 03 câu hỏi. Không có thời gian chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 3 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 02</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Solution Discussion</span> [Thảo luận giải pháp]</h4>
+<p>Thí sinh thảo luận phương án tốt nhất cho một tình huống giả định bất kì với 03 sự lựa chọn. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 4 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 03</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Topic Development</span> [Phát triển chủ đề]</h4>
+<p>Thí sinh phát triển một chủ đề bất kì dựa vào sơ đồ gợi ý và 03 câu hỏi mở rộng. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 5 phút</span>
+</div>
+</div>
+</div>
+<!-- Student Info Input -->
+<div class="student-form">
+<div class="input-group">
+<label for="student-name"><i class="fa-solid fa-user-pen"></i> Họ và tên học viên:</label>
+<input autocomplete="off" id="student-name" placeholder="Nhập họ tên của bạn..." type="text"/>
+</div>
+</div>
+<!-- Action and Sound Check -->
+<div class="audio-check-section">
+<div class="mic-status-msg" id="mic-status">
+<i class="fa-solid fa-circle-info"></i> Hãy cấp quyền truy cập Microphone để hệ thống ghi âm bài làm của bạn.
+                        </div>
+<button class="btn btn-primary" id="btn-start-test">
+<span>BẮT ĐẦU BÀI THI</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 2: PART 1 SCREEN -->
+<section class="screen-view" id="view-part1">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 01: <span style="color: var(--color-red);">SOCIAL INTERACTION</span></div>
+<div class="part1-topics">
+<!-- Topic 1 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-envelope"></i> <span>Let's talk about <strong>emails</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">1</span> How often do you use emails?</li>
+<li><span class="q-num">2</span> Why do people use emails?</li>
+<li><span class="q-num">3</span> What are some disadvantages of using emails?</li>
+</ul>
+</div>
+<!-- Topic 2 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-laptop-file"></i> <span>Let's talk about <strong>work/study</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">4</span> Where do you work or study?</li>
+<li><span class="q-num">5</span> What do you do to study or work more effectively?</li>
+<li><span class="q-num">6</span> Do you think good facilities are important for effective learning or working? Why?</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Mic, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator recording" id="p1-status">
+<span class="status-dot"></span>
+<span class="status-text">Hệ thống đang ghi âm bài nói của bạn</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p1-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p1-time-val">03:00</span>
+<span class="time-label">TỔNG THỜI GIAN</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p1-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 3: PART 2 SCREEN -->
+<section class="screen-view" id="view-part2">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 02: <span style="color: var(--color-red);">SOLUTION DISCUSSION</span></div>
+<!-- Situation Card -->
+<div class="situation-box">
+<h3 class="section-subtitle"><i class="fa-solid fa-circle-question"></i> Situation:</h3>
+<p class="situation-desc">
+                                Your company is going to organize a camping trip for all employees. There are three possible locations: <strong><em>a riverbank</em></strong>, <strong><em>a theme park</em></strong>, and <strong><em>a camping site</em></strong>. Which place would you choose, and why?
+                            </p>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Prep state, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p2-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p2-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p2-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p2-time-val">01:00</span>
+<span class="time-label" id="p2-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p2-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p2-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 4: PART 3 SCREEN -->
+<section class="screen-view" id="view-part3">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 03: <span style="color: var(--color-red);">TOPIC DEVELOPMENT</span></div>
+<div class="topic-header">
+<h3 class="topic-heading-red">Topic:</h3>
+<p class="topic-desc">There are several reasons why training workshops are important in life.</p>
+</div>
+<!-- CSS Grid Mindmap -->
+<div class="mindmap-wrapper">
+<div class="mindmap-container">
+<!-- Center Node -->
+<div class="mindmap-node node-center">
+<span>Training workshops</span>
+</div>
+<!-- Connectors -->
+<div class="mindmap-line line-top"></div>
+<div class="mindmap-line line-left"></div>
+<div class="mindmap-line line-bottom"></div>
+<div class="mindmap-line line-right"></div>
+<!-- Top Branch -->
+<div class="mindmap-node node-branch branch-top">
+<span><em>update knowledge</em></span>
+</div>
+<!-- Left Branch -->
+<div class="mindmap-node node-branch branch-left">
+<span><em>develop new professional skills</em></span>
+</div>
+<!-- Bottom Branch -->
+<div class="mindmap-node node-branch branch-bottom">
+<span><em>expand social networks</em></span>
+</div>
+<!-- Right Branch -->
+<div class="mindmap-node node-branch branch-right">
+<span>[your own idea]</span>
+</div>
+</div>
+</div>
+<!-- Follow-up Questions Box -->
+<div class="follow-up-box">
+<h4><i class="fa-solid fa-circle-question"></i> Follow-up questions:</h4>
+<ul class="question-list">
+<li><span class="q-num">1</span> What kinds of workshops are popular in your area?</li>
+<li><span class="q-num">2</span> Why do some people prefer online workshops to face-to-face ones?</li>
+<li><span class="q-num">3</span> How can companies encourage their employees to join training workshops?</li>
+</ul>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Scratchpad, Finish button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p3-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p3-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p3-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p3-time-val">01:00</span>
+<span class="time-label" id="p3-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p3-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-success" id="btn-p3-next">
+<span>Hoàn thành bài thi</span> <i class="fa-solid fa-circle-check"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 5: REVIEW SCREEN -->
+<section class="screen-view" id="view-review">
+<div class="glass-card review-card">
+<div class="success-banner">
+<div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+<h2>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI THI NÓI!</h2>
+<p style="margin-bottom: 8px;">Bạn có 10s để khóc trước khi xem phần BÀI GIẢI.</p>
+<p id="review-student-info" style="font-size: 13px; opacity: 0.7; margin-top: 4px;"></p>
+</div>
+<!-- Summary Grid: Audio Files & Notes -->
+<div class="review-grid">
+<!-- Left Panel: Playback recordings -->
+<div class="review-recordings-panel">
+<h3><i class="fa-solid fa-microphone-lines"></i> Nghe lại bài nói của bạn</h3>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 01</span>
+<span class="rec-title">Social Interaction</span>
+</div>
+<div class="audio-player-wrapper" id="p1-player-container">
+<!-- Dynamic custom Audio Player or native audio element styled -->
+<audio controls="" id="p1-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part1.webm" id="p1-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 02</span>
+<span class="rec-title">Solution Discussion</span>
+</div>
+<div class="audio-player-wrapper" id="p2-player-container">
+<audio controls="" id="p2-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part2.webm" id="p2-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 03</span>
+<span class="rec-title">Topic Development</span>
+</div>
+<div class="audio-player-wrapper" id="p3-player-container">
+<audio controls="" id="p3-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part3.webm" id="p3-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Right Panel: Feedback -->
+<div class="review-notes-panel">
+<h3><i class="fa-solid fa-comment-medical"></i> ĐÁNH GIÁ CHUNG</h3>
+<div class="teacher-feedback-box">
+<label for="teacher-feedback">Học viên tự đánh giá mức độ hoàn thành bài nói:</label>
+<textarea id="teacher-feedback" placeholder="Bạn đã hoàn thành tất cả nội dung bài thi hay chưa? Bạn có tự tin với bài nói của mình hay không?" style="min-height: 200px;"></textarea>
+</div>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="review-actions">
+<button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
+<i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
+                        </button>
+<button class="btn btn-secondary" id="btn-restart-test">
+<i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
+                        </button>
+</div>
+</div>
+</section>
+<!-- SCREEN 6: SOLUTION SCREEN -->
+<section class="screen-view" id="view-solution">
+<div class="glass-card instruction-card" style="max-width: 900px; margin: 20px auto;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+<h2 style="color: var(--color-red); margin-bottom: 0;"><i class="fa-solid fa-book-open"></i> BÀI GIẢI CHI TIẾT</h2>
+<span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 13</span>
+</div>
+<div class="solution-tab-container">
+<div class="solution-tab-buttons">
+<button class="sol-tab-btn active" onclick="switchSolTab(1)">PART 01: SOCIAL INTERACTION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(2)">PART 02: SOLUTION DISCUSSION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(3)">PART 03: TOPIC DEVELOPMENT</button>
+</div>
+<!-- Panel Part 1 -->
+<div class="sol-tab-content active" id="sol-panel-1">
+<!-- Topic 1 -->
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-envelope"></i> Topic 1: Let's talk about emails <span class="sol-translation">(Hãy nói về thư điện tử)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. How often do you use emails? <span class="sol-translation">(Bạn có thường xuyên sử dụng email không?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I use emails <strong style="color: #00b0f0;">almost every day</strong> because they help me <strong style="color: #00b0f0;">communicate with my teachers</strong> and <strong style="color: #00b0f0;">receive important information</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi sử dụng email <strong style="color: #00b0f0;">gần như mỗi ngày</strong> vì chúng giúp tôi <strong style="color: #00b0f0;">giao tiếp với giáo viên</strong> và <strong style="color: #00b0f0;">nhận các thông tin quan trọng</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I check my emails <strong style="color: #70ad47;">almost every day</strong> because I <strong style="color: #70ad47;">don't want to miss any important messages or updates</strong>. It's also a convenient way to <strong style="color: #70ad47;">communicate with my teachers</strong> and <strong style="color: #70ad47;">exchange information with my classmates</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi kiểm tra email của mình <strong style="color: #70ad47;">gần như mỗi ngày</strong> vì tôi <strong style="color: #70ad47;">không muốn bỏ lỡ bất kỳ tin nhắn hay thông tin cập nhật quan trọng nào</strong>. Đó cũng là một cách thuận tiện để <strong style="color: #70ad47;">giao tiếp với giáo viên của tôi</strong> và <strong style="color: #70ad47;">trao đổi thông tin với bạn học</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. Why do people use emails? <span class="sol-translation">(Tại sao mọi người sử dụng email?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">One reason is that emails help people <strong style="color: #00b0f0;">communicate quickly and conveniently</strong>. They're also a useful way to <strong style="color: #00b0f0;">send documents</strong> and <strong style="color: #00b0f0;">exchange information</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Một lý do là email giúp mọi người <strong style="color: #00b0f0;">giao tiếp nhanh chóng và thuận tiện</strong>. Chúng cũng là một cách hữu ích để <strong style="color: #00b0f0;">gửi tài liệu</strong> và <strong style="color: #00b0f0;">trao đổi thông tin</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">People use emails because they allow us to <strong style="color: #70ad47;">communicate quickly and conveniently</strong>. They are also <strong style="color: #70ad47;">useful for sending documents and keeping records of important conversations</strong>. In addition, they help us <strong style="color: #70ad47;">stay organized</strong> and <strong style="color: #70ad47;">work more efficiently</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Mọi người sử dụng email vì chúng cho phép chúng ta <strong style="color: #70ad47;">giao tiếp nhanh chóng và thuận tiện</strong>. Chúng cũng <strong style="color: #70ad47;">hữu ích cho việc gửi tài liệu và lưu giữ hồ sơ của các cuộc trò chuyện quan trọng</strong>. Ngoài ra, chúng còn giúp chúng ta <strong style="color: #70ad47;">sống có tổ chức</strong> và <strong style="color: #70ad47;">làm việc hiệu quả hơn</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. What are some disadvantages of using emails? <span class="sol-translation">(Một số nhược điểm của việc sử dụng email là gì?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">One disadvantage is that people may <strong style="color: #00b0f0;">receive too many emails</strong>. Another drawback is that messages can sometimes <strong style="color: #00b0f0;">be misunderstood</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Một nhược điểm là mọi người có thể <strong style="color: #00b0f0;">nhận quá nhiều email</strong>. Một hạn chế khác là các thông điệp đôi khi có thể <strong style="color: #00b0f0;">bị hiểu lầm</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">One disadvantage is that some emails <strong style="color: #70ad47;">can be spam</strong>. Another drawback is that people may <strong style="color: #70ad47;">miss important messages</strong>. As a result, they may <strong style="color: #70ad47;">waste time checking unnecessary emails</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Một nhược điểm là <strong style="color: #70ad47;">một số email có thể là thư rác</strong>. Một hạn chế khác là mọi người có thể <strong style="color: #70ad47;">bỏ lỡ các tin nhắn quan trọng</strong>. Kết quả là, họ có thể <strong style="color: #70ad47;">lãng phí thời gian kiểm tra những email không cần thiết</strong>.</div></div>
+</div>
+</div>
+</div>
+<!-- Topic 2 -->
+<div class="sol-topic-section" style="margin-top: 30px;">
+<div class="sol-topic-header">
+<i class="fa-solid fa-laptop-file"></i> Topic 2: Let's talk about work/study <span class="sol-translation">(Hãy nói về công việc/học tập)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. Where do you work or study? <span class="sol-translation">(Bạn làm việc hay học tập ở đâu?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I study at <strong style="color: #00b0f0;">Can Tho University</strong>. I'm currently <strong style="color: #00b0f0;">a second-year student</strong>, and I <strong style="color: #00b0f0;">enjoy studying there</strong> because <strong style="color: #00b0f0;">the teachers are very supportive</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi học tại <strong style="color: #00b0f0;">Đại học Cần Thơ</strong>. Hiện tại tôi là <strong style="color: #00b0f0;">sinh viên năm hai</strong> và tôi <strong style="color: #00b0f0;">rất thích học ở đó</strong> vì <strong style="color: #00b0f0;">các giáo viên rất hỗ trợ</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I'm still a university <strong style="color: #70ad47;">a university student</strong> at <strong style="color: #70ad47;">Can Tho University</strong>. I'm currently in <strong style="color: #70ad47;">my second year</strong>. At the moment, I'm <strong style="color: #70ad47;">focusing on my studies</strong> and <strong style="color: #70ad47;">preparing for my future career</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi hiện vẫn là <strong style="color: #70ad47;">một sinh viên đại học</strong> tại <strong style="color: #70ad47;">Đại học Cần Thơ</strong>. Hiện tại tôi đang học <strong style="color: #70ad47;">năm thứ hai</strong>. Vào lúc này, tôi đang <strong style="color: #70ad47;">tập trung vào việc học</strong> và <strong style="color: #70ad47;">chuẩn bị cho sự nghiệp tương lai của mình</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">2. What do you do to study or work more effectively? <span class="sol-translation">(Bạn làm gì để học tập hoặc làm việc hiệu quả hơn?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">I often <strong style="color: #00b0f0;">make a study schedule</strong> and <strong style="color: #00b0f0;">review my lessons regularly</strong> because these habits help me <strong style="color: #00b0f0;">stay focused</strong> and <strong style="color: #00b0f0;">manage my time better</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Tôi thường <strong style="color: #00b0f0;">lập một lịch trình học tập</strong> và <strong style="color: #00b0f0;">thường xuyên ôn lại bài</strong> vì những thói quen này giúp tôi <strong style="color: #00b0f0;">luôn tập trung</strong> và <strong style="color: #00b0f0;">quản lý thời gian của mình tốt hơn</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">To study more effectively, I usually <strong style="color: #70ad47;">make a study schedule</strong>. I also <strong style="color: #70ad47;">review my lessons regularly</strong> and <strong style="color: #70ad47;">avoid distractions</strong>. These habits help me <strong style="color: #70ad47;">stay focused</strong> and <strong style="color: #70ad47;">manage my time better</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Để học tập hiệu quả hơn, tôi thường <strong style="color: #70ad47;">lập một lịch trình học tập</strong>. Tôi cũng <strong style="color: #70ad47;">thường xuyên ôn lại bài</strong> và <strong style="color: #70ad47;">tránh những sự xao nhãng</strong>. Những thói quen này giúp tôi <strong style="color: #70ad47;">luôn tập trung</strong> và <strong style="color: #70ad47;">quản lý thời gian của mình tốt hơn</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">3. Do you think good facilities are important for effective learning or working? Why? <span class="sol-translation">(Bạn có nghĩ cơ sở vật chất tốt là quan trọng cho việc học tập hoặc làm việc hiệu quả không? Tại sao?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Yes, they are. Good facilities are very important because they help us <strong style="color: #00b0f0;">study more comfortably</strong>. They also allow us to <strong style="color: #00b0f0;">access learning materials more easily</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Có. Cơ sở vật chất tốt rất quan trọng vì chúng giúp chúng ta <strong style="color: #00b0f0;">học tập thoải mái hơn</strong>. Chúng cũng cho phép chúng ta <strong style="color: #00b0f0;">tiếp cận các tài liệu học tập dễ dàng hơn</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Yes, I do. Good facilities help us <strong style="color: #70ad47;">concentrate better</strong> and <strong style="color: #70ad47;">study more comfortably</strong>. They also make it easier to <strong style="color: #70ad47;">access learning materials and modern equipment</strong>. As a result, we can <strong style="color: #70ad47;">study better</strong> and <strong style="color: #70ad47;">achieve better results</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi nghĩ vậy. Cơ sở vật chất tốt giúp chúng ta <strong style="color: #70ad47;">tập trung tốt hơn</strong> và <strong style="color: #70ad47;">học tập thoải mái hơn</strong>. Chúng cũng giúp việc <strong style="color: #70ad47;">tiếp cận các tài liệu học tập và thiết bị hiện đại</strong> dễ dàng hơn. Kết quả là, chúng ta có thể <strong style="color: #70ad47;">học tốt hơn</strong> và <strong style="color: #70ad47;">đạt được kết quả tốt hơn</strong>.</div></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Part 2 -->
+<div class="sol-tab-content" id="sol-panel-2">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-circle-info"></i> SITUATION <span class="sol-translation">(tình huống)</span>
+</div>
+<div class="sol-situation-box">
+                                    Your company is going to organize a camping trip for all employees. There are three possible locations: <strong><em>a riverbank</em></strong>, <strong><em>a theme park</em></strong>, and <strong><em>a camping site</em></strong>. Which place would you choose, and why?
+                                    <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-size: 13.5px;">(Công ty của bạn định tổ chức một chuyến dã ngoại cắm trại cho tất cả nhân viên. Có ba địa điểm khả thi: <strong><strong style="color: #70ad47;">bờ sông</strong></strong>, <strong><strong style="color: #7030a0;">công viên giải trí</strong></strong>, và <strong>khu cắm trại</strong>. Bạn sẽ chọn địa điểm nào và tại sao?)</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-graduation-cap"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">Well, if we had to <strong style="color: #ee0000;">choose a place for our company camping trip</strong>, we would <strong style="color: #ee0000;">go for a</strong> <strong style="color: #ee0000;">camping site</strong>.<br/><br/>First of all, it’s a <strong style="color: #00b0f0;">relaxing place</strong> because we can <strong style="color: #00b0f0;">enjoy nature</strong> and <strong style="color: #00b0f0;">get away from our daily routine</strong>. This helps us <strong style="color: #00b0f0;">reduce stress after working hard</strong>. So, we can <strong style="color: #00b0f0;">feel refreshed</strong>.<br/><br/>Secondly, it’s a <strong style="color: #00b0f0;">suitable place for team-building activities</strong>. We can <strong style="color: #00b0f0;">organize group games</strong>, <strong style="color: #00b0f0;">cook together</strong>, and <strong style="color: #00b0f0;">share experiences</strong>. So, we can <strong style="color: #00b0f0;">improve teamwork</strong> and <strong style="color: #00b0f0;">become closer to each other</strong>.<br/><br/>We wouldn’t choose a <strong style="color: #70ad47;">riverbank</strong> because it <strong style="color: #70ad47;">may not have enough facilities for a large group</strong>. As for a <strong style="color: #7030a0;">theme park</strong>, it’s less suitable because it <strong style="color: #7030a0;">may be crowded and expensive</strong>.<br/><br/>In short, we believe a <strong style="color: #ee0000;">camping site</strong> is the best choice for this situation.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">À, nếu chúng tôi phải <strong style="color: #ee0000;">chọn một địa điểm cho chuyến cắm trại của công ty</strong>, chúng tôi sẽ <strong style="color: #ee0000;">chọn một</strong> <strong style="color: #ee0000;">khu cắm trại</strong>.
+
+Trước hết, đó là một <strong style="color: #00b0f0;">nơi thư giãn</strong> vì chúng tôi có thể <strong style="color: #00b0f0;">tận hưởng thiên nhiên</strong> và <strong style="color: #00b0f0;">thoát khỏi thói quen hàng ngày</strong>. Điều này giúp chúng tôi <strong style="color: #00b0f0;">giảm bớt căng thẳng sau thời gian làm việc vất vả</strong>. Vì vậy, chúng tôi có thể <strong style="color: #00b0f0;">cảm thấy sảng khoái</strong>.
+
+Thứ hai, đó là một <strong style="color: #00b0f0;">nơi phù hợp cho các hoạt động xây dựng đội nhóm</strong>. Chúng tôi có thể <strong style="color: #00b0f0;">tổ chức các trò chơi nhóm</strong>, <strong style="color: #00b0f0;">cùng nhau nấu ăn</strong> và <strong style="color: #00b0f0;">chia sẻ kinh nghiệm</strong>. Vì vậy, chúng tôi có thể <strong style="color: #00b0f0;">cải thiện tinh thần đồng đội</strong> và <strong style="color: #00b0f0;">trở nên gần gũi với nhau hơn</strong>.
+
+Chúng tôi sẽ không chọn <strong style="color: #70ad47;">bờ sông</strong> vì nó <strong style="color: #70ad47;">có thể không có đủ cơ sở vật chất cho một nhóm lớn</strong>. Còn về <strong style="color: #7030a0;">công viên giải trí</strong>, nó kém phù hợp hơn vì nó <strong style="color: #7030a0;">có thể đông đúc và đắt đỏ</strong>.
+
+Tóm lại, chúng tôi tin rằng <strong style="color: #ee0000;">khu cắm trại</strong> là lựa chọn tốt nhất trong tình huống này.</div></div>
+</div>
+<div class="sol-level-box level-b2" style="margin-top: 20px;">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">Well, if we had to <strong style="color: #ee0000;">choose a place for our company camping trip</strong>, we would <strong style="color: #ee0000;">go for a</strong> <strong style="color: #ee0000;">camping site</strong>.<br/><br/>First of all, it’s <strong style="color: #00b0f0;">suitable for outdoor activities</strong> because it <strong style="color: #00b0f0;">provides a large open space for employees</strong> to <strong style="color: #00b0f0;">take part in team-building games and camping activities</strong>. This way, we can <strong style="color: #00b0f0;">reduce stress</strong> and <strong style="color: #00b0f0;">strengthen relationships with our colleagues</strong>.<br/><br/>Secondly, it’s a <strong style="color: #00b0f0;">peaceful and natural environment</strong>. We can <strong style="color: #00b0f0;">enjoy fresh air and beautiful scenery</strong> <strong style="color: #00b0f0;">after stressful working days</strong>. As a result, they can <strong style="color: #00b0f0;">feel more relaxed and refreshed</strong>.<br/><br/>We wouldn’t choose a <strong style="color: #70ad47;">riverbank</strong> because it <strong style="color: #70ad47;">may not be very safe, especially near deep water</strong>. As for a <strong style="color: #7030a0;">theme park</strong>, it’s less suitable because it <strong style="color: #7030a0;">may be crowded and noisy</strong>.<br/><br/>In short, we believe a <strong style="color: #ee0000;">camping site</strong> is the best choice for this situation.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">À, nếu chúng tôi phải <strong style="color: #ee0000;">chọn một địa điểm cho chuyến cắm trại của công ty</strong>, chúng tôi sẽ <strong style="color: #ee0000;">chọn một</strong> <strong style="color: #ee0000;">khu cắm trại</strong>.
+
+Trước hết, nó <strong style="color: #00b0f0;">phù hợp cho các hoạt động ngoài trời</strong> vì nó <strong style="color: #00b0f0;">cung cấp một không gian mở rộng lớn cho nhân viên</strong> <strong style="color: #00b0f0;">tham gia vào các trò chơi xây dựng đội nhóm và các hoạt động cắm trại</strong>. Bằng cách này, chúng tôi có thể <strong style="color: #00b0f0;">giảm căng thẳng</strong> và <strong style="color: #00b0f0;">củng cố các mối quan hệ với đồng nghiệp</strong>.
+
+Thứ hai, đó là một <strong style="color: #00b0f0;">môi trường yên bình và tự nhiên</strong>. Chúng tôi có thể <strong style="color: #00b0f0;">tận hưởng không khí trong lành và phong cảnh đẹp</strong> <strong style="color: #00b0f0;">sau những ngày làm việc căng thẳng</strong>. Kết quả là, họ có thể <strong style="color: #00b0f0;">cảm thấy thư giãn và sảng khoái hơn</strong>.
+
+Chúng tôi sẽ không chọn <strong style="color: #70ad47;">bờ sông</strong> vì nó <strong style="color: #70ad47;">có thể không an toàn lắm</strong>, đặc biệt là gần vùng nước sâu. Còn về <strong style="color: #7030a0;">công viên giải trí</strong>, nó kém phù hợp hơn vì nó <strong style="color: #7030a0;">có thể đông đúc và ồn ào</strong>.
+
+Tóm lại, chúng tôi tin rằng <strong style="color: #ee0000;">khu cắm trại</strong> là lựa chọn tốt nhất trong tình huống này.</div></div>
+</div>
+</div>
+</div>
+<!-- Panel Part 3 -->
+<div class="sol-tab-content" id="sol-panel-3">
+<div class="sol-topic-section">
+<div class="sol-topic-header">
+<i class="fa-solid fa-chart-line"></i> TOPIC DEVELOPMENT <span class="sol-translation">(phát triển chủ đề)</span>
+</div>
+<div class="sol-situation-box" style="font-weight: 600;">
+                                    Topic: There are several reasons why training workshops are important in life. <br/>
+<ul style="margin-top: 8px; margin-bottom: 0; padding-left: 20px; font-weight: normal;"><li>update knowledge</li><li>develop new professional skills</li><li>expand social networks</li></ul>
+<span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-weight: normal;">(Chủ đề: Có một vài lý do tại sao các buổi hội thảo đào tạo lại quan trọng trong cuộc sống.)<br/>
+<ul style="margin-top: 4px; margin-bottom: 0; padding-left: 20px;"><li>cập nhật kiến thức</li><li><strong style="color: #00b0f0;">phát triển các kỹ năng chuyên môn mới</strong></li><li><strong style="color: #00b0f0;">mở rộng mạng lưới xã hội</strong></li></ul>
+</span>
+</div>
+<div class="sol-topic-header" style="margin-top: 20px;">
+<i class="fa-solid fa-file-pen"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+</div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">There are some <strong style="color: #ee0000;">reasons why training workshops are important in life</strong>.<br/><br/>One major factor is that training workshops help people <strong style="color: #00b0f0;">update their knowledge</strong>. This is because participants can <strong style="color: #00b0f0;">learn new information and industry trends</strong>. As a result, they can <strong style="color: #00b0f0;">stay up to date in their field</strong>.<br/><br/>Another contributing reason is that training workshops help people <strong style="color: #00b0f0;">develop new professional skills</strong>. In fact, they can <strong style="color: #00b0f0;">learn practical skills from experts and trainers</strong>. Therefore, they may <strong style="color: #00b0f0;">perform their jobs more effectively</strong>.<br/><br/>One more underlying issue is that training workshops help people <strong style="color: #00b0f0;">expand social networks</strong>. This means that they can <strong style="color: #00b0f0;">meet new people</strong> and <strong style="color: #00b0f0;">exchange experiences</strong>. This may <strong style="color: #00b0f0;">create more opportunities in the future</strong>.<br/><br/>In short, there are some clear <strong style="color: #ee0000;">reasons why training workshops are important in life</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Có một vài <strong style="color: #ee0000;">lý do tại sao các hội thảo đào tạo lại quan trọng trong cuộc sống</strong>.
+
+Một yếu tố chính là các hội thảo đào tạo giúp mọi người <strong style="color: #00b0f0;">cập nhật kiến thức của họ</strong>. Điều này là do những người tham gia có thể <strong style="color: #00b0f0;">học được thông tin mới và các xu hướng trong ngành</strong>. Kết quả là, họ có thể <strong style="color: #00b0f0;">theo kịp những cập nhật trong lĩnh vực của mình</strong>.
+
+Một lý do góp phần khác là các hội thảo đào tạo giúp mọi người <strong style="color: #00b0f0;">phát triển các kỹ năng chuyên môn mới</strong>. Trên thực tế, họ có thể <strong style="color: #00b0f0;">học hỏi các kỹ năng thực tế từ các chuyên gia và giảng viên</strong>. Do đó, họ có thể <strong style="color: #00b0f0;">thực hiện công việc của mình hiệu quả hơn</strong>.
+
+Một vấn đề cơ bản nữa là các hội thảo đào tạo giúp mọi người <strong style="color: #00b0f0;">mở rộng mạng lưới xã hội</strong>. Điều này có nghĩa là họ có thể <strong style="color: #00b0f0;">gặp gỡ những người mới</strong> và <strong style="color: #00b0f0;">trao đổi kinh nghiệm</strong>. Điều này có thể <strong style="color: #00b0f0;">tạo ra nhiều cơ hội hơn trong tương lai</strong>.
+
+Tóm lại, có một vài lý do rõ ràng <strong style="color: #ee0000;">tại sao các hội thảo đào tạo lại quan trọng trong cuộc sống</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2" style="margin-top: 20px;">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content" style="white-space: pre-line;">There are some <strong style="color: #ee0000;">reasons why training workshops are important in life</strong>.<br/><br/>One major factor is that training workshops help people <strong style="color: #00b0f0;">update their knowledge</strong>. This is because participants can <strong style="color: #00b0f0;">learn about new trends and developments in their field</strong>. As a result, they can <strong style="color: #00b0f0;">stay up to date with changes in their profession</strong>.<br/><br/>Another important explanation is that training workshops help people <strong style="color: #00b0f0;">develop new professional skills</strong>. This means that they <strong style="color: #00b0f0;">provide practical training and useful experiences</strong>. This can <strong style="color: #00b0f0;">improve job performance and career opportunities</strong>.<br/><br/>One more possible contributor is that training workshops help people <strong style="color: #00b0f0;">expand their social networks</strong>. In fact, participants can <strong style="color: #00b0f0;">meet professionals from different organizations and backgrounds</strong>. Therefore, they can <strong style="color: #00b0f0;">build valuable relationships for future cooperation</strong>.<br/><br/>In short, there are some clear <strong style="color: #ee0000;">reasons why training workshops are important in life</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Có một vài <strong style="color: #ee0000;">lý do tại sao các hội thảo đào tạo lại quan trọng trong cuộc sống</strong>.
+
+Một yếu tố chính là các hội thảo đào tạo giúp mọi người <strong style="color: #00b0f0;">cập nhật kiến thức của họ</strong>. Điều này là do những người tham gia có thể <strong style="color: #00b0f0;">tìm hiểu về các xu hướng và sự phát triển mới trong lĩnh vực của họ</strong>. Kết quả là, họ có thể <strong style="color: #00b0f0;">cập nhật những thay đổi trong nghề nghiệp của mình</strong>.
+
+Một lời giải thích quan trọng khác là các hội thảo đào tạo giúp mọi người <strong style="color: #00b0f0;">phát triển các kỹ năng chuyên môn mới</strong>. Điều này có nghĩa là chúng <strong style="color: #00b0f0;">cung cấp chương trình đào tạo thực tế và kinh nghiệm hữu ích</strong>. Điều này có thể <strong style="color: #00b0f0;">cải thiện hiệu suất công việc và các cơ hội nghề nghiệp</strong>.
+
+Một yếu tố đóng góp khả thi nữa là các hội thảo đào tạo giúp mọi người <strong style="color: #00b0f0;"><strong style="color: #00b0f0;">mở rộng mạng lưới xã hội</strong> của họ</strong>. Trên thực tế, những người tham gia có thể <strong style="color: #00b0f0;">gặp gỡ các chuyên gia từ các tổ chức và hoàn cảnh khác nhau</strong>. Do đó, họ có thể <strong style="color: #00b0f0;">xây dựng các mối quan hệ giá trị cho sự hợp tác trong tương lai</strong>.
+
+Tóm lại, có một vài lý do rõ ràng <strong style="color: #ee0000;">tại sao các hội thảo đào tạo lại quan trọng trong cuộc sống</strong>.</div></div>
+</div>
+<div class="sol-topic-header" style="margin-top: 30px;">
+<i class="fa-solid fa-circle-question"></i> FOLLOW-UP QUESTIONS <span class="sol-translation">(câu hỏi mở rộng)</span>
+</div>
+<div class="sol-question-item">
+<div class="sol-question-text">1. What kinds of workshops are popular in your area? <span class="sol-translation">(Những loại hình hội thảo nào phổ biến ở khu vực của bạn?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content"><strong style="color: #00b0f0;">Language workshops</strong> are very popular in my area. Many people want to <strong style="color: #00b0f0;">improve their communication skills</strong>. Therefore, they often <strong style="color: #00b0f0;">join these workshops</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;"><strong style="color: #00b0f0;">Các buổi hội thảo ngôn ngữ</strong> rất phổ biến trong khu vực của tôi. Nhiều người muốn <strong style="color: #00b0f0;">cải thiện kỹ năng giao tiếp của họ</strong>. Do đó, họ thường <strong style="color: #00b0f0;">tham gia các buổi hội thảo này</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">In my area, <strong style="color: #70ad47;">language and technology workshops</strong> are quite popular. Many people attend them to <strong style="color: #70ad47;">improve their skills and knowledge</strong>. These workshops can also help participants <strong style="color: #70ad47;">find better career opportunities</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Trong khu vực của tôi, <strong style="color: #70ad47;">các buổi hội thảo ngôn ngữ và công nghệ</strong> khá phổ biến. Nhiều người tham dự chúng để <strong style="color: #70ad47;">nâng cao kỹ năng và kiến thức của họ</strong>. Các buổi hội thảo này cũng có thể giúp người tham gia <strong style="color: #70ad47;">tìm kiếm cơ hội nghề nghiệp tốt hơn</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item" style="margin-top: 20px;">
+<div class="sol-question-text">2. Why do some people prefer online workshops to face-to-face ones? <span class="sol-translation">(Tại sao một số người thích các hội thảo trực tuyến hơn là trực tiếp?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">They <strong style="color: #00b0f0;">prefer online workshops</strong> because they are <strong style="color: #00b0f0;">convenient and flexible</strong>. Participants can <strong style="color: #00b0f0;">join from anywhere</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Họ <strong style="color: #00b0f0;">thích các hội thảo trực tuyến hơn</strong> vì chúng <strong style="color: #00b0f0;">thuận tiện và linh hoạt</strong>. Những người tham gia có thể <strong style="color: #00b0f0;">tham gia từ bất cứ đâu</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Many people <strong style="color: #70ad47;">prefer online workshops</strong> because they are <strong style="color: #70ad47;">more convenient</strong>. Participants can <strong style="color: #70ad47;">join from home</strong> and <strong style="color: #70ad47;">save travel time</strong>. In addition, online workshops are often <strong style="color: #70ad47;">more flexible and accessible</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Nhiều người <strong style="color: #70ad47;">thích các hội thảo trực tuyến hơn</strong> vì chúng <strong style="color: #70ad47;">thuận tiện hơn</strong>. Những người tham gia có thể <strong style="color: #70ad47;">tham gia từ nhà</strong> và <strong style="color: #70ad47;">tiết kiệm thời gian đi lại</strong>. Ngoài ra, các hội thảo trực tuyến thường <strong style="color: #70ad47;">linh hoạt và dễ tiếp cận hơn</strong>.</div></div>
+</div>
+</div>
+<div class="sol-question-item" style="margin-top: 20px;">
+<div class="sol-question-text">3. How can companies encourage their employees to join training workshops? <span class="sol-translation">(Làm thế nào các công ty có thể khuyến khích nhân viên tham gia các buổi đào tạo?)</span></div>
+<div class="sol-level-box level-b1">
+<span class="level-badge b1">B1 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Companies should <strong style="color: #00b0f0;">provide useful training programs</strong>. They can also <strong style="color: #00b0f0;">give rewards to participants</strong>. Therefore, more employees may <strong style="color: #00b0f0;">join the workshops</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Các công ty nên <strong style="color: #00b0f0;">cung cấp các chương trình đào tạo hữu ích</strong>. Họ cũng có thể <strong style="color: #00b0f0;">trao phần thưởng cho những người tham gia</strong>. Do đó, có thể có nhiều nhân viên <strong style="color: #00b0f0;">tham gia hội thảo hơn</strong>.</div></div>
+</div>
+<div class="sol-level-box level-b2">
+<span class="level-badge b2">B2 LEVEL</span>
+<button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+<div class="level-content">Companies can <strong style="color: #70ad47;">provide financial support for workshop fees</strong>. They can also <strong style="color: #70ad47;">organize workshops during working hours</strong>. Moreover, <strong style="color: #70ad47;">offering rewards or promotion opportunities</strong> may <strong style="color: #70ad47;">encourage more employees to participate</strong>.<div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div><div class="translation-text" style="display: none; white-space: pre-line;">Các công ty có thể <strong style="color: #70ad47;">cung cấp hỗ trợ tài chính cho phí hội thảo</strong>. Họ cũng có thể <strong style="color: #70ad47;">tổ chức hội thảo trong giờ làm việc</strong>. Hơn nữa, việc <strong style="color: #70ad47;">trao phần thưởng hoặc cơ hội thăng tiến</strong> có thể <strong style="color: #70ad47;">khuyến khích nhiều nhân viên tham gia hơn</strong>.</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Back button -->
+<div style="margin-top: 30px; display: flex; justify-content: center;">
+<button class="btn btn-secondary" onclick="showScreen('review')">
+<i class="fa-solid fa-arrow-left"></i> Quay lại phần kết quả
+                        </button>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Custom Script JS -->
+<script src="../db.js?v=1782327221"></script>
+<script src="app.js?v=1782327221"></script>
+<script>
+  function toggleTranslation(element) {
+   const textNode = element.nextElementSibling;
+   const icon = element.querySelector('i');
+   if (textNode.style.display === 'none') {
+    textNode.style.display = 'block';
+    if (icon) icon.className = 'fa-solid fa-chevron-up';
+   } else {
+    textNode.style.display = 'none';
+    if (icon) icon.className = 'fa-solid fa-chevron-down';
+   }
+  }
+</script>
+</body>
+</html>

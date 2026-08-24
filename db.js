@@ -141,6 +141,7 @@ const VstepDB = {
 // ==========================================================================
 const VstepAuth = {
     ALLOWED_CLASSES: ['CB201', 'CB202', 'CB196', 'B209'],
+    REQUIRED_PASSWORD: 'VSTEPSEPTEMBER',
     FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSe4MK1HLBYtsZ-SkwVmaO_hV_o4C094a7x-17il2H6kqGtuHw/formResponse',
     ENTRY_ID: 'entry.388968236',
 
@@ -352,6 +353,7 @@ const VstepAuth = {
                 <div class="vstep-auth-form">
                     <input type="text" id="vstep-auth-name" class="vstep-auth-input" placeholder="HỌ VÀ TÊN" value="${current.name ? current.name.replace(/"/g, '&quot;') : ''}" autocomplete="off" spellcheck="false">
                     <input type="text" id="vstep-auth-class" class="vstep-auth-input" placeholder="LỚP HỌC" value="${current.classCode ? current.classCode.replace(/"/g, '&quot;') : ''}" autocomplete="off" spellcheck="false">
+                    <input type="password" id="vstep-auth-password" class="vstep-auth-input" placeholder="MẬT KHẨU" autocomplete="off" spellcheck="false">
                 </div>
 
                 <button type="button" id="vstep-auth-submit" class="vstep-auth-btn">BẮT ĐẦU HỌC NGAY</button>
@@ -365,18 +367,21 @@ const VstepAuth = {
 
         const nameInput = overlay.querySelector('#vstep-auth-name');
         const classInput = overlay.querySelector('#vstep-auth-class');
+        const passwordInput = overlay.querySelector('#vstep-auth-password');
         const submitBtn = overlay.querySelector('#vstep-auth-submit');
         const errorDiv = overlay.querySelector('#vstep-auth-error');
         const card = overlay.querySelector('#vstep-auth-card');
 
         setTimeout(() => {
             if (!nameInput.value.trim()) nameInput.focus();
-            else classInput.focus();
+            else if (!classInput.value.trim()) classInput.focus();
+            else passwordInput.focus();
         }, 150);
 
         const handleSubmit = async () => {
             const name = nameInput.value.trim();
             const classCode = classInput.value.trim().toUpperCase();
+            const password = (passwordInput.value || '').trim();
 
             // Validation
             if (!name) {
@@ -396,6 +401,17 @@ const VstepAuth = {
                 void card.offsetWidth;
                 card.classList.add('shake');
                 classInput.focus();
+                return;
+            }
+
+            if (password !== this.REQUIRED_PASSWORD) {
+                errorDiv.innerText = "⚠️ Mật khẩu không chính xác. Vui lòng thử lại!";
+                errorDiv.style.display = "block";
+                card.classList.remove('shake');
+                void card.offsetWidth;
+                card.classList.add('shake');
+                passwordInput.value = '';
+                passwordInput.focus();
                 return;
             }
 
@@ -433,6 +449,9 @@ const VstepAuth = {
             if (e.key === 'Enter') classInput.focus();
         });
         classInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') passwordInput.focus();
+        });
+        passwordInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') handleSubmit();
         });
     },

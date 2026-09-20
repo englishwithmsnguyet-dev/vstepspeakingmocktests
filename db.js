@@ -140,24 +140,24 @@ const VstepDB = {
 // Form Recording: https://forms.gle/pGY7Ci8T1aHv15Ud6
 // ==========================================================================
 const VstepAuth = {
-    ALLOWED_CLASSES: ['CB201', 'CB202', 'CB196', 'B209'],
+    ALLOWED_CLASSES: ['CB206'],
     REQUIRED_PASSWORD: 'VSTEPSEPTEMBER',
     FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSe4MK1HLBYtsZ-SkwVmaO_hV_o4C094a7x-17il2H6kqGtuHw/formResponse',
     ENTRY_ID: 'entry.388968236',
 
     isLoggedIn() {
-        const loggedIn = localStorage.getItem('vstep_user_logged_in') === 'true';
-        const name = (localStorage.getItem('vstep_student_name') || '').trim();
-        const classCode = (localStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
-        return loggedIn && name.length > 0 && this.ALLOWED_CLASSES.includes(classCode);
+        const name = (localStorage.getItem('vstep_student_name') || sessionStorage.getItem('vstep_student_name') || '').trim();
+        const classCode = (localStorage.getItem('vstep_student_class') || sessionStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
+        return name.length > 0 && this.ALLOWED_CLASSES.includes(classCode);
     },
 
     getStudentInfo() {
+        const name = (localStorage.getItem('vstep_student_name') || sessionStorage.getItem('vstep_student_name') || '').trim();
+        const classCode = (localStorage.getItem('vstep_student_class') || sessionStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
         return {
-            name: localStorage.getItem('vstep_student_name') || '',
-            classCode: (localStorage.getItem('vstep_student_class') || '').toUpperCase(),
-            displayName: (localStorage.getItem('vstep_student_name') || 'Học viên') + 
-                         (localStorage.getItem('vstep_student_class') ? ` - ${localStorage.getItem('vstep_student_class').toUpperCase()}` : '')
+            name,
+            classCode,
+            displayName: (name || 'Học viên') + (classCode ? ` - ${classCode}` : '')
         };
     },
 
@@ -165,6 +165,9 @@ const VstepAuth = {
         localStorage.removeItem('vstep_user_logged_in');
         localStorage.removeItem('vstep_student_name');
         localStorage.removeItem('vstep_student_class');
+        sessionStorage.removeItem('vstep_user_logged_in');
+        sessionStorage.removeItem('vstep_student_name');
+        sessionStorage.removeItem('vstep_student_class');
         this.showLoginModal(true);
     },
 
@@ -395,7 +398,7 @@ const VstepAuth = {
             }
 
             if (!classCode || !this.ALLOWED_CLASSES.includes(classCode)) {
-                errorDiv.innerText = `⚠️ Lớp học không hợp lệ. Vui lòng nhập đúng lớp học của bạn (${this.ALLOWED_CLASSES.join(', ')}).`;
+                errorDiv.innerText = `⚠️ Lớp học không hợp lệ. Hệ thống chỉ nhận lớp: ${this.ALLOWED_CLASSES.join(', ')}.`;
                 errorDiv.style.display = "block";
                 card.classList.remove('shake');
                 void card.offsetWidth;
@@ -404,7 +407,17 @@ const VstepAuth = {
                 return;
             }
 
-            if (password !== this.REQUIRED_PASSWORD) {
+            if (!password) {
+                errorDiv.innerText = "⚠️ Vui lòng nhập Mật khẩu.";
+                errorDiv.style.display = "block";
+                card.classList.remove('shake');
+                void card.offsetWidth;
+                card.classList.add('shake');
+                passwordInput.focus();
+                return;
+            }
+
+            if (password.toUpperCase() !== this.REQUIRED_PASSWORD) {
                 errorDiv.innerText = "⚠️ Mật khẩu không chính xác. Vui lòng thử lại!";
                 errorDiv.style.display = "block";
                 card.classList.remove('shake');
@@ -419,11 +432,14 @@ const VstepAuth = {
             submitBtn.disabled = true;
             submitBtn.innerText = "ĐANG XÁC THỰC...";
 
-            // Save to localStorage
+            // Save to BOTH localStorage and sessionStorage so switching tests does NOT require re-login
             localStorage.setItem('vstep_student_name', name);
             localStorage.setItem('vstep_student_class', classCode);
             localStorage.setItem('vstep_user_logged_in', 'true');
             localStorage.setItem('vstep_login_time', Date.now().toString());
+            sessionStorage.setItem('vstep_student_name', name);
+            sessionStorage.setItem('vstep_student_class', classCode);
+            sessionStorage.setItem('vstep_user_logged_in', 'true');
 
             // Record to Google Form in background
             this.sendToGoogleForm(name, classCode);
@@ -458,7 +474,7 @@ const VstepAuth = {
 
     sendToGoogleForm(name, classCode) {
         try {
-            const entryText = `${name} - Lớp: ${classCode}`;
+            const entryText = `${name} - ${classCode}`;
             const formData = new FormData();
             formData.append(this.ENTRY_ID, entryText);
 
@@ -503,7 +519,7 @@ const VstepAuth = {
 
     updatePageUserInfo() {
         const info = this.getStudentInfo();
-        if (!info.name || !info.classCode) return;
+        if (!info.name || !info.classCode || !this.ALLOWED_CLASSES.includes(info.classCode.toUpperCase())) return;
 
         // 1. If on test page: update #student-name input
         const nameInput = document.getElementById('student-name');
@@ -518,10 +534,10 @@ const VstepAuth = {
         const badgeContainer = document.getElementById('vstep-user-badge-container');
         if (badgeContainer) {
             badgeContainer.innerHTML = `
-                <div class="user-logged-badge" style="display: flex; align-items: center; gap: 10px; background: rgba(37, 99, 235, 0.08); border: 1px solid rgba(37, 99, 235, 0.2); padding: 8px 16px; border-radius: 999px; font-size: 13.5px; color: #1e293b;">
+                <div class="user-logged-badge" style="display: flex; align-items: center; gap: 10px; background: rgba(37, 99, 235, 0.08); border: 1.5px solid rgba(37, 99, 235, 0.25); padding: 7px 16px; border-radius: 999px; font-size: 13.5px; color: #1e293b; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
                     <i class="fa-solid fa-circle-user" style="color: #2563eb; font-size: 16px;"></i>
                     <span>Học viên: <strong style="color: #0f172a;">${info.name}</strong> (<strong style="color: #2563eb;">${info.classCode}</strong>)</span>
-                    <button type="button" onclick="VstepAuth.showLoginModal(true)" style="background: none; border: none; color: #64748b; font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: underline; padding: 0 0 0 4px;" title="Đổi thông tin học viên"><i class="fa-solid fa-pen-to-square"></i> Đổi</button>
+                    <button type="button" onclick="VstepAuth.showLoginModal(true)" style="background: #f1f5f9; border: none; color: #475569; font-size: 12px; font-weight: 700; cursor: pointer; padding: 4px 10px; border-radius: 8px; margin-left: 6px; transition: all 0.2s ease;" title="Đổi thông tin học viên"><i class="fa-solid fa-user-pen"></i> Đổi</button>
                 </div>
             `;
         }
@@ -531,6 +547,13 @@ const VstepAuth = {
 // Auto-check on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
     // If on homepage or test page, update info
-    VstepAuth.updatePageUserInfo();
+    if (typeof VstepAuth !== 'undefined') {
+        VstepAuth.updatePageUserInfo();
+        if (!VstepAuth.isLoggedIn()) {
+            setTimeout(() => {
+                VstepAuth.showLoginModal(false);
+            }, 350);
+        }
+    }
 });
 

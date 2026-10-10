@@ -140,7 +140,7 @@ const VstepDB = {
 // Form Recording: https://forms.gle/pGY7Ci8T1aHv15Ud6
 // ==========================================================================
 const VstepAuth = {
-    ALLOWED_CLASSES: ['CB206'],
+    ALLOWED_CLASSES: ['CB206', 'CB210'],
     REQUIRED_PASSWORD: 'VSTEPSEPTEMBER',
     FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSe4MK1HLBYtsZ-SkwVmaO_hV_o4C094a7x-17il2H6kqGtuHw/formResponse',
     ENTRY_ID: 'entry.388968236',

@@ -140,7 +140,7 @@ const VstepDB = {
 // Form Recording: https://forms.gle/pGY7Ci8T1aHv15Ud6
 // ==========================================================================
 const VstepAuth = {
-    ALLOWED_CLASSES: ['CB206', 'CB210'],
+    ALLOWED_CLASSES: ['CB206', 'CB210', 'GV'],
     REQUIRED_PASSWORD: 'VSTEPSEPTEMBER',
     FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSe4MK1HLBYtsZ-SkwVmaO_hV_o4C094a7x-17il2H6kqGtuHw/formResponse',
     ENTRY_ID: 'entry.388968236',
@@ -148,7 +148,8 @@ const VstepAuth = {
     isLoggedIn() {
         const name = (localStorage.getItem('vstep_student_name') || sessionStorage.getItem('vstep_student_name') || '').trim();
         const classCode = (localStorage.getItem('vstep_student_class') || sessionStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
-        return name.length > 0 && this.ALLOWED_CLASSES.includes(classCode);
+        const isTeacher = (name.toUpperCase() === 'PTMN' && classCode === 'GV');
+        return isTeacher || (name.length > 0 && this.ALLOWED_CLASSES.includes(classCode));
     },
 
     getStudentInfo() {
@@ -398,7 +399,7 @@ const VstepAuth = {
             }
 
             if (!classCode || !this.ALLOWED_CLASSES.includes(classCode)) {
-                errorDiv.innerText = `⚠️ Lớp học không hợp lệ. Hệ thống chỉ nhận lớp: ${this.ALLOWED_CLASSES.join(', ')}.`;
+                errorDiv.innerText = `⚠️ Lớp học không hợp lệ. Hệ thống chỉ nhận lớp: ${this.ALLOWED_CLASSES.filter(c => c !== 'GV').join(', ')}.`;
                 errorDiv.style.display = "block";
                 card.classList.remove('shake');
                 void card.offsetWidth;
@@ -407,25 +408,39 @@ const VstepAuth = {
                 return;
             }
 
-            if (!password) {
-                errorDiv.innerText = "⚠️ Vui lòng nhập Mật khẩu.";
+            const isTeacher = (name.toUpperCase() === 'PTMN' && classCode === 'GV');
+            if (classCode === 'GV' && !isTeacher) {
+                errorDiv.innerText = "⚠️ Mã lớp GV chỉ dành riêng cho tài khoản Giáo viên (PTMN)!";
                 errorDiv.style.display = "block";
                 card.classList.remove('shake');
                 void card.offsetWidth;
                 card.classList.add('shake');
-                passwordInput.focus();
+                nameInput.focus();
                 return;
             }
 
-            if (password.toUpperCase() !== this.REQUIRED_PASSWORD) {
-                errorDiv.innerText = "⚠️ Mật khẩu không chính xác. Vui lòng thử lại!";
-                errorDiv.style.display = "block";
-                card.classList.remove('shake');
-                void card.offsetWidth;
-                card.classList.add('shake');
-                passwordInput.value = '';
-                passwordInput.focus();
-                return;
+            if (!isTeacher) {
+                if (!password) {
+                    errorDiv.innerText = "⚠️ Vui lòng nhập Mật khẩu.";
+                    errorDiv.style.display = "block";
+                    card.classList.remove('shake');
+                    void card.offsetWidth;
+                    card.classList.add('shake');
+                    passwordInput.focus();
+                    return;
+                }
+
+                const upperPass = password.toUpperCase();
+                if (upperPass !== this.REQUIRED_PASSWORD && upperPass !== 'STUDYHARD') {
+                    errorDiv.innerText = "⚠️ Mật khẩu không chính xác. Vui lòng thử lại!";
+                    errorDiv.style.display = "block";
+                    card.classList.remove('shake');
+                    void card.offsetWidth;
+                    card.classList.add('shake');
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                    return;
+                }
             }
 
             errorDiv.style.display = "none";
@@ -519,7 +534,8 @@ const VstepAuth = {
 
     updatePageUserInfo() {
         const info = this.getStudentInfo();
-        if (!info.name || !info.classCode || !this.ALLOWED_CLASSES.includes(info.classCode.toUpperCase())) return;
+        const isTeacher = (info.name && info.classCode && info.name.toUpperCase() === 'PTMN' && info.classCode.toUpperCase() === 'GV');
+        if (!info.name || !info.classCode || (!this.ALLOWED_CLASSES.includes(info.classCode.toUpperCase()) && !isTeacher)) return;
 
         // 1. If on test page: update #student-name input
         const nameInput = document.getElementById('student-name');
@@ -533,13 +549,23 @@ const VstepAuth = {
         // 2. If on homepage: update header student badge
         const badgeContainer = document.getElementById('vstep-user-badge-container');
         if (badgeContainer) {
-            badgeContainer.innerHTML = `
-                <div class="user-logged-badge" style="display: flex; align-items: center; gap: 10px; background: rgba(37, 99, 235, 0.08); border: 1.5px solid rgba(37, 99, 235, 0.25); padding: 7px 16px; border-radius: 999px; font-size: 13.5px; color: #1e293b; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-                    <i class="fa-solid fa-circle-user" style="color: #2563eb; font-size: 16px;"></i>
-                    <span>Học viên: <strong style="color: #0f172a;">${info.name}</strong> (<strong style="color: #2563eb;">${info.classCode}</strong>)</span>
-                    <button type="button" onclick="VstepAuth.showLoginModal(true)" style="background: #f1f5f9; border: none; color: #475569; font-size: 12px; font-weight: 700; cursor: pointer; padding: 4px 10px; border-radius: 8px; margin-left: 6px; transition: all 0.2s ease;" title="Đổi thông tin học viên"><i class="fa-solid fa-user-pen"></i> Đổi</button>
-                </div>
-            `;
+            if (isTeacher) {
+                badgeContainer.innerHTML = `
+                    <div class="user-logged-badge" style="display: flex; align-items: center; gap: 10px; background: rgba(234, 179, 8, 0.15); border: 1.5px solid rgba(234, 179, 8, 0.4); padding: 7px 16px; border-radius: 999px; font-size: 13.5px; color: #1e293b; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <i class="fa-solid fa-chalkboard-user" style="color: #eab308; font-size: 16px;"></i>
+                        <span>Giáo viên: <strong style="color: #0f172a;">${info.name}</strong> (<strong style="color: #ca8a04;">${info.classCode}</strong>)</span>
+                        <button type="button" onclick="VstepAuth.showLoginModal(true)" style="background: #fef08a; border: none; color: #854d0e; font-size: 12px; font-weight: 700; cursor: pointer; padding: 4px 10px; border-radius: 8px; margin-left: 6px; transition: all 0.2s ease;" title="Đổi thông tin"><i class="fa-solid fa-user-pen"></i> Đổi</button>
+                    </div>
+                `;
+            } else {
+                badgeContainer.innerHTML = `
+                    <div class="user-logged-badge" style="display: flex; align-items: center; gap: 10px; background: rgba(37, 99, 235, 0.08); border: 1.5px solid rgba(37, 99, 235, 0.25); padding: 7px 16px; border-radius: 999px; font-size: 13.5px; color: #1e293b; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+                        <i class="fa-solid fa-circle-user" style="color: #2563eb; font-size: 16px;"></i>
+                        <span>Học viên: <strong style="color: #0f172a;">${info.name}</strong> (<strong style="color: #2563eb;">${info.classCode}</strong>)</span>
+                        <button type="button" onclick="VstepAuth.showLoginModal(true)" style="background: #f1f5f9; border: none; color: #475569; font-size: 12px; font-weight: 700; cursor: pointer; padding: 4px 10px; border-radius: 8px; margin-left: 6px; transition: all 0.2s ease;" title="Đổi thông tin học viên"><i class="fa-solid fa-user-pen"></i> Đổi</button>
+                    </div>
+                `;
+            }
         }
     }
 };

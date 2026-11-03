@@ -201,55 +201,149 @@ const VstepAuth = {
                 width: 100%;
                 max-width: 440px;
                 border-radius: 28px;
-                padding: 40px 32px 36px;
+                padding: 34px 28px 24px 28px;
                 text-align: center;
-                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2);
+                box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
                 box-sizing: border-box;
                 transform: scale(0.92);
                 transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+                border: 1.5px solid rgba(226, 232, 240, 0.95);
+                position: relative;
             }
-            .vstep-auth-icon {
-                width: 72px;
-                height: 72px;
+            body.dark-theme .vstep-auth-card {
+                background: #111827;
+                border-color: rgba(255, 255, 255, 0.12);
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            }
+            .login-teacher-avatar-wrap {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 1.15rem;
+                position: relative;
+            }
+            .login-teacher-halo {
+                position: relative;
+                width: 126px;
+                height: 126px;
                 border-radius: 50%;
-                background: #2563eb;
-                color: #ffffff;
+                padding: 4px;
+                background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #38bdf8 100%);
+                box-shadow: 0 0 28px rgba(99, 102, 241, 0.45), 0 0 50px rgba(236, 72, 153, 0.25);
+                animation: haloPulse 3.5s ease-in-out infinite alternate;
+            }
+            @keyframes haloPulse {
+                0% {
+                    box-shadow: 0 0 20px rgba(99, 102, 241, 0.35), 0 0 35px rgba(236, 72, 153, 0.2);
+                    transform: scale(1);
+                }
+                100% {
+                    box-shadow: 0 0 32px rgba(99, 102, 241, 0.6), 0 0 55px rgba(236, 72, 153, 0.4);
+                    transform: scale(1.025);
+                }
+            }
+            .login-teacher-avatar {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+                object-position: center 20%;
+                border: 3.5px solid #ffffff;
+                display: block;
+                box-sizing: border-box;
+            }
+            body.dark-theme .login-teacher-avatar {
+                border-color: #1e293b;
+            }
+            .login-teacher-badge {
+                margin-top: 0.65rem;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.35rem;
+                font-size: 0.72rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                padding: 0.25rem 0.8rem;
+                border-radius: 9999px;
+                background: rgba(99, 102, 241, 0.12);
+                border: 1.5px solid rgba(99, 102, 241, 0.35);
+                color: #6366f1;
+            }
+            body.dark-theme .login-teacher-badge {
+                background: rgba(99, 102, 241, 0.25);
+                color: #a5b4fc;
+                border-color: rgba(99, 102, 241, 0.5);
+            }
+            .login-brand-tag {
+                font-size: 0.95rem;
+                font-weight: 700;
+                color: #7c3aed;
+                margin-bottom: 0.35rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 28px;
-                margin: 0 auto 24px;
-                box-shadow: 0 12px 24px -6px rgba(37, 99, 235, 0.45);
+                gap: 0.45rem;
             }
-            .vstep-auth-title {
-                font-size: 21px;
+            body.dark-theme .login-brand-tag {
+                color: #c084fc;
+            }
+            .login-course-title {
+                font-size: 1.05rem;
                 font-weight: 800;
-                color: #0f172a;
-                line-height: 1.35;
-                margin: 0 0 14px 0;
+                color: #4f46e5;
+                letter-spacing: 0.02em;
+                margin-bottom: 0.6rem;
                 text-transform: uppercase;
+            }
+            body.dark-theme .login-course-title {
+                color: #818cf8;
+            }
+            .login-title-custom {
+                font-size: 1.45rem;
+                font-weight: 900;
+                color: #0f172a;
+                line-height: 1.25;
+                margin: 0 0 1.25rem 0;
                 letter-spacing: -0.01em;
             }
-            .vstep-auth-desc {
-                font-size: 14.5px;
-                color: #64748b;
-                line-height: 1.55;
-                margin: 0 0 26px 0;
-                font-weight: 400;
+            body.dark-theme .login-title-custom {
+                color: #f8fafc;
             }
             .vstep-auth-form {
                 display: flex;
                 flex-direction: column;
-                gap: 14px;
-                margin-bottom: 22px;
+                gap: 0.9rem;
+                margin-bottom: 1rem;
             }
-            .vstep-auth-input {
+            .input-group-custom {
+                display: flex;
+                flex-direction: column;
+                gap: 0.35rem;
+                text-align: left;
                 width: 100%;
-                background: #f1f5f9;
-                border: 2px solid transparent;
-                border-radius: 14px;
-                padding: 16px 18px;
-                font-size: 15px;
+                box-sizing: border-box;
+            }
+            .input-group-custom label {
+                font-size: 0.78rem;
+                font-weight: 800;
+                color: #334155;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+                display: flex;
+                align-items: center;
+                gap: 0.45rem;
+            }
+            body.dark-theme .input-group-custom label {
+                color: #cbd5e1;
+            }
+            .input-group-custom .vstep-auth-input {
+                width: 100%;
+                background: #f8fafc;
+                border: 1.5px solid #e2e8f0;
+                border-radius: 12px;
+                padding: 0.8rem 1rem;
+                font-size: 0.95rem;
                 font-weight: 600;
                 color: #0f172a;
                 outline: none;
@@ -257,38 +351,72 @@ const VstepAuth = {
                 box-sizing: border-box;
                 font-family: inherit;
             }
-            .vstep-auth-input::placeholder {
-                color: #94a3b8;
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 0.05em;
-                font-size: 13.5px;
+            body.dark-theme .input-group-custom .vstep-auth-input {
+                background: #1e293b;
+                border-color: #334155;
+                color: #f8fafc;
             }
-            .vstep-auth-input:focus {
+            .input-group-custom .vstep-auth-input::placeholder {
+                color: #94a3b8;
+                font-weight: 500;
+                font-size: 0.9rem;
+            }
+            .input-group-custom .vstep-auth-input:focus {
                 background: #ffffff;
-                border-color: #3b82f6;
-                box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+                border-color: #6366f1;
+                box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+            }
+            body.dark-theme .input-group-custom .vstep-auth-input:focus {
+                background: #0f172a;
+                border-color: #818cf8;
+                box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+            }
+            .pwd-wrapper {
+                position: relative;
+                width: 100%;
+            }
+            .btn-toggle-pwd {
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: none;
+                border: none;
+                cursor: pointer;
+                color: #94a3b8;
+                padding: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: color 0.2s;
+            }
+            .btn-toggle-pwd:hover {
+                color: #4f46e5;
             }
             .vstep-auth-btn {
-                background: #4f61f7;
+                background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
                 color: #ffffff;
                 border: none;
                 border-radius: 14px;
-                padding: 17px 20px;
-                font-size: 15.5px;
-                font-weight: 700;
+                padding: 0.95rem 1.25rem;
+                font-size: 1rem;
+                font-weight: 800;
+                letter-spacing: 0.05em;
                 text-transform: uppercase;
-                letter-spacing: 0.04em;
                 cursor: pointer;
                 width: 100%;
-                box-shadow: 0 10px 24px -4px rgba(79, 97, 247, 0.45);
+                box-shadow: 0 10px 24px -4px rgba(99, 102, 241, 0.45);
                 transition: all 0.25s ease;
                 font-family: inherit;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                box-sizing: border-box;
             }
             .vstep-auth-btn:hover:not(:disabled) {
-                background: #3f51e8;
                 transform: translateY(-2px);
-                box-shadow: 0 14px 28px -4px rgba(79, 97, 247, 0.55);
+                box-shadow: 0 14px 28px -4px rgba(99, 102, 241, 0.55);
             }
             .vstep-auth-btn:active:not(:disabled) {
                 transform: translateY(0);
@@ -302,32 +430,56 @@ const VstepAuth = {
                 background: #fef2f2;
                 color: #dc2626;
                 border: 1px solid #fecaca;
-                border-radius: 10px;
+                border-radius: 12px;
                 padding: 10px 14px;
-                font-size: 13px;
+                font-size: 13.5px;
                 font-weight: 600;
+                margin-bottom: 1rem;
                 text-align: left;
                 line-height: 1.4;
-                margin-bottom: 14px;
-                animation: fadeIn 0.2s ease;
+            }
+            body.dark-theme .vstep-auth-error {
+                background: rgba(239, 68, 68, 0.15);
+                border-color: rgba(239, 68, 68, 0.3);
+                color: #fca5a5;
+            }
+            .login-footer-signature {
+                margin-top: 1.15rem;
+                font-size: 0.8rem;
+                font-weight: 800;
+                letter-spacing: 0.06em;
+                text-align: center;
+            }
+            .login-footer-signature a {
+                color: #64748b;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45rem;
+                transition: color 0.2s;
+            }
+            .login-footer-signature a:hover {
+                color: #1877f2;
+            }
+            body.dark-theme .login-footer-signature a {
+                color: #94a3b8;
+            }
+            body.dark-theme .login-footer-signature a:hover {
+                color: #38bdf8;
             }
             .vstep-auth-card.shake {
                 animation: authShake 0.4s ease;
             }
             @keyframes authShake {
-                0%, 100% { transform: translateX(0); }
-                20%, 60% { transform: translateX(-8px); }
-                40%, 80% { transform: translateX(8px); }
-            }
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(-4px); }
-                to { opacity: 1; transform: translateY(0); }
+                0%, 100% { transform: scale(1) translateX(0); }
+                20%, 60% { transform: scale(1) translateX(-8px); }
+                40%, 80% { transform: scale(1) translateX(8px); }
             }
         `;
         document.head.appendChild(style);
     },
 
-    showLoginModal(force = false, onComplete = null) {
+    showLoginModal(force =  false, onComplete = null) {
         if (!force && this.isLoggedIn()) {
             if (typeof onComplete === 'function') onComplete(this.getStudentInfo());
             return;
@@ -341,26 +493,71 @@ const VstepAuth = {
 
         const current = this.getStudentInfo();
 
+        const isSub = window.location.pathname.includes('/test ') || window.location.pathname.includes('test0') || window.location.pathname.includes('test1');
+        const avatarSrc = isSub ? '../miss_nguyet.jpg' : 'miss_nguyet.jpg';
+
         const overlay = document.createElement('div');
         overlay.id = 'vstep-auth-modal';
         overlay.className = 'vstep-auth-overlay';
         overlay.innerHTML = `
-            <div class="vstep-auth-card" id="vstep-auth-card">
-                <div class="vstep-auth-icon">
-                    <i class="fa-solid fa-pen"></i>
+            <div class="vstep-auth-card login-card-custom" id="vstep-auth-card">
+                <!-- Miss Nguyet Avatar Brand Ring -->
+                <div class="login-teacher-avatar-wrap">
+                    <div class="login-teacher-halo">
+                        <img src="${avatarSrc}" alt="Miss Nguyet" class="login-teacher-avatar" onerror="if(this.src!=='miss_nguyet.jpg') this.src='miss_nguyet.jpg';">
+                    </div>
+                    <span class="login-teacher-badge">
+                        <i class="fa-solid fa-certificate"></i> LEAD INSTRUCTOR
+                    </span>
                 </div>
-                <h2 class="vstep-auth-title">CHÀO MỪNG BẠN ĐẾN VỚI LỚP HỌC CỦA MISS NGUYET</h2>
-                <p class="vstep-auth-desc">Vui lòng điền Họ tên và Lớp học của bạn để bắt đầu học. Kết quả luyện tập sẽ được ghi nhận và gửi báo cáo cho giáo viên.</p>
+
+                <div class="login-brand-tag">
+                    <i class="fa-solid fa-graduation-cap"></i> Welcome to Miss Nguyet's Class!
+                </div>
+                <div class="login-course-title">VSTEP SPEAKING MOCK TESTS</div>
+                <h2 class="login-title-custom">NHẬP THÔNG TIN<br/>ĐỂ BẮT ĐẦU HỌC 🚀</h2>
                 
                 <div class="vstep-auth-error" id="vstep-auth-error"></div>
 
                 <div class="vstep-auth-form">
-                    <input type="text" id="vstep-auth-name" class="vstep-auth-input" placeholder="HỌ VÀ TÊN" value="${current.name ? current.name.replace(/"/g, '&quot;') : ''}" autocomplete="off" spellcheck="false">
-                    <input type="text" id="vstep-auth-class" class="vstep-auth-input" placeholder="LỚP HỌC" value="${current.classCode ? current.classCode.replace(/"/g, '&quot;') : ''}" autocomplete="off" spellcheck="false">
-                    <input type="password" id="vstep-auth-password" class="vstep-auth-input" placeholder="MẬT KHẨU" autocomplete="off" spellcheck="false">
+                    <div class="input-group-custom">
+                        <label for="vstep-auth-name">
+                            <i class="fa-solid fa-user-pen" style="color: #6366f1;"></i> HỌ VÀ TÊN HỌC VIÊN:
+                        </label>
+                        <input type="text" id="vstep-auth-name" class="vstep-auth-input" placeholder="Nhập họ và tên học viên..." value="${current.name ? current.name.replace(/"/g, '&quot;') : ''}" autocomplete="off" spellcheck="false">
+                    </div>
+
+                    <div class="input-group-custom">
+                        <label for="vstep-auth-class">
+                            <i class="fa-solid fa-chalkboard-user" style="color: #06b6d4;"></i> MÃ LỚP HỌC:
+                        </label>
+                        <input type="text" id="vstep-auth-class" class="vstep-auth-input" placeholder="Nhập mã lớp học..." value="${current.classCode ? current.classCode.replace(/"/g, '&quot;') : ''}" autocomplete="off" spellcheck="false">
+                    </div>
+
+                    <div class="input-group-custom">
+                        <label for="vstep-auth-password">
+                            <i class="fa-solid fa-key" style="color: #f59e0b;"></i> MẬT KHẨU TRUY CẬP:
+                        </label>
+                        <div class="pwd-wrapper">
+                            <input type="password" id="vstep-auth-password" class="vstep-auth-input" placeholder="Nhập mật khẩu..." autocomplete="off" spellcheck="false" style="padding-right: 2.8rem;">
+                            <button type="button" id="btn-toggle-pwd" class="btn-toggle-pwd" title="Hiện/Ẩn mật khẩu">
+                                <i class="fa-solid fa-eye" id="icon-pwd-eye"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <button type="button" id="vstep-auth-submit" class="vstep-auth-btn">BẮT ĐẦU HỌC NGAY</button>
+                <button type="button" id="vstep-auth-submit" class="vstep-auth-btn">
+                    <span>BẮT ĐẦU HỌC</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <div class="login-footer-signature">
+                    <a href="https://www.facebook.com/nguyetpham28" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-facebook" style="color: #1877f2;"></i>
+                        <span>ENGLISH WITH MISS NGUYET</span>
+                    </a>
+                </div>
             </div>
         `;
 
@@ -372,6 +569,18 @@ const VstepAuth = {
         const nameInput = overlay.querySelector('#vstep-auth-name');
         const classInput = overlay.querySelector('#vstep-auth-class');
         const passwordInput = overlay.querySelector('#vstep-auth-password');
+        const toggleBtn = overlay.querySelector('#btn-toggle-pwd');
+        const eyeIcon = overlay.querySelector('#icon-pwd-eye');
+        if (toggleBtn && passwordInput) {
+            toggleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isPwd = passwordInput.getAttribute('type') === 'password';
+                passwordInput.setAttribute('type', isPwd ? 'text' : 'password');
+                if (eyeIcon) {
+                    eyeIcon.className = isPwd ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+                }
+            });
+        }
         const submitBtn = overlay.querySelector('#vstep-auth-submit');
         const errorDiv = overlay.querySelector('#vstep-auth-error');
         const card = overlay.querySelector('#vstep-auth-card');

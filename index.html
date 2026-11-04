@@ -13,7 +13,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="index-styles.css?v=20261105_modal_fix">
     <!-- Chậu Cỏ 4 Lá May Mắn & Tích Luỹ Nước Nỗ Lực Styles -->
-    <link rel="stylesheet" href="flower_garden.css?v=20261105_v13">
+    <link rel="stylesheet" href="flower_garden.css?v=20261105_v14">
 </head>
 <body>
 
@@ -23,6 +23,12 @@
             <i class="fa-solid fa-list-check"></i> <span>VSTEP MOCK TESTS</span>
         </div>
         <ul class="test-list">
+            <li class="test-item garden-nav-item" id="sidebar-nav-garden">
+                <a href="#flower-garden">
+                    <span class="test-icon"><i class="fa-solid fa-seedling" style="color: #10b981;"></i></span>
+                    <span class="test-name">CHĂM HOA CHĂM HỌC</span>
+                </a>
+            </li>
             <li class="test-item active">
                 <a href="index.html">
                     <span class="test-icon"><i class="fa-solid fa-house"></i></span>
@@ -130,6 +136,12 @@
     <div class="app-container">
         
         <main class="app-main">
+            <!-- =========================================================
+                 TAB: CHĂM HOA CHĂM HỌC
+            ========================================================== -->
+            <section id="flower-garden" class="tab-pane view-panel hidden fade-in garden-dedicated-view" style="display: none;">
+                <div id="garden-container"></div>
+            </section>
             
             <div class="welcome-header-center">
                 <div class="header-cat-container">
@@ -1068,7 +1080,7 @@
         });
     </script>
     <!-- Hệ thống Chậu Cỏ 4 Lá May Mắn & Tích Luỹ Nước Nỗ Lực -->
-    <script src="flower_definitions.js?v=20261105_v13"></script>
-    <script src="flower_garden.js?v=20261105_v13"></script>
+    <script src="flower_definitions.js?v=20261105_v14"></script>
+    <script src="flower_garden.js?v=20261105_v14"></script>
 </body>
 </html>

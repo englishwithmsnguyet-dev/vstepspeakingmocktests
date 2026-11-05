@@ -140,7 +140,8 @@ const VstepDB = {
 // Form Recording: https://forms.gle/pGY7Ci8T1aHv15Ud6
 // ==========================================================================
 const VstepAuth = {
-    ALLOWED_CLASSES: ['CB201', 'CB202', 'CB196', 'CB206', 'CB210', 'CB211', 'CB213', 'CB219', 'CB220', 'ONB103', 'B209', 'B212', 'B220', 'GV'],
+    ALLOWED_CLASSES: ['CB196', 'CB206', 'CB210', 'CB211', 'CB213', 'CB219', 'CB220', 'ONB103', 'B209', 'B212', 'GV'],
+    BANNED_CLASSES: ['CB201', 'CB202', 'B220'],
     REQUIRED_PASSWORD: 'VSTEPSEPTEMBER',
     VALID_PASSWORDS: ['VSTEPSEPTEMBER', 'STUDYHARD', 'PTMN2896', 'PTMN2412', 'PTMN2805'],
     FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSc7PpUuIwfXofYNKtZ2L_YqhJTlh-Xc7SoBqAgjXxtUla6XZw/formResponse',
@@ -153,7 +154,8 @@ const VstepAuth = {
         const name = (sessionStorage.getItem('vstep_student_name') || '').trim();
         const classCode = (sessionStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
         const isTeacher = (name.toUpperCase() === 'PTMN' && classCode === 'GV');
-        return loggedIn && name.length > 0 && (isTeacher || classCode.length >= 2);
+        if (this.BANNED_CLASSES.includes(classCode)) return false;
+        return loggedIn && name.length > 0 && (isTeacher || this.ALLOWED_CLASSES.includes(classCode));
     },
 
     getStudentInfo() {
@@ -627,6 +629,26 @@ const VstepAuth = {
                 void card.offsetWidth;
                 card.classList.add('shake');
                 nameInput.focus();
+                return;
+            }
+
+            if (this.BANNED_CLASSES.includes(classCode)) {
+                errorDiv.innerText = `⚠️ Lớp ${classCode} đã kết thúc khóa học và không được phép đăng nhập!`;
+                errorDiv.style.display = "block";
+                card.classList.remove('shake');
+                void card.offsetWidth;
+                card.classList.add('shake');
+                classInput.focus();
+                return;
+            }
+
+            if (!isTeacher && !this.ALLOWED_CLASSES.includes(classCode)) {
+                errorDiv.innerText = `⚠️ Lớp học không hợp lệ. Hệ thống chấp nhận các lớp: ${this.ALLOWED_CLASSES.filter(c => c !== 'GV').join(', ')}.`;
+                errorDiv.style.display = "block";
+                card.classList.remove('shake');
+                void card.offsetWidth;
+                card.classList.add('shake');
+                classInput.focus();
                 return;
             }
 

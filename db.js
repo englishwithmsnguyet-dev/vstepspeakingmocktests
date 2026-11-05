@@ -497,7 +497,7 @@ const VstepAuth = {
 
         const current = this.getStudentInfo();
 
-        const isSub = window.location.pathname.includes('/test ') || window.location.pathname.includes('test0') || window.location.pathname.includes('test1');
+        const isSub = window.location.pathname.includes('/test ') || window.location.pathname.includes('/test%20') || window.location.pathname.includes('test0') || window.location.pathname.includes('test1');
         const avatarSrc = isSub ? '../miss_nguyet.jpg' : 'miss_nguyet.jpg';
 
         const overlay = document.createElement('div');
@@ -519,7 +519,7 @@ const VstepAuth = {
                     <i class="fa-solid fa-graduation-cap"></i> Welcome to Miss Nguyet's Class!
                 </div>
                 <div class="login-course-title">VSTEP SPEAKING MOCK TESTS</div>
-                <h2 class="login-title-custom">NHẬP THÔNG TIN<br/>ĐỂ BẮT ĐẦU HỌC 🚀</h2>
+                <h2 class="login-title-custom">NHẬP THÔNG TIN<br/>ĐỂ BẮT ĐẦU THI 🚀</h2>
                 
                 <div class="vstep-auth-error" id="vstep-auth-error"></div>
 
@@ -528,14 +528,14 @@ const VstepAuth = {
                         <label for="vstep-auth-name">
                             <i class="fa-solid fa-user-pen" style="color: #6366f1;"></i> HỌ VÀ TÊN HỌC VIÊN:
                         </label>
-                        <input type="text" id="vstep-auth-name" class="vstep-auth-input" placeholder="Nhập họ và tên học viên..." value="" autocomplete="name" spellcheck="false">
+                        <input type="text" id="vstep-auth-name" class="vstep-auth-input" placeholder="Nhập họ và tên học viên..." value="${current.name || ''}" autocomplete="name" spellcheck="false">
                     </div>
 
                     <div class="input-group-custom">
                         <label for="vstep-auth-class">
                             <i class="fa-solid fa-chalkboard-user" style="color: #06b6d4;"></i> MÃ LỚP HỌC:
                         </label>
-                        <input type="text" id="vstep-auth-class" class="vstep-auth-input" placeholder="Nhập mã lớp học (VD: CB210, CB211...)" value="" autocomplete="off" spellcheck="false">
+                        <input type="text" id="vstep-auth-class" class="vstep-auth-input" placeholder="Nhập mã lớp học (VD: CB210, CB211...)" value="${current.classCode || ''}" autocomplete="off" spellcheck="false">
                     </div>
 
                     <div class="input-group-custom">
@@ -552,7 +552,7 @@ const VstepAuth = {
                 </div>
 
                 <button type="button" id="vstep-auth-submit" class="vstep-auth-btn">
-                    <span>BẮT ĐẦU HỌC</span>
+                    <span>VÀO PHÒNG THI</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </button>
 
@@ -797,9 +797,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof VstepAuth !== 'undefined') {
         VstepAuth.updatePageUserInfo();
         if (!VstepAuth.isLoggedIn()) {
-            setTimeout(() => {
-                VstepAuth.showLoginModal(false);
-            }, 350);
+            VstepAuth.showLoginModal(false);
         }
     }
 });

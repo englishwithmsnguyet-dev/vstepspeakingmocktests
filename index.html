@@ -1063,9 +1063,7 @@
             if (typeof VstepAuth !== 'undefined') {
                 VstepAuth.updatePageUserInfo();
                 if (!VstepAuth.isLoggedIn()) {
-                    setTimeout(() => {
-                        VstepAuth.showLoginModal(false);
-                    }, 400);
+                    VstepAuth.showLoginModal(false);
                 }
             }
 

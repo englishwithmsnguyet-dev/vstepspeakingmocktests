@@ -140,21 +140,25 @@ const VstepDB = {
 // Form Recording: https://forms.gle/pGY7Ci8T1aHv15Ud6
 // ==========================================================================
 const VstepAuth = {
-    ALLOWED_CLASSES: ['CB206', 'CB210', 'GV'],
+    ALLOWED_CLASSES: ['CB201', 'CB202', 'CB196', 'CB206', 'CB210', 'CB211', 'CB213', 'CB219', 'CB220', 'ONB103', 'B209', 'B212', 'B220', 'GV'],
     REQUIRED_PASSWORD: 'VSTEPSEPTEMBER',
-    FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSe4MK1HLBYtsZ-SkwVmaO_hV_o4C094a7x-17il2H6kqGtuHw/formResponse',
-    ENTRY_ID: 'entry.388968236',
+    VALID_PASSWORDS: ['VSTEPSEPTEMBER', 'STUDYHARD', 'PTMN2896', 'PTMN2412', 'PTMN2805'],
+    FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSc7PpUuIwfXofYNKtZ2L_YqhJTlh-Xc7SoBqAgjXxtUla6XZw/formResponse',
+    ENTRY_ID: 'entry.1205151935',
+    BACKUP_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSe4MK1HLBYtsZ-SkwVmaO_hV_o4C094a7x-17il2H6kqGtuHw/formResponse',
+    BACKUP_ENTRY_ID: 'entry.388968236',
 
     isLoggedIn() {
-        const name = (localStorage.getItem('vstep_student_name') || sessionStorage.getItem('vstep_student_name') || '').trim();
-        const classCode = (localStorage.getItem('vstep_student_class') || sessionStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
+        const loggedIn = sessionStorage.getItem('vstep_user_logged_in') === 'true';
+        const name = (sessionStorage.getItem('vstep_student_name') || '').trim();
+        const classCode = (sessionStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
         const isTeacher = (name.toUpperCase() === 'PTMN' && classCode === 'GV');
-        return isTeacher || (name.length > 0 && this.ALLOWED_CLASSES.includes(classCode));
+        return loggedIn && name.length > 0 && (isTeacher || classCode.length >= 2);
     },
 
     getStudentInfo() {
-        const name = (localStorage.getItem('vstep_student_name') || sessionStorage.getItem('vstep_student_name') || '').trim();
-        const classCode = (localStorage.getItem('vstep_student_class') || sessionStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
+        const name = (sessionStorage.getItem('vstep_student_name') || localStorage.getItem('vstep_student_name') || '').trim();
+        const classCode = (sessionStorage.getItem('vstep_student_class') || localStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
         return {
             name,
             classCode,
@@ -524,14 +528,14 @@ const VstepAuth = {
                         <label for="vstep-auth-name">
                             <i class="fa-solid fa-user-pen" style="color: #6366f1;"></i> HỌ VÀ TÊN HỌC VIÊN:
                         </label>
-                        <input type="text" id="vstep-auth-name" class="vstep-auth-input" placeholder="Nhập họ và tên học viên..." value="${current.name ? current.name.replace(/"/g, '&quot;') : ''}" autocomplete="off" spellcheck="false">
+                        <input type="text" id="vstep-auth-name" class="vstep-auth-input" placeholder="Nhập họ và tên học viên..." value="" autocomplete="name" spellcheck="false">
                     </div>
 
                     <div class="input-group-custom">
                         <label for="vstep-auth-class">
                             <i class="fa-solid fa-chalkboard-user" style="color: #06b6d4;"></i> MÃ LỚP HỌC:
                         </label>
-                        <input type="text" id="vstep-auth-class" class="vstep-auth-input" placeholder="Nhập mã lớp học..." value="${current.classCode ? current.classCode.replace(/"/g, '&quot;') : ''}" autocomplete="off" spellcheck="false">
+                        <input type="text" id="vstep-auth-class" class="vstep-auth-input" placeholder="Nhập mã lớp học (VD: CB210, CB211...)" value="" autocomplete="off" spellcheck="false">
                     </div>
 
                     <div class="input-group-custom">
@@ -539,7 +543,7 @@ const VstepAuth = {
                             <i class="fa-solid fa-key" style="color: #f59e0b;"></i> MẬT KHẨU TRUY CẬP:
                         </label>
                         <div class="pwd-wrapper">
-                            <input type="password" id="vstep-auth-password" class="vstep-auth-input" placeholder="Nhập mật khẩu..." autocomplete="off" spellcheck="false" style="padding-right: 2.8rem;">
+                            <input type="password" id="vstep-auth-password" class="vstep-auth-input" placeholder="Nhập mật khẩu..." value="" autocomplete="current-password" spellcheck="false" style="padding-right: 2.8rem;">
                             <button type="button" id="btn-toggle-pwd" class="btn-toggle-pwd" title="Hiện/Ẩn mật khẩu">
                                 <i class="fa-solid fa-eye" id="icon-pwd-eye"></i>
                             </button>
@@ -586,9 +590,7 @@ const VstepAuth = {
         const card = overlay.querySelector('#vstep-auth-card');
 
         setTimeout(() => {
-            if (!nameInput.value.trim()) nameInput.focus();
-            else if (!classInput.value.trim()) classInput.focus();
-            else passwordInput.focus();
+            if (nameInput) nameInput.focus();
         }, 150);
 
         const handleSubmit = async () => {
@@ -607,8 +609,8 @@ const VstepAuth = {
                 return;
             }
 
-            if (!classCode || !this.ALLOWED_CLASSES.includes(classCode)) {
-                errorDiv.innerText = `⚠️ Lớp học không hợp lệ. Hệ thống chỉ nhận lớp: ${this.ALLOWED_CLASSES.filter(c => c !== 'GV').join(', ')}.`;
+            if (!classCode || classCode.length < 2) {
+                errorDiv.innerText = `⚠️ Vui lòng nhập mã lớp học của bạn (VD: CB210, CB211, CB213...).`;
                 errorDiv.style.display = "block";
                 card.classList.remove('shake');
                 void card.offsetWidth;
@@ -640,7 +642,7 @@ const VstepAuth = {
                 }
 
                 const upperPass = password.toUpperCase();
-                if (upperPass !== this.REQUIRED_PASSWORD && upperPass !== 'STUDYHARD') {
+                if (!this.VALID_PASSWORDS.includes(upperPass)) {
                     errorDiv.innerText = "⚠️ Mật khẩu không chính xác. Vui lòng thử lại!";
                     errorDiv.style.display = "block";
                     card.classList.remove('shake');
@@ -654,9 +656,9 @@ const VstepAuth = {
 
             errorDiv.style.display = "none";
             submitBtn.disabled = true;
-            submitBtn.innerText = "ĐANG XÁC THỰC...";
+            submitBtn.innerHTML = `<span>ĐANG XÁC THỰC...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
 
-            // Save to BOTH localStorage and sessionStorage so switching tests does NOT require re-login
+            // Save to sessionStorage (active session) and localStorage (display)
             localStorage.setItem('vstep_student_name', name);
             localStorage.setItem('vstep_student_class', classCode);
             localStorage.setItem('vstep_user_logged_in', 'true');
@@ -698,42 +700,52 @@ const VstepAuth = {
 
     sendToGoogleForm(name, classCode) {
         try {
-            const entryText = `${name} - ${classCode}`;
-            const formData = new FormData();
-            formData.append(this.ENTRY_ID, entryText);
+            const entryText = `${name} - ${classCode} - [SPEAKING MOCK TESTS]`;
 
-            // Fetch with no-cors
+            // 1. Send to primary Google Form (dxQSTJbMVHfdFgGL8)
+            const formData1 = new FormData();
+            formData1.append(this.ENTRY_ID, entryText);
             fetch(this.FORM_URL, {
                 method: 'POST',
                 mode: 'no-cors',
-                body: formData
-            }).catch(e => console.log("Google Form background sync:", e));
+                body: formData1
+            }).catch(() => {});
 
-            // Hidden iframe fallback
-            const iframe = document.createElement('iframe');
-            iframe.name = 'vstep_hidden_form_iframe';
-            iframe.style.display = 'none';
-            document.body.appendChild(iframe);
+            // Hidden iframe fallback 1
+            const iframe1 = document.createElement('iframe');
+            iframe1.name = 'vstep_hidden_form_iframe1';
+            iframe1.style.display = 'none';
+            document.body.appendChild(iframe1);
 
-            const form = document.createElement('form');
-            form.action = this.FORM_URL;
-            form.method = 'POST';
-            form.target = 'vstep_hidden_form_iframe';
-            form.style.display = 'none';
+            const form1 = document.createElement('form');
+            form1.action = this.FORM_URL;
+            form1.method = 'POST';
+            form1.target = 'vstep_hidden_form_iframe1';
+            form1.style.display = 'none';
 
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = this.ENTRY_ID;
-            input.value = entryText;
-            form.appendChild(input);
+            const input1 = document.createElement('input');
+            input1.type = 'hidden';
+            input1.name = this.ENTRY_ID;
+            input1.value = entryText;
+            form1.appendChild(input1);
+            document.body.appendChild(form1);
+            form1.submit();
 
-            document.body.appendChild(form);
-            form.submit();
+            // 2. Send to backup Google Form if configured
+            if (this.BACKUP_FORM_URL && this.BACKUP_ENTRY_ID) {
+                const formData2 = new FormData();
+                formData2.append(this.BACKUP_ENTRY_ID, entryText);
+                fetch(this.BACKUP_FORM_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData2
+                }).catch(() => {});
+            }
 
             setTimeout(() => {
                 try {
-                    form.remove();
-                    iframe.remove();
+                    form1.remove();
+                    iframe1.remove();
                 } catch(e) {}
             }, 3000);
         } catch (err) {

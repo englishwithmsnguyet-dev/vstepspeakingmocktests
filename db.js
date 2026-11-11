@@ -140,20 +140,36 @@ const VstepDB = {
 // Form Recording: https://forms.gle/pGY7Ci8T1aHv15Ud6
 // ==========================================================================
 const VstepAuth = {
-    ALLOWED_CLASSES: ['CB196', 'CB206', 'CB210', 'CB211', 'CB213', 'CB219', 'CB220', 'ONB103', 'B209', 'B212', 'GV'],
+    ALLOWED_CLASSES: ['B2', 'CB196', 'CB206', 'CB210', 'CB211', 'CB213', 'CB219', 'CB220', 'ONB103', 'B209', 'B212', 'GV'],
     BANNED_CLASSES: ['CB201', 'CB202', 'B220'],
     REQUIRED_PASSWORD: 'VSTEPSEPTEMBER',
-    VALID_PASSWORDS: ['VSTEPSEPTEMBER', 'STUDYHARD', 'PTMN2896', 'PTMN2412', 'PTMN2805'],
+    VALID_PASSWORDS: ['VSTEPSEPTEMBER', 'STUDYHARD', 'B2', 'GIATUE', 'PTMN2896', 'PTMN2412', 'PTMN2805'],
     FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSc7PpUuIwfXofYNKtZ2L_YqhJTlh-Xc7SoBqAgjXxtUla6XZw/formResponse',
     ENTRY_ID: 'entry.1205151935',
     BACKUP_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSe4MK1HLBYtsZ-SkwVmaO_hV_o4C094a7x-17il2H6kqGtuHw/formResponse',
     BACKUP_ENTRY_ID: 'entry.388968236',
 
+    isTeacher(name = '', classCode = '') {
+        const n = String(name || '').trim().toLowerCase();
+        const c = String(classCode || '').trim().toUpperCase();
+        if (c === 'GV') return true;
+        if (/^(ptmn|gv|cô nguyệt|co nguyet|phạm thị minh nguyệt|pham thi minh nguyet|giáo viên|giao vien|teacher|miss nguyet)$/i.test(n)) return true;
+        if (n.includes('ptmn') || n.includes('cô nguyệt') || n.includes('giáo viên')) return true;
+        return false;
+    },
+
+    isGiaTue(name = '', classCode = '') {
+        const n = String(name || '').trim().toLowerCase();
+        const c = String(classCode || '').trim().toUpperCase();
+        const normName = n.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        return (c === 'B2' && (normName.includes('gia tue') || n.includes('gia tuệ')));
+    },
+
     isLoggedIn() {
         const loggedIn = sessionStorage.getItem('vstep_user_logged_in') === 'true';
         const name = (sessionStorage.getItem('vstep_student_name') || '').trim();
         const classCode = (sessionStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
-        const isTeacher = (name.toUpperCase() === 'PTMN' && classCode === 'GV');
+        const isTeacher = this.isTeacher(name, classCode);
         if (this.BANNED_CLASSES.includes(classCode)) return false;
         return loggedIn && name.length > 0 && (isTeacher || this.ALLOWED_CLASSES.includes(classCode));
     },
@@ -537,7 +553,7 @@ const VstepAuth = {
                         <label for="vstep-auth-class">
                             <i class="fa-solid fa-chalkboard-user" style="color: #06b6d4;"></i> MÃ LỚP HỌC:
                         </label>
-                        <input type="text" id="vstep-auth-class" class="vstep-auth-input" placeholder="Nhập mã lớp học (VD: CB210, CB211...)" value="${current.classCode || ''}" autocomplete="off" spellcheck="false">
+                        <input type="text" id="vstep-auth-class" class="vstep-auth-input" placeholder="Nhập mã lớp học (VD: B2, CB210, CB211...)" value="${current.classCode || ''}" autocomplete="off" spellcheck="false">
                     </div>
 
                     <div class="input-group-custom">
@@ -591,14 +607,50 @@ const VstepAuth = {
         const errorDiv = overlay.querySelector('#vstep-auth-error');
         const card = overlay.querySelector('#vstep-auth-card');
 
+        const updateAuthHints = () => {
+            const nVal = (nameInput.value || '').trim();
+            const cVal = (classInput.value || '').trim().toUpperCase();
+            const isT = this.isTeacher(nVal, cVal);
+            const isGT = this.isGiaTue(nVal, cVal);
+            const pwdLabel = overlay.querySelector('label[for="vstep-auth-password"]');
+            if (pwdLabel) {
+                if (isT) {
+                    pwdLabel.innerHTML = `<i class="fa-solid fa-key" style="color: #10b981;"></i> MẬT KHẨU TRUY CẬP: <span style="color: #10b981; font-size: 12px; font-weight: 700; text-transform: none;">(Giáo viên: Không cần mật khẩu)</span>`;
+                    passwordInput.placeholder = "Tài khoản Giáo viên không cần mật khẩu";
+                } else if (isGT) {
+                    pwdLabel.innerHTML = `<i class="fa-solid fa-key" style="color: #6366f1;"></i> MẬT KHẨU TRUY CẬP: <span style="color: #6366f1; font-size: 12px; font-weight: 700; text-transform: none;">(Học viên B2)</span>`;
+                    passwordInput.placeholder = "Nhập mật khẩu (nếu có)...";
+                } else {
+                    pwdLabel.innerHTML = `<i class="fa-solid fa-key" style="color: #f59e0b;"></i> MẬT KHẨU TRUY CẬP:`;
+                    passwordInput.placeholder = "Nhập mật khẩu...";
+                }
+            }
+        };
+
+        nameInput.addEventListener('input', updateAuthHints);
+        classInput.addEventListener('input', updateAuthHints);
+        updateAuthHints();
+
         setTimeout(() => {
             if (nameInput) nameInput.focus();
         }, 150);
 
         const handleSubmit = async () => {
-            const name = nameInput.value.trim();
-            const classCode = classInput.value.trim().toUpperCase();
+            let name = nameInput.value.trim();
+            let classCode = classInput.value.trim().toUpperCase();
             const password = (passwordInput.value || '').trim();
+
+            if (classCode === 'LỚP B2' || classCode === 'LOP B2' || classCode === 'B 2') {
+                classCode = 'B2';
+            }
+
+            const isTeacher = this.isTeacher(name, classCode);
+            const isGiaTue = this.isGiaTue(name, classCode);
+
+            if (isTeacher && !classCode) {
+                classCode = 'GV';
+                classInput.value = 'GV';
+            }
 
             // Validation
             if (!name) {
@@ -612,23 +664,12 @@ const VstepAuth = {
             }
 
             if (!classCode || classCode.length < 2) {
-                errorDiv.innerText = `⚠️ Vui lòng nhập mã lớp học của bạn (VD: CB210, CB211, CB213...).`;
+                errorDiv.innerText = `⚠️ Vui lòng nhập mã lớp học của bạn (VD: B2, CB210, CB211...).`;
                 errorDiv.style.display = "block";
                 card.classList.remove('shake');
                 void card.offsetWidth;
                 card.classList.add('shake');
                 classInput.focus();
-                return;
-            }
-
-            const isTeacher = (name.toUpperCase() === 'PTMN' && classCode === 'GV');
-            if (classCode === 'GV' && !isTeacher) {
-                errorDiv.innerText = "⚠️ Mã lớp GV chỉ dành riêng cho tài khoản Giáo viên (PTMN)!";
-                errorDiv.style.display = "block";
-                card.classList.remove('shake');
-                void card.offsetWidth;
-                card.classList.add('shake');
-                nameInput.focus();
                 return;
             }
 
@@ -652,7 +693,11 @@ const VstepAuth = {
                 return;
             }
 
-            if (!isTeacher) {
+            // Password check:
+            // 1. Teacher account does NOT require a password!
+            // 2. Student Gia Tuệ with class B2 can log in without password or with any password
+            // 3. Other students require a valid password
+            if (!isTeacher && !isGiaTue) {
                 if (!password) {
                     errorDiv.innerText = "⚠️ Vui lòng nhập Mật khẩu.";
                     errorDiv.style.display = "block";
@@ -713,7 +758,15 @@ const VstepAuth = {
             if (e.key === 'Enter') classInput.focus();
         });
         classInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') passwordInput.focus();
+            if (e.key === 'Enter') {
+                const cVal = classInput.value.trim().toUpperCase();
+                const nVal = nameInput.value.trim();
+                if (this.isTeacher(nVal, cVal) || this.isGiaTue(nVal, cVal)) {
+                    handleSubmit();
+                } else {
+                    passwordInput.focus();
+                }
+            }
         });
         passwordInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') handleSubmit();
@@ -777,7 +830,7 @@ const VstepAuth = {
 
     updatePageUserInfo() {
         const info = this.getStudentInfo();
-        const isTeacher = (info.name && info.classCode && info.name.toUpperCase() === 'PTMN' && info.classCode.toUpperCase() === 'GV');
+        const isTeacher = this.isTeacher(info.name, info.classCode);
         if (!info.name || !info.classCode || (!this.ALLOWED_CLASSES.includes(info.classCode.toUpperCase()) && !isTeacher)) return;
 
         // 1. If on test page: update #student-name input

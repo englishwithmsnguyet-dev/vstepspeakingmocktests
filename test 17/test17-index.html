@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<script>
+        // Block flash of protected content
+        (function() {
+            const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+            const testId = pathMatch ? parseInt(pathMatch[1]) : 1;
+            const TEST_PASSWORDS = {};
+            if (TEST_PASSWORDS[testId] && sessionStorage.getItem('unlocked_test_' + testId) !== 'true') {
+                document.documentElement.style.display = 'none';
+            }
+        })();
+    </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPEAKING MOCK TEST 17 - ENGLISHWITHMISSNGUYET</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;display=swap" rel="stylesheet"/>
+<!-- FontAwesome for Premium Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="styles.css?v=1782327221" rel="stylesheet"/>
+</head>
+<body>
+<!-- Sidebar Navigation -->
+<nav class="test-sidebar">
+<div class="sidebar-header">
+<i class="fa-solid fa-list-check"></i> <span>VSTEP MOCK TESTS</span>
+</div>
+<ul class="test-list">
+<li class="test-item">
+<a href="../index.html">
+<span class="test-icon"><i class="fa-solid fa-house"></i></span>
+<span class="test-name">TRANG CHỦ</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="1" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 01</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="2" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 02</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="3" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 03</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="4" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 04</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="5" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 05</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="6" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 06</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="7" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 07</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="8" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 08</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="9" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 09</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="10" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 10</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="11" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 11</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="12" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 12</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="13" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 13</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="14" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 14</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="15" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 15</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="16" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 16</span>
+</a>
+</li>
+<li class="test-item">
+<a class="locked" data-test-id="17" href="javascript:void(0)">
+<span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+<span class="test-name">SPEAKING TEST 17</span>
+</a>
+</li>
+</ul>
+<a class="sidebar-brand-bottom" href="https://www.facebook.com/nguyetpham28" target="_blank">
+<span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+<span class="brand-text">ENGLISH WITH MISS NGUYET</span>
+</a>
+</nav>
+
+<!-- App Wrapper -->
+<div class="app-container">
+<!-- Header Brand -->
+<header class="app-header">
+<div class="header-title-wrapper"></div>
+</header>
+<!-- Progress Timeline Tracker -->
+<div class="progress-timeline">
+<div class="timeline-step active" id="step-welcome">
+<div class="step-num">0</div>
+<div class="step-label">CHUẨN BỊ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part1">
+<div class="step-num">1</div>
+<div class="step-label">PART 01</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part2">
+<div class="step-num">2</div>
+<div class="step-label">PART 02</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-part3">
+<div class="step-num">3</div>
+<div class="step-label">PART 03</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-review">
+<div class="step-num">4</div>
+<div class="step-label">KẾT QUẢ</div>
+</div>
+<div class="timeline-line"></div>
+<div class="timeline-step" id="step-solution">
+<div class="step-num">5</div>
+<div class="step-label">BÀI GIẢI</div>
+</div>
+</div>
+<!-- Main Workspace -->
+<main class="app-main">
+<!-- SCREEN 1: WELCOME SCREEN -->
+<section class="screen-view active" id="view-welcome">
+<div class="glass-card welcome-card">
+<div class="welcome-header-center">
+<div class="welcome-cat-gif">
+<img alt="Typing Cat" class="typing-cat-img" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"/>
+</div>
+<h1>VSTEP Speaking Practice</h1>
+<div class="mock-test-pill">SPEAKING MOCK TEST 17</div>
+<p class="welcome-desc">Chào mừng bạn đến với hệ thống thi thử VSTEP SPEAKING MOCK TEST tương tác. Giao diện và cách tính giờ được lập trình mô phỏng chính xác phòng thi máy thực tế.</p>
+<p class="welcome-warning" style="margin-top: 12px; color: var(--color-red); font-weight: 700; font-size: 13.5px;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>LƯU Ý:</strong> Không sử dụng bất kì tài liệu hay công cụ trong lúc thi thử. Mọi sự thảo luận đều không được cho phép trong phòng thi.</p>
+</div>
+<div class="test-outline">
+<h3>Cấu trúc bài thi</h3>
+<div class="outline-grid">
+<div class="outline-item">
+<span class="part-badge">PART 01</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Social Interaction</span> [Giao tiếp xã hội]</h4>
+<p>Thí sinh trả lời 02 chủ đề bất kì, mỗi chủ đề có 03 câu hỏi. Không có thời gian chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 3 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 02</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Solution Discussion</span> [Thảo luận giải pháp]</h4>
+<p>Thí sinh thảo luận phương án tốt nhất cho một tình huống giả định bất kì với 03 sự lựa chọn. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 4 phút</span>
+</div>
+<div class="outline-item">
+<span class="part-badge">PART 03</span>
+<div class="item-info">
+<h4><span style="color: var(--color-red);">Topic Development</span> [Phát triển chủ đề]</h4>
+<p>Thí sinh phát triển một chủ đề bất kì dựa vào sơ đồ gợi ý và 03 câu hỏi mở rộng. Có một phút chuẩn bị.</p>
+</div>
+<span class="time-badge"><i class="fa-regular fa-clock"></i> 5 phút</span>
+</div>
+</div>
+</div>
+<!-- Student Info Input -->
+<div class="student-form">
+<div class="input-group">
+<label for="student-name"><i class="fa-solid fa-user-pen"></i> Họ và tên học viên:</label>
+<input autocomplete="off" id="student-name" placeholder="Nhập họ tên của bạn..." type="text"/>
+</div>
+</div>
+<!-- Action and Sound Check -->
+<div class="audio-check-section">
+<div class="mic-status-msg" id="mic-status">
+<i class="fa-solid fa-circle-info"></i> Hãy cấp quyền truy cập Microphone để hệ thống ghi âm bài làm của bạn.
+                        </div>
+<button class="btn btn-primary" id="btn-start-test">
+<span>BẮT ĐẦU BÀI THI</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+</button>
+</div>
+</div>
+</section>
+<!-- SCREEN 2: PART 1 SCREEN -->
+<section class="screen-view" id="view-part1">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 01: <span style="color: var(--color-red);">SOCIAL INTERACTION</span></div>
+<div class="part1-topics">
+<!-- Topic 1 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-mountain-sun"></i> <span>Let's talk about <strong>scenery in your area</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">1</span> What kind of scenery is there in your local area?</li>
+<li><span class="q-num">2</span> Does your home or the area around your house have any beautiful views?</li>
+<li><span class="q-num">3</span> Do you enjoy taking photos of natural scenery? Why or why not?</li>
+</ul>
+</div>
+<!-- Topic 2 -->
+<div class="topic-box">
+<h3 class="topic-title"><i class="fa-solid fa-palette"></i> <span>Let's talk about <strong>artwork</strong>:</span></h3>
+<ul class="question-list">
+<li><span class="q-num">1</span> Do you like artwork? Why or why not?</li>
+<li><span class="q-num">2</span> Have you ever visited an art museum or an art gallery?</li>
+<li><span class="q-num">3</span> Do you have any pieces of art in your home?</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Mic, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator recording" id="p1-status">
+<span class="status-dot"></span>
+<span class="status-text">Hệ thống đang ghi âm bài nói của bạn</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p1-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p1-time-val">03:00</span>
+<span class="time-label">TỔNG THỜI GIAN</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p1-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 3: PART 2 SCREEN -->
+<section class="screen-view" id="view-part2">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 02: <span style="color: var(--color-red);">SOLUTION DISCUSSION</span></div>
+<!-- Situation Card -->
+<div class="situation-box">
+<h3 class="section-subtitle"><i class="fa-solid fa-circle-question"></i> Situation:</h3>
+<p class="situation-desc">
+                                You have just graduated from university and are deciding where to work. There are three options for you to choose from: <strong>a family business</strong>, <strong>a state-owned enterprise</strong>, and <strong>a foreign company</strong>. Which one do you think is the best choice, and why?
+                            </p>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Prep state, Next button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p2-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p2-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p2-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p2-time-val">01:00</span>
+<span class="time-label" id="p2-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p2-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-secondary" id="btn-p2-next">
+<span>TIẾP TỤC</span> <i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 4: PART 3 SCREEN -->
+<section class="screen-view" id="view-part3">
+<div class="part-container">
+<!-- Left: Content Panel -->
+<div class="glass-card content-card">
+<div class="part-header-tag">PART 03: <span style="color: var(--color-red);">TOPIC DEVELOPMENT</span></div>
+<div class="topic-header">
+<h3 class="topic-heading-red">Topic:</h3>
+<p class="topic-desc">There are several advantages of using electric vehicles.</p>
+</div>
+<!-- CSS Grid Mindmap -->
+<div class="mindmap-wrapper">
+<div class="mindmap-container">
+<!-- Center Node -->
+<div class="mindmap-node node-center">
+<span>Electric vehicles</span>
+</div>
+<!-- Connectors -->
+<div class="mindmap-line line-top"></div>
+<div class="mindmap-line line-left"></div>
+<div class="mindmap-line line-bottom"></div>
+<div class="mindmap-line line-right"></div>
+<!-- Top Branch -->
+<div class="mindmap-node node-branch branch-top">
+<span>be eco-friendly</span>
+</div>
+<!-- Left Branch -->
+<div class="mindmap-node node-branch branch-left">
+<span>cost less money</span>
+</div>
+<!-- Bottom Branch -->
+<div class="mindmap-node node-branch branch-bottom">
+<span>feel comfortable</span>
+</div>
+<!-- Right Branch -->
+<div class="mindmap-node node-branch branch-right">
+<span>[your own idea]</span>
+</div>
+</div>
+</div>
+<!-- Follow-up Questions Box -->
+<div class="follow-up-box">
+<h4><i class="fa-solid fa-circle-question"></i> Follow-up questions:</h4>
+<ul class="question-list">
+<li><span class="q-num">1</span> How can people be encouraged to use electric vehicles?</li>
+<li><span class="q-num">2</span> What are some disadvantages of electric vehicles?</li>
+<li><span class="q-num">3</span> Do you think electric vehicles will completely replace petrol-powered vehicles in the future? Why or why not?</li>
+</ul>
+</div>
+</div>
+<!-- Right: Control Panel (Timer, Scratchpad, Finish button) -->
+<div class="glass-card control-card">
+<div class="status-indicator-wrapper text-center">
+<div class="status-indicator prep" id="p3-status">
+<span class="status-dot"></span>
+<span class="status-text" id="p3-status-text">ĐANG CHUẨN BỊ (PREPARATION)</span>
+</div>
+</div>
+<!-- Circular Timer -->
+<div class="timer-display-container">
+<div class="timer-svg-box">
+<svg class="timer-ring-svg">
+<circle class="timer-ring-bg" cx="100" cy="100" r="85"></circle>
+<circle class="timer-ring-bar" cx="100" cy="100" id="p3-timer-ring" r="85"></circle>
+</svg>
+<div class="timer-text-overlay">
+<span class="time-left" id="p3-time-val">01:00</span>
+<span class="time-label" id="p3-time-label">THỜI GIAN CHUẨN BỊ</span>
+</div>
+</div>
+</div>
+<!-- Real-time Mic Waveform representation -->
+<div class="waveform-container" id="p3-waveform">
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+<span class="wave-bar"></span>
+</div>
+<div class="navigation-controls">
+<button class="btn btn-success" id="btn-p3-next">
+<span>Hoàn thành bài thi</span> <i class="fa-solid fa-circle-check"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SCREEN 5: REVIEW SCREEN -->
+<section class="screen-view" id="view-review">
+<div class="glass-card review-card">
+<div class="success-banner">
+<div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+<h2>CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI THI NÓI!</h2>
+<p style="margin-bottom: 8px;">Bạn có 10s để khóc trước khi xem phần BÀI GIẢI.</p>
+<p id="review-student-info" style="font-size: 13px; opacity: 0.7; margin-top: 4px;"></p>
+</div>
+<!-- Summary Grid: Audio Files & Notes -->
+<div class="review-grid">
+<!-- Left Panel: Playback recordings -->
+<div class="review-recordings-panel">
+<h3><i class="fa-solid fa-microphone-lines"></i> Nghe lại bài nói của bạn</h3>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 01</span>
+<span class="rec-title">Social Interaction</span>
+</div>
+<div class="audio-player-wrapper" id="p1-player-container">
+<!-- Dynamic custom Audio Player or native audio element styled -->
+<audio controls="" id="p1-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part1.webm" id="p1-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 02</span>
+<span class="rec-title">Solution Discussion</span>
+</div>
+<div class="audio-player-wrapper" id="p2-player-container">
+<audio controls="" id="p2-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part2.webm" id="p2-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+<div class="recording-item">
+<div class="rec-info">
+<span class="rec-part">PART 03</span>
+<span class="rec-title">Topic Development</span>
+</div>
+<div class="audio-player-wrapper" id="p3-player-container">
+<audio controls="" id="p3-audio"></audio>
+<a class="btn btn-outline btn-sm" download="VSTEP_Speaking_Part3.webm" id="p3-download">
+<i class="fa-solid fa-cloud-arrow-down"></i> Tải về
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Right Panel: Feedback -->
+<div class="review-notes-panel">
+<h3><i class="fa-solid fa-comment-medical"></i> ĐÁNH GIÁ CHUNG</h3>
+<div class="teacher-feedback-box">
+<label for="teacher-feedback">Học viên tự đánh giá mức độ hoàn thành bài nói:</label>
+<textarea id="teacher-feedback" placeholder="Bạn đã hoàn thành tất cả nội dung bài thi hay chưa? Bạn có tự tin với bài nói của mình hay không?" style="min-height: 200px;"></textarea>
+</div>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="review-actions">
+<button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
+<i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
+                        </button>
+<button class="btn btn-secondary" id="btn-restart-test">
+<i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
+                        </button>
+</div>
+</div>
+</section>
+<!-- SCREEN 6: SOLUTION SCREEN -->
+<section class="screen-view" id="view-solution">
+<div class="glass-card instruction-card" style="max-width: 900px; margin: 20px auto;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+<h2 style="color: var(--color-red); margin-bottom: 0;"><i class="fa-solid fa-book-open"></i> BÀI GIẢI CHI TIẾT</h2>
+<span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 17</span>
+</div>
+<div class="solution-tab-container">
+<div class="solution-tab-buttons">
+<button class="sol-tab-btn active" onclick="switchSolTab(1)">PART 01: SOCIAL INTERACTION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(2)">PART 02: SOLUTION DISCUSSION</button>
+<button class="sol-tab-btn" onclick="switchSolTab(3)">PART 03: TOPIC DEVELOPMENT</button>
+</div>
+<!-- Panel Part 1 -->
+<div class="sol-tab-content active" id="sol-panel-1">
+    <!-- Topic 1 -->
+    <div class="sol-topic-section">
+        <div class="sol-topic-header">
+            <i class="fa-solid fa-mountain-sun"></i> Topic 1: Let's talk about scenery in your area <span class="sol-translation">(Hãy nói về phong cảnh tại nơi bạn sinh sống)</span>
+        </div>
+        
+        <div class="sol-question-item">
+            <div class="sol-question-text">1. What kind of scenery is there in your local area? <span class="sol-translation">(Nơi bạn sống có những loại phong cảnh nào?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    In my hometown, there is <strong style="color: #00b0f0;">a lot of beautiful green scenery</strong>, such as peaceful rice fields, rivers, and trees. In the city center, however, there are mostly <strong style="color: #00b0f0;">tall buildings and busy streets</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Ở quê tôi, có <strong style="color: #00b0f0;">rất nhiều phong cảnh thiên nhiên xanh mát</strong>, chẳng hạn như những cánh đồng lúa thanh bình, sông ngòi và cây cối. Tuy nhiên, ở trung tâm thành phố thì chủ yếu là <strong style="color: #00b0f0;">các tòa nhà cao tầng và những con phố nhộn nhịp</strong>.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    My local area boasts <strong style="color: #70ad47;">a diverse range of scenery</strong>. On the outskirts, there are <strong style="color: #70ad47;">picturesque landscapes</strong> with lush greenery and winding rivers, while the downtown area features a <strong style="color: #70ad47;">vibrant modern cityscape</strong> dominated by high-rise architecture.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Khu vực tôi sinh sống sở hữu <strong style="color: #70ad47;">phong cảnh rất đa dạng</strong>. Ở vùng ngoại ô, có <strong style="color: #70ad47;">những cảnh quan đẹp như tranh vẽ</strong> với cây cối xanh tươi và những dòng sông uốn lượn, trong khi khu vực trung tâm lại mang <strong style="color: #70ad47;">diện mạo đô thị hiện đại đầy sôi động</strong> với các kiến trúc cao tầng.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sol-question-item" style="margin-top: 20px;">
+            <div class="sol-question-text">2. Does your home or the area around your house have any beautiful views? <span class="sol-translation">(Nhà bạn hoặc khu vực xung quanh nhà bạn có cảnh đẹp nào không?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Yes, it does. From my bedroom window, I can see <strong style="color: #00b0f0;">a small garden with many flowers</strong> and trees. It makes me <strong style="color: #00b0f0;">feel relaxed and refreshed</strong> every morning.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Vâng, có chứ. Từ cửa sổ phòng ngủ, tôi có thể nhìn thấy <strong style="color: #00b0f0;">một khu vườn nhỏ với nhiều loài hoa</strong> và cây cối. Nó giúp tôi <strong style="color: #00b0f0;">cảm thấy thư thái và sảng khoái</strong> vào mỗi buổi sáng.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Fortunately, yes. My house overlooks <strong style="color: #70ad47;">a serene neighborhood park</strong> filled with shady trees. Standing on my balcony, I can enjoy <strong style="color: #70ad47;">a breath of fresh air</strong> and a peaceful view that offers <strong style="color: #70ad47;">a great escape from urban bustle</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">May mắn là có. Ngôi nhà của tôi nhìn ra <strong style="color: #70ad47;">một công viên khu dân cư thanh bình</strong> rợp bóng cây xanh. Đứng trên ban công, tôi có thể tận hưởng <strong style="color: #70ad47;">bầu không khí trong lành</strong> và một tầm nhìn yên tĩnh mang lại <strong style="color: #70ad47;">sự thư giãn tuyệt vời khỏi nhịp sống hối hả nơi thành thị</strong>.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sol-question-item" style="margin-top: 20px;">
+            <div class="sol-question-text">3. Do you enjoy taking photos of natural scenery? Why or why not? <span class="sol-translation">(Bạn có thích chụp ảnh phong cảnh thiên nhiên không? Tại sao có hoặc tại sao không?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Yes, I really do. Whenever I travel or see a pretty view, I like to <strong style="color: #00b0f0;">take photos with my smartphone</strong>. It helps me <strong style="color: #00b0f0;">keep nice memories</strong> and share them with my friends.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi rất thích. Bất cứ khi nào đi du lịch hoặc nhìn thấy cảnh đẹp, tôi đều thích <strong style="color: #00b0f0;">chụp ảnh bằng điện thoại thông minh</strong>. Nó giúp tôi <strong style="color: #00b0f0;">lưu giữ những kỷ niệm đẹp</strong> và chia sẻ chúng với bạn bè.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Absolutely. I have a genuine passion for <strong style="color: #70ad47;">landscape photography</strong>. Capturing breathtaking sunsets or scenic vistas allows me to <strong style="color: #70ad47;">appreciate the beauty of nature</strong> and <strong style="color: #70ad47;">preserve unforgettable moments</strong> vividly.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Chắc chắn rồi. Tôi có niềm đam mê thực sự với <strong style="color: #70ad47;">nhiếp ảnh phong cảnh</strong>. Việc ghi lại những buổi hoàng hôn ngoạn mục hay khung cảnh thiên nhiên giúp tôi <strong style="color: #70ad47;">thưởng thức vẻ đẹp của thiên nhiên</strong> và <strong style="color: #70ad47;">lưu giữ những khoảnh khắc khó quên</strong> một cách sống động.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Topic 2 -->
+    <div class="sol-topic-section" style="margin-top: 30px;">
+        <div class="sol-topic-header">
+            <i class="fa-solid fa-palette"></i> Topic 2: Let's talk about artwork <span class="sol-translation">(Hãy nói về tác phẩm nghệ thuật)</span>
+        </div>
+        
+        <div class="sol-question-item">
+            <div class="sol-question-text">1. Do you like artwork? Why or why not? <span class="sol-translation">(Bạn có thích tác phẩm nghệ thuật không? Tại sao có hoặc tại sao không?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Yes, I like artwork very much. Looking at colorful paintings helps me <strong style="color: #00b0f0;">relax my mind</strong> after long hours of studying and working. It also <strong style="color: #00b0f0;">makes my house look more beautiful</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi rất thích các tác phẩm nghệ thuật. Ngắm nhìn những bức tranh nhiều màu sắc giúp tôi <strong style="color: #00b0f0;">thư giãn đầu óc</strong> sau nhiều giờ học tập và làm việc. Nó cũng <strong style="color: #00b0f0;">làm cho ngôi nhà của tôi trông đẹp hơn</strong>.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Yes, I have always had a deep appreciation for art. Engaging with paintings and sculptures allows me to <strong style="color: #70ad47;">unwind and stimulate my creativity</strong>, as each artwork conveys <strong style="color: #70ad47;">profound emotional meaning</strong> and aesthetic value.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi luôn dành sự trân trọng sâu sắc cho nghệ thuật. Việc chiêm ngưỡng tranh ảnh và tác phẩm điêu khắc cho phép tôi <strong style="color: #70ad47;">thư giãn và kích thích sự sáng tạo</strong>, bởi mỗi tác phẩm đều truyền tải <strong style="color: #70ad47;">những ý nghĩa cảm xúc sâu sắc</strong> cùng giá trị thẩm mỹ cao.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sol-question-item" style="margin-top: 20px;">
+            <div class="sol-question-text">2. Have you ever visited an art museum or an art gallery? <span class="sol-translation">(Bạn từng tới bảo tàng nghệ thuật hoặc triển lãm tranh chưa?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Yes, I have. A few years ago, I visited the <strong style="color: #00b0f0;">Fine Arts Museum in my city</strong>. I was really impressed by the <strong style="color: #00b0f0;">traditional oil paintings and sculptures</strong> on display.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi từng đi rồi. Vài năm trước, tôi đã đến thăm <strong style="color: #00b0f0;">Bảo tàng Mỹ thuật tại thành phố của mình</strong>. Tôi thực sự ấn tượng với những <strong style="color: #00b0f0;">bức tranh sơn dầu và tượng điêu khắc truyền thống</strong> được trưng bày tại đó.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Yes, on several occasions. In fact, I had the opportunity to visit the <strong style="color: #70ad47;">Vietnam National Fine Arts Museum</strong> during a trip to Hanoi. I was utterly captivated by the <strong style="color: #70ad47;">exquisite historical artifacts</strong> and contemporary masterpieces exhibited there.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi đã đi nhiều lần. Trên thực tế, tôi đã có cơ hội ghé thăm <strong style="color: #70ad47;">Bảo tàng Mỹ thuật Quốc gia Việt Nam</strong> trong một chuyến đi Hà Nội. Tôi hoàn toàn bị cuốn hút bởi những <strong style="color: #70ad47;">hiện vật lịch sử tinh xảo</strong> và các kiệt tác đương đại được trưng bày ở đó.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sol-question-item" style="margin-top: 20px;">
+            <div class="sol-question-text">3. Do you have any pieces of art in your home? <span class="sol-translation">(Nhà bạn có tác phẩm nghệ thuật nào không?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Yes, in our living room, we have <strong style="color: #00b0f0;">a large landscape painting</strong> of a peaceful countryside. It was a gift from a family friend, and it creates a <strong style="color: #00b0f0;">warm atmosphere</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Vâng, trong phòng khách, chúng tôi có <strong style="color: #00b0f0;">một bức tranh phong cảnh lớn</strong> về miền quê thanh bình. Đó là món quà từ một người bạn của gia đình, và nó tạo nên một <strong style="color: #00b0f0;">bầu không khí rất ấm cúng</strong>.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Yes, we display several artworks at home, including <strong style="color: #70ad47;">a hand-painted landscape canvas</strong> and some framed calligraphy pieces. They not only <strong style="color: #70ad47;">enhance the aesthetic appeal</strong> of our interior but also bring a sense of <strong style="color: #70ad47;">harmony and tranquility</strong> to our living space.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Vâng, chúng tôi trưng bày vài tác phẩm nghệ thuật tại nhà, bao gồm <strong style="color: #70ad47;">một bức tranh sơn dầu phong cảnh vẽ tay</strong> và một vài bức thư pháp đóng khung. Chúng không chỉ <strong style="color: #70ad47;">nâng tầm vẻ đẹp thẩm mỹ</strong> của nội thất mà còn mang lại cảm giác <strong style="color: #70ad47;">hài hòa và bình yên</strong> cho không gian sống của chúng tôi.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Panel Part 2 -->
+<div class="sol-tab-content" id="sol-panel-2">
+    <div class="sol-topic-section">
+        <div class="sol-topic-header">
+            <i class="fa-solid fa-circle-info"></i> SITUATION <span class="sol-translation">(tình huống)</span>
+        </div>
+        <div class="sol-situation-box">
+            You have just graduated from university and are deciding where to work. There are three options for you to choose from: a family business, a state-owned enterprise, and a foreign company. Which one do you think is the best choice, and why?
+            <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-size: 13.5px;">(Bạn vừa tốt nghiệp đại học và đang quyết định nơi làm việc. Có ba sự lựa chọn cho bạn: một doanh nghiệp gia đình, một doanh nghiệp nhà nước, và một công ty nước ngoài. Theo bạn lựa chọn nào là tốt nhất, và tại sao?)</span>
+        </div>
+        
+        <div class="sol-topic-header" style="margin-top: 20px;">
+            <i class="fa-solid fa-graduation-cap"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+        </div>
+        
+        <div class="sol-level-box level-b1">
+            <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+            <div class="level-content">
+                Well, if I had to choose where to work after graduating, among a family business, a state enterprise, and a foreign company, <strong style="color: #00b0f0;">I would definitely choose a foreign company</strong>.
+
+                First of all, working for a foreign business offers a <strong style="color: #00b0f0;">professional working environment</strong> with a <strong style="color: #00b0f0;">competitive salary</strong> and good employee benefits. I can also improve my English skills and learn from experienced international colleagues, which helps me <strong style="color: #00b0f0;">grow my career quickly</strong>.
+
+                Regarding the other two options, although working in a <strong style="color: #00b0f0;">family business</strong> is comfortable and flexible, it often lacks clear rules and can cause family disagreements. As for a <strong style="color: #00b0f0;">state enterprise</strong>, while it provides high job security, the promotion system is usually slow and the starting salary might be quite low.
+
+                In conclusion, I firmly believe that <strong style="color: #00b0f0;">working for a foreign company is the best choice</strong> for young graduates like me.
+                <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="translation-text" style="display: none; white-space: pre-line;">À, nếu phải chọn nơi làm việc sau khi tốt nghiệp, giữa doanh nghiệp gia đình, doanh nghiệp nhà nước và công ty nước ngoài, <strong style="color: #00b0f0;">tôi chắc chắn sẽ chọn một công ty nước ngoài</strong>.
+
+                Trước hết, làm việc cho một doanh nghiệp nước ngoài mang lại một <strong style="color: #00b0f0;">môi trường làm việc chuyên nghiệp</strong> với <strong style="color: #00b0f0;">mức lương cạnh tranh</strong> và chế độ đãi ngộ tốt cho nhân viên. Tôi cũng có thể nâng cao trình độ tiếng Anh và học hỏi từ các đồng nghiệp quốc tế giàu kinh nghiệm, điều này giúp tôi <strong style="color: #00b0f0;">phát triển sự nghiệp nhanh chóng</strong>.
+
+                Về hai lựa chọn còn lại, mặc dù làm việc trong một <strong style="color: #00b0f0;">doanh nghiệp gia đình</strong> thì thoải mái và linh hoạt, nhưng nó thường thiếu các quy định rõ ràng và có thể gây ra những bất đồng trong gia đình. Còn đối với <strong style="color: #00b0f0;">doanh nghiệp nhà nước</strong>, mặc dù nó mang lại sự ổn định công việc cao, nhưng lộ trình thăng tiến thường chậm và mức lương khởi điểm có thể khá thấp.
+
+                Tóm lại, tôi tin chắc rằng <strong style="color: #00b0f0;">làm việc cho một công ty nước ngoài là sự lựa chọn tốt nhất</strong> cho những sinh viên mới ra trường như tôi.</div>
+            </div>
+        </div>
+
+        <div class="sol-level-box level-b2" style="margin-top: 20px;">
+            <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+            <div class="level-content">
+                Faced with the decision of where to establish my career, among the three alternatives—a family business, a state-owned enterprise, and a foreign company—<strong style="color: #70ad47;">I would firmly advocate for joining a foreign company</strong>.
+
+                First and foremost, a multinational or foreign enterprise provides a <strong style="color: #70ad47;">dynamic and merit-based work culture</strong> where performance and competence are genuinely rewarded. It offers <strong style="color: #70ad47;">lucrative compensation packages</strong>, comprehensive training programs, and ample opportunities for <strong style="color: #70ad47;">rapid career advancement</strong> alongside international peers.
+
+                Turning to the other alternatives, working in a <strong style="color: #70ad47;">family business</strong> might offer flexibility, but boundaries between personal relationships and professional responsibilities can easily blur, leading to nepotism or internal conflicts. Meanwhile, although a <strong style="color: #70ad47;">state-owned enterprise</strong> guarantees exceptional stability and social benefits, its bureaucratic procedures and <strong style="color: #70ad47;">rigid hierarchical structure</strong> might stifle innovation and limit personal growth for young professionals.
+
+                All things considered, I am convinced that <strong style="color: #70ad47;">a foreign company is by far the most advantageous and rewarding workplace</strong> for launching a promising career.
+                <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="translation-text" style="display: none; white-space: pre-line;">Đứng trước quyết định lựa chọn nơi khởi đầu sự nghiệp, giữa ba phương án—doanh nghiệp gia đình, doanh nghiệp nhà nước và công ty nước ngoài—<strong style="color: #70ad47;">tôi kiên quyết ủng hộ việc gia nhập một công ty nước ngoài</strong>.
+
+                Trước hết và quan trọng nhất, một doanh nghiệp đa quốc gia hoặc có vốn đầu tư nước ngoài mang lại một <strong style="color: #70ad47;">môi trường làm việc năng động và dựa trên năng lực</strong>, nơi hiệu suất và trình độ thực sự được đền đáp xứng đáng. Nó cung cấp <strong style="color: #70ad47;">chế độ đãi ngộ hấp dẫn</strong>, các chương trình đào tạo toàn diện và vô số cơ hội để <strong style="color: #70ad47;">thăng tiến nhanh chóng trong sự nghiệp</strong> cùng các đồng nghiệp quốc tế.
+
+                Xét về các lựa chọn còn lại, làm việc trong một <strong style="color: #70ad47;">doanh nghiệp gia đình</strong> có thể mang lại sự linh hoạt, nhưng ranh giới giữa quan hệ cá nhân và trách nhiệm công việc rất dễ bị xóa nhòa, dẫn đến sự thiên vị hoặc xung đột nội bộ. Trong khi đó, mặc dù <strong style="color: #70ad47;">doanh nghiệp nhà nước</strong> đảm bảo sự ổn định vượt trội và phúc lợi xã hội tốt, nhưng các thủ tục hành chính quan liêu cùng <strong style="color: #70ad47;">cấu trúc phân cấp cứng nhắc</strong> có thể kìm hãm sự đổi mới và giới hạn sự phát triển cá nhân của những người trẻ.
+
+                Cân nhắc mọi yếu tố, tôi tin chắc rằng <strong style="color: #70ad47;">một công ty nước ngoài là nơi làm việc có lợi thế và xứng đáng nhất</strong> để bắt đầu một sự nghiệp đầy hứa hẹn.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Panel Part 3 -->
+<div class="sol-tab-content" id="sol-panel-3">
+    <div class="sol-topic-section">
+        <div class="sol-topic-header">
+            <i class="fa-solid fa-chart-line"></i> TOPIC DEVELOPMENT <span class="sol-translation">(phát triển chủ đề)</span>
+        </div>
+        <div class="sol-situation-box" style="font-weight: 600;">
+            Topic: There are several advantages of using electric vehicles. <br/>
+            <ul style="margin-top: 8px; margin-bottom: 0; padding-left: 20px; font-weight: normal;">
+                <li>be eco-friendly</li>
+                <li>cost less money</li>
+                <li>feel comfortable</li>
+                <li>[your own idea: reduce noise pollution]</li>
+            </ul>
+            <span class="sol-translation" style="display: block; margin-top: 8px; margin-left: 0; font-weight: normal;">
+                (Chủ đề: Có một số lợi ích của việc sử dụng xe điện.)<br/>
+                <ul style="margin-top: 4px; margin-bottom: 0; padding-left: 20px;">
+                    <li>thân thiện với môi trường</li>
+                    <li>tiết kiệm chi phí</li>
+                    <li>mang lại cảm giác thoải mái / êm ái</li>
+                    <li>[ý riêng: giảm ô nhiễm tiếng ồn]</li>
+                </ul>
+            </span>
+            <span style="color: var(--color-red); font-size: 13px; font-weight: 600; margin-top: 8px; display: inline-block;">
+                <i class="fa-solid fa-lightbulb"></i> Lưu ý: Thí sinh có thể phát triển ý riêng của mình hoặc không cần phát triển ý riêng vẫn đạt điểm tối đa nếu phát triển 3 nhánh chính xuất sắc.
+            </span>
+        </div>
+
+        <div class="sol-topic-header" style="margin-top: 20px;">
+            <i class="fa-solid fa-graduation-cap"></i> SAMPLE ANSWERS <span class="sol-translation">(gợi ý bài mẫu)</span>
+        </div>
+
+        <div class="sol-level-box level-b1">
+            <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+            <div class="level-content">
+                There are several <strong style="color: #00b0f0;">advantages of using electric vehicles</strong>.
+
+                First of all, electric vehicles are <strong style="color: #00b0f0;">eco-friendly</strong>. Because they do not emit exhaust fumes into the air, they help reduce greenhouse gases and keep our environment clean.
+
+                Secondly, they <strong style="color: #00b0f0;">cost less money</strong> to run. Charging with electricity is generally much cheaper than buying gasoline, and electric motors require fewer maintenance repairs.
+
+                Thirdly, passengers and drivers can <strong style="color: #00b0f0;">feel very comfortable</strong> when using them. Electric engines operate quietly and accelerate smoothly without vibrations.
+
+                In addition, I also believe that electric vehicles help <strong style="color: #00b0f0;">reduce noise pollution</strong> in crowded cities.
+
+                In conclusion, for these clear benefits, <strong style="color: #ee0000;">electric vehicles</strong> are a great transportation choice for the future.
+                <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="translation-text" style="display: none; white-space: pre-line;">Có một số <strong style="color: #00b0f0;">lợi ích của việc sử dụng xe điện</strong>.
+
+                Trước hết, xe điện rất <strong style="color: #00b0f0;">thân thiện với môi trường</strong>. Vì chúng không thải khói độc ra không khí, chúng giúp giảm khí nhà kính và giữ cho môi trường của chúng ta trong lành.
+
+                Thứ hai, chúng <strong style="color: #00b0f0;">tiêu tốn ít tiền hơn</strong> để vận hành. Việc sạc điện nhìn chung rẻ hơn nhiều so với việc mua xăng, và động cơ điện đòi hỏi ít sửa chữa bảo dưỡng hơn.
+
+                Thứ ba, hành khách và người lái xe có thể <strong style="color: #00b0f0;">cảm thấy rất thoải mái</strong> khi sử dụng chúng. Động cơ điện hoạt động êm ái và tăng tốc mượt mà mà không bị rung lắc.
+
+                Ngoài ra, tôi cũng cho rằng xe điện giúp <strong style="color: #00b0f0;">giảm ô nhiễm tiếng ồn</strong> tại các thành phố đông đúc.
+
+                Tóm lại, nhờ những lợi ích rõ ràng này, <strong style="color: #ee0000;">xe điện</strong> là một sự lựa chọn phương tiện giao thông tuyệt vời cho tương lai.</div>
+            </div>
+        </div>
+
+        <div class="sol-level-box level-b2" style="margin-top: 20px;">
+            <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+            <div class="level-content">
+                It is widely acknowledged that <strong style="color: #70ad47;">the adoption of electric vehicles brings substantial advantages</strong> to individual commuters and society as a whole.
+
+                One major advantage is that <strong style="color: #70ad47;">electric vehicles are exceptionally eco-friendly</strong>. By producing zero direct tailpipe emissions, they play a crucial role in improving urban air quality and <strong style="color: #70ad47;">mitigating climate change</strong> caused by fossil fuel combustion.
+
+                Another positive aspect is that <strong style="color: #70ad47;">they cost significantly less money to operate and maintain</strong>. Electricity is considerably more economical than petroleum, and because electric drivetrains contain fewer mechanical components, owners can save substantial amounts on <strong style="color: #70ad47;">long-term maintenance expenses</strong>.
+
+                One more beneficial effect is that <strong style="color: #70ad47;">drivers and passengers enjoy superior comfort</strong>. Without the combustion rumble of traditional engines, electric vehicles provide <strong style="color: #70ad47;">instant torque, seamless acceleration</strong>, and an extraordinarily quiet cabin experience.
+
+                Furthermore, from my perspective, the widespread use of electric mobility will <strong style="color: #70ad47;">dramatically curtail urban noise pollution</strong>, creating more peaceful living environments.
+
+                In summary, thanks to their environmental sustainability, economic efficiency, and driving refinement, <strong style="color: #ee0000;">electric vehicles</strong> represent a revolutionary step forward in modern transportation.
+                <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="translation-text" style="display: none; white-space: pre-line;">Mọi người đều thừa nhận rằng <strong style="color: #70ad47;">việc áp dụng xe điện mang lại những lợi ích to lớn</strong> cho từng người tham gia giao thông và toàn xã hội.
+
+                Một ưu điểm lớn là <strong style="color: #70ad47;">xe điện đặc biệt thân thiện với môi trường</strong>. Bằng cách không thải ra khí thải trực tiếp từ ống xả, chúng đóng vai trò quan trọng trong việc cải thiện chất lượng không khí đô thị và <strong style="color: #70ad47;">giảm thiểu biến đổi khí hậu</strong> do việc đốt nhiên liệu hóa thạch gây ra.
+
+                Một khía cạnh tích cực khác là <strong style="color: #70ad47;">chúng tiêu tốn ít chi phí hơn đáng kể để vận hành và bảo dưỡng</strong>. Điện tiết kiệm hơn nhiều so với dầu mỏ, và vì hệ dẫn động điện có ít bộ phận cơ khí hơn, các chủ sở hữu có thể tiết kiệm một khoản đáng kể cho <strong style="color: #70ad47;">chi phí bảo dưỡng lâu dài</strong>.
+
+                Một tác động có lợi nữa là <strong style="color: #70ad47;">người lái và hành khách được tận hưởng sự thoải mái vượt trội</strong>. Không có tiếng gầm của động cơ đốt trong truyền thống, xe điện mang lại <strong style="color: #70ad47;">mô-men xoắn tức thì, khả năng tăng tốc mượt mà</strong> và trải nghiệm khoang lái cực kỳ yên tĩnh.
+
+                Hơn nữa, theo góc nhìn của tôi, việc sử dụng rộng rãi các phương tiện chạy điện sẽ <strong style="color: #70ad47;">cắt giảm đáng kể tình trạng ô nhiễm tiếng ồn đô thị</strong>, tạo nên những môi trường sống thanh bình hơn.
+
+                Tóm lại, nhờ tính bền vững về môi trường, hiệu quả kinh tế và sự tinh tế khi vận hành, <strong style="color: #ee0000;">xe điện</strong> đại diện cho một bước tiến mang tính cách mạng trong giao thông hiện đại.</div>
+            </div>
+        </div>
+
+        <div class="sol-topic-header" style="margin-top: 30px;">
+            <i class="fa-solid fa-circle-question"></i> FOLLOW-UP QUESTIONS <span class="sol-translation">(câu hỏi mở rộng)</span>
+        </div>
+        
+        <div class="sol-question-item">
+            <div class="sol-question-text">1. How can people be encouraged to use electric vehicles? <span class="sol-translation">(Làm thế nào để khuyến khích người dân sử dụng xe điện?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    To encourage people, the government should <strong style="color: #00b0f0;">reduce taxes and purchase prices</strong> for electric vehicles. In addition, they need to <strong style="color: #00b0f0;">build more public charging stations</strong> in convenient places.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Để khuyến khích người dân, chính phủ nên <strong style="color: #00b0f0;">giảm thuế và giá mua</strong> cho xe điện. Ngoài ra, họ cần <strong style="color: #00b0f0;">xây dựng thêm các trạm sạc công cộng</strong> ở những địa điểm thuận tiện.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Several measures can be taken to boost adoption. Authorities should offer <strong style="color: #70ad47;">substantial financial incentives</strong>, such as tax rebates and registration subsidies. Moreover, expanding the <strong style="color: #70ad47;">nationwide charging infrastructure</strong> and granting privileges like free parking or highway toll discounts will effectively motivate motorists to make the switch.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Một số biện pháp có thể được thực hiện để đẩy mạnh việc tiếp nhận. Các cơ quan chức năng nên đưa ra <strong style="color: #70ad47;">những ưu đãi tài chính đáng kể</strong>, chẳng hạn như giảm thuế và trợ cấp phí đăng ký. Hơn nữa, việc mở rộng <strong style="color: #70ad47;">cơ sở hạ tầng sạc trên toàn quốc</strong> và trao các đặc quyền như đỗ xe miễn phí hoặc giảm phí cầu đường cao tốc sẽ thúc đẩy hiệu quả các chủ xe chuyển sang dùng xe điện.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sol-question-item" style="margin-top: 20px;">
+            <div class="sol-question-text">2. What are some disadvantages of electric vehicles? <span class="sol-translation">(Một số nhược điểm của xe điện là gì?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    One disadvantage is that electric vehicles still have a <strong style="color: #00b0f0;">high initial price</strong>. Another problem is that <strong style="color: #00b0f0;">charging takes a long time</strong>, and there are not enough charging ports in rural areas.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Một nhược điểm là xe điện vẫn có <strong style="color: #00b0f0;">giá mua ban đầu khá cao</strong>. Một vấn đề khác là <strong style="color: #00b0f0;">việc sạc pin mất nhiều thời gian</strong>, và chưa có đủ cổng sạc ở các vùng nông thôn.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Despite their advantages, electric vehicles still face notable drawbacks. The <strong style="color: #70ad47;">steep upfront purchase price</strong> and potential battery replacement costs remain barriers for budget-conscious consumers. Furthermore, <strong style="color: #70ad47;">prolonged recharging durations</strong> and <strong style="color: #70ad47;">limited battery range</strong> often induce range anxiety during long-distance travel.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Mặc dù có nhiều ưu điểm, xe điện vẫn đối mặt với những nhược điểm đáng chú ý. <strong style="color: #70ad47;">Giá mua ban đầu đắt đỏ</strong> và chi phí thay pin tiềm ẩn vẫn là rào cản đối với những người tiêu dùng chú trọng ngân sách. Hơn nữa, <strong style="color: #70ad47;">thời gian sạc lại kéo dài</strong> cùng <strong style="color: #70ad47;">phạm vi di chuyển hạn chế của pin</strong> thường gây ra tâm lý lo lắng về quãng đường trong các chuyến đi xa.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sol-question-item" style="margin-top: 20px;">
+            <div class="sol-question-text">3. Do you think electric vehicles will completely replace petrol-powered vehicles in the future? Why or why not? <span class="sol-translation">(Bạn có nghĩ rằng xe điện sẽ thay thế hoàn toàn xe chạy bằng xăng trong tương lai không? Tại sao có hoặc tại sao không?)</span></div>
+            <div class="sol-level-box level-b1">
+                <span class="level-badge b1">B1 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    Yes, I think so. As battery technology improves and fossil fuels run out, <strong style="color: #00b0f0;">electric vehicles will become cheaper and more common</strong>. Eventually, most people will switch to clean energy.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Vâng, tôi nghĩ vậy. Khi công nghệ pin ngày càng cải tiến và nhiên liệu hóa thạch cạn kiệt, <strong style="color: #00b0f0;">xe điện sẽ trở nên rẻ hơn và phổ biến hơn</strong>. Cuối cùng, hầu hết mọi người sẽ chuyển sang sử dụng năng lượng sạch.</div>
+                </div>
+            </div>
+            <div class="sol-level-box level-b2">
+                <span class="level-badge b2">B2 LEVEL</span><button class="tts-play-btn" onclick="playTTS(this)"><i class="fa-solid fa-volume-high"></i> Nghe đọc mẫu</button>
+                <div class="level-content">
+                    In my view, it is highly likely that electric vehicles will dominate the market in the coming decades. With advancing battery technology, decreasing manufacturing costs, and <strong style="color: #70ad47;">stringent environmental regulations phasing out combustion engines</strong>, electric mobility will inevitably become the <strong style="color: #70ad47;">predominant global transport standard</strong>.
+                    <div class="translation-toggle" onclick="toggleTranslation(this)"><strong>Vietnamese meaning</strong> <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="translation-text" style="display: none; white-space: pre-line;">Theo quan điểm của tôi, rất có thể xe điện sẽ thống lĩnh thị trường trong những thập kỷ tới. Với công nghệ pin ngày càng tiến bộ, chi phí sản xuất giảm dần và <strong style="color: #70ad47;">các quy định môi trường nghiêm ngặt loại bỏ dần động cơ đốt trong</strong>, phương tiện chạy điện chắc chắn sẽ trở thành <strong style="color: #70ad47;">tiêu chuẩn giao thông chủ đạo trên toàn cầu</strong>.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Back button -->
+<div style="margin-top: 30px; display: flex; justify-content: center;">
+<button class="btn btn-secondary" onclick="showScreen('review')">
+<i class="fa-solid fa-arrow-left"></i> Quay lại phần kết quả
+                        </button>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Custom Script JS -->
+<script src="../db.js?v=1787041111"></script>
+<script src="app.js?v=1782327221"></script>
+<script>
+  function toggleTranslation(element) {
+   const textNode = element.nextElementSibling;
+   const icon = element.querySelector('i');
+   if (textNode.style.display === 'none') {
+    textNode.style.display = 'block';
+    if (icon) icon.className = 'fa-solid fa-chevron-up';
+   } else {
+    textNode.style.display = 'none';
+    if (icon) icon.className = 'fa-solid fa-chevron-down';
+   }
+  }
+</script>
+</body>
+</html>

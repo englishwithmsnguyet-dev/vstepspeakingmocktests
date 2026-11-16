@@ -125,6 +125,12 @@
                     <span class="test-name">SPEAKING TEST 15</span>
                 </a>
             </li>
+            <li class="test-item">
+                <a href="javascript:void(0)" class="locked" data-test-id="16">
+                    <span class="test-icon"><i class="fa-solid fa-lock"></i></span>
+                    <span class="test-name">SPEAKING TEST 16</span>
+                </a>
+            </li>
         </ul>
         <a href="https://www.facebook.com/nguyetpham28" target="_blank" class="sidebar-brand-bottom">
             <span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
@@ -273,7 +279,7 @@
                     </p>
                     <div class="progress-stats" id="progress-stats-container" style="font-weight: 700; font-size: 15px; color: var(--text-primary); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
                         <i class="fa-solid fa-circle-check" style="color: var(--color-green);"></i>
-                        <span>Đã mở khóa: <span id="unlocked-count">0/15</span> đề thi</span>
+                        <span>Đã mở khóa: <span id="unlocked-count">0/16</span> đề thi</span>
                     </div>
                     <div class="backup-actions-row" style="display: flex; gap: 12px; flex-wrap: wrap;">
                         <button class="lock-btn" id="btn-export-backup" style="background: linear-gradient(135deg, var(--color-violet) 0%, #6d28d9 100%); flex: 1; min-width: 120px; font-size: 13.5px; padding: 10px 14px; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);">
@@ -589,8 +595,23 @@
                                 <button class="btn-card-action" id="btn-action-test-15">Đang tải...</button>
                             </div>
                         </div>
+
+                        <!-- Test 16 -->
+                        <div class="test-card" id="card-test-16">
+                            <div class="test-card-header">
+                                <span class="test-card-title">SPEAKING TEST 16</span>
+                                <span class="status-badge" id="badge-test-16">Đang tải...</span>
+                            </div>
+                            <div class="test-card-body">
+                                <p class="test-card-desc">Thảo luận về việc tiết kiệm tiền, sử dụng Internet, lựa chọn nuôi thú cưng trong gia đình và lợi ích của xe ô tô điện.</p>
+                                <div class="test-topics-list">
+                                    <span class="topic-bullet"><i class="fa-solid fa-comments"></i> Part 1: Saving money / Using the Internet</span>
+                                    <span class="topic-bullet"><i class="fa-solid fa-comments"></i> Part 2: Choosing a pet (Cat, Dog, Fish)</span>
+                                    <span class="topic-bullet"><i class="fa-solid fa-comments"></i> Part 3: Benefits of electric cars</span>
+                                </div>
+                            </div>
                             <div class="test-card-action">
-                                <button class="btn-card-action" id="btn-action-test-20">Đang tải...</button>
+                                <button class="btn-card-action" id="btn-action-test-16">Đang tải...</button>
                             </div>
                         </div>
 
@@ -607,7 +628,7 @@
     <script src="db.js?v=1787041111"></script>
     <script>
         const TEST_PASSWORDS = {};
-        const EXISTING_TESTS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+        const EXISTING_TESTS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
         function isTestUnlocked(testId) {
             if (!TEST_PASSWORDS[testId]) return true;
@@ -647,7 +668,7 @@
             });
 
             // 2. Sync Grid Cards
-            for (let i = 1; i <= 15; i++) {
+            for (let i = 1; i <= 16; i++) {
                 const card = document.getElementById(`card-test-${i}`);
                 const badge = document.getElementById(`badge-test-${i}`);
                 const button = document.getElementById(`btn-action-test-${i}`);
@@ -844,18 +865,18 @@
         // --- Progress Backup & Restore JS ---
         function updateUnlockedProgressCounter() {
             let count = 0;
-            for (let i = 1; i <= 15; i++) {
+            for (let i = 1; i <= 16; i++) {
                 if (sessionStorage.getItem('unlocked_test_' + i) === 'true') {
                     count++;
                 }
             }
             const countEl = document.getElementById('unlocked-count');
-            if (countEl) countEl.innerText = `${count}/15`;
+            if (countEl) countEl.innerText = `${count}/16`;
         }
 
         function exportBackup() {
             const unlocked = [];
-            for (let i = 1; i <= 15; i++) {
+            for (let i = 1; i <= 16; i++) {
                 if (sessionStorage.getItem('unlocked_test_' + i) === 'true') {
                     unlocked.push(i);
                 }
@@ -941,7 +962,7 @@
                     let count = 0;
                     decoded.forEach(testId => {
                         const id = parseInt(testId);
-                        if (id >= 1 && id <= 15) {
+                        if (id >= 1 && id <= 16) {
                             sessionStorage.setItem('unlocked_test_' + id, 'true');
                             count++;
                         }

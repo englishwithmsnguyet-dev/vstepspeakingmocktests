@@ -140,14 +140,188 @@ const VstepDB = {
 // Form Recording: https://forms.gle/pGY7Ci8T1aHv15Ud6
 // ==========================================================================
 const VstepAuth = {
-    ALLOWED_CLASSES: ['B2', 'CB196', 'CB206', 'CB210', 'CB211', 'CB213', 'CB219', 'CB220', 'ONB103', 'B209', 'B212', 'GV'],
-    BANNED_CLASSES: ['CB201', 'CB202', 'B220'],
+    ALLOWED_CLASSES: ['CB210', 'CB211', 'CB213', 'ONB103', 'B212', 'B2', 'GV'],
+    BANNED_CLASSES: ['CB196', 'CB201', 'CB202', 'CB206', 'CB219', 'CB220', 'B209'],
     REQUIRED_PASSWORD: 'VSTEPSEPTEMBER',
     VALID_PASSWORDS: ['VSTEPSEPTEMBER', 'STUDYHARD', 'B2', 'GIATUE', 'PTMN2896', 'PTMN2412', 'PTMN2805'],
+    TEACHER_UNLOCK_PASSWORDS: ['PTMN2896', 'PTMN2412', 'PTMN2805', 'PTMN', 'VSTEPSEPTEMBER', 'STUDYHARD'],
     FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSc7PpUuIwfXofYNKtZ2L_YqhJTlh-Xc7SoBqAgjXxtUla6XZw/formResponse',
     ENTRY_ID: 'entry.1205151935',
     BACKUP_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSe4MK1HLBYtsZ-SkwVmaO_hV_o4C094a7x-17il2H6kqGtuHw/formResponse',
     BACKUP_ENTRY_ID: 'entry.388968236',
+
+    VALID_STUDENTS: {
+        "CB210": [
+            "Nguyễn Võ Thành Đạt", "Lê Huỳnh Thanh Duy", "Nguyễn Cao Kỳ Duyên", "Đào Ngọc Hân", 
+            "Trần Văn Hữu", "Trần Văn Kim Khoa", "Nguyễn Thanh Nâng", "Huỳnh Kỳ Nguyên", 
+            "Võ Thị Kim Nguyên", "Võ Hùng Sanh", "Tiền Thị Thanh Thảo", "Trần Thị Thanh Thảo", 
+            "Đặng Thị Kim Thoa", "Trần Thị Tiên Tiên", "Lê Kim Tuyền"
+        ],
+        "CB211": [
+            "Hồ Anh Quân", "Lê Thành Nghiệp", "Lê Khánh Lâm", "Huỳnh Thị Ngọc Thắm", 
+            "Mai Trần Xuân Mai", "Lê Thị Uyển Nhi", "Nguyễn Thụy Thanh Trúc"
+        ],
+        "CB213": [
+            "Nguyễn Quốc Anh", "Hoàng Hợp Minh Châu", "Đặng Châu Gia Huy", "Trần Minh Tuệ Mẩn", 
+            "Trần Minh Tuệẫn", "Đặng Thị Trúc Măng", "Trương Thị Kha My", "Ngô Diễm My", 
+            "Chiêm Chúc Ngân", "Huỳnh Thị Yến Nhi", "Phạm Nguyễn Tâm Như", "Phạm Nhựt Tiến", 
+            "Phạm Nhật Tiến", "Lê Thị Tú Trinh", "Trần Ngọc Vinh"
+        ],
+        "ONB103": [
+            "Nguyễn Thị Duy", "Phạm Trần Mỹ Hân", "Trịnh Thị Thu Hiền", "Nguyễn Hoàng Kha", 
+            "Phạm Thị Út Lụa", "Phạm Thị Út Lua", "Lê Huỳnh Diễm My", "Nguyễn Thị Ngọc Mỹ", 
+            "Huỳnh Thị Kim Ngân", "Trần Thị Kim Ngân", "Nguyễn Thị Tiểu Phụng", "Trần Yến Phụng", 
+            "Phạm Ngọc Thạch", "Cao Thị Thu Trang", "Nguyễn Thị Thanh Tuyền", "Trần Phạm Phương Uyên", 
+            "Trần Ngô Mỹ Vy"
+        ],
+        "B212": [
+            "Nguyễn Duy Hồng Anh", "Nguyễn Ngọc Minh Anh", "Nguyễn Lê Mỹ Hân", "Nguyễn Hồng Minh Huy", 
+            "Nguyễn Quốc Khải", "Đoàn Nguyễn Đình Khang", "Lê Nguyễn Gia Khánh", "Nguyễn Hữu Khánh", 
+            "Hồ Thị Ngọc Lan", "Trần Thị Hồng Lỉnh", "Trần Thị Hồng Lĩnh", "Võ Thị Triệu Minh", 
+            "Hứa Đình Nghi", "Võ Thị Bảo Ngọc", "Lê Tiến Phát", "Nguyễn Hoàng Thông", 
+            "Trần Hoàng Thông", "Nguyễn Kim Tiền", "Lê Thị Bảo Trân", "Võ Thị Diễm Trinh", 
+            "Nguyễn Tấn Trung", "Nguyễn Tiến Trung", "Trần Thị Ánh Tuyết", "Đặng Nguyễn Khánh Uyên", 
+            "Nguyễn Thị Chúc Yến"
+        ],
+        "B2": [
+            "Gia Tuệ", "Trương Gia Tuệ", "Gia Tuê", "Nguyễn Gia Tuệ", "Trần Gia Tuệ", "Lê Gia Tuệ"
+        ]
+    },
+
+    removeVietnameseTones(str) {
+        if (!str) return '';
+        return str
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/đ/g, 'd').replace(/Đ/g, 'D');
+    },
+
+    normalizeVietnameseName(str) {
+        if (!str) return '';
+        return str
+            .normalize('NFC')
+            .trim()
+            .replace(/\s+/g, ' ')
+            .toLowerCase();
+    },
+
+    checkIsGiaTue(nameInput) {
+        if (!nameInput) return false;
+        const norm = this.removeVietnameseTones(this.normalizeVietnameseName(nameInput));
+        return norm.includes('gia tue') || norm.replace(/\s+/g, '').includes('giatue');
+    },
+
+    getStudentLockKey(name) {
+        if (!name) return 'vstep_locked_generic';
+        return 'vstep_locked_' + this.removeVietnameseTones(this.normalizeVietnameseName(name)).replace(/[^a-z0-9]/g, '');
+    },
+
+    isStudentLocked(name) {
+        if (!name) return false;
+        if (this.isTeacher(name)) return false;
+        const key = this.getStudentLockKey(name);
+        return localStorage.getItem(key) === 'true' || localStorage.getItem('vstep_current_user_locked') === 'true';
+    },
+
+    lockStudentAccount(name, className, reason) {
+        if (this.isTeacher(name, className)) return;
+        const key = this.getStudentLockKey(name);
+        localStorage.setItem(key, 'true');
+        localStorage.setItem('vstep_current_user_locked', 'true');
+        localStorage.setItem('vstep_locked_student_name', name);
+        localStorage.setItem('vstep_locked_student_class', className);
+        localStorage.setItem('vstep_locked_reason', reason || 'Vi phạm quy chế thi 3 lần (chuyển tab hoặc sao chép/dán)');
+        localStorage.setItem('vstep_locked_time', new Date().toLocaleString('vi-VN'));
+    },
+
+    unlockStudentAccount(passwordInput) {
+        const pass = (passwordInput || '').trim().toUpperCase();
+        if (!this.TEACHER_UNLOCK_PASSWORDS.includes(pass)) {
+            return { ok: false, error: 'Mật khẩu Giáo viên không chính xác!' };
+        }
+        const studentName = localStorage.getItem('vstep_locked_student_name') || localStorage.getItem('vstep_student_name') || '';
+        if (studentName) {
+            localStorage.removeItem(this.getStudentLockKey(studentName));
+        }
+        localStorage.removeItem('vstep_current_user_locked');
+        localStorage.removeItem('vstep_locked_student_name');
+        localStorage.removeItem('vstep_locked_student_class');
+        localStorage.removeItem('vstep_locked_reason');
+        localStorage.removeItem('vstep_locked_time');
+        sessionStorage.removeItem('vstep_cheat_violations');
+        return { ok: true };
+    },
+
+    promptTeacherUnlock() {
+        const pass = prompt("Nhập mật khẩu Giáo viên để mở khóa cho học viên:");
+        if (!pass) return;
+        const res = this.unlockStudentAccount(pass);
+        if (res.ok) {
+            alert("✅ ĐÃ MỞ KHÓA THÀNH CÔNG! Tài khoản học viên đã được mở khóa.");
+            location.reload();
+        } else {
+            alert("❌ " + res.error);
+        }
+    },
+
+    validateStudentIdentity(fullName, className) {
+        const nameUpper = (fullName || '').trim().toUpperCase();
+        const classUpper = (className || '').trim().toUpperCase();
+        const isTeacher = (nameUpper === 'PTMN' && classUpper === 'GV') || 
+                          (classUpper === 'GV' && /^(cô nguyệt|co nguyet|giáo viên|giao vien|ptmn)$/i.test((fullName || '').trim()));
+        if (isTeacher) return { ok: true, matchedName: 'Cô Nguyệt (PTMN)', className: 'GV' };
+
+        let cleanClass = (className || '').replace(/^(LỚP|LOP|CLASS)\s*/i, '').trim().toUpperCase();
+        if (this.checkIsGiaTue(fullName) && (!cleanClass || cleanClass === 'B2')) {
+            cleanClass = 'B2';
+        }
+
+        if (!this.ALLOWED_CLASSES.includes(cleanClass)) {
+            return { 
+                ok: false, 
+                error: `Lớp "${className}" không hợp lệ hoặc đã kết thúc! Hệ thống hiện chỉ nhận các lớp: CB210, CB211, CB213, ONB103, B212 và học viên Gia Tuệ (B2).` 
+            };
+        }
+
+        if (cleanClass === 'B2') {
+            if (!this.checkIsGiaTue(fullName)) {
+                return { 
+                    ok: false, 
+                    error: 'Mã lớp B2 hiện chỉ dành riêng cho học viên Gia Tuệ (B2)! Vui lòng kiểm tra lại Họ tên hoặc Mã lớp.' 
+                };
+            }
+            return { ok: true, matchedName: 'Gia Tuệ', className: 'B2' };
+        }
+
+        if (cleanClass === 'GV') {
+            return { 
+                ok: false, 
+                error: 'Mã lớp GV chỉ dành riêng cho tài khoản Giáo viên (PTMN)!' 
+            };
+        }
+
+        const roster = this.VALID_STUDENTS[cleanClass] || [];
+        const normInput = this.normalizeVietnameseName(fullName);
+        const noToneInput = this.removeVietnameseTones(normInput);
+
+        const found = roster.find(st => {
+            const normSt = this.normalizeVietnameseName(st);
+            const noToneSt = this.removeVietnameseTones(normSt);
+            return normSt === normInput || noToneSt === noToneInput;
+        });
+
+        if (!found) {
+            if (this.checkIsGiaTue(fullName)) {
+                return { ok: true, matchedName: 'Gia Tuệ', className: 'B2' };
+            }
+            return { 
+                ok: false, 
+                error: `Họ và tên "${fullName}" không có trong danh sách lớp ${cleanClass}. Vui lòng kiểm tra lại chính xác họ tên và mã lớp!` 
+            };
+        }
+
+        return { ok: true, matchedName: found, className: cleanClass };
+    },
 
     isTeacher(name = '', classCode = '') {
         const n = String(name || '').trim().toLowerCase();
@@ -161,17 +335,18 @@ const VstepAuth = {
     isGiaTue(name = '', classCode = '') {
         const n = String(name || '').trim().toLowerCase();
         const c = String(classCode || '').trim().toUpperCase();
-        const normName = n.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        return (c === 'B2' && (normName.includes('gia tue') || n.includes('gia tuệ')));
+        return this.checkIsGiaTue(n) || (c === 'B2' && (n.includes('gia tue') || n.includes('gia tuệ')));
     },
 
     isLoggedIn() {
         const loggedIn = sessionStorage.getItem('vstep_user_logged_in') === 'true';
         const name = (sessionStorage.getItem('vstep_student_name') || '').trim();
         const classCode = (sessionStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
+        if (this.isStudentLocked(name)) return false;
         const isTeacher = this.isTeacher(name, classCode);
         if (this.BANNED_CLASSES.includes(classCode)) return false;
-        return loggedIn && name.length > 0 && (isTeacher || this.ALLOWED_CLASSES.includes(classCode));
+        const validation = this.validateStudentIdentity(name, classCode);
+        return loggedIn && name.length > 0 && validation.ok;
     },
 
     getStudentInfo() {
@@ -644,6 +819,16 @@ const VstepAuth = {
                 classCode = 'B2';
             }
 
+            // Check if locked
+            if (this.isStudentLocked(name)) {
+                errorDiv.innerHTML = `⚠️ Tài khoản <strong>${name}</strong> hiện đang bị KHÓA do vi phạm quy chế thi 3 lần!<br><br><span style="font-size:13px; color:#475569;">Vui lòng liên hệ Giáo viên (Cô Nguyệt) để mở khóa.</span><br><br><button type="button" onclick="VstepAuth.promptTeacherUnlock()" style="background:#10b981; color:#fff; border:none; padding:7px 15px; border-radius:8px; font-weight:700; cursor:pointer;"><i class="fa-solid fa-key"></i> Giáo viên mở khóa</button>`;
+                errorDiv.style.display = "block";
+                card.classList.remove('shake');
+                void card.offsetWidth;
+                card.classList.add('shake');
+                return;
+            }
+
             const isTeacher = this.isTeacher(name, classCode);
             const isGiaTue = this.isGiaTue(name, classCode);
 
@@ -673,25 +858,18 @@ const VstepAuth = {
                 return;
             }
 
-            if (this.BANNED_CLASSES.includes(classCode)) {
-                errorDiv.innerText = `⚠️ Lớp ${classCode} đã kết thúc khóa học và không được phép đăng nhập!`;
+            const validation = this.validateStudentIdentity(name, classCode);
+            if (!validation.ok) {
+                errorDiv.innerText = `⚠️ ${validation.error}`;
                 errorDiv.style.display = "block";
                 card.classList.remove('shake');
                 void card.offsetWidth;
                 card.classList.add('shake');
-                classInput.focus();
                 return;
             }
 
-            if (!isTeacher && !this.ALLOWED_CLASSES.includes(classCode)) {
-                errorDiv.innerText = `⚠️ Lớp học không hợp lệ. Hệ thống chấp nhận các lớp: ${this.ALLOWED_CLASSES.filter(c => c !== 'GV').join(', ')}.`;
-                errorDiv.style.display = "block";
-                card.classList.remove('shake');
-                void card.offsetWidth;
-                card.classList.add('shake');
-                classInput.focus();
-                return;
-            }
+            name = validation.matchedName;
+            classCode = validation.className;
 
             // Password check:
             // 1. Teacher account does NOT require a password!
@@ -863,7 +1041,74 @@ const VstepAuth = {
                 `;
             }
         }
-    }
+    },
+
+    setupAntiCheat() {
+        const isTestPage = window.location.pathname.includes('/test ') || 
+                           window.location.pathname.includes('/test%20') || 
+                           window.location.pathname.includes('test0') || 
+                           window.location.pathname.includes('test1');
+        if (!isTestPage) return;
+
+        let lastCheatWarningTime = 0;
+        const triggerCheat = (reason) => {
+            const info = this.getStudentInfo();
+            if (this.isTeacher(info.name, info.classCode)) return; // Giáo viên không bị hạn chế
+
+            const now = Date.now();
+            if (now - lastCheatWarningTime < 2000) return;
+            lastCheatWarningTime = now;
+
+            let count = parseInt(sessionStorage.getItem('vstep_cheat_violations') || '0', 10) + 1;
+            sessionStorage.setItem('vstep_cheat_violations', count.toString());
+
+            if (count >= 3) {
+                this.lockStudentAccount(info.name, info.classCode, reason);
+                alert(`🚫 TÀI KHOẢN ĐÃ BỊ KHÓA!\n\nThí sinh: ${info.name} (${info.classCode})\nLý do: ${reason} (Vi phạm 3 lần).\n\nVui lòng liên hệ Giáo viên (Cô Nguyệt) để được mở khóa!`);
+                location.reload();
+            } else {
+                alert(`⚠️ CẢNH BÁO GIAN LẬN THI (LẦN ${count}/3)!\n\nLý do: ${reason}\n\nQuy chế thi: Nghiêm cấm sao chép, dán hoặc chuyển tab trình duyệt!\nNếu vi phạm đủ 3 lần, tài khoản sẽ bị KHÓA NGAY LẬP TỨC!`);
+            }
+        };
+
+        // 1. Prevent copy/cut/paste
+        ['copy', 'cut', 'paste'].forEach(evt => {
+            document.addEventListener(evt, (e) => {
+                const info = this.getStudentInfo();
+                if (this.isTeacher(info.name, info.classCode)) return;
+                e.preventDefault();
+                const act = evt === 'paste' ? 'Dán (Paste)' : (evt === 'copy' ? 'Sao chép (Copy)' : 'Cắt (Cut)');
+                triggerCheat(`Hành vi ${act} nội dung bị cấm trong bài thi!`);
+            }, true);
+        });
+
+        // 2. Prevent shortcuts
+        document.addEventListener('keydown', (e) => {
+            const info = this.getStudentInfo();
+            if (this.isTeacher(info.name, info.classCode)) return;
+            const isCtrlOrCmd = e.ctrlKey || e.metaKey;
+            const k = (e.key || '').toLowerCase();
+            if (isCtrlOrCmd && (k === 'c' || k === 'v' || k === 'x')) {
+                e.preventDefault();
+                triggerCheat('Phím tắt sao chép/dán bị cấm trong bài thi!');
+            }
+        }, true);
+
+        // 3. Tab switching detection
+        let tabHiddenTime = 0;
+        document.addEventListener('visibilitychange', () => {
+            const info = this.getStudentInfo();
+            if (this.isTeacher(info.name, info.classCode)) return;
+            if (document.hidden) {
+                tabHiddenTime = Date.now();
+            } else {
+                if (tabHiddenTime > 0) {
+                    tabHiddenTime = 0;
+                    triggerCheat('Hành vi rời khỏi bài thi hoặc chuyển tab trình duyệt bị cấm!');
+                }
+            }
+        });
+    },
 };
 
 // Auto-check on DOM ready
@@ -874,6 +1119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!VstepAuth.isLoggedIn()) {
             VstepAuth.showLoginModal(false);
         }
+        VstepAuth.setupAntiCheat();
     }
 });
 

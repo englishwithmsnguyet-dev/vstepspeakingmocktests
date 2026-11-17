@@ -216,9 +216,10 @@ const VstepAuth = {
         return 'vstep_locked_' + this.removeVietnameseTones(this.normalizeVietnameseName(name)).replace(/[^a-z0-9]/g, '');
     },
 
-    isStudentLocked(name) {
+    isStudentLocked(name, className) {
         if (!name) return false;
-        if (this.isTeacher(name)) return false;
+        const cleanClass = className || sessionStorage.getItem('vstep_student_class') || localStorage.getItem('vstep_student_class') || '';
+        if (this.isTeacher(name, cleanClass)) return false;
         const key = this.getStudentLockKey(name);
         return localStorage.getItem(key) === 'true' || localStorage.getItem('vstep_current_user_locked') === 'true';
     },
@@ -265,14 +266,14 @@ const VstepAuth = {
     },
 
     validateStudentIdentity(fullName, className) {
-        const nameUpper = (fullName || '').trim().toUpperCase();
-        const classUpper = (className || '').trim().toUpperCase();
-        const isTeacher = (nameUpper === 'PTMN' && classUpper === 'GV') || 
-                          (classUpper === 'GV' && /^(cô nguyệt|co nguyet|giáo viên|giao vien|ptmn)$/i.test((fullName || '').trim()));
-        if (isTeacher) return { ok: true, matchedName: 'Cô Nguyệt (PTMN)', className: 'GV' };
-
+        const cleanName = (fullName || '').trim();
         let cleanClass = (className || '').replace(/^(LỚP|LOP|CLASS)\s*/i, '').trim().toUpperCase();
-        if (this.checkIsGiaTue(fullName) && (!cleanClass || cleanClass === 'B2')) {
+
+        if (this.isTeacher(cleanName, cleanClass)) {
+            return { ok: true, matchedName: 'Cô Nguyệt (PTMN)', className: 'GV' };
+        }
+
+        if (this.checkIsGiaTue(cleanName) && (!cleanClass || cleanClass === 'B2' || cleanClass === 'CB206')) {
             cleanClass = 'B2';
         }
 
@@ -284,7 +285,7 @@ const VstepAuth = {
         }
 
         if (cleanClass === 'B2') {
-            if (!this.checkIsGiaTue(fullName)) {
+            if (!this.checkIsGiaTue(cleanName)) {
                 return { 
                     ok: false, 
                     error: 'Mã lớp B2 hiện chỉ dành riêng cho học viên Gia Tuệ (B2)! Vui lòng kiểm tra lại Họ tên hoặc Mã lớp.' 
@@ -301,7 +302,7 @@ const VstepAuth = {
         }
 
         const roster = this.VALID_STUDENTS[cleanClass] || [];
-        const normInput = this.normalizeVietnameseName(fullName);
+        const normInput = this.normalizeVietnameseName(cleanName);
         const noToneInput = this.removeVietnameseTones(normInput);
 
         const found = roster.find(st => {
@@ -311,12 +312,12 @@ const VstepAuth = {
         });
 
         if (!found) {
-            if (this.checkIsGiaTue(fullName)) {
+            if (this.checkIsGiaTue(cleanName)) {
                 return { ok: true, matchedName: 'Gia Tuệ', className: 'B2' };
             }
             return { 
                 ok: false, 
-                error: `Họ và tên "${fullName}" không có trong danh sách lớp ${cleanClass}. Vui lòng kiểm tra lại chính xác họ tên và mã lớp!` 
+                error: `Họ và tên "${cleanName}" không có trong danh sách lớp ${cleanClass}. Vui lòng kiểm tra lại chính xác họ tên và mã lớp!` 
             };
         }
 
@@ -328,7 +329,7 @@ const VstepAuth = {
         const c = String(classCode || '').trim().toUpperCase();
         if (c === 'GV') return true;
         if (/^(ptmn|gv|cô nguyệt|co nguyet|phạm thị minh nguyệt|pham thi minh nguyet|giáo viên|giao vien|teacher|miss nguyet)$/i.test(n)) return true;
-        if (n.includes('ptmn') || n.includes('cô nguyệt') || n.includes('giáo viên')) return true;
+        if (n.includes('ptmn') || n.includes('cô nguyệt') || n.includes('co nguyet') || n.includes('giáo viên') || n.includes('giao vien') || n.includes('teacher')) return true;
         return false;
     },
 
@@ -339,14 +340,34 @@ const VstepAuth = {
     },
 
     isLoggedIn() {
-        const loggedIn = sessionStorage.getItem('vstep_user_logged_in') === 'true';
-        const name = (sessionStorage.getItem('vstep_student_name') || '').trim();
-        const classCode = (sessionStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
-        if (this.isStudentLocked(name)) return false;
-        const isTeacher = this.isTeacher(name, classCode);
+        const loggedIn = (sessionStorage.getItem('vstep_user_logged_in') === 'true' || 
+                          localStorage.getItem('vstep_user_logged_in') === 'true' ||
+                          sessionStorage.getItem('vstep_student_logged_in') === 'true' ||
+                          localStorage.getItem('vstep_student_logged_in') === 'true');
+        const name = (sessionStorage.getItem('vstep_student_name') || localStorage.getItem('vstep_student_name') || '').trim();
+        const classCode = (sessionStorage.getItem('vstep_student_class') || localStorage.getItem('vstep_student_class') || '').trim().toUpperCase();
+        if (this.isStudentLocked(name, classCode)) return false;
+        if (this.isTeacher(name, classCode)) {
+            sessionStorage.setItem('vstep_user_logged_in', 'true');
+            sessionStorage.setItem('vstep_student_name', 'Cô Nguyệt (PTMN)');
+            sessionStorage.setItem('vstep_student_class', 'GV');
+            localStorage.setItem('vstep_user_logged_in', 'true');
+            localStorage.setItem('vstep_student_name', 'Cô Nguyệt (PTMN)');
+            localStorage.setItem('vstep_student_class', 'GV');
+            return true;
+        }
         if (this.BANNED_CLASSES.includes(classCode)) return false;
         const validation = this.validateStudentIdentity(name, classCode);
-        return loggedIn && name.length > 0 && validation.ok;
+        if (loggedIn && name.length > 0 && validation.ok) {
+            sessionStorage.setItem('vstep_user_logged_in', 'true');
+            sessionStorage.setItem('vstep_student_name', validation.matchedName);
+            sessionStorage.setItem('vstep_student_class', validation.className);
+            localStorage.setItem('vstep_user_logged_in', 'true');
+            localStorage.setItem('vstep_student_name', validation.matchedName);
+            localStorage.setItem('vstep_student_class', validation.className);
+            return true;
+        }
+        return false;
     },
 
     getStudentInfo() {
@@ -907,10 +928,12 @@ const VstepAuth = {
             localStorage.setItem('vstep_student_name', name);
             localStorage.setItem('vstep_student_class', classCode);
             localStorage.setItem('vstep_user_logged_in', 'true');
+            localStorage.setItem('vstep_student_logged_in', 'true');
             localStorage.setItem('vstep_login_time', Date.now().toString());
             sessionStorage.setItem('vstep_student_name', name);
             sessionStorage.setItem('vstep_student_class', classCode);
             sessionStorage.setItem('vstep_user_logged_in', 'true');
+            sessionStorage.setItem('vstep_student_logged_in', 'true');
 
             // Record to Google Form in background
             this.sendToGoogleForm(name, classCode);

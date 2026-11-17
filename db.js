@@ -1146,3 +1146,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Universal Realtime Room Loader for Speaking Mock Tests
+(function loadSpeakingExamRoom() {
+    window.VSTEP_ROOM_SKILL = 'speaking';
+    if (window.VstepExamRoom) return;
+
+    function addScript(src, callback) {
+        const s = document.createElement('script');
+        s.src = src;
+        s.async = false;
+        if (callback) s.onload = callback;
+        document.head.appendChild(s);
+    }
+
+    const isSubDir = window.location.pathname.includes('/test ') || window.location.pathname.includes('/test%20');
+    const roomPath = (isSubDir ? '../exam_room.js?v=' : 'exam_room.js?v=') + '20261118';
+
+    if (typeof firebase === 'undefined') {
+        addScript('https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js', () => {
+            addScript('https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js', () => {
+                addScript(roomPath);
+            });
+        });
+    } else {
+        addScript(roomPath);
+    }
+})();
+

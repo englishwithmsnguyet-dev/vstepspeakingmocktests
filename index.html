@@ -649,6 +649,13 @@
 
     </div>
 
+    <!-- Firebase Compat SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <!-- Room Proctoring -->
+    <script>window.VSTEP_ROOM_SKILL = 'speaking';</script>
+    <script src="exam_room.js?v=20261118"></script>
+
     <!-- Script Section for Password Dialogs and Sidebar sync -->
     <script src="db.js?v=1787041111"></script>
     <script>
@@ -673,6 +680,11 @@
                     const icon = anchor.querySelector('.test-icon i');
                     if (icon) icon.className = 'fa-solid fa-microphone-lines';
                     anchor.onclick = (e) => {
+                        if (typeof VstepExamRoom !== 'undefined' && !VstepExamRoom.canStudentStartExam('speaking')) {
+                            e.preventDefault();
+                            alert("⛔ PHÒNG THI NÓI (SPEAKING) HIỆN ĐANG ĐÓNG!\n\nVui lòng chờ Giáo viên (Cô Nguyệt) mở phòng để vào làm bài.");
+                            return;
+                        }
                         if (!VstepAuth.isLoggedIn()) {
                             e.preventDefault();
                             VstepAuth.showLoginModal(false, () => {
@@ -711,6 +723,10 @@
                     button.innerHTML = 'Vào thi thử <i class="fa-solid fa-arrow-right"></i>';
                     
                     button.onclick = () => {
+                        if (typeof VstepExamRoom !== 'undefined' && !VstepExamRoom.canStudentStartExam('speaking')) {
+                            alert("⛔ PHÒNG THI NÓI (SPEAKING) HIỆN ĐANG ĐÓNG!\n\nVui lòng chờ Giáo viên (Cô Nguyệt) mở phòng để vào làm bài.");
+                            return;
+                        }
                         if (!VstepAuth.isLoggedIn()) {
                             VstepAuth.showLoginModal(false, () => {
                                 if (isExisting) {

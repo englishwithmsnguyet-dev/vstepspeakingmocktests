@@ -1704,3 +1704,362 @@ function playTTS(btn) {
         console.error("TTS Error:", e);
     };
 }
+
+
+/* ==========================================================================
+   DOWNLOAD & EXPORT SAMPLE ANSWERS (.DOC / .PDF)
+   ========================================================================== */
+
+function getSampleAnswersHTML() {
+    const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+    const testNum = pathMatch ? parseInt(pathMatch[1]) : 1;
+    const testTitle = `SPEAKING MOCK TEST ${testNum.toString().padStart(2, '0')}`;
+    const student = (document.getElementById('student-name') && document.getElementById('student-name').value.trim()) || (typeof studentName !== 'undefined' && studentName !== 'Học viên' ? studentName : '') || 'Học viên';
+    const now = new Date();
+    const dateStr = `${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()}`;
+
+    const p1 = document.getElementById('sol-panel-1');
+    const p2 = document.getElementById('sol-panel-2');
+    const p3 = document.getElementById('sol-panel-3');
+
+    if (!p1 || !p2 || !p3) {
+        alert('Không tìm thấy nội dung bài giải mẫu!');
+        return null;
+    }
+
+    // Helper to format level boxes (B1 or B2)
+    function formatLevelBox(boxEl, levelClass, levelName, colorHex) {
+        if (!boxEl) return '';
+        const contentEl = boxEl.querySelector('.level-content');
+        const transEl = boxEl.querySelector('.translation-text');
+        
+        let engHtml = '';
+        if (contentEl) {
+            const clone = contentEl.cloneNode(true);
+            clone.querySelectorAll('.translation-toggle, .translation-text, .tts-play-btn').forEach(el => el.remove());
+            engHtml = clone.innerHTML.trim();
+        }
+        
+        let transHtml = '';
+        if (transEl) {
+            transHtml = transEl.innerHTML.trim();
+        }
+
+        return `
+            <div style="margin: 10px 0 14px 0; padding: 12px 14px; background: ${levelClass === 'b1' ? '#f0f9ff' : '#f4fbf0'}; border: 1px solid ${levelClass === 'b1' ? '#bae6fd' : '#d9f99d'}; border-left: 5px solid ${colorHex}; border-radius: 6px; page-break-inside: avoid;">
+                <div style="margin-bottom: 6px;">
+                    <span style="display: inline-block; background: ${colorHex}; color: #ffffff; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">
+                        ${levelName}
+                    </span>
+                </div>
+                <div style="font-size: 14.5px; line-height: 1.65; color: #1e293b; margin-bottom: 8px; white-space: pre-line;">
+                    ${engHtml}
+                </div>
+                ${transHtml ? `
+                <div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed ${levelClass === 'b1' ? '#bae6fd' : '#d9f99d'}; font-size: 13.5px; color: #475569; line-height: 1.6; white-space: pre-line;">
+                    <div style="font-size: 11px; font-weight: 700; color: #64748b; margin-bottom: 3px; text-transform: uppercase;">
+                        👉 Dịch nghĩa tiếng Việt:
+                    </div>
+                    <div>${transHtml}</div>
+                </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    // 1. PART 1
+    let part1Html = '';
+    const p1Topics = p1.querySelectorAll('.sol-topic-section');
+    p1Topics.forEach((topicEl) => {
+        const headerEl = topicEl.querySelector('.sol-topic-header');
+        const headerText = headerEl ? headerEl.innerText.replace(/[\n\r]+/g, ' ').trim() : '';
+        part1Html += `
+            <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: 9px 12px; font-size: 14.5px; font-weight: 700; color: #991b1b; margin: 20px 0 12px 0; border-radius: 0 4px 4px 0;">
+                ${headerText}
+            </div>
+        `;
+        const qItems = topicEl.querySelectorAll('.sol-question-item');
+        qItems.forEach((qEl) => {
+            const qTextEl = qEl.querySelector('.sol-question-text');
+            const qText = qTextEl ? qTextEl.innerHTML.trim() : '';
+            const b1Box = qEl.querySelector('.sol-level-box.level-b1');
+            const b2Box = qEl.querySelector('.sol-level-box.level-b2');
+
+            part1Html += `
+                <div style="margin-bottom: 18px; page-break-inside: avoid;">
+                    <div style="font-size: 14.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
+                        ${qText}
+                    </div>
+                    ${formatLevelBox(b1Box, 'b1', 'B1 LEVEL', '#00b0f0')}
+                    ${formatLevelBox(b2Box, 'b2', 'B2 LEVEL', '#70ad47')}
+                </div>
+            `;
+        });
+    });
+
+    // 2. PART 2
+    let part2Html = '';
+    const p2Situation = p2.querySelector('.sol-situation-box');
+    const p2SitText = p2Situation ? p2Situation.innerHTML.trim() : '';
+    const p2B1 = p2.querySelector('.sol-level-box.level-b1');
+    const p2B2 = p2.querySelector('.sol-level-box.level-b2');
+    part2Html += `
+        <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px 14px; margin: 12px 0 16px 0; font-size: 14px; line-height: 1.6; color: #1e293b; page-break-inside: avoid;">
+            <div style="font-weight: 700; color: #dc2626; margin-bottom: 4px;">SITUATION (TÌNH HUỐNG):</div>
+            ${p2SitText}
+        </div>
+        <div style="font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
+            Gợi ý bài mẫu thảo luận giải pháp:
+        </div>
+        ${formatLevelBox(p2B1, 'b1', 'B1 LEVEL', '#00b0f0')}
+        ${formatLevelBox(p2B2, 'b2', 'B2 LEVEL', '#70ad47')}
+    `;
+
+    // 3. PART 3
+    let part3Html = '';
+    const p3TopicBox = p3.querySelector('.sol-situation-box');
+    const p3TopicText = p3TopicBox ? p3TopicBox.innerHTML.trim() : '';
+    
+    const p3AllB1 = p3.querySelectorAll('.sol-level-box.level-b1');
+    const p3AllB2 = p3.querySelectorAll('.sol-level-box.level-b2');
+    const p3MainB1 = p3AllB1[0];
+    const p3MainB2 = p3AllB2[0];
+
+    part3Html += `
+        <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px 14px; margin: 12px 0 16px 0; font-size: 14px; line-height: 1.6; color: #1e293b; page-break-inside: avoid;">
+            <div style="font-weight: 700; color: #dc2626; margin-bottom: 4px;">TOPIC OUTLINE (SƠ ĐỒ PHÁT TRIỂN CHỦ ĐỀ):</div>
+            ${p3TopicText}
+        </div>
+        <div style="font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
+            Bài phát triển chủ đề mẫu:
+        </div>
+        ${formatLevelBox(p3MainB1, 'b1', 'B1 LEVEL', '#00b0f0')}
+        ${formatLevelBox(p3MainB2, 'b2', 'B2 LEVEL', '#70ad47')}
+    `;
+
+    const followUpItems = p3.querySelectorAll('.sol-question-item');
+    if (followUpItems.length > 0) {
+        part3Html += `
+            <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: 9px 12px; font-size: 14.5px; font-weight: 700; color: #991b1b; margin: 24px 0 12px 0; border-radius: 0 4px 4px 0;">
+                FOLLOW-UP QUESTIONS (CÂU HỎI MỞ RỘNG)
+            </div>
+        `;
+        followUpItems.forEach((fEl) => {
+            const fTextEl = fEl.querySelector('.sol-question-text');
+            const fText = fTextEl ? fTextEl.innerHTML.trim() : '';
+            const fB1 = fEl.querySelector('.sol-level-box.level-b1');
+            const fB2 = fEl.querySelector('.sol-level-box.level-b2');
+            part3Html += `
+                <div style="margin-bottom: 18px; page-break-inside: avoid;">
+                    <div style="font-size: 14.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
+                        ${fText}
+                    </div>
+                    ${formatLevelBox(fB1, 'b1', 'B1 LEVEL', '#00b0f0')}
+                    ${formatLevelBox(fB2, 'b2', 'B2 LEVEL', '#70ad47')}
+                </div>
+            `;
+        });
+    }
+
+    const fullHtml = `
+    <!DOCTYPE html>
+    <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+    <head>
+    <meta charset="utf-8">
+    <title>BÀI GIẢI MẪU VSTEP SPEAKING - ${testTitle}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 1.8cm 1.5cm 1.8cm 1.5cm;
+        }
+        body {
+            font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+            color: #1e293b;
+            background-color: #ffffff;
+            line-height: 1.6;
+            font-size: 11pt;
+            margin: 0;
+            padding: 20px;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        .part-banner {
+            background: #dc2626;
+            color: #ffffff;
+            font-size: 13pt;
+            font-weight: 800;
+            padding: 9px 14px;
+            border-radius: 4px;
+            margin: 26px 0 14px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+    </head>
+    <body>
+        <div style="text-align: center; border-bottom: 2.5px solid #dc2626; padding-bottom: 14px; margin-bottom: 22px;">
+            <div style="color: #dc2626; font-size: 20pt; font-weight: 800; letter-spacing: 0.5px; margin: 0 0 4px 0;">ENGLISH WITH MISS NGUYET</div>
+            <div style="color: #0f172a; font-size: 14pt; font-weight: 700; margin: 0 0 8px 0;">BÀI GIẢI MẪU CHI TIẾT - ${testTitle}</div>
+            <div style="font-size: 10pt; color: #64748b;">
+                <span><strong>Học viên:</strong> ${student}</span> &nbsp;|&nbsp;
+                <span><strong>Ngày xuất:</strong> ${dateStr}</span> &nbsp;|&nbsp;
+                <span><strong>Chuẩn định dạng:</strong> VSTEP Speaking B1 - B2</span>
+            </div>
+        </div>
+
+        <!-- PART 1 -->
+        <div class="part-banner">PART 01: SOCIAL INTERACTION (GIAO TIẾP XÃ HỘI)</div>
+        ${part1Html}
+
+        <!-- PART 2 -->
+        <div class="part-banner" style="page-break-before: always;">PART 02: SOLUTION DISCUSSION (THẢO LUẬN GIẢI PHÁP)</div>
+        ${part2Html}
+
+        <!-- PART 3 -->
+        <div class="part-banner" style="page-break-before: always;">PART 03: TOPIC DEVELOPMENT (PHÁT TRIỂN CHỦ ĐỀ)</div>
+        ${part3Html}
+
+        <!-- FOOTER -->
+        <div style="margin-top: 40px; padding-top: 14px; border-top: 1px solid #cbd5e1; text-align: center; font-size: 9.5pt; color: #64748b; page-break-inside: avoid;">
+            <p style="margin: 0 0 4px 0; font-weight: 700; color: #334155;">TÀI LIỆU ÔN THI VSTEP SPEAKING ĐỘC QUYỀN - ENGLISH WITH MISS NGUYET</p>
+            <p style="margin: 0 0 4px 0;">Giảng viên: Ms. Nguyet Pham &bull; Hỗ trợ học tập: <a href="https://www.facebook.com/nguyetpham28" style="color: #dc2626; text-decoration: none;">facebook.com/nguyetpham28</a></p>
+            <p style="margin: 0; font-style: italic;">Chúc các bạn học viên ôn tập hiệu quả và tự tin đạt điểm cao trong kỳ thi VSTEP!</p>
+        </div>
+    </body>
+    </html>
+    `;
+
+    return {
+        html: fullHtml,
+        filename: `VSTEP_Speaking_Test${testNum.toString().padStart(2, '0')}_Bai_Giai_Mau`
+    };
+}
+
+function downloadSampleAnswersDoc() {
+    const data = getSampleAnswersHTML();
+    if (!data) return;
+
+    try {
+        const blob = new Blob(['\ufeff' + data.html], {
+            type: 'application/msword;charset=utf-8'
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${data.filename}.doc`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        if (typeof showNotificationModal === 'function') {
+            showNotificationModal('TẢI BÀI MẪU THÀNH CÔNG', `Đã tải về máy file Word (.doc) bài giải mẫu của <strong>${data.filename}</strong>! Bạn có thể mở bằng Microsoft Word, Google Docs hoặc WPS Office để ôn tập.`);
+        }
+    } catch (err) {
+        console.error('Download error:', err);
+        alert('Có lỗi khi tải file. Vui lòng thử lại!');
+    }
+}
+
+function printSampleAnswersPDF() {
+    const data = getSampleAnswersHTML();
+    if (!data) return;
+
+    try {
+        let printFrame = document.getElementById('print-solution-frame');
+        if (!printFrame) {
+            printFrame = document.createElement('iframe');
+            printFrame.id = 'print-solution-frame';
+            printFrame.style.position = 'fixed';
+            printFrame.style.right = '0';
+            printFrame.style.bottom = '0';
+            printFrame.style.width = '0';
+            printFrame.style.height = '0';
+            printFrame.style.border = '0';
+            document.body.appendChild(printFrame);
+        }
+
+        const frameDoc = printFrame.contentWindow || printFrame.contentDocument;
+        const doc = frameDoc.document || frameDoc;
+        doc.open();
+        doc.write(data.html);
+        doc.close();
+
+        setTimeout(() => {
+            printFrame.contentWindow.focus();
+            printFrame.contentWindow.print();
+        }, 500);
+    } catch (err) {
+        console.error('Print error:', err);
+        const win = window.open('', '_blank');
+        if (win) {
+            win.document.write(data.html);
+            win.document.close();
+            win.focus();
+            setTimeout(() => { win.print(); }, 500);
+        } else {
+            alert('Trình duyệt đã chặn cửa sổ in. Vui lòng cho phép popup hoặc sử dụng nút tải file Word (.doc)!');
+        }
+    }
+}
+
+function showDownloadOptionsModal() {
+    const overlay = document.createElement('div');
+    overlay.className = 'lock-screen-overlay';
+    overlay.style.opacity = '0';
+    
+    const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
+    const testNum = pathMatch ? parseInt(pathMatch[1]) : 1;
+    const testTitle = `SPEAKING TEST ${testNum.toString().padStart(2, '0')}`;
+
+    overlay.innerHTML = `
+        <div class="lock-card" style="max-width: 440px;">
+            <div class="lock-icon-container" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.2) 100%); color: #10b981; border-color: rgba(16, 185, 129, 0.15);">
+                <i class="fa-solid fa-file-arrow-down"></i>
+            </div>
+            <div>
+                <h2 class="lock-title">TẢI BÀI MẪU VỀ MÁY</h2>
+                <p class="lock-subtitle" style="margin-top: 6px;">Chọn định dạng tài liệu <strong>${testTitle}</strong> bạn muốn tải về để ôn tập:</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 18px; width: 100%;">
+                <button type="button" class="lock-btn" id="modal-btn-download-doc" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fa-solid fa-file-word"></i> <span>Tải bản Word (.doc)</span>
+                </button>
+                <button type="button" class="lock-btn" id="modal-btn-download-pdf" style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <i class="fa-solid fa-file-pdf"></i> <span>In / Lưu bản PDF (.pdf)</span>
+                </button>
+                <button type="button" class="btn btn-secondary" id="modal-btn-close" style="margin-top: 4px; padding: 10px; border-radius: 8px;">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+    setTimeout(() => { overlay.style.opacity = '1'; }, 10);
+
+    const close = () => {
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.remove(), 250);
+    };
+
+    overlay.querySelector('#modal-btn-download-doc').addEventListener('click', () => {
+        close();
+        downloadSampleAnswersDoc();
+    });
+
+    overlay.querySelector('#modal-btn-download-pdf').addEventListener('click', () => {
+        close();
+        printSampleAnswersPDF();
+    });
+
+    overlay.querySelector('#modal-btn-close').addEventListener('click', close);
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) close();
+    });
+}
+
+function downloadSampleAnswers() {
+    showDownloadOptionsModal();
+}
+

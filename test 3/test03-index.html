@@ -529,6 +529,12 @@
 <button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
 <i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
                         </button>
+<button class="btn btn-outline" id="btn-download-sample-review" onclick="downloadSampleAnswersDoc()" style="border-color: #10b981; color: #10b981; font-weight: 700;">
+<i class="fa-solid fa-file-word"></i> Tải bài mẫu (.doc)
+                        </button>
+<button class="btn btn-outline" id="btn-print-sample-review" onclick="printSampleAnswersPDF()" style="border-color: #2563eb; color: #2563eb; font-weight: 700;">
+<i class="fa-solid fa-file-pdf"></i> In / Lưu PDF
+                        </button>
 <button class="btn btn-secondary" id="btn-restart-test">
 <i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
                         </button>
@@ -538,9 +544,19 @@
 <!-- SCREEN 6: SOLUTION SCREEN -->
 <section class="screen-view" id="view-solution">
 <div class="glass-card instruction-card" style="max-width: 900px; margin: 20px auto;">
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 10px;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 12px;">
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
 <h2 style="color: var(--color-red); margin-bottom: 0;"><i class="fa-solid fa-book-open"></i> BÀI GIẢI CHI TIẾT</h2>
 <span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 03</span>
+</div>
+<div class="solution-download-actions">
+<button type="button" class="btn btn-sm btn-download-doc" onclick="downloadSampleAnswersDoc()">
+<i class="fa-solid fa-file-word"></i> <span>Tải bài mẫu (.doc)</span>
+</button>
+<button type="button" class="btn btn-sm btn-download-pdf" onclick="printSampleAnswersPDF()">
+<i class="fa-solid fa-file-pdf"></i> <span>In / Lưu PDF</span>
+</button>
+</div>
 </div>
 <div class="solution-tab-container">
 <div class="solution-tab-buttons">
@@ -802,6 +818,18 @@
 </div>
 </div>
 </div>
+</div>
+<!-- Bottom Action buttons -->
+<div style="margin-top: 30px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+<button class="btn btn-secondary" onclick="showScreen('review')">
+<i class="fa-solid fa-arrow-left"></i> Quay lại phần kết quả
+</button>
+<button class="btn btn-primary btn-download-doc" onclick="downloadSampleAnswersDoc()">
+<i class="fa-solid fa-file-word"></i> Tải bài mẫu về (.doc)
+</button>
+<button class="btn btn-primary btn-download-pdf" onclick="printSampleAnswersPDF()">
+<i class="fa-solid fa-file-pdf"></i> In / Lưu PDF
+</button>
 </div>
 </div>
 </section>

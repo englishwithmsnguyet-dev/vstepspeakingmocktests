@@ -1706,11 +1706,61 @@ function playTTS(btn) {
 }
 
 
+
+
 /* ==========================================================================
-   DOWNLOAD & EXPORT SAMPLE ANSWERS (.DOC / .PDF)
+   SOLUTION LEVEL FILTERING & EXPORT (B1 / B2 / ALL)
    ========================================================================== */
 
-function getSampleAnswersHTML() {
+let currentSolutionLevel = 'all'; // 'all', 'b1', 'b2'
+
+function filterSolutionLevel(level) {
+    currentSolutionLevel = level;
+    
+    // Update filter buttons UI
+    document.querySelectorAll('.level-filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    const activeBtn = document.getElementById(`filter-btn-${level}`);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    // Toggle visibility of level boxes across all solution panels
+    const b1Boxes = document.querySelectorAll('.sol-level-box.level-b1');
+    const b2Boxes = document.querySelectorAll('.sol-level-box.level-b2');
+
+    if (level === 'b1') {
+        b1Boxes.forEach(el => el.style.display = 'block');
+        b2Boxes.forEach(el => el.style.display = 'none');
+    } else if (level === 'b2') {
+        b1Boxes.forEach(el => el.style.display = 'none');
+        b2Boxes.forEach(el => el.style.display = 'block');
+    } else {
+        b1Boxes.forEach(el => el.style.display = 'block');
+        b2Boxes.forEach(el => el.style.display = 'block');
+    }
+
+    // Update download buttons label to reflect active filter
+    updateDownloadButtonsLabel();
+}
+
+function updateDownloadButtonsLabel() {
+    const docBtns = document.querySelectorAll('.btn-download-doc span');
+    const pdfBtns = document.querySelectorAll('.btn-download-pdf span');
+    
+    let labelSuffix = '';
+    if (currentSolutionLevel === 'b1') labelSuffix = ' (B1)';
+    else if (currentSolutionLevel === 'b2') labelSuffix = ' (B2)';
+
+    docBtns.forEach(span => {
+        span.innerText = `Tải Word${labelSuffix} (.doc)`;
+    });
+    pdfBtns.forEach(span => {
+        span.innerText = `In / Lưu PDF${labelSuffix}`;
+    });
+}
+
+function getSampleAnswersHTML(targetLevel) {
+    const level = targetLevel || currentSolutionLevel || 'all';
     const pathMatch = window.location.pathname.match(/test\s*(\d+)/i);
     const testNum = pathMatch ? parseInt(pathMatch[1]) : 1;
     const testTitle = `SPEAKING MOCK TEST ${testNum.toString().padStart(2, '0')}`;
@@ -1727,9 +1777,28 @@ function getSampleAnswersHTML() {
         return null;
     }
 
+    let levelTitleBadge = 'CHI TIẾT (B1 & B2)';
+    let levelMetaDesc = 'Chuẩn định dạng: VSTEP Speaking B1 & B2';
+    let fileSuffix = 'B1_B2';
+
+    if (level === 'b1') {
+        levelTitleBadge = 'BẬC B1 (TIÊU CHUẨN)';
+        levelMetaDesc = 'Mục tiêu: Đạt chuẩn VSTEP Bậc 3 (B1 Speaking)';
+        fileSuffix = 'B1';
+    } else if (level === 'b2') {
+        levelTitleBadge = 'BẬC B2 (NÂNG CAO)';
+        levelMetaDesc = 'Mục tiêu: Đạt chuẩn VSTEP Bậc 4 - Bậc 5 (B2 / C1 Speaking)';
+        fileSuffix = 'B2';
+    }
+
     // Helper to format level boxes (B1 or B2)
     function formatLevelBox(boxEl, levelClass, levelName, colorHex) {
         if (!boxEl) return '';
+        // If target level is B1 and box is B2, skip
+        if (level === 'b1' && levelClass === 'b2') return '';
+        // If target level is B2 and box is B1, skip
+        if (level === 'b2' && levelClass === 'b1') return '';
+
         const contentEl = boxEl.querySelector('.level-content');
         const transEl = boxEl.querySelector('.translation-text');
         
@@ -1785,15 +1854,20 @@ function getSampleAnswersHTML() {
             const b1Box = qEl.querySelector('.sol-level-box.level-b1');
             const b2Box = qEl.querySelector('.sol-level-box.level-b2');
 
-            part1Html += `
-                <div style="margin-bottom: 18px; page-break-inside: avoid;">
-                    <div style="font-size: 14.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
-                        ${qText}
+            const b1Html = formatLevelBox(b1Box, 'b1', 'B1 LEVEL', '#00b0f0');
+            const b2Html = formatLevelBox(b2Box, 'b2', 'B2 LEVEL', '#70ad47');
+
+            if (b1Html || b2Html) {
+                part1Html += `
+                    <div style="margin-bottom: 18px; page-break-inside: avoid;">
+                        <div style="font-size: 14.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
+                            ${qText}
+                        </div>
+                        ${b1Html}
+                        ${b2Html}
                     </div>
-                    ${formatLevelBox(b1Box, 'b1', 'B1 LEVEL', '#00b0f0')}
-                    ${formatLevelBox(b2Box, 'b2', 'B2 LEVEL', '#70ad47')}
-                </div>
-            `;
+                `;
+            }
         });
     });
 
@@ -1803,6 +1877,10 @@ function getSampleAnswersHTML() {
     const p2SitText = p2Situation ? p2Situation.innerHTML.trim() : '';
     const p2B1 = p2.querySelector('.sol-level-box.level-b1');
     const p2B2 = p2.querySelector('.sol-level-box.level-b2');
+
+    const p2B1Html = formatLevelBox(p2B1, 'b1', 'B1 LEVEL', '#00b0f0');
+    const p2B2Html = formatLevelBox(p2B2, 'b2', 'B2 LEVEL', '#70ad47');
+
     part2Html += `
         <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px 14px; margin: 12px 0 16px 0; font-size: 14px; line-height: 1.6; color: #1e293b; page-break-inside: avoid;">
             <div style="font-weight: 700; color: #dc2626; margin-bottom: 4px;">SITUATION (TÌNH HUỐNG):</div>
@@ -1811,8 +1889,8 @@ function getSampleAnswersHTML() {
         <div style="font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
             Gợi ý bài mẫu thảo luận giải pháp:
         </div>
-        ${formatLevelBox(p2B1, 'b1', 'B1 LEVEL', '#00b0f0')}
-        ${formatLevelBox(p2B2, 'b2', 'B2 LEVEL', '#70ad47')}
+        ${p2B1Html}
+        ${p2B2Html}
     `;
 
     // 3. PART 3
@@ -1825,6 +1903,9 @@ function getSampleAnswersHTML() {
     const p3MainB1 = p3AllB1[0];
     const p3MainB2 = p3AllB2[0];
 
+    const p3MainB1Html = formatLevelBox(p3MainB1, 'b1', 'B1 LEVEL', '#00b0f0');
+    const p3MainB2Html = formatLevelBox(p3MainB2, 'b2', 'B2 LEVEL', '#70ad47');
+
     part3Html += `
         <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px 14px; margin: 12px 0 16px 0; font-size: 14px; line-height: 1.6; color: #1e293b; page-break-inside: avoid;">
             <div style="font-weight: 700; color: #dc2626; margin-bottom: 4px;">TOPIC OUTLINE (SƠ ĐỒ PHÁT TRIỂN CHỦ ĐỀ):</div>
@@ -1833,32 +1914,43 @@ function getSampleAnswersHTML() {
         <div style="font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
             Bài phát triển chủ đề mẫu:
         </div>
-        ${formatLevelBox(p3MainB1, 'b1', 'B1 LEVEL', '#00b0f0')}
-        ${formatLevelBox(p3MainB2, 'b2', 'B2 LEVEL', '#70ad47')}
+        ${p3MainB1Html}
+        ${p3MainB2Html}
     `;
 
     const followUpItems = p3.querySelectorAll('.sol-question-item');
     if (followUpItems.length > 0) {
-        part3Html += `
-            <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: 9px 12px; font-size: 14.5px; font-weight: 700; color: #991b1b; margin: 24px 0 12px 0; border-radius: 0 4px 4px 0;">
-                FOLLOW-UP QUESTIONS (CÂU HỎI MỞ RỘNG)
-            </div>
-        `;
+        let followUpsHtml = '';
         followUpItems.forEach((fEl) => {
             const fTextEl = fEl.querySelector('.sol-question-text');
             const fText = fTextEl ? fTextEl.innerHTML.trim() : '';
             const fB1 = fEl.querySelector('.sol-level-box.level-b1');
             const fB2 = fEl.querySelector('.sol-level-box.level-b2');
-            part3Html += `
-                <div style="margin-bottom: 18px; page-break-inside: avoid;">
-                    <div style="font-size: 14.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
-                        ${fText}
+
+            const fB1Html = formatLevelBox(fB1, 'b1', 'B1 LEVEL', '#00b0f0');
+            const fB2Html = formatLevelBox(fB2, 'b2', 'B2 LEVEL', '#70ad47');
+
+            if (fB1Html || fB2Html) {
+                followUpsHtml += `
+                    <div style="margin-bottom: 18px; page-break-inside: avoid;">
+                        <div style="font-size: 14.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
+                            ${fText}
+                        </div>
+                        ${fB1Html}
+                        ${fB2Html}
                     </div>
-                    ${formatLevelBox(fB1, 'b1', 'B1 LEVEL', '#00b0f0')}
-                    ${formatLevelBox(fB2, 'b2', 'B2 LEVEL', '#70ad47')}
-                </div>
-            `;
+                `;
+            }
         });
+
+        if (followUpsHtml) {
+            part3Html += `
+                <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: 9px 12px; font-size: 14.5px; font-weight: 700; color: #991b1b; margin: 24px 0 12px 0; border-radius: 0 4px 4px 0;">
+                    FOLLOW-UP QUESTIONS (CÂU HỎI MỞ RỘNG)
+                </div>
+                ${followUpsHtml}
+            `;
+        }
     }
 
     const fullHtml = `
@@ -1866,7 +1958,7 @@ function getSampleAnswersHTML() {
     <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
     <head>
     <meta charset="utf-8">
-    <title>BÀI GIẢI MẪU VSTEP SPEAKING - ${testTitle}</title>
+    <title>BÀI GIẢI MẪU VSTEP SPEAKING - ${testTitle} (${level.toUpperCase()})</title>
     <style>
         @page {
             size: A4;
@@ -1899,11 +1991,11 @@ function getSampleAnswersHTML() {
     <body>
         <div style="text-align: center; border-bottom: 2.5px solid #dc2626; padding-bottom: 14px; margin-bottom: 22px;">
             <div style="color: #dc2626; font-size: 20pt; font-weight: 800; letter-spacing: 0.5px; margin: 0 0 4px 0;">ENGLISH WITH MISS NGUYET</div>
-            <div style="color: #0f172a; font-size: 14pt; font-weight: 700; margin: 0 0 8px 0;">BÀI GIẢI MẪU CHI TIẾT - ${testTitle}</div>
+            <div style="color: #0f172a; font-size: 14pt; font-weight: 700; margin: 0 0 8px 0;">BÀI GIẢI MẪU ${levelTitleBadge} - ${testTitle}</div>
             <div style="font-size: 10pt; color: #64748b;">
                 <span><strong>Học viên:</strong> ${student}</span> &nbsp;|&nbsp;
                 <span><strong>Ngày xuất:</strong> ${dateStr}</span> &nbsp;|&nbsp;
-                <span><strong>Chuẩn định dạng:</strong> VSTEP Speaking B1 - B2</span>
+                <span><strong>${levelMetaDesc}</strong></span>
             </div>
         </div>
 
@@ -1931,12 +2023,13 @@ function getSampleAnswersHTML() {
 
     return {
         html: fullHtml,
-        filename: `VSTEP_Speaking_Test${testNum.toString().padStart(2, '0')}_Bai_Giai_Mau`
+        filename: `VSTEP_Speaking_Test${testNum.toString().padStart(2, '0')}_Bai_Giai_Mau_${fileSuffix}`
     };
 }
 
-function downloadSampleAnswersDoc() {
-    const data = getSampleAnswersHTML();
+function downloadSampleAnswersDoc(level) {
+    const targetLevel = level || currentSolutionLevel || 'all';
+    const data = getSampleAnswersHTML(targetLevel);
     if (!data) return;
 
     try {
@@ -1952,8 +2045,9 @@ function downloadSampleAnswersDoc() {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
 
+        const levelLabel = targetLevel === 'b1' ? 'Bậc B1' : (targetLevel === 'b2' ? 'Bậc B2' : 'B1 & B2');
         if (typeof showNotificationModal === 'function') {
-            showNotificationModal('TẢI BÀI MẪU THÀNH CÔNG', `Đã tải về máy file Word (.doc) bài giải mẫu của <strong>${data.filename}</strong>! Bạn có thể mở bằng Microsoft Word, Google Docs hoặc WPS Office để ôn tập.`);
+            showNotificationModal('TẢI BÀI MẪU THÀNH CÔNG', `Đã tải về máy file Word (.doc) bài giải mẫu <strong>${levelLabel}</strong> của <strong>${data.filename}</strong>! Bạn có thể mở bằng Microsoft Word, Google Docs hoặc WPS Office để ôn tập.`);
         }
     } catch (err) {
         console.error('Download error:', err);
@@ -1961,8 +2055,9 @@ function downloadSampleAnswersDoc() {
     }
 }
 
-function printSampleAnswersPDF() {
-    const data = getSampleAnswersHTML();
+function printSampleAnswersPDF(level) {
+    const targetLevel = level || currentSolutionLevel || 'all';
+    const data = getSampleAnswersHTML(targetLevel);
     if (!data) return;
 
     try {
@@ -2013,25 +2108,67 @@ function showDownloadOptionsModal() {
     const testTitle = `SPEAKING TEST ${testNum.toString().padStart(2, '0')}`;
 
     overlay.innerHTML = `
-        <div class="lock-card" style="max-width: 440px;">
+        <div class="lock-card" style="max-width: 500px; padding: 24px;">
             <div class="lock-icon-container" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.2) 100%); color: #10b981; border-color: rgba(16, 185, 129, 0.15);">
                 <i class="fa-solid fa-file-arrow-down"></i>
             </div>
             <div>
-                <h2 class="lock-title">TẢI BÀI MẪU VỀ MÁY</h2>
-                <p class="lock-subtitle" style="margin-top: 6px;">Chọn định dạng tài liệu <strong>${testTitle}</strong> bạn muốn tải về để ôn tập:</p>
+                <h2 class="lock-title">TẢI BÀI MẪU THEO BẬC</h2>
+                <p class="lock-subtitle" style="margin-top: 6px;">Chọn bậc thi VSTEP bạn muốn tải về máy của <strong>${testTitle}</strong>:</p>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 18px; width: 100%;">
-                <button type="button" class="lock-btn" id="modal-btn-download-doc" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25); display: flex; align-items: center; justify-content: center; gap: 8px;">
-                    <i class="fa-solid fa-file-word"></i> <span>Tải bản Word (.doc)</span>
-                </button>
-                <button type="button" class="lock-btn" id="modal-btn-download-pdf" style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); display: flex; align-items: center; justify-content: center; gap: 8px;">
-                    <i class="fa-solid fa-file-pdf"></i> <span>In / Lưu bản PDF (.pdf)</span>
-                </button>
-                <button type="button" class="btn btn-secondary" id="modal-btn-close" style="margin-top: 4px; padding: 10px; border-radius: 8px;">
-                    Đóng
-                </button>
+            
+            <!-- Bậc B1 -->
+            <div style="background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 10px; padding: 12px 14px; margin-top: 15px; text-align: left;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 800; color: #0284c7; font-size: 14px;">
+                        <i class="fa-solid fa-bookmark" style="color: #00b0f0;"></i> BÀI MẪU BẬC B1
+                    </span>
+                    <span style="font-size: 11px; color: #0369a1; background: #e0f2fe; padding: 2px 8px; border-radius: 4px; font-weight: 600;">Dành cho mục tiêu B1</span>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button type="button" class="btn btn-sm" id="modal-dl-b1-doc" style="flex: 1; background: #00b0f0; color: #fff; font-weight: 700; border-radius: 6px; padding: 8px 10px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <i class="fa-solid fa-file-word"></i> Tải bản Word (.doc)
+                    </button>
+                    <button type="button" class="btn btn-sm" id="modal-dl-b1-pdf" style="flex: 1; background: #0284c7; color: #fff; font-weight: 700; border-radius: 6px; padding: 8px 10px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <i class="fa-solid fa-file-pdf"></i> In / Lưu PDF
+                    </button>
+                </div>
             </div>
+
+            <!-- Bậc B2 -->
+            <div style="background: #f4fbf0; border: 1.5px solid #d9f99d; border-radius: 10px; padding: 12px 14px; margin-top: 10px; text-align: left;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-weight: 800; color: #4d7c0f; font-size: 14px;">
+                        <i class="fa-solid fa-bookmark" style="color: #70ad47;"></i> BÀI MẪU BẬC B2
+                    </span>
+                    <span style="font-size: 11px; color: #3f6212; background: #ecfccb; padding: 2px 8px; border-radius: 4px; font-weight: 600;">Dành cho mục tiêu B2 / C1</span>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button type="button" class="btn btn-sm" id="modal-dl-b2-doc" style="flex: 1; background: #70ad47; color: #fff; font-weight: 700; border-radius: 6px; padding: 8px 10px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <i class="fa-solid fa-file-word"></i> Tải bản Word (.doc)
+                    </button>
+                    <button type="button" class="btn btn-sm" id="modal-dl-b2-pdf" style="flex: 1; background: #4d7c0f; color: #fff; font-weight: 700; border-radius: 6px; padding: 8px 10px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <i class="fa-solid fa-file-pdf"></i> In / Lưu PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cả 2 bậc -->
+            <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1;">
+                <span style="font-size: 12.5px; color: #64748b; font-weight: 600;">Tải cả 2 bậc (B1 & B2):</span>
+                <div style="display: flex; gap: 6px;">
+                    <button type="button" id="modal-dl-all-doc" style="background: #64748b; color: #fff; font-size: 11.5px; font-weight: 700; padding: 5px 10px; border-radius: 4px; border: none; cursor: pointer;">
+                        <i class="fa-solid fa-file-word"></i> Word
+                    </button>
+                    <button type="button" id="modal-dl-all-pdf" style="background: #475569; color: #fff; font-size: 11.5px; font-weight: 700; padding: 5px 10px; border-radius: 4px; border: none; cursor: pointer;">
+                        <i class="fa-solid fa-file-pdf"></i> PDF
+                    </button>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-secondary" id="modal-btn-close" style="margin-top: 14px; width: 100%; padding: 10px; border-radius: 8px;">
+                Đóng
+            </button>
         </div>
     `;
 
@@ -2043,14 +2180,31 @@ function showDownloadOptionsModal() {
         setTimeout(() => overlay.remove(), 250);
     };
 
-    overlay.querySelector('#modal-btn-download-doc').addEventListener('click', () => {
+    overlay.querySelector('#modal-dl-b1-doc').addEventListener('click', () => {
         close();
-        downloadSampleAnswersDoc();
+        downloadSampleAnswersDoc('b1');
+    });
+    overlay.querySelector('#modal-dl-b1-pdf').addEventListener('click', () => {
+        close();
+        printSampleAnswersPDF('b1');
     });
 
-    overlay.querySelector('#modal-btn-download-pdf').addEventListener('click', () => {
+    overlay.querySelector('#modal-dl-b2-doc').addEventListener('click', () => {
         close();
-        printSampleAnswersPDF();
+        downloadSampleAnswersDoc('b2');
+    });
+    overlay.querySelector('#modal-dl-b2-pdf').addEventListener('click', () => {
+        close();
+        printSampleAnswersPDF('b2');
+    });
+
+    overlay.querySelector('#modal-dl-all-doc').addEventListener('click', () => {
+        close();
+        downloadSampleAnswersDoc('all');
+    });
+    overlay.querySelector('#modal-dl-all-pdf').addEventListener('click', () => {
+        close();
+        printSampleAnswersPDF('all');
     });
 
     overlay.querySelector('#modal-btn-close').addEventListener('click', close);

@@ -528,13 +528,10 @@
 <div class="review-actions">
 <button class="btn btn-primary" id="btn-view-solution" style="background: var(--color-red);">
 <i class="fa-solid fa-book-open"></i> Xem bài giải chi tiết
-                        </button>
-<button class="btn btn-outline" id="btn-download-sample-review" onclick="downloadSampleAnswersDoc()" style="border-color: #10b981; color: #10b981; font-weight: 700;">
-<i class="fa-solid fa-file-word"></i> Tải bài mẫu (.doc)
-                        </button>
-<button class="btn btn-outline" id="btn-print-sample-review" onclick="printSampleAnswersPDF()" style="border-color: #2563eb; color: #2563eb; font-weight: 700;">
-<i class="fa-solid fa-file-pdf"></i> In / Lưu PDF
-                        </button>
+</button>
+<button class="btn btn-outline" id="btn-download-sample-review" onclick="showDownloadOptionsModal()" style="border-color: #10b981; color: #10b981; font-weight: 700;">
+<i class="fa-solid fa-file-arrow-down"></i> Tải bài mẫu theo bậc
+</button>
 <button class="btn btn-secondary" id="btn-restart-test">
 <i class="fa-solid fa-rotate-left"></i> Làm lại bài thi
                         </button>
@@ -550,8 +547,11 @@
 <span class="part-badge" style="background: rgba(239, 68, 68, 0.1); color: var(--color-red); font-size: 12px; padding: 6px 12px; border-radius: 6px; font-weight: 800;">SPEAKING MOCK TEST 13</span>
 </div>
 <div class="solution-download-actions">
+<button type="button" class="btn btn-sm btn-download-options" onclick="showDownloadOptionsModal()">
+<i class="fa-solid fa-file-arrow-down"></i> <span>Tải bài mẫu theo bậc</span>
+</button>
 <button type="button" class="btn btn-sm btn-download-doc" onclick="downloadSampleAnswersDoc()">
-<i class="fa-solid fa-file-word"></i> <span>Tải bài mẫu (.doc)</span>
+<i class="fa-solid fa-file-word"></i> <span>Tải Word (.doc)</span>
 </button>
 <button type="button" class="btn btn-sm btn-download-pdf" onclick="printSampleAnswersPDF()">
 <i class="fa-solid fa-file-pdf"></i> <span>In / Lưu PDF</span>
@@ -563,6 +563,21 @@
 <button class="sol-tab-btn active" onclick="switchSolTab(1)">PART 01: SOCIAL INTERACTION</button>
 <button class="sol-tab-btn" onclick="switchSolTab(2)">PART 02: SOLUTION DISCUSSION</button>
 <button class="sol-tab-btn" onclick="switchSolTab(3)">PART 03: TOPIC DEVELOPMENT</button>
+</div>
+<!-- Level Filter Tabs -->
+<div class="solution-level-filter-bar">
+<span class="level-filter-title"><i class="fa-solid fa-sliders"></i> Lọc xem bài giải:</span>
+<div class="level-filter-group">
+<button type="button" class="level-filter-btn active" id="filter-btn-all" onclick="filterSolutionLevel('all')">
+<i class="fa-solid fa-layer-group"></i> Cả 2 bậc (B1 & B2)
+</button>
+<button type="button" class="level-filter-btn btn-filter-b1" id="filter-btn-b1" onclick="filterSolutionLevel('b1')">
+<i class="fa-solid fa-circle" style="color: #00b0f0; font-size: 10px;"></i> Chỉ xem BẬC B1
+</button>
+<button type="button" class="level-filter-btn btn-filter-b2" id="filter-btn-b2" onclick="filterSolutionLevel('b2')">
+<i class="fa-solid fa-circle" style="color: #70ad47; font-size: 10px;"></i> Chỉ xem BẬC B2
+</button>
+</div>
 </div>
 <!-- Panel Part 1 -->
 <div class="sol-tab-content active" id="sol-panel-1">
@@ -789,6 +804,9 @@ Tóm lại, có một vài lý do rõ ràng <strong style="color: #ee0000;">tạ
 <div style="margin-top: 30px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
 <button class="btn btn-secondary" onclick="showScreen('review')">
 <i class="fa-solid fa-arrow-left"></i> Quay lại phần kết quả
+</button>
+<button class="btn btn-primary btn-download-options" onclick="showDownloadOptionsModal()">
+<i class="fa-solid fa-file-arrow-down"></i> Chọn tải bài mẫu theo bậc
 </button>
 <button class="btn btn-primary btn-download-doc" onclick="downloadSampleAnswersDoc()">
 <i class="fa-solid fa-file-word"></i> Tải bài mẫu về (.doc)

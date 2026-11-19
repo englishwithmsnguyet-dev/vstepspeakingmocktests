@@ -1646,12 +1646,15 @@ function playTTS(btn) {
     const contentDiv = levelBox.querySelector(".level-content");
     if (!contentDiv) return;
     
-    // Extract text but ignore the translation toggle and translation text
+    // Extract text but ignore the translation toggle, translation text, and framework box/toggle
     let textToRead = "";
     Array.from(contentDiv.childNodes).forEach(node => {
-        // Skip the translation toggle and translation text divs
+        // Skip translation and framework elements
         if (node.nodeType === Node.ELEMENT_NODE) {
-            if (node.classList.contains("translation-toggle") || node.classList.contains("translation-text")) {
+            if (node.classList.contains("translation-toggle") || 
+                node.classList.contains("translation-text") ||
+                node.classList.contains("framework-toggle") ||
+                node.classList.contains("framework-box")) {
                 return;
             }
         }
@@ -1803,9 +1806,15 @@ function getSampleAnswersHTML(targetLevel) {
         const transEl = boxEl.querySelector('.translation-text');
         
         let engHtml = '';
+        let frameworkHtml = '';
         if (contentEl) {
             const clone = contentEl.cloneNode(true);
-            clone.querySelectorAll('.translation-toggle, .translation-text, .tts-play-btn').forEach(el => el.remove());
+            const fwBox = clone.querySelector('.framework-box');
+            if (fwBox) {
+                fwBox.style.display = 'block';
+                frameworkHtml = fwBox.outerHTML;
+            }
+            clone.querySelectorAll('.translation-toggle, .translation-text, .framework-toggle, .framework-box, .tts-play-btn').forEach(el => el.remove());
             engHtml = clone.innerHTML.trim();
         }
         
@@ -1830,6 +1839,11 @@ function getSampleAnswersHTML(targetLevel) {
                         👉 Dịch nghĩa tiếng Việt:
                     </div>
                     <div>${transHtml}</div>
+                </div>
+                ` : ''}
+                ${frameworkHtml ? `
+                <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #bae6fd;">
+                    ${frameworkHtml}
                 </div>
                 ` : ''}
             </div>
@@ -2216,4 +2230,20 @@ function showDownloadOptionsModal() {
 function downloadSampleAnswers() {
     showDownloadOptionsModal();
 }
+
+function toggleFramework(element) {
+    if (!element) return;
+    const box = element.nextElementSibling;
+    const icon = element.querySelector('.fa-chevron-down, .fa-chevron-up');
+    if (!box) return;
+    if (box.style.display === 'none' || getComputedStyle(box).display === 'none') {
+        box.style.display = 'block';
+        if (icon) icon.className = 'fa-solid fa-chevron-up';
+    } else {
+        box.style.display = 'none';
+        if (icon) icon.className = 'fa-solid fa-chevron-down';
+    }
+}
+window.toggleFramework = toggleFramework;
+
 

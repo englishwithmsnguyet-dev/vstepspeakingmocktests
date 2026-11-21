@@ -85,10 +85,11 @@ const VstepDB = {
             // Format date string: HH:MM DD/MM/YYYY
             const now = new Date();
             const dateStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')} ${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()}`;
+            const parsedTestId = parseInt(testId, 10);
 
             const data = {
                 id: Date.now(),
-                testId: parseInt(testId),
+                testId: parsedTestId,
                 studentName: studentName || "Học viên",
                 dateStr: dateStr,
                 recordings: {
@@ -99,7 +100,40 @@ const VstepDB = {
             };
             const request = store.add(data);
 
-            request.onsuccess = () => resolve(true);
+            request.onsuccess = () => {
+                // Record sequential test completion & sync to Google Sheet / Firebase
+                try {
+                    const partsRecorded = [1, 2, 3].filter(p => recordings && recordings[p]).length;
+                    if (typeof VstepExamRoom !== 'undefined' && typeof VstepExamRoom.recordTestCompletion === 'function') {
+                        VstepExamRoom.recordTestCompletion('speaking', parsedTestId, {
+                            details: `Hoàn thành Speaking (ghi âm ${partsRecorded}/3 phần)`
+                        });
+                    }
+                    // Show unlock banner on Review screen
+                    const reviewScreen = document.getElementById('screen-review');
+                    if (reviewScreen) {
+                        const container = reviewScreen.querySelector('.review-card, .glass-card, .review-container') || reviewScreen;
+                        let banner = document.getElementById('unlock-progress-banner');
+                        if (!banner) {
+                            banner = document.createElement('div');
+                            banner.id = 'unlock-progress-banner';
+                            container.prepend(banner);
+                        }
+                        const curPad = parsedTestId < 10 ? '0' + parsedTestId : String(parsedTestId);
+                        const nextId = parsedTestId + 1;
+                        const nextPad = nextId < 10 ? '0' + nextId : String(nextId);
+                        const nextBtn = nextId <= 17
+                            ? `<a href="../test ${nextId}/test${nextPad}-index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:#16a34a;color:#fff;font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap;">Làm Đề ${nextPad} ngay <i class="fa-solid fa-arrow-right"></i></a>`
+                            : '';
+                        banner.style.cssText = 'display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:#f0fdf4;border:1.5px solid #86efac;border-left:5px solid #16a34a;border-radius:12px;padding:14px 18px;margin-bottom:16px;color:#14532d;font-size:14px;text-align:left;';
+                        banner.innerHTML = `
+                            <div><strong><i class="fa-solid fa-circle-check" style="color:#16a34a;"></i> HOÀN THÀNH SPEAKING TEST ${curPad}!</strong>${nextId <= 17 ? ` Bạn đã mở khóa <strong>SPEAKING TEST ${nextPad}</strong>.` : ' Chúc mừng bạn đã hoàn thành trọn bộ đề thi!'}</div>
+                            ${nextBtn}
+                        `;
+                    }
+                } catch (e) {}
+                resolve(true);
+            };
             request.onerror = (e) => reject(e.target.error);
         });
     },
@@ -940,6 +974,9 @@ const VstepAuth = {
 
             // Update UI elements across page if present
             this.updatePageUserInfo();
+            if (typeof VstepExamRoom !== 'undefined' && typeof VstepExamRoom.refreshUI === 'function') {
+                VstepExamRoom.refreshUI();
+            }
 
             // Fade out modal
             setTimeout(() => {
@@ -1175,7 +1212,53 @@ document.addEventListener('DOMContentLoaded', () => {
 // Universal Realtime Room Loader for Speaking Mock Tests
 (function loadSpeakingExamRoom() {
     window.VSTEP_ROOM_SKILL = 'speaking';
-    if (window.VstepExamRoom) return;
+
+    function syncSpeakingSubpageSidebar() {
+        if (!window.VstepExamRoom || typeof window.VstepExamRoom.canAccessTest !== 'function') return;
+        const isSubDir = window.location.pathname.includes('/test ') || window.location.pathname.includes('/test%20');
+        if (!isSubDir) return;
+        const completed = window.VstepExamRoom.getCompletedTests ? window.VstepExamRoom.getCompletedTests('speaking') : [];
+        const links = document.querySelectorAll('.test-sidebar a[href*="test"], .test-sidebar a[data-test-id]');
+        links.forEach(a => {
+            let tid = parseInt(a.getAttribute('data-test-id') || '', 10);
+            if (isNaN(tid)) {
+                const href = a.getAttribute('href') || '';
+                const m = href.match(/test\s*(\d+)|test0?(\d+)/i);
+                if (m) tid = parseInt(m[1] || m[2], 10);
+            }
+            if (isNaN(tid) || tid <= 0) return;
+            const access = window.VstepExamRoom.canAccessTest(tid, 'speaking');
+            const isDone = completed.includes(tid);
+            const icon = a.querySelector('.test-icon i');
+            if (!access.allowed && !a.closest('li.active')) {
+                a.classList.add('locked');
+                if (icon) icon.className = 'fa-solid fa-lock';
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    alert((access.lockType === 'sequential' ? '🔒 CHƯA MỞ KHÓA ĐỀ THI:\n\n' : '⛔ ĐỀ THI ĐANG KHÓA:\n\n') + access.reason);
+                };
+            } else {
+                a.classList.remove('locked');
+                if (icon) {
+                    icon.className = isDone ? 'fa-solid fa-circle-check' : 'fa-solid fa-microphone-lines';
+                    icon.style.color = isDone ? '#10b981' : '';
+                }
+                a.onclick = null;
+            }
+        });
+    }
+
+    function bindAfterRoomLoaded() {
+        if (window.VstepExamRoom && typeof window.VstepExamRoom.onProgressChange === 'function') {
+            window.VstepExamRoom.onProgressChange(syncSpeakingSubpageSidebar);
+            syncSpeakingSubpageSidebar();
+        }
+    }
+
+    if (window.VstepExamRoom) {
+        bindAfterRoomLoaded();
+        return;
+    }
 
     function addScript(src, callback) {
         const s = document.createElement('script');
@@ -1186,16 +1269,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const isSubDir = window.location.pathname.includes('/test ') || window.location.pathname.includes('/test%20');
-    const roomPath = (isSubDir ? '../exam_room.js?v=' : 'exam_room.js?v=') + '20261118';
+    const roomPath = (isSubDir ? '../exam_room.js?v=' : 'exam_room.js?v=') + '2026112103';
 
     if (typeof firebase === 'undefined') {
         addScript('https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js', () => {
             addScript('https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js', () => {
-                addScript(roomPath);
+                addScript(roomPath, bindAfterRoomLoaded);
             });
         });
     } else {
-        addScript(roomPath);
+        addScript(roomPath, bindAfterRoomLoaded);
     }
 })();
 

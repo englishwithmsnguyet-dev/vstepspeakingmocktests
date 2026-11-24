@@ -668,6 +668,22 @@
             return sessionStorage.getItem('unlocked_test_' + testId) === 'true';
         }
 
+        let latestSpeakingHistoryByTestId = {};
+
+        function scrollToSpeakingHistory(historyId) {
+            const target = document.getElementById(`history-item-speaking-${historyId}`) || document.getElementById('history-list-container');
+            if (!target) return;
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const origBorder = target.style.borderColor;
+            const origShadow = target.style.boxShadow;
+            target.style.borderColor = '#10b981';
+            target.style.boxShadow = '0 0 0 4px rgba(16, 185, 129, 0.25)';
+            setTimeout(() => {
+                target.style.borderColor = origBorder || '';
+                target.style.boxShadow = origShadow || '';
+            }, 2500);
+        }
+
         function initSidebarAndGrid() {
             const completedList = (typeof VstepExamRoom !== 'undefined' && typeof VstepExamRoom.getCompletedTests === 'function')
                 ? VstepExamRoom.getCompletedTests('speaking')
@@ -690,7 +706,8 @@
                 if (isNaN(testId)) return;
 
                 const access = getSpeakingAccessState(testId);
-                const isDone = completedList.includes(testId);
+                const savedAttempt = latestSpeakingHistoryByTestId[testId] || null;
+                const isDone = completedList.includes(testId) || Boolean(savedAttempt);
 
                 if (access.allowed) {
                     anchor.classList.remove('locked');
@@ -707,6 +724,18 @@
                                 window.location.href = `test ${testId}/test${testId.toString().padStart(2, '0')}-index.html`;
                             });
                         }
+                    };
+                } else if (savedAttempt) {
+                    anchor.classList.remove('locked');
+                    anchor.href = 'javascript:void(0)';
+                    const icon = anchor.querySelector('.test-icon i');
+                    if (icon) {
+                        icon.className = 'fa-solid fa-circle-check';
+                        icon.style.color = '#10b981';
+                    }
+                    anchor.onclick = (e) => {
+                        e.preventDefault();
+                        scrollToSpeakingHistory(savedAttempt.id);
                     };
                 } else {
                     anchor.classList.add('locked');
@@ -737,8 +766,13 @@
                 const button = document.getElementById(`btn-action-test-${i}`);
                 if (!card || !badge || !button) continue;
 
+                // Clean up any previously injected review button
+                const oldReviewBtn = card.querySelector('.btn-review-speaking-inline');
+                if (oldReviewBtn) oldReviewBtn.remove();
+
                 const access = getSpeakingAccessState(i);
-                const isDone = completedList.includes(i);
+                const savedAttempt = latestSpeakingHistoryByTestId[i] || null;
+                const isDone = completedList.includes(i) || Boolean(savedAttempt);
                 const isExisting = EXISTING_TESTS.includes(i);
                 const testPad = i.toString().padStart(2, '0');
 
@@ -774,6 +808,26 @@
                             showNotificationModal("ĐANG CẬP NHẬT", `Đề thi SPEAKING TEST ${testPad} hiện đang được cập nhật nội dung. Vui lòng quay lại sau!`);
                         }
                     };
+
+                    if (savedAttempt && button.parentElement) {
+                        const reviewBtn = document.createElement('button');
+                        reviewBtn.type = 'button';
+                        reviewBtn.className = 'btn-card-action btn-review-speaking-inline';
+                        reviewBtn.style.cssText = 'margin-top:8px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;border:none;';
+                        reviewBtn.innerHTML = '<i class="fa-solid fa-headphones"></i> Nghe lại bài đã làm';
+                        reviewBtn.onclick = () => scrollToSpeakingHistory(savedAttempt.id);
+                        button.parentElement.appendChild(reviewBtn);
+                    }
+                } else if (savedAttempt) {
+                    card.className = 'test-card is-unlocked';
+                    badge.className = 'status-badge unlocked';
+                    badge.style.cssText = 'background:#dcfce7;color:#15803d;border:1px solid #86efac;';
+                    badge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Đã làm • Nghe lại';
+                    
+                    button.className = 'btn-card-action';
+                    button.style.cssText = 'background:linear-gradient(135deg,#059669,#10b981);color:#fff;border:none;';
+                    button.innerHTML = '<i class="fa-solid fa-headphones"></i> Nghe lại bài đã làm';
+                    button.onclick = () => scrollToSpeakingHistory(savedAttempt.id);
                 } else if (access.lockType === 'sequential') {
                     const reqNum = access.requiredTest || (i - 1);
                     const reqPad = reqNum.toString().padStart(2, '0');
@@ -1103,6 +1157,15 @@
                 if (typeof VstepDB === 'undefined') return;
                 const history = await VstepDB.getAllHistory();
 
+                latestSpeakingHistoryByTestId = {};
+                history.forEach(h => {
+                    const tid = parseInt(h.testId, 10);
+                    if (!isNaN(tid) && !latestSpeakingHistoryByTestId[tid]) {
+                        latestSpeakingHistoryByTestId[tid] = h;
+                    }
+                });
+                initSidebarAndGrid();
+
                 if (history.length === 0) {
                     container.innerHTML = `
                         <div class="history-empty" style="text-align: center; color: var(--text-muted); padding: 20px; font-size: 14px; border: 1px dashed var(--border-color); border-radius: 12px; background: rgba(0,0,0,0.01);">
@@ -1138,7 +1201,7 @@
                     }
 
                     htmlContent += `
-                        <div class="history-item" style="border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.45); display: flex; flex-direction: column; gap: 10px;">
+                        <div class="history-item" id="history-item-speaking-${item.id}" data-test-id="${item.testId}" style="border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; background: rgba(255,255,255,0.45); display: flex; flex-direction: column; gap: 10px; transition: border-color 0.25s ease, box-shadow 0.25s ease;">
                             <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 10px;">
                                 <div>
                                     <h4 style="margin: 0; font-size: 14px; color: var(--text-primary); font-weight: 700;">SPEAKING TEST ${testNum}</h4>

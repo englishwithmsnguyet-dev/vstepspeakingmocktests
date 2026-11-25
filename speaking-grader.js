@@ -57,19 +57,186 @@
     return `${Math.max(1, mins)} phút`;
   }
 
-  function speakEnglishText(rawText) {
-    const clean = String(rawText || "").replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim();
-    if (!clean) return;
+  // ==========================================================================
+  // NATURAL NEURAL TEXT-TO-SPEECH (GEMINI STUDIO TTS + CACHE + SMART FALLBACK)
+  // ==========================================================================
+  const ttsBlobUrlCache = {};
+  let activeTtsAudio = null;
+  let activeTtsBtn = null;
+  let activeTtsOrigHtml = "";
+  let ttsReqSeq = 0;
+
+  function stopActiveTts() {
+    ttsReqSeq++;
+    if (activeTtsAudio) {
+      try {
+        activeTtsAudio.pause();
+        activeTtsAudio.currentTime = 0;
+      } catch (e) {}
+      activeTtsAudio = null;
+    }
     if ("speechSynthesis" in window) {
       try {
         window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance(clean);
-        u.lang = "en-US";
-        u.rate = 0.92;
-        window.speechSynthesis.speak(u);
-        return;
       } catch (e) {}
     }
+    if (activeTtsBtn) {
+      activeTtsBtn.innerHTML = activeTtsOrigHtml;
+      activeTtsBtn.disabled = false;
+      activeTtsBtn = null;
+      activeTtsOrigHtml = "";
+    }
+  }
+
+  function pcmBase64ToWavUrl(base64Str, mimeType) {
+    const m = String(mimeType || "").toLowerCase();
+    const binary = atob(base64Str);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+
+    // Nếu đã là WAV/MP3/OGG sẵn thì phát trực tiếp
+    if (m.includes("wav") || m.includes("mpeg") || m.includes("mp3") || m.includes("ogg")) {
+      return URL.createObjectURL(new Blob([bytes], { type: m.split(";")[0] || "audio/wav" }));
+    }
+
+    // Gắn header WAV chuẩn cho PCM 16-bit mono từ Gemini TTS (mặc định 24000Hz)
+    const rateMatch = m.match(/rate=(\d+)/);
+    const sampleRate = rateMatch ? parseInt(rateMatch[1], 10) : 24000;
+    const dataSize = bytes.byteLength;
+    const wavBuf = new ArrayBuffer(44 + dataSize);
+    const view = new DataView(wavBuf);
+    const writeStr = (off, s) => {
+      for (let i = 0; i < s.length; i++) view.setUint8(off + i, s.charCodeAt(i));
+    };
+    writeStr(0, "RIFF");
+    view.setUint32(4, 36 + dataSize, true);
+    writeStr(8, "WAVE");
+    writeStr(12, "fmt ");
+    view.setUint32(16, 16, true);
+    view.setUint16(20, 1, true);
+    view.setUint16(22, 1, true);
+    view.setUint32(24, sampleRate, true);
+    view.setUint32(28, sampleRate * 2, true);
+    view.setUint16(32, 2, true);
+    view.setUint16(34, 16, true);
+    writeStr(36, "data");
+    view.setUint32(40, dataSize, true);
+    new Uint8Array(wavBuf, 44).set(bytes);
+    return URL.createObjectURL(new Blob([wavBuf], { type: "audio/wav" }));
+  }
+
+  function pickBestNaturalBrowserVoice() {
+    if (!("speechSynthesis" in window)) return null;
+    const voices = window.speechSynthesis.getVoices() || [];
+    const enVoices = voices.filter(v => /^en[-_](US|GB|AU)/i.test(v.lang || ""));
+    if (enVoices.length === 0) return null;
+
+    const preferredPatterns = [
+      /Microsoft\s+(Aria|Jenny|Guy|Ana|Sonia|Libby).*Online.*Natural/i,
+      /Google\s+US\s+English/i,
+      /Google\s+UK\s+English\s+Female/i,
+      /\b(Ava|Zoe|Samantha|Nicky|Allison|Susan|Daniel)\b.*(Premium|Enhanced|Neural)/i,
+      /Samantha/i
+    ];
+    for (const re of preferredPatterns) {
+      const hit = enVoices.find(v => re.test(v.name || ""));
+      if (hit) return hit;
+    }
+    return enVoices.find(v => /^en[-_]US/i.test(v.lang || "")) || enVoices[0];
+  }
+
+  function playBrowserFallbackTts(cleanText, triggerBtn, origHtml, seqId) {
+    if (!("speechSynthesis" in window)) {
+      if (triggerBtn && activeTtsBtn === triggerBtn) stopActiveTts();
+      return;
+    }
+    try {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(cleanText);
+      u.lang = "en-US";
+      u.rate = 0.94;
+      u.pitch = 1.0;
+      const bestVoice = pickBestNaturalBrowserVoice();
+      if (bestVoice) u.voice = bestVoice;
+      if (triggerBtn && seqId === ttsReqSeq) {
+        triggerBtn.innerHTML = "⏹ Dừng";
+      }
+      u.onend = () => {
+        if (seqId === ttsReqSeq) stopActiveTts();
+      };
+      u.onerror = () => {
+        if (seqId === ttsReqSeq) stopActiveTts();
+      };
+      window.speechSynthesis.speak(u);
+    } catch (e) {
+      if (seqId === ttsReqSeq) stopActiveTts();
+    }
+  }
+
+  async function speakEnglishText(rawText, triggerBtn) {
+    const clean = String(rawText || "").replace(/<[^>]*>?/gm, " ").replace(/\s+/g, " ").trim();
+    if (!clean) return;
+
+    // Bấm lại đúng nút đang phát -> dừng ngay
+    if (triggerBtn && activeTtsBtn === triggerBtn) {
+      stopActiveTts();
+      return;
+    }
+
+    stopActiveTts();
+    const mySeq = ++ttsReqSeq;
+    const origHtml = triggerBtn ? triggerBtn.innerHTML : "";
+    if (triggerBtn) {
+      activeTtsBtn = triggerBtn;
+      activeTtsOrigHtml = origHtml;
+    }
+
+    const playWavUrl = url => {
+      if (mySeq !== ttsReqSeq) return;
+      const audio = new Audio(url);
+      activeTtsAudio = audio;
+      if (triggerBtn) triggerBtn.innerHTML = "⏹ Dừng";
+      audio.onended = () => {
+        if (mySeq === ttsReqSeq) stopActiveTts();
+      };
+      audio.onerror = () => {
+        if (mySeq === ttsReqSeq) playBrowserFallbackTts(clean, triggerBtn, origHtml, mySeq);
+      };
+      audio.play().catch(() => {
+        if (mySeq === ttsReqSeq) playBrowserFallbackTts(clean, triggerBtn, origHtml, mySeq);
+      });
+    };
+
+    // 1. Nếu đã có sẵn trong bộ nhớ đệm -> phát tức thì
+    if (ttsBlobUrlCache[clean]) {
+      playWavUrl(ttsBlobUrlCache[clean]);
+      return;
+    }
+
+    // 2. Gọi Gemini Studio TTS (giọng người thật tự nhiên) qua Edge Function
+    if (isConfigured()) {
+      if (triggerBtn) triggerBtn.innerHTML = "⏳ Đang tạo giọng...";
+      const res = await callEdgeFunction({
+        action: "tts",
+        text: clean,
+        voice: "Aoede"
+      });
+      if (mySeq !== ttsReqSeq) return;
+
+      if (res.ok && res.audio_base64) {
+        try {
+          const wavUrl = pcmBase64ToWavUrl(res.audio_base64, res.mime_type);
+          ttsBlobUrlCache[clean] = wavUrl;
+          playWavUrl(wavUrl);
+          return;
+        } catch (e) {}
+      }
+    }
+
+    // 3. Dự phòng thông minh bằng giọng Neural tốt nhất trên trình duyệt
+    playBrowserFallbackTts(clean, triggerBtn, origHtml, mySeq);
   }
 
   function getStudentIdentity() {
@@ -442,7 +609,7 @@
     const speakBtn = e.target.closest("[data-sg-speak]");
     if (speakBtn) {
       e.stopPropagation();
-      speakEnglishText(speakBtn.getAttribute("data-sg-speak"));
+      speakEnglishText(speakBtn.getAttribute("data-sg-speak"), speakBtn);
       return;
     }
     const tabBtn = e.target.closest("[data-sg-tab-target]");

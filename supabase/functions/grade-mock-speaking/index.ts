@@ -1490,6 +1490,68 @@ Deno.serve(async (req: Request) => {
       });
     }
 
+    // ========================================================================
+    // ACTION 7: TẠO GIỌNG ĐỌC MẪU TỰ NHIÊN BẰNG GEMINI STUDIO TTS
+    // ========================================================================
+    if (action === "tts") {
+      if (!geminiApiKey) {
+        return jsonResponse({ ok: false, error: "Chưa cấu hình GEMINI_API_KEY." }, 500);
+      }
+      const rawText = String(body?.text || "")
+        .replace(/<[^>]*>?/gm, " ")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, 1400);
+
+      if (!rawText) {
+        return jsonResponse({ ok: false, error: "Thiếu nội dung văn bản cần đọc." }, 400);
+      }
+
+      const ALLOWED_VOICES = new Set(["Aoede", "Kore", "Puck", "Leda", "Zephyr", "Fenrir", "Charon"]);
+      const requestedVoice = String(body?.voice || "Aoede").trim();
+      const voiceName = ALLOWED_VOICES.has(requestedVoice) ? requestedVoice : "Aoede";
+      const wordCount = rawText.split(/\s+/).filter(Boolean).length;
+
+      const ttsPrompt =
+        wordCount <= 4
+          ? `Pronounce the following English word or short phrase clearly and naturally with standard American pronunciation. Speak ONLY the exact text once without adding anything else:\n\n${rawText}`
+          : `Read the following English speaking response aloud in a warm, natural, expressive human conversational tone with clear phrasing and natural pauses, as a friendly native English speaker in a VSTEP interview. Speak ONLY the exact text below without adding any introduction or commentary:\n\n${rawText}`;
+
+      const ttsEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${encodeURIComponent(geminiApiKey)}`;
+      const ttsRes = await fetch(ttsEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ role: "user", parts: [{ text: ttsPrompt }] }],
+          generationConfig: {
+            responseModalities: ["AUDIO"],
+            speechConfig: {
+              voiceConfig: {
+                prebuiltVoiceConfig: { voiceName }
+              }
+            }
+          }
+        })
+      });
+
+      if (!ttsRes.ok) {
+        const errText = await ttsRes.text().catch(() => "");
+        return jsonResponse({ ok: false, error: `Gemini TTS lỗi (${ttsRes.status}): ${errText.slice(0, 160)}` }, 502);
+      }
+
+      const ttsJson = await ttsRes.json().catch(() => ({}));
+      const inlineAudio = ttsJson?.candidates?.[0]?.content?.parts?.[0]?.inlineData;
+      if (!inlineAudio || !inlineAudio.data) {
+        return jsonResponse({ ok: false, error: "Gemini TTS không trả về dữ liệu âm thanh." }, 502);
+      }
+
+      return jsonResponse({
+        ok: true,
+        audio_base64: inlineAudio.data,
+        mime_type: inlineAudio.mimeType || "audio/L16;codec=pcm;rate=24000"
+      });
+    }
+
     return jsonResponse({ ok: false, error: `Action không hợp lệ: ${action}` }, 400);
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Lỗi không xác định trên hệ thống chấm bài.";

@@ -928,6 +928,22 @@
         }
       `;
 
+      // Gắn thêm nút Trang Giáo viên nổi bật ở thanh sidebar trái (ngay dưới thẻ Cô Nguyệt)
+      const sidebarUserCard = document.getElementById("vstep-sidebar-user-card");
+      let sbTeacherBtn = document.getElementById("sg-sidebar-teacher-link");
+      if (showTeacherLink && sidebarUserCard) {
+        if (!sbTeacherBtn) {
+          sbTeacherBtn = document.createElement("a");
+          sbTeacherBtn.id = "sg-sidebar-teacher-link";
+          sbTeacherBtn.className = "sg-sidebar-teacher-btn";
+          sidebarUserCard.insertAdjacentElement("afterend", sbTeacherBtn);
+        }
+        sbTeacherBtn.href = teacherUrl;
+        sbTeacherBtn.textContent = "👨‍🏫 Trang Giáo viên (Chấm AI)";
+      } else if (sbTeacherBtn) {
+        sbTeacherBtn.remove();
+      }
+
       const bellBtn = document.getElementById("sg-btn-notif-bell");
       if (bellBtn) {
         bellBtn.onclick = e => {

@@ -188,24 +188,24 @@
    ============================================================================ */
 .sg-floating-bar {
   position: fixed;
-  top: 16px;
-  right: 18px;
-  z-index: 9500;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999900;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .sg-pill-btn {
-  height: 38px;
-  padding: 0 14px;
+  height: 40px;
+  padding: 0 15px;
   border-radius: 999px;
   border: 2px solid #18181b;
   background: #ffffff;
   color: #18181b;
   font-size: 13px;
   font-weight: 800;
-  box-shadow: 2px 2px 0 #18181b;
+  box-shadow: 3px 3px 0 #18181b;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -216,11 +216,34 @@
 
 .sg-pill-btn:hover {
   background: #fef9c3;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .sg-pill-btn.teacher {
   background: #ffe566;
+}
+
+.sg-sidebar-teacher-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 0 12px 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 2px solid #18181b;
+  background: #ffe566;
+  color: #18181b;
+  font-size: 12.5px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 2px 2px 0 #18181b;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.sg-sidebar-teacher-btn:hover {
+  background: #facc15;
+  transform: translateY(-1px);
 }
 
 .sg-bell-badge {
@@ -239,15 +262,15 @@
 
 .sg-notif-dropdown {
   position: fixed;
-  top: 62px;
-  right: 18px;
+  bottom: 70px;
+  right: 20px;
   width: min(380px, calc(100vw - 24px));
   max-height: 70vh;
   background: #ffffff;
   border: 2px solid #18181b;
   border-radius: 12px;
   box-shadow: 5px 5px 0 #18181b;
-  z-index: 9600;
+  z-index: 9999910;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -652,7 +675,7 @@
 .sg-modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 9800;
+  z-index: 10000010;
   background: rgba(24, 24, 27, 0.62);
   display: flex;
   align-items: center;

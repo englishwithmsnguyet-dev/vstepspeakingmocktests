@@ -559,7 +559,7 @@
             ? ` · ${Number(d.internal_score).toFixed(2)}/10`
             : "";
         return `
-          <div class="sg-part-summary-card">
+          <div class="sg-part-summary-card" data-sg-tab-target="${uid}__${item.key}" style="cursor:pointer;" title="Bấm để xem chi tiết ${escapeHtml(item.title)}">
             <div style="font-size:13px;font-weight:800;margin-bottom:6px;">${escapeHtml(item.title)}</div>
             <div style="margin-bottom:6px;">
               <span class="sg-badge ${tone}">${escapeHtml(b)}${escapeHtml(sc)}</span>
@@ -617,7 +617,9 @@
       const targetId = tabBtn.getAttribute("data-sg-tab-target");
       const root = tabBtn.closest("[data-sg-review-root]");
       if (!root || !targetId) return;
-      root.querySelectorAll(".sg-tab-btn").forEach(b => b.classList.toggle("active", b === tabBtn));
+      root.querySelectorAll(".sg-tab-btn").forEach(b =>
+        b.classList.toggle("active", b.getAttribute("data-sg-tab-target") === targetId)
+      );
       root.querySelectorAll(".sg-tab-panel").forEach(p => p.classList.toggle("active", p.id === targetId));
     }
   });
@@ -1300,7 +1302,7 @@
         const it = homeState.modalItem;
         modalRoot.innerHTML = `
           <div class="sg-modal-backdrop" id="sg-modal-backdrop">
-            <div class="sg-modal-panel" onclick="event.stopPropagation()">
+            <div class="sg-modal-panel">
               <div class="sg-modal-header">
                 <div>
                   <div style="font-size:16px;font-weight:900;color:#18181b;">📝 Bài sửa chi tiết · ${escapeHtml(it.test_title)}</div>
@@ -1326,12 +1328,13 @@
           </div>
         `;
         const closeFn = () => {
+          stopActiveTts();
           homeState.modalItem = null;
           renderHomeWidgets();
         };
         const bd = document.getElementById("sg-modal-backdrop");
         const cb = document.getElementById("sg-btn-close-modal");
-        if (bd) bd.onclick = closeFn;
+        if (bd) bd.onclick = e => { if (e.target === bd) closeFn(); };
         if (cb) cb.onclick = closeFn;
       } else {
         modalRoot.innerHTML = "";

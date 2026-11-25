@@ -1180,11 +1180,25 @@ const VstepAuth = {
             }
         }, true);
 
-        // 3. Tab switching detection
+        const isTestSubmitted = () => {
+            if (typeof isTestCompleted !== 'undefined' && isTestCompleted) return true;
+            if (typeof currentScreen !== 'undefined' && (currentScreen === 'review' || currentScreen === 'solution')) return true;
+            const reviewView = document.getElementById('view-review');
+            if (reviewView && reviewView.classList.contains('active')) return true;
+            const solutionView = document.getElementById('view-solution');
+            if (solutionView && solutionView.classList.contains('active')) return true;
+            return false;
+        };
+
+        // 3. Tab switching detection (chỉ áp dụng khi chưa nộp bài)
         let tabHiddenTime = 0;
         document.addEventListener('visibilitychange', () => {
             const info = this.getStudentInfo();
             if (this.isTeacher(info.name, info.classCode)) return;
+            if (isTestSubmitted()) {
+                tabHiddenTime = 0;
+                return;
+            }
             if (document.hidden) {
                 tabHiddenTime = Date.now();
             } else {

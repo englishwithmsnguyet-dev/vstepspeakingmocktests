@@ -563,7 +563,36 @@ async function deleteGeminiFileBestEffort(geminiApiKey: string, fileName: string
   } catch (_e) {}
 }
 
-async function callGeminiAudioGradeStreaming(params: {
+function parseGeminiApiKeys(): string[] {
+  const rawSources = [
+    Deno.env.get("GEMINI_API_KEY") || "",
+    Deno.env.get("GEMINI_API_KEYS") || "",
+    Deno.env.get("GEMINI_API_KEY_2") || "",
+    Deno.env.get("GEMINI_API_KEY_3") || "",
+    Deno.env.get("GEMINI_API_KEY_4") || "",
+    Deno.env.get("GEMINI_API_KEY_5") || ""
+  ];
+  const keys: string[] = [];
+  const seen = new Set<string>();
+  for (const src of rawSources) {
+    src
+      .split(/[\s,;]+/)
+      .map(s => s.trim())
+      .filter(Boolean)
+      .forEach(k => {
+        if (!seen.has(k)) {
+          seen.add(k);
+          keys.push(k);
+        }
+      });
+  }
+  if (keys.length <= 1) return keys;
+  // Xoay điểm bắt đầu ngẫu nhiên để phân bổ đều hạn mức giữa các key miễn phí
+  const offset = Math.floor(Math.random() * keys.length);
+  return [...keys.slice(offset), ...keys.slice(0, offset)];
+}
+
+async function callGeminiAudioGradeWithSingleKey(params: {
   geminiApiKey: string;
   geminiModel: string;
   audioBlob: Blob;
@@ -576,17 +605,18 @@ async function callGeminiAudioGradeStreaming(params: {
   }
 
   const RETIRED_MODELS = new Set(["gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-exp"]);
-  // Ưu tiên gemini-2.5-flash trước vì khả năng nghe & chép nguyên văn audio chính xác nhất
+  // Ưu tiên gemini-2.5-flash -> gemini-2.5-flash-lite (riêng hạn mức ngày, tăng gấp đôi quota miễn phí)
   const fallbackModels = Array.from(
     new Set([
       "gemini-2.5-flash",
+      "gemini-2.5-flash-lite",
       params.geminiModel,
       "gemini-flash-latest",
       "gemini-flash-lite-latest"
     ])
   ).filter(m => Boolean(m) && !RETIRED_MODELS.has(m));
 
-  const callJsonModel = async (
+  const callModel = async (
     parts: Array<Record<string, unknown>>,
     temperature: number,
     expectJson: boolean
@@ -618,14 +648,15 @@ async function callGeminiAudioGradeStreaming(params: {
 
         modelStatus = res.status;
         modelErrText = await res.text().catch(() => "");
-        if ((res.status === 503 || res.status === 429 || res.status === 500) && attempt === 0) {
-          await new Promise(r => setTimeout(r, 900));
+        // Nếu 429 hết quota model này thì chuyển ngay sang model tiếp theo thay vì chờ lâu
+        if ((res.status === 503 || res.status === 500) && attempt === 0) {
+          await new Promise(r => setTimeout(r, 800));
           continue;
         }
         break;
       }
 
-      errors.push({ model: modelName, status: modelStatus, detail: modelErrText.slice(0, 160) });
+      errors.push({ model: modelName, status: modelStatus, detail: modelErrText.slice(0, 140) });
       if (modelStatus === 400 || modelStatus === 401 || modelStatus === 403) break;
     }
 
@@ -648,7 +679,7 @@ async function callGeminiAudioGradeStreaming(params: {
       "3. Output ONLY the plain verbatim transcript text (no labels, no markdown, no commentary).\n" +
       "4. If the audio is silent, noise-only, or contains no intelligible speech, output exactly: [SILENT]";
 
-    const step1 = await callJsonModel(
+    const step1 = await callModel(
       [
         { fileData: { mimeType: params.audioMimeType, fileUri: uploaded.fileUri } },
         { text: blindTranscribePrompt }
@@ -665,7 +696,7 @@ async function callGeminiAudioGradeStreaming(params: {
 
     // BƯỚC 2: CHẤM MULTIMODAL (GỬI CÙNG FILE AUDIO + BẢN CHÉP NGUYÊN VĂN BƯỚC 1 + ĐỀ BÀI)
     const gradingPrompt = params.buildGradingPrompt(verifiedTranscript);
-    const step2 = await callJsonModel(
+    const step2 = await callModel(
       [
         { fileData: { mimeType: params.audioMimeType, fileUri: uploaded.fileUri } },
         { text: gradingPrompt }
@@ -677,16 +708,49 @@ async function callGeminiAudioGradeStreaming(params: {
     if (!step2.ok) return step2;
 
     const parsed = parseModelJson(step2.rawText);
-    // Khoá chặt recognized_transcript bằng đúng bản chép nguyên văn độc lập từ Bước 1
-    if (verifiedTranscript) {
-      parsed.recognized_transcript = verifiedTranscript;
-    } else {
-      parsed.recognized_transcript = "";
-    }
+    parsed.recognized_transcript = verifiedTranscript || "";
     return { ok: true as const, parsed };
   } finally {
     await deleteGeminiFileBestEffort(params.geminiApiKey, uploaded.fileName);
   }
+}
+
+async function callGeminiAudioGradeStreaming(params: {
+  geminiApiKeys: string[];
+  geminiModel: string;
+  audioBlob: Blob;
+  audioMimeType: string;
+  buildGradingPrompt: (verifiedTranscript: string) => string;
+}) {
+  let lastErr: { ok: false; status: number; error: string } = {
+    ok: false,
+    status: 500,
+    error: "Chưa cấu hình GEMINI_API_KEY."
+  };
+
+  for (let idx = 0; idx < params.geminiApiKeys.length; idx++) {
+    const key = params.geminiApiKeys[idx];
+    const res = await callGeminiAudioGradeWithSingleKey({
+      geminiApiKey: key,
+      geminiModel: params.geminiModel,
+      audioBlob: params.audioBlob,
+      audioMimeType: params.audioMimeType,
+      buildGradingPrompt: params.buildGradingPrompt
+    });
+    if (res.ok) return res;
+    lastErr = res;
+    // Chỉ xoay sang key kế tiếp khi gặp lỗi hạn mức/quá tải/key hết hiệu lực (429/403/401/500/503)
+    if (res.status === 400) break;
+  }
+
+  return {
+    ok: false as const,
+    status: lastErr.status,
+    error:
+      params.geminiApiKeys.length > 1
+        ? `${lastErr.error} (đã thử xoay vòng ${params.geminiApiKeys.length} API key)`
+        : lastErr.error
+  };
 }
 
 // ============================================================================
@@ -694,7 +758,7 @@ async function callGeminiAudioGradeStreaming(params: {
 // ============================================================================
 async function gradeOnePartOfSubmission(
   admin: SupabaseClient,
-  geminiApiKey: string,
+  geminiApiKeys: string[],
   geminiModel: string,
   sub: SubmissionRow,
   existingReview: ReviewRow | null,
@@ -776,7 +840,7 @@ async function gradeOnePartOfSubmission(
     } else {
       const trueMime = await detectTrueAudioMime(audioBlob, targetAudioPath);
       const gemRes = await callGeminiAudioGradeStreaming({
-        geminiApiKey,
+        geminiApiKeys,
         geminiModel,
         audioBlob,
         audioMimeType: trueMime,
@@ -1010,8 +1074,8 @@ Deno.serve(async (req: Request) => {
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
     const supabaseServiceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
-    const geminiApiKey = Deno.env.get("GEMINI_API_KEY") || "";
-    const geminiModel = Deno.env.get("GEMINI_MODEL") || "gemini-flash-latest";
+    const geminiApiKeys = parseGeminiApiKeys();
+    const geminiModel = Deno.env.get("GEMINI_MODEL") || "gemini-2.5-flash";
     const cronSecretEnv = Deno.env.get("CRON_SECRET") || "";
 
     if (!supabaseUrl || !supabaseServiceRoleKey) {
@@ -1209,7 +1273,7 @@ Deno.serve(async (req: Request) => {
     // ACTION 2B: CHẤM NGẦM TỪNG PART SAU KHI HỌC VIÊN NỘP (KHÔNG TRẢ REVIEW_JSON)
     // ========================================================================
     if (action === "grade_student_part") {
-      if (!geminiApiKey) {
+      if (geminiApiKeys.length === 0) {
         return jsonResponse({ ok: false, error: "Chưa cấu hình GEMINI_API_KEY." }, 500);
       }
       const submissionId = String(body?.submission_id || "").trim();
@@ -1237,7 +1301,7 @@ Deno.serve(async (req: Request) => {
         return jsonResponse({ ok: true, part_done: partNum, all_done: true, status: "scheduled" });
       }
 
-      const res = await gradeOnePartOfSubmission(admin, geminiApiKey, geminiModel, sub, existingRev || null, partNum, {
+      const res = await gradeOnePartOfSubmission(admin, geminiApiKeys, geminiModel, sub, existingRev || null, partNum, {
         releaseNow: false,
         resetExisting: false
       });
@@ -1352,7 +1416,7 @@ Deno.serve(async (req: Request) => {
     // ACTION 5: HÀNG ĐỢI TỰ ĐỘNG CHẤM LẠI (MỖI LẦN CHẤM 1 PART ĐỂ AN TOÀN RAM)
     // ========================================================================
     if (action === "process_queue") {
-      if (!geminiApiKey) {
+      if (geminiApiKeys.length === 0) {
         return jsonResponse({ ok: false, error: "Chưa cấu hình GEMINI_API_KEY." }, 500);
       }
       let isTeacher = false;
@@ -1406,7 +1470,7 @@ Deno.serve(async (req: Request) => {
         const s = pendingList[0];
         const rev = revById[s.id] || null;
         const nextPart = findNextPendingPart(s, rev) || 1;
-        const res = await gradeOnePartOfSubmission(admin, geminiApiKey, geminiModel, s, rev, nextPart, {
+        const res = await gradeOnePartOfSubmission(admin, geminiApiKeys, geminiModel, s, rev, nextPart, {
           releaseNow: false,
           resetExisting: false
         });
@@ -1434,7 +1498,7 @@ Deno.serve(async (req: Request) => {
     // ACTION 6: GIÁO VIÊN CHẤM TỪNG PART TRỰC TIẾP (AN TOÀN RAM/CPU)
     // ========================================================================
     if (action === "grade_now") {
-      if (!geminiApiKey) {
+      if (geminiApiKeys.length === 0) {
         return jsonResponse({ ok: false, error: "Chưa cấu hình GEMINI_API_KEY." }, 500);
       }
       const authCheck = await verifyTeacherFromRequest(admin, req);
@@ -1471,7 +1535,7 @@ Deno.serve(async (req: Request) => {
         ? requestedPart
         : findNextPendingPart(sub, resetExisting ? null : existingRev || null) || 1) as 1 | 2 | 3;
 
-      const res = await gradeOnePartOfSubmission(admin, geminiApiKey, geminiModel, sub, existingRev || null, partNum, {
+      const res = await gradeOnePartOfSubmission(admin, geminiApiKeys, geminiModel, sub, existingRev || null, partNum, {
         releaseNow,
         resetExisting
       });
@@ -1494,7 +1558,7 @@ Deno.serve(async (req: Request) => {
     // ACTION 7: TẠO GIỌNG ĐỌC MẪU TỰ NHIÊN BẰNG GEMINI STUDIO TTS
     // ========================================================================
     if (action === "tts") {
-      if (!geminiApiKey) {
+      if (geminiApiKeys.length === 0) {
         return jsonResponse({ ok: false, error: "Chưa cấu hình GEMINI_API_KEY." }, 500);
       }
       const rawText = String(body?.text || "")
@@ -1517,39 +1581,43 @@ Deno.serve(async (req: Request) => {
           ? `Pronounce the following English word or short phrase clearly and naturally with standard American pronunciation. Speak ONLY the exact text once without adding anything else:\n\n${rawText}`
           : `Read the following English speaking response aloud in a warm, natural, expressive human conversational tone with clear phrasing and natural pauses, as a friendly native English speaker in a VSTEP interview. Speak ONLY the exact text below without adding any introduction or commentary:\n\n${rawText}`;
 
-      const ttsEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${encodeURIComponent(geminiApiKey)}`;
-      const ttsRes = await fetch(ttsEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{ role: "user", parts: [{ text: ttsPrompt }] }],
-          generationConfig: {
-            responseModalities: ["AUDIO"],
-            speechConfig: {
-              voiceConfig: {
-                prebuiltVoiceConfig: { voiceName }
+      let lastStatus = 502;
+      let lastErr = "";
+      for (const apiKey of geminiApiKeys) {
+        const ttsEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${encodeURIComponent(apiKey)}`;
+        const ttsRes = await fetch(ttsEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ role: "user", parts: [{ text: ttsPrompt }] }],
+            generationConfig: {
+              responseModalities: ["AUDIO"],
+              speechConfig: {
+                voiceConfig: {
+                  prebuiltVoiceConfig: { voiceName }
+                }
               }
             }
+          })
+        });
+
+        if (ttsRes.ok) {
+          const ttsJson = await ttsRes.json().catch(() => ({}));
+          const inlineAudio = ttsJson?.candidates?.[0]?.content?.parts?.[0]?.inlineData;
+          if (inlineAudio && inlineAudio.data) {
+            return jsonResponse({
+              ok: true,
+              audio_base64: inlineAudio.data,
+              mime_type: inlineAudio.mimeType || "audio/L16;codec=pcm;rate=24000"
+            });
           }
-        })
-      });
-
-      if (!ttsRes.ok) {
-        const errText = await ttsRes.text().catch(() => "");
-        return jsonResponse({ ok: false, error: `Gemini TTS lỗi (${ttsRes.status}): ${errText.slice(0, 160)}` }, 502);
+        }
+        lastStatus = ttsRes.status;
+        lastErr = (await ttsRes.text().catch(() => "")).slice(0, 160);
+        if (ttsRes.status === 400) break;
       }
 
-      const ttsJson = await ttsRes.json().catch(() => ({}));
-      const inlineAudio = ttsJson?.candidates?.[0]?.content?.parts?.[0]?.inlineData;
-      if (!inlineAudio || !inlineAudio.data) {
-        return jsonResponse({ ok: false, error: "Gemini TTS không trả về dữ liệu âm thanh." }, 502);
-      }
-
-      return jsonResponse({
-        ok: true,
-        audio_base64: inlineAudio.data,
-        mime_type: inlineAudio.mimeType || "audio/L16;codec=pcm;rate=24000"
-      });
+      return jsonResponse({ ok: false, error: `Gemini TTS lỗi (${lastStatus}): ${lastErr}` }, 502);
     }
 
     return jsonResponse({ ok: false, error: `Action không hợp lệ: ${action}` }, 400);

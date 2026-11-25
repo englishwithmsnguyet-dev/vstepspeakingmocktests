@@ -1,18 +1,12 @@
 // ============================================================================
-// SUPABASE EDGE FUNCTION: grade-mock-speaking
-// Chấm trọn bộ bài thi thử VSTEP Speaking Mock Test (Part 1, Part 2, Part 3)
-// bằng Gemini Multimodal (nghe trực tiếp 3 file ghi âm thật từ Storage):
-// - Học viên giữ nguyên đăng nhập VstepAuth của web -> mọi thao tác học viên
-//   đi qua Edge Function này (server khoá 6 tiếng & ẩn điểm số tuyệt đối).
-// - Giáo viên xác thực qua Supabase Auth JWT + bảng public.teachers.
-// - Hỗ trợ hàng đợi tự chấm lại qua pg_cron (action: "process_queue").
-//
-// Triển khai trên Supabase Dashboard:
-// 1. Edge Functions -> Secrets:
-//    - GEMINI_API_KEY = <API key từ https://aistudio.google.com/apikey>
-//    - CRON_SECRET    = <chuỗi bí mật tự đặt dùng cho pg_cron>
-// 2. Tạo Edge Function tên: grade-mock-speaking -> dán file này -> Deploy.
-// 3. Trong Settings / Details của Function: TẮT "Verify JWT with legacy secret".
+// SUPABASE EDGE FUNCTION: grade-mock-speaking (LOW-MEMORY STREAMING EDITION)
+// Tối ưu RAM & CPU tuyệt đối cho Supabase Free Tier (256MB RAM / 2s CPU):
+// - Upload file ghi âm trực tiếp lên Gemini Files API (dạng binary, KHÔNG encode
+//   Base64 hàng chục MB trong RAM và KHÔNG quét cắt từng byte toàn file).
+// - Chấm TỪNG PART độc lập (part_num: 1 | 2 | 3) và lưu dần vào review_json,
+//   tự động tổng hợp điểm & mức đạt ngay khi đủ các Part có audio.
+// - Giữ trọn bộ quy tắc sư phạm VSTEP (bỏ đuôi -s/-es/-ed chia động từ, bắt kỹ
+//   final sound gốc, tính theo dạng lỗi, làm tròn 0.25, khoá 6 tiếng phía server).
 // ============================================================================
 
 import { createClient, SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2";
@@ -71,171 +65,23 @@ function pickAudioExtension(mimeType: string): string {
   return "webm";
 }
 
-function arrayBufferToBase64(buffer: ArrayBuffer): string {
-  const bytes = new Uint8Array(buffer);
-  let binary = "";
-  const chunkSize = 0x8000;
-  for (let i = 0; i < bytes.length; i += chunkSize) {
-    binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
-  }
-  return btoa(binary);
-}
-
-// ============================================================================
-// AUDIO REPAIR UTILITIES (SỬA FILE WEBM LỖI HEADER / INTERLEAVED TỪ TRÌNH DUYỆT)
-// ============================================================================
-function repairInterleavedWebmBytes(u8: Uint8Array, ebmlOff: number): Uint8Array | null {
-  if (!u8 || ebmlOff < 0 || ebmlOff >= u8.length - 16) return null;
-  const clusterOffsets: number[] = [];
-  for (let i = ebmlOff; i <= u8.length - 12; i++) {
-    if (u8[i] === 0x1f && u8[i + 1] === 0x43 && u8[i + 2] === 0xb6 && u8[i + 3] === 0x75) {
-      clusterOffsets.push(i);
-    }
-  }
-  if (clusterOffsets.length < 2) {
-    return ebmlOff > 0 ? u8.slice(ebmlOff) : null;
-  }
-
-  const parseCluster = (start: number, end: number) => {
-    let p = start + 4;
-    const sb = u8[p];
-    let sLen = 1;
-    for (let bit = 0x80; bit > 0 && !(sb & bit); bit >>= 1) sLen++;
-    p += sLen;
-    if (p >= end || u8[p] !== 0xe7) return null;
-    const tcLen = u8[p + 1] & 0x7f;
-    if (tcLen === 0 || tcLen > 6 || p + 2 + tcLen > end) return null;
-    let tc = 0;
-    for (let k = 0; k < tcLen; k++) tc = tc * 256 + u8[p + 2 + k];
-    const headerEnd = p + 2 + tcLen;
-    const headerBytes = u8.slice(start, headerEnd);
-    const blocks: Array<{ relTc: number; bytes: Uint8Array }> = [];
-    let q = headerEnd;
-    while (q < end) {
-      if (u8[q] !== 0xa3) break;
-      const b0 = u8[q + 1];
-      let vLen = 1;
-      let bSize = 0;
-      if (b0 & 0x80) {
-        vLen = 1;
-        bSize = b0 & 0x7f;
-      } else if (b0 & 0x40) {
-        vLen = 2;
-        bSize = ((b0 & 0x3f) << 8) | u8[q + 2];
-      } else if (b0 & 0x20) {
-        vLen = 3;
-        bSize = ((b0 & 0x1f) << 16) | (u8[q + 2] << 8) | u8[q + 3];
-      } else {
-        break;
+// Chỉ đọc đúng 32 byte đầu của Blob để nhận diện chính xác định dạng thật (tránh tốn RAM/CPU)
+async function detectTrueAudioMime(blob: Blob, audioPath: string): Promise<string> {
+  try {
+    const headBuf = await blob.slice(0, 32).arrayBuffer();
+    const u8 = new Uint8Array(headBuf);
+    if (u8.length >= 4) {
+      if (u8[0] === 0x1a && u8[1] === 0x45 && u8[2] === 0xdf && u8[3] === 0xa3) return "audio/webm";
+      if (u8[0] === 0x4f && u8[1] === 0x67 && u8[2] === 0x67 && u8[3] === 0x53) return "audio/ogg";
+      if (u8[0] === 0x52 && u8[1] === 0x49 && u8[2] === 0x46 && u8[3] === 0x46) return "audio/wav";
+      if (u8.length >= 8 && u8[4] === 0x66 && u8[5] === 0x74 && u8[6] === 0x79 && u8[7] === 0x70) return "audio/mp4";
+      if ((u8[0] === 0x49 && u8[1] === 0x44 && u8[2] === 0x33) || (u8[0] === 0xff && (u8[1] & 0xe0) === 0xe0)) {
+        return "audio/mp3";
       }
-      const dataStart = q + 1 + vLen;
-      const blockEnd = dataStart + bSize;
-      if (blockEnd > end || bSize < 4) break;
-      const relTcRaw = (u8[dataStart + 1] << 8) | u8[dataStart + 2];
-      const relTc = relTcRaw >= 0x8000 ? relTcRaw - 0x10000 : relTcRaw;
-      blocks.push({ relTc, bytes: u8.slice(q, blockEnd) });
-      q = blockEnd;
     }
-    return { tc, headerBytes, blocks };
-  };
+  } catch (_e) {}
 
-  const clusters: Array<{ tc: number; headerBytes: Uint8Array; blocks: Array<{ relTc: number; bytes: Uint8Array }> }> = [];
-  for (let i = 0; i < clusterOffsets.length; i++) {
-    const end = i + 1 < clusterOffsets.length ? clusterOffsets[i + 1] : u8.length;
-    const c = parseCluster(clusterOffsets[i], end);
-    if (c) clusters.push(c);
-  }
-  if (clusters.length < 2) {
-    return ebmlOff > 0 ? u8.slice(ebmlOff) : null;
-  }
-
-  let hasInterleaving = false;
-  for (let i = 1; i < clusters.length; i++) {
-    const diff = clusters[i].tc - clusters[i - 1].tc;
-    if (diff < 0 || diff > 10000) {
-      hasInterleaving = true;
-      break;
-    }
-  }
-  if (!hasInterleaving) {
-    return ebmlOff > 0 ? u8.slice(ebmlOff) : null;
-  }
-
-  const outParts: Uint8Array[] = [u8.slice(ebmlOff, clusterOffsets[0])];
-  let expectedTc = clusters[0].tc;
-  for (let i = 0; i < clusters.length; i++) {
-    const c = clusters[i];
-    if (c.tc >= expectedTc && c.tc - expectedTc <= 5000) {
-      outParts.push(c.headerBytes);
-      let lastRel = -1;
-      for (const blk of c.blocks) {
-        if (blk.relTc > lastRel) {
-          outParts.push(blk.bytes);
-          lastRel = blk.relTc;
-        } else {
-          break;
-        }
-      }
-      if (i + 1 < clusters.length) {
-        const nextC = clusters[i + 1];
-        const nextIsForeign = nextC.tc < c.tc || nextC.tc - c.tc > 10000;
-        if (nextIsForeign && nextC.blocks.length > 0) {
-          for (const fBlk of nextC.blocks) {
-            if (fBlk.relTc >= lastRel + 40 && fBlk.relTc <= lastRel + 90) {
-              outParts.push(fBlk.bytes);
-              lastRel = fBlk.relTc;
-            }
-          }
-        }
-      }
-      expectedTc = c.tc + 1;
-    }
-  }
-
-  const totalLen = outParts.reduce((s, p) => s + p.length, 0);
-  const out = new Uint8Array(totalLen);
-  let pos = 0;
-  for (const p of outParts) {
-    out.set(p, pos);
-    pos += p.length;
-  }
-  return out;
-}
-
-function trimCorruptedAudioPrefix(buffer: ArrayBuffer, fallbackMime: string): { buffer: ArrayBuffer; mimeType: string } {
-  const u8 = new Uint8Array(buffer);
-  if (u8.length < 16) return { buffer, mimeType: fallbackMime };
-  if (u8[0] === 0x1a && u8[1] === 0x45 && u8[2] === 0xdf && u8[3] === 0xa3) {
-    const deinterleaved = repairInterleavedWebmBytes(u8, 0);
-    return { buffer: deinterleaved ? deinterleaved.buffer : buffer, mimeType: "audio/webm" };
-  }
-  if (u8[4] === 0x66 && u8[5] === 0x74 && u8[6] === 0x79 && u8[7] === 0x70) {
-    return { buffer, mimeType: "audio/mp4" };
-  }
-  const scanMax = Math.min(u8.length - 8, 262144);
-  for (let i = 1; i <= scanMax; i++) {
-    if (u8[i] === 0x1a && u8[i + 1] === 0x45 && u8[i + 2] === 0xdf && u8[i + 3] === 0xa3) {
-      const deinterleaved = repairInterleavedWebmBytes(u8, i);
-      return { buffer: deinterleaved ? deinterleaved.buffer : buffer.slice(i), mimeType: "audio/webm" };
-    }
-  }
-  for (let i = 4; i <= scanMax; i++) {
-    if (
-      u8[i] === 0x66 &&
-      u8[i + 1] === 0x74 &&
-      u8[i + 2] === 0x79 &&
-      u8[i + 3] === 0x70 &&
-      u8[i - 4] === 0x00 &&
-      u8[i - 3] === 0x00
-    ) {
-      return { buffer: buffer.slice(i - 4), mimeType: "audio/mp4" };
-    }
-  }
-  return { buffer, mimeType: fallbackMime };
-}
-
-function resolveCleanAudioMimeType(audioPath: string, blobType?: string): string {
-  const lowerType = String(blobType || "").toLowerCase().split(";")[0].trim();
+  const lowerType = String(blob.type || "").toLowerCase().split(";")[0].trim();
   const lowerPath = String(audioPath || "").toLowerCase();
   if (lowerType.includes("mp4") || lowerType.includes("m4a") || lowerPath.endsWith(".mp4") || lowerPath.endsWith(".m4a")) {
     return "audio/mp4";
@@ -247,7 +93,7 @@ function resolveCleanAudioMimeType(audioPath: string, blobType?: string): string
 }
 
 // ============================================================================
-// SCORING & GUARDRAILS (QUY ĐỔI BƯỚC 0.25, LỌC LỖI CẤM, KHỬ TRÙNG LẶP)
+// SCORING & GUARDRAILS (BƯỚC 0.25, LỌC LỖI CẤM, KHỬ TRÙNG LẶP)
 // ============================================================================
 function roundQuarterStep(score: number): number {
   if (!Number.isFinite(score)) return 0;
@@ -388,10 +234,10 @@ function buildPartGradingPrompt(params: {
   if (partNum === 1) {
     partLabel = "VSTEP Speaking Part 1 (Social Interaction — 2 chủ đề, thường 6 câu hỏi ngắn trong tối đa 3 phút)";
     structureGuide =
-      "Mỗi câu hỏi nên trả lời trực tiếp, rõ ý trong 2–3 câu theo mạch A-R-E (Answer + Reason → Example → Feeling/Result), tránh trả lời cộc lốc 1 cụm từ hoặc bỏ sót câu hỏi trong 2 chủ đề.";
+      "Mỗi câu hỏi nên trả lời trực tiếp, rõ ý trong 2–3 câu theo mạch A-R-E (Answer + Reason → Example → Feeling/Result), tránh trả lời cộc lốc hoặc bỏ sót câu hỏi trong 2 chủ đề.";
     levelGuidance =
       level === "B2"
-        ? `Mục tiêu Level B2 (Part 1): Trả lời trọn vẹn các câu hỏi trong 2 chủ đề một cách tự nhiên, có từ nối văn nói (Honestly, Actually, I'd say, I tend to...), collocations tự nhiên và câu phức/mệnh đề quan hệ (which/who/where). KHÔNG ép dùng từ C1/C2 học thuật cứng nhắc.`
+        ? `Mục tiêu Level B2 (Part 1): Trả lời trọn vẹn các câu hỏi trong 2 chủ đề tự nhiên, có từ nối văn nói (Honestly, Actually, I'd say, I tend to...), collocations tự nhiên và mệnh đề quan hệ (which/who/where). KHÔNG ép dùng từ C1/C2 học thuật cứng nhắc.`
         : `Mục tiêu Level B1 (Part 1): Chỉ cần trả lời rõ ý các câu hỏi bằng tiếng Anh giao tiếp đời thường, đúng ngữ pháp cơ bản, phát âm dễ nghe. KHÔNG ép dùng từ vựng phức tạp mức B2/C1.`;
   } else if (partNum === 2) {
     partLabel = "VSTEP Speaking Part 2 (Solution Discussion — chọn 1 trong 3 lựa chọn, tối đa 3 phút nói)";
@@ -399,15 +245,15 @@ function buildPartGradingPrompt(params: {
       "Bố cục 3 phần: Mở bài (dẫn nhập tình huống & chọn 1 phương án) → Thân bài (nêu 2 lý do chọn có ví dụ + giải thích tại sao KHÔNG chọn 2 phương án còn lại) → Kết bài (khẳng định lại lựa chọn).";
     levelGuidance =
       level === "B2"
-        ? `Mục tiêu Level B2 (Part 2): Trình bày mạch lạc đủ 3 phần (~170–220 từ), lập luận thuyết phục cả lý do chọn lẫn phản biện 2 lựa chọn còn lại, dùng collocations tự nhiên và liên kết ý mượt mà.`
-        : `Mục tiêu Level B1 (Part 2): Trình bày đủ 3 phần (~120–165 từ) với 2 lý do chọn dễ hiểu và lý do bỏ 2 phương án còn lại. Nếu học viên diễn đạt đơn giản nhưng rõ ý, đúng bố cục thì khen ngợi và giữ nguyên ý.`;
+        ? `Mục tiêu Level B2 (Part 2): Trình bày mạch lạc đủ 3 phần (~170–220 từ), lập luận thuyết phục cả lý do chọn lẫn phản biện 2 lựa chọn còn lại, dùng collocations tự nhiên.`
+        : `Mục tiêu Level B1 (Part 2): Trình bày đủ 3 phần (~120–165 từ) với 2 lý do chọn dễ hiểu và lý do bỏ 2 phương án còn lại. Nếu diễn đạt đơn giản nhưng rõ ý, đúng bố cục thì khen ngợi và giữ nguyên ý.`;
   } else {
     partLabel = "VSTEP Speaking Part 3 (Topic Development — phát triển chủ đề theo sơ đồ 3 ý gợi ý + ý riêng + trả lời câu hỏi mở rộng, tối đa 4 phút nói)";
     structureGuide =
-      "Bố cục chuẩn Part 3: Mở bài (giới thiệu chủ đề & quan điểm) → Thân bài (lần lượt triển khai 3 ý gợi ý trên sơ đồ có giải thích/ví dụ + bổ sung ít nhất 1 ý riêng [your own idea]) → Kết bài (tóm tắt ngắn) → Trả lời câu hỏi mở rộng (Follow-up questions) nếu thí sinh có nói.";
+      "Bố cục chuẩn Part 3: Mở bài (giới thiệu chủ đề & quan điểm) → Thân bài (triển khai 3 ý gợi ý trên sơ đồ có giải thích/ví dụ + bổ sung ít nhất 1 ý riêng [your own idea]) → Kết bài → Trả lời câu hỏi mở rộng (Follow-up questions).";
     levelGuidance =
       level === "B2"
-        ? `Mục tiêu Level B2 (Part 3): Phát triển đầy đủ các nhánh sơ đồ và ý riêng (~200–280 từ) với dẫn chứng thuyết phục, chuyển ý tự nhiên (Firstly, In addition, From my perspective, Another point worth mentioning is...) và trả lời rõ các câu hỏi mở rộng.`
+        ? `Mục tiêu Level B2 (Part 3): Phát triển đầy đủ các nhánh sơ đồ và ý riêng (~200–280 từ) với dẫn chứng thuyết phục, chuyển ý tự nhiên và trả lời rõ các câu hỏi mở rộng.`
         : `Mục tiêu Level B1 (Part 3): Triển khai được các ý gợi ý chính trên sơ đồ (mỗi ý 1–2 câu giải thích/ví dụ đơn giản) kèm ý riêng và kết luận rõ ràng (~140–190 từ). Không ép từ vựng hàn lâm C1.`;
   }
 
@@ -426,7 +272,7 @@ ${params.promptText || "(Không có văn bản đề bài — hãy nghe trực t
 ĐÃ ĐÍNH KÈM FILE GHI ÂM THẬT CỦA THÍ SINH:
 - Hãy NGHE KỸ toàn bộ file ghi âm làm nguồn chính để:
   1) Phiên âm ĐẦY ĐỦ, trung thực lời nói tiếng Anh của thí sinh vào trường "recognized_transcript".
-  2) Chấm trực tiếp PHÁT ÂM (độ rõ chữ, dễ nghe, trọng âm từ, đặc biệt bắt lỗi mất final sound gốc /s/, /z/ như nice, house, place, office, because, always, relax, stress, bus, class, famous...) và NGỮ ĐIỆU (lên xuống giọng tự nhiên, nhấn content words, ngắt nghỉ hợp lý hay nói đều đều/ngập ngừng).
+  2) Chấm trực tiếp PHÁT ÂM (độ rõ chữ, trọng âm từ, đặc biệt bắt lỗi mất final sound gốc /s/, /z/ như nice, house, place, office, because, always, relax, stress, bus, class, famous...) và NGỮ ĐIỆU (lên xuống giọng tự nhiên, nhấn content words, ngắt nghỉ hợp lý hay nói đều đều/ngập ngừng).
 
 QUY TẮC ĐẶC BIỆT BẮT BUỘC PHẢI TUÂN THỦ:
 - QUY TẮC 1 (BỎ QUA ĐUÔI CHIA ĐỘNG TỪ "-s", "-es", "-ed" — CHỈ BẮT FINAL SOUND CỐ HỮU CỦA TỪ):
@@ -449,10 +295,10 @@ YÊU CẦU CHẤM CHI TIẾT CHO PART ${partNum}:
 1. Bố cục & Độ hoàn thành yêu cầu đề: ${structureGuide}
 2. Định hướng trình độ: ${levelGuidance}
 3. "pronunciation_fixes": tối đa 4 TỪ KHÁC NHAU phát âm chưa chuẩn hoặc mất final sound gốc (mỗi từ chỉ 1 lần, kèm US IPA & mẹo đọc; không liệt kê đuôi chia động từ -s/-es/-ed). Nếu phát âm tốt trả về [].
-4. "language_corrections": tối đa 6 mục sửa tiêu biểu. "original" phải trích NGUYÊN VĂN cụm 2–10 từ trong "recognized_transcript" để hệ thống gạch chân trực tiếp; "category" chỉ nhận đúng 1 trong 3 nhãn: "Vietlish", "Từ vựng tự nhiên", hoặc "Ngữ pháp".
-5. "idea_expansions": tối đa 3 mục chỉ rõ chỗ ý tưởng còn "cụt", thiếu phần nào (VD: quên bỏ 2 phương án ở Part 2, quên ý riêng / câu hỏi mở rộng ở Part 3, hoặc trả lời quá ngắn ở Part 1) kèm 1–2 câu tiếng Anh mẫu chuẩn Level ${level} và nghĩa tiếng Việt.
-6. "natural_spoken_version": viết lại 1 bài nói mẫu hoàn chỉnh, tự nhiên ở chuẩn Level ${level} dựa trên CHÍNH Ý TƯỞNG GỐC của thí sinh (ngắn gọn dễ luyện đọc lại).
-7. Nếu file ghi âm im lặng / chỉ có tiếng ồn / không có tiếng Anh: đặt "internal_score": 0, "estimated_band": "Chưa đạt B1", nhắc nhẹ thí sinh kiểm tra micro và gợi ý cách trả lời trong "idea_expansions" & "natural_spoken_version".
+4. "language_corrections": tối đa 6 mục sửa tiêu biểu. "original" trích NGUYÊN VĂN cụm 2–10 từ trong "recognized_transcript"; "category" chỉ nhận đúng 1 trong 3 nhãn: "Vietlish", "Từ vựng tự nhiên", hoặc "Ngữ pháp".
+5. "idea_expansions": tối đa 3 mục chỉ rõ chỗ ý tưởng còn "cụt", thiếu phần nào kèm 1–2 câu tiếng Anh mẫu chuẩn Level ${level} và nghĩa tiếng Việt.
+6. "natural_spoken_version": viết lại 1 bài nói mẫu hoàn chỉnh, tự nhiên ở chuẩn Level ${level} dựa trên CHÍNH Ý TƯỞNG GỐC của thí sinh.
+7. Nếu file ghi âm im lặng / chỉ có tiếng ồn / không có tiếng Anh: đặt "internal_score": 0, "estimated_band": "Chưa đạt B1", nhắc nhẹ thí sinh kiểm tra micro và gợi ý cách trả lời.
 
 TRẢ VỀ DUY NHẤT MỘT JSON HỢP LỆ (không bọc markdown):
 {
@@ -643,13 +489,85 @@ function buildSkippedPartReview(partNum: 1 | 2 | 3) {
   };
 }
 
-async function callGeminiAudioGrade(params: {
+// ============================================================================
+// STREAMING GEMINI FILES API UPLOAD (KHÔNG TỐN RAM/CPU NHƯ BASE64)
+// ============================================================================
+async function uploadBlobToGeminiFilesApi(
+  geminiApiKey: string,
+  audioBlob: Blob,
+  audioMimeType: string
+): Promise<{ ok: true; fileUri: string; fileName: string } | { ok: false; status: number; error: string }> {
+  const uploadEndpoint = `https://generativelanguage.googleapis.com/upload/v1beta/files?uploadType=media&key=${encodeURIComponent(geminiApiKey)}`;
+  const upRes = await fetch(uploadEndpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": audioMimeType
+    },
+    body: audioBlob
+  });
+
+  if (!upRes.ok) {
+    const errText = await upRes.text().catch(() => "");
+    return {
+      ok: false,
+      status: upRes.status,
+      error: `Gemini Files Upload lỗi (${upRes.status}): ${errText.slice(0, 180)}`
+    };
+  }
+
+  const upJson = await upRes.json().catch(() => ({}));
+  const fileObj = upJson?.file || upJson || {};
+  const fileUri = String(fileObj.uri || "");
+  const fileName = String(fileObj.name || "");
+  let state = String(fileObj.state || "ACTIVE").toUpperCase();
+
+  if (!fileUri) {
+    return { ok: false, status: 500, error: "Gemini Files API không trả về fileUri." };
+  }
+
+  // Đợi trạng thái ACTIVE (với audio thường sẵn sàng ngay hoặc sau 1 giây)
+  if (state !== "ACTIVE" && fileName) {
+    for (let i = 0; i < 6; i++) {
+      await new Promise(r => setTimeout(r, 1200));
+      const checkRes = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/${fileName}?key=${encodeURIComponent(geminiApiKey)}`
+      );
+      if (checkRes.ok) {
+        const checkJson = await checkRes.json().catch(() => ({}));
+        state = String(checkJson?.state || "").toUpperCase();
+        if (state === "ACTIVE") break;
+        if (state === "FAILED") {
+          return { ok: false, status: 400, error: "Gemini không giải mã được tệp âm thanh này." };
+        }
+      }
+    }
+  }
+
+  return { ok: true, fileUri, fileName };
+}
+
+async function deleteGeminiFileBestEffort(geminiApiKey: string, fileName: string) {
+  if (!fileName) return;
+  try {
+    await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/${fileName}?key=${encodeURIComponent(geminiApiKey)}`,
+      { method: "DELETE" }
+    );
+  } catch (_e) {}
+}
+
+async function callGeminiAudioGradeStreaming(params: {
   geminiApiKey: string;
   geminiModel: string;
-  audioBase64: string;
+  audioBlob: Blob;
   audioMimeType: string;
   promptText: string;
 }) {
+  const uploaded = await uploadBlobToGeminiFilesApi(params.geminiApiKey, params.audioBlob, params.audioMimeType);
+  if (!uploaded.ok) {
+    return uploaded;
+  }
+
   const RETIRED_MODELS = new Set(["gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-exp"]);
   const fallbackModels = Array.from(
     new Set([
@@ -663,9 +581,9 @@ async function callGeminiAudioGrade(params: {
 
   const parts: Array<Record<string, unknown>> = [
     {
-      inlineData: {
+      fileData: {
         mimeType: params.audioMimeType,
-        data: params.audioBase64
+        fileUri: uploaded.fileUri
       }
     },
     { text: params.promptText }
@@ -673,42 +591,46 @@ async function callGeminiAudioGrade(params: {
 
   const errors: Array<{ model: string; status: number; detail: string }> = [];
 
-  for (const modelName of fallbackModels) {
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelName)}:generateContent?key=${encodeURIComponent(params.geminiApiKey)}`;
-    let modelStatus = 500;
-    let modelErrText = "";
+  try {
+    for (const modelName of fallbackModels) {
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelName)}:generateContent?key=${encodeURIComponent(params.geminiApiKey)}`;
+      let modelStatus = 500;
+      let modelErrText = "";
 
-    for (let attempt = 0; attempt < 2; attempt++) {
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{ role: "user", parts }],
-          generationConfig: {
-            temperature: 0.25,
-            responseMimeType: "application/json"
-          }
-        })
-      });
+      for (let attempt = 0; attempt < 2; attempt++) {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ role: "user", parts }],
+            generationConfig: {
+              temperature: 0.25,
+              responseMimeType: "application/json"
+            }
+          })
+        });
 
-      if (res.ok) {
-        const geminiJson = await res.json();
-        const rawCandidate = geminiJson?.candidates?.[0]?.content?.parts?.[0]?.text || "";
-        const parsed = parseModelJson(rawCandidate);
-        return { ok: true as const, parsed };
+        if (res.ok) {
+          const geminiJson = await res.json();
+          const rawCandidate = geminiJson?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+          const parsed = parseModelJson(rawCandidate);
+          return { ok: true as const, parsed };
+        }
+
+        modelStatus = res.status;
+        modelErrText = await res.text().catch(() => "");
+        if ((res.status === 503 || res.status === 429 || res.status === 500) && attempt === 0) {
+          await new Promise(r => setTimeout(r, 1000));
+          continue;
+        }
+        break;
       }
 
-      modelStatus = res.status;
-      modelErrText = await res.text().catch(() => "");
-      if ((res.status === 503 || res.status === 429 || res.status === 500) && attempt === 0) {
-        await new Promise(r => setTimeout(r, 1200));
-        continue;
-      }
-      break;
+      errors.push({ model: modelName, status: modelStatus, detail: modelErrText.slice(0, 160) });
+      if (modelStatus === 400 || modelStatus === 401 || modelStatus === 403) break;
     }
-
-    errors.push({ model: modelName, status: modelStatus, detail: modelErrText.slice(0, 160) });
-    if (modelStatus === 400 || modelStatus === 401 || modelStatus === 403) break;
+  } finally {
+    await deleteGeminiFileBestEffort(params.geminiApiKey, uploaded.fileName);
   }
 
   const primary = errors.find(e => e.status !== 404) || errors[0] || { model: params.geminiModel, status: 500, detail: "" };
@@ -720,13 +642,17 @@ async function callGeminiAudioGrade(params: {
   };
 }
 
-async function gradeFullSubmission(
+// ============================================================================
+// CHẤM 1 PART CỤ THỂ VÀ LƯU DẦN (KHÔNG BAO GIỜ QUÁ TẢI RAM/CPU)
+// ============================================================================
+async function gradeOnePartOfSubmission(
   admin: SupabaseClient,
   geminiApiKey: string,
   geminiModel: string,
   sub: SubmissionRow,
   existingReview: ReviewRow | null,
-  options: { releaseNow?: boolean }
+  partNum: 1 | 2 | 3,
+  options: { releaseNow?: boolean; resetExisting?: boolean }
 ) {
   const nowIso = new Date().toISOString();
   const prevRetry = existingReview?.retry_count || 0;
@@ -744,39 +670,14 @@ async function gradeFullSubmission(
     releaseAtIso = sub.release_at;
   }
 
-  const partSpecs: Array<{
-    partNum: 1 | 2 | 3;
-    audioPath: string;
-    durationSec: number;
-    promptText: string;
-    weight: number;
-  }> = [
-    {
-      partNum: 1,
-      audioPath: String(sub.audio_path_p1 || "").trim(),
-      durationSec: Number(sub.duration_p1) || 0,
-      promptText: String(sub.prompt_part1 || "").trim(),
-      weight: 0.25
-    },
-    {
-      partNum: 2,
-      audioPath: String(sub.audio_path_p2 || "").trim(),
-      durationSec: Number(sub.duration_p2) || 0,
-      promptText: String(sub.prompt_part2 || "").trim(),
-      weight: 0.35
-    },
-    {
-      partNum: 3,
-      audioPath: String(sub.audio_path_p3 || "").trim(),
-      durationSec: Number(sub.duration_p3) || 0,
-      promptText: String(sub.prompt_part3 || "").trim(),
-      weight: 0.4
-    }
-  ];
+  const audioPaths: Record<1 | 2 | 3, string> = {
+    1: String(sub.audio_path_p1 || "").trim(),
+    2: String(sub.audio_path_p2 || "").trim(),
+    3: String(sub.audio_path_p3 || "").trim()
+  };
 
-  const hasAnyAudioPath = partSpecs.some(p => Boolean(p.audioPath));
-  if (!hasAnyAudioPath) {
-    const noAudioMsg = "Bài nộp không có tệp ghi âm nào ở cả 3 Part. Học viên cần kiểm tra Micro và làm lại bài thi.";
+  if (!audioPaths[1] && !audioPaths[2] && !audioPaths[3]) {
+    const noAudioMsg = "Bài nộp không có tệp ghi âm nào ở cả 3 Part.";
     await admin.from("mock_speaking_ai_reviews").upsert(
       {
         id: sub.id,
@@ -798,98 +699,99 @@ async function gradeFullSubmission(
     return { ok: false, status: 400, error: noAudioMsg };
   }
 
-  await admin
-    .from("mock_speaking_submissions")
-    .update({ status: "grading", release_at: releaseAtIso, updated_at: nowIso })
-    .eq("id", sub.id);
+  const promptsMap: Record<1 | 2 | 3, string> = {
+    1: String(sub.prompt_part1 || "").trim(),
+    2: String(sub.prompt_part2 || "").trim(),
+    3: String(sub.prompt_part3 || "").trim()
+  };
+  const durationsMap: Record<1 | 2 | 3, number> = {
+    1: Number(sub.duration_p1) || 0,
+    2: Number(sub.duration_p2) || 0,
+    3: Number(sub.duration_p3) || 0
+  };
 
-  const partResults: Record<string, ReturnType<typeof normalizePartReview>> = {};
-  let gradedAudioCount = 0;
+  const existingJson =
+    !options.resetExisting && existingReview?.review_json && typeof existingReview.review_json === "object"
+      ? JSON.parse(JSON.stringify(existingReview.review_json))
+      : {};
+  const partsObj: Record<string, ReturnType<typeof normalizePartReview>> =
+    existingJson.parts && typeof existingJson.parts === "object" ? existingJson.parts : {};
 
-  for (const spec of partSpecs) {
-    const partKey = `part${spec.partNum}`;
-    if (!spec.audioPath) {
-      partResults[partKey] = buildSkippedPartReview(spec.partNum);
-      continue;
-    }
+  const targetAudioPath = audioPaths[partNum];
+  const partKey = `part${partNum}`;
 
-    let audioBase64 = "";
-    let audioMimeType = "audio/webm";
-    try {
-      const { data: audioBlob, error: dlErr } = await admin.storage.from(AUDIO_BUCKET).download(spec.audioPath);
-      if (!dlErr && audioBlob && audioBlob.size >= 200) {
-        const rawAb = await audioBlob.arrayBuffer();
-        const rawMime = resolveCleanAudioMimeType(spec.audioPath, audioBlob.type);
-        const cleaned = trimCorruptedAudioPrefix(rawAb, rawMime);
-        audioBase64 = arrayBufferToBase64(cleaned.buffer);
-        audioMimeType = cleaned.mimeType;
+  if (!targetAudioPath) {
+    partsObj[partKey] = buildSkippedPartReview(partNum);
+  } else {
+    const { data: audioBlob, error: dlErr } = await admin.storage.from(AUDIO_BUCKET).download(targetAudioPath);
+    if (dlErr || !audioBlob || audioBlob.size < 200) {
+      partsObj[partKey] = buildSkippedPartReview(partNum);
+    } else {
+      const trueMime = await detectTrueAudioMime(audioBlob, targetAudioPath);
+      const promptText = buildPartGradingPrompt({
+        partNum,
+        testTitle,
+        promptText: promptsMap[partNum],
+        durationSec: durationsMap[partNum],
+        targetLevel
+      });
+
+      const gemRes = await callGeminiAudioGradeStreaming({
+        geminiApiKey,
+        geminiModel,
+        audioBlob,
+        audioMimeType: trueMime,
+        promptText
+      });
+
+      if (!gemRes.ok) {
+        const nextRetry = prevRetry + 1;
+        await admin.from("mock_speaking_ai_reviews").upsert(
+          {
+            id: sub.id,
+            submission_id: sub.id,
+            student_key: sub.student_key,
+            student_name: sub.student_name,
+            class_code: sub.class_code || "",
+            test_id: sub.test_id,
+            target_level: targetLevel,
+            status: "error",
+            release_at: releaseAtIso,
+            review_json: Object.keys(partsObj).length > 0 ? { ...existingJson, parts: partsObj } : existingReview?.review_json || null,
+            error_message: `[Part ${partNum}] ${gemRes.error.slice(0, 220)}`,
+            retry_count: nextRetry,
+            updated_at: new Date().toISOString()
+          },
+          { onConflict: "id" }
+        );
+        await admin
+          .from("mock_speaking_submissions")
+          .update({ status: "pending_retry", release_at: releaseAtIso, updated_at: new Date().toISOString() })
+          .eq("id", sub.id);
+
+        return {
+          ok: false,
+          status: 502,
+          error: `[Part ${partNum}] ${gemRes.error}`
+        };
       }
-    } catch (_e) {
-      // handled below
-    }
 
-    if (!audioBase64) {
-      partResults[partKey] = buildSkippedPartReview(spec.partNum);
-      continue;
-    }
-
-    const promptText = buildPartGradingPrompt({
-      partNum: spec.partNum,
-      testTitle,
-      promptText: spec.promptText,
-      durationSec: spec.durationSec,
-      targetLevel
-    });
-
-    const gemRes = await callGeminiAudioGrade({
-      geminiApiKey,
-      geminiModel,
-      audioBase64,
-      audioMimeType,
-      promptText
-    });
-
-    if (!gemRes.ok) {
-      const nextRetry = prevRetry + 1;
-      await admin.from("mock_speaking_ai_reviews").upsert(
-        {
-          id: sub.id,
-          submission_id: sub.id,
-          student_key: sub.student_key,
-          student_name: sub.student_name,
-          class_code: sub.class_code || "",
-          test_id: sub.test_id,
-          target_level: targetLevel,
-          status: "error",
-          release_at: releaseAtIso,
-          error_message: `[Part ${spec.partNum}] ${gemRes.error.slice(0, 220)}`,
-          retry_count: nextRetry,
-          updated_at: new Date().toISOString()
-        },
-        { onConflict: "id" }
-      );
-      await admin
-        .from("mock_speaking_submissions")
-        .update({ status: "pending_retry", release_at: releaseAtIso, updated_at: new Date().toISOString() })
-        .eq("id", sub.id);
-
-      return {
-        ok: false,
-        status: 502,
-        error: `AI tạm quá tải ở Part ${spec.partNum} — đã xếp hàng đợi tự chấm lại (lần ${nextRetry}/${MAX_AUTO_RETRIES}).`
-      };
-    }
-
-    gradedAudioCount++;
-    partResults[partKey] = normalizePartReview(gemRes.parsed || {}, spec.partNum);
-    // Nhịp nghỉ ngắn 500ms giữa các Part để tránh vượt rate-limit burst của Gemini
-    if (spec.partNum < 3) {
-      await new Promise(r => setTimeout(r, 500));
+      partsObj[partKey] = normalizePartReview(gemRes.parsed || {}, partNum);
     }
   }
 
-  if (gradedAudioCount === 0) {
-    const noAudioMsg = "Không tải được dữ liệu âm thanh hợp lệ từ các file ghi âm đã nộp.";
+  // Đánh dấu tự động các Part không có file audio là skipped để không phải chờ thêm
+  for (const n of [1, 2, 3] as Array<1 | 2 | 3>) {
+    if (!audioPaths[n] && !partsObj[`part${n}`]) {
+      partsObj[`part${n}`] = buildSkippedPartReview(n);
+    }
+  }
+
+  const allThreeDone = Boolean(partsObj.part1 && partsObj.part2 && partsObj.part3);
+  const doneIso = new Date().toISOString();
+
+  if (!allThreeDone) {
+    // Lưu tạm kết quả từng Part đã xong
     await admin.from("mock_speaking_ai_reviews").upsert(
       {
         id: sub.id,
@@ -899,31 +801,47 @@ async function gradeFullSubmission(
         class_code: sub.class_code || "",
         test_id: sub.test_id,
         target_level: targetLevel,
-        status: "no_audio",
+        status: "grading",
         release_at: releaseAtIso,
-        error_message: noAudioMsg,
-        retry_count: MAX_AUTO_RETRIES,
-        updated_at: new Date().toISOString()
+        review_json: {
+          target_level: targetLevel,
+          parts: partsObj
+        },
+        error_message: "",
+        retry_count: 0,
+        updated_at: doneIso
       },
       { onConflict: "id" }
     );
-    await admin.from("mock_speaking_submissions").update({ status: "no_audio", updated_at: new Date().toISOString() }).eq("id", sub.id);
-    return { ok: false, status: 400, error: noAudioMsg };
+    await admin
+      .from("mock_speaking_submissions")
+      .update({ status: "grading", release_at: releaseAtIso, updated_at: doneIso })
+      .eq("id", sub.id);
+
+    return {
+      ok: true,
+      status: 200,
+      part_done: partNum,
+      all_done: false,
+      ai_status: "grading",
+      release_at: releaseAtIso
+    };
   }
 
-  // Tính điểm tổng nội bộ VSTEP Speaking (P1: 25%, P2: 35%, P3: 40%) làm tròn 0.25
-  const p1 = partResults.part1;
-  const p2 = partResults.part2;
-  const p3 = partResults.part3;
+  // Đủ cả 3 Part -> tổng hợp điểm tổng VSTEP Speaking (P1: 25%, P2: 35%, P3: 40%)
+  const p1 = partsObj.part1;
+  const p2 = partsObj.part2;
+  const p3 = partsObj.part3;
+  const gradedAudioCount = [p1, p2, p3].filter(p => !p.skipped).length;
   const rawWeighted = p1.internal_score * 0.25 + p2.internal_score * 0.35 + p3.internal_score * 0.4;
   const overallScore = roundQuarterStep(rawWeighted);
   const overallBand = scoreToBandLabel(overallScore);
 
   const completedPartsText = [1, 2, 3]
-    .filter(n => !partResults[`part${n}`].skipped)
-    .map(n => `Part ${n} (${partResults[`part${n}`].estimated_band})`)
+    .filter(n => !partsObj[`part${n}`].skipped)
+    .map(n => `Part ${n} (${partsObj[`part${n}`].estimated_band})`)
     .join(", ");
-  const skippedParts = [1, 2, 3].filter(n => partResults[`part${n}`].skipped);
+  const skippedParts = [1, 2, 3].filter(n => partsObj[`part${n}`].skipped);
 
   const overallComment = [
     `Tổng thể bài thi thử đạt mức ${overallBand} theo mục tiêu Level ${targetLevel}. Kết quả chi tiết từng phần: ${completedPartsText}.`,
@@ -946,7 +864,6 @@ async function gradeFullSubmission(
   };
 
   const isAlreadyReleased = new Date(releaseAtIso).getTime() <= Date.now();
-  const doneIso = new Date().toISOString();
 
   const { error: revErr } = await admin.from("mock_speaking_ai_reviews").upsert(
     {
@@ -984,13 +901,31 @@ async function gradeFullSubmission(
   return {
     ok: true,
     status: 200,
+    part_done: partNum,
+    all_done: true,
     ai_status: isAlreadyReleased ? "ready" : "scheduled",
     release_at: releaseAtIso,
     review_json: fullReviewJson
   };
 }
 
-// Ẩn tuyệt đối mọi điểm số nội bộ khi trả bài sửa về cho học viên
+function findNextPendingPart(sub: SubmissionRow, rev: ReviewRow | null): (1 | 2 | 3) | null {
+  const rj = rev?.review_json && typeof rev.review_json === "object" ? (rev.review_json as Record<string, unknown>) : null;
+  const parts = rj?.parts && typeof rj.parts === "object" ? (rj.parts as Record<string, unknown>) : {};
+  const paths: Record<1 | 2 | 3, string> = {
+    1: String(sub.audio_path_p1 || "").trim(),
+    2: String(sub.audio_path_p2 || "").trim(),
+    3: String(sub.audio_path_p3 || "").trim()
+  };
+  for (const n of [1, 2, 3] as Array<1 | 2 | 3>) {
+    if (!parts[`part${n}`] && paths[n]) return n;
+  }
+  for (const n of [1, 2, 3] as Array<1 | 2 | 3>) {
+    if (!parts[`part${n}`]) return n;
+  }
+  return null;
+}
+
 function sanitizeReviewForStudent(reviewJson: Record<string, unknown> | null) {
   if (!reviewJson || typeof reviewJson !== "object") return null;
   const clone = JSON.parse(JSON.stringify(reviewJson));
@@ -1064,8 +999,6 @@ Deno.serve(async (req: Request) => {
       }
 
       const studentKey = normalizeStudentKey(studentName, classCode);
-
-      // Chống spam: giới hạn tối đa 5 lượt nộp / 1 đề / 24 giờ cho mỗi học viên
       const sinceIso = new Date(Date.now() - 24 * 3600 * 1000).toISOString();
       const { count: recentCount } = await admin
         .from("mock_speaking_submissions")
@@ -1133,20 +1066,13 @@ Deno.serve(async (req: Request) => {
         return jsonResponse({ ok: false, error: `Lỗi tạo bản ghi nộp bài: ${insErr.message}` }, 500);
       }
 
-      return jsonResponse({
-        ok: true,
-        submission_id: submissionId,
-        uploads
-      });
+      return jsonResponse({ ok: true, submission_id: submissionId, uploads });
     }
 
     // ========================================================================
-    // ACTION 2: XÁC NHẬN ĐÃ UPLOAD XONG 3 PART -> HẸN 6 TIẾNG & CHẤM NGẦM
+    // ACTION 2: XÁC NHẬN NỘP BÀI (HẸN 6 TIẾNG, TRẢ VỀ NGAY — KHÔNG TỐN RAM)
     // ========================================================================
     if (action === "submit_and_grade") {
-      if (!geminiApiKey) {
-        return jsonResponse({ ok: false, error: "Chưa cấu hình GEMINI_API_KEY trong Edge Functions Secrets." }, 500);
-      }
       const submissionId = String(body?.submission_id || "").trim();
       const studentName = String(body?.student_name || "").trim();
       const classCode = String(body?.class_code || "").trim().toUpperCase();
@@ -1184,30 +1110,16 @@ Deno.serve(async (req: Request) => {
       const nowIso = new Date(nowMs).toISOString();
       const releaseAtIso = new Date(nowMs + RELEASE_DELAY_HOURS * 3600 * 1000).toISOString();
 
-      const updatedSub: SubmissionRow = {
-        ...sub,
-        target_level: targetLevel,
-        audio_path_p1: p1Path,
-        audio_path_p2: p2Path,
-        audio_path_p3: p3Path,
-        duration_p1: Math.max(0, Math.round(Number(durations["1"] || durations[1] || 0))),
-        duration_p2: Math.max(0, Math.round(Number(durations["2"] || durations[2] || 0))),
-        duration_p3: Math.max(0, Math.round(Number(durations["3"] || durations[3] || 0))),
-        status: "submitted",
-        submitted_at: nowIso,
-        release_at: releaseAtIso
-      };
-
       const { error: updErr } = await admin
         .from("mock_speaking_submissions")
         .update({
-          target_level: updatedSub.target_level,
-          audio_path_p1: updatedSub.audio_path_p1,
-          audio_path_p2: updatedSub.audio_path_p2,
-          audio_path_p3: updatedSub.audio_path_p3,
-          duration_p1: updatedSub.duration_p1,
-          duration_p2: updatedSub.duration_p2,
-          duration_p3: updatedSub.duration_p3,
+          target_level: targetLevel,
+          audio_path_p1: p1Path,
+          audio_path_p2: p2Path,
+          audio_path_p3: p3Path,
+          duration_p1: Math.max(0, Math.round(Number(durations["1"] || durations[1] || 0))),
+          duration_p2: Math.max(0, Math.round(Number(durations["2"] || durations[2] || 0))),
+          duration_p3: Math.max(0, Math.round(Number(durations["3"] || durations[3] || 0))),
           status: "submitted",
           submitted_at: nowIso,
           release_at: releaseAtIso,
@@ -1237,27 +1149,62 @@ Deno.serve(async (req: Request) => {
         { onConflict: "id" }
       );
 
-      // Chấm ngầm ngay bằng EdgeRuntime.waitUntil để học viên nhận phản hồi tức thì,
-      // không lo timeout trình duyệt; nếu lỗi/quá tải thì pg_cron sẽ tự chấm lại sau 5 phút.
-      const bgTask = gradeFullSubmission(admin, geminiApiKey, geminiModel, updatedSub, null, {
-        releaseNow: false
-      }).catch(() => {});
-
-      const edgeRt = (globalThis as Record<string, unknown>).EdgeRuntime as
-        | { waitUntil?: (p: Promise<unknown>) => void }
-        | undefined;
-      if (edgeRt && typeof edgeRt.waitUntil === "function") {
-        edgeRt.waitUntil(bgTask);
-      } else {
-        await bgTask;
-      }
-
       return jsonResponse({
         ok: true,
         submission_id: submissionId,
         status: "scheduled",
         submitted_at: nowIso,
         release_at: releaseAtIso
+      });
+    }
+
+    // ========================================================================
+    // ACTION 2B: CHẤM NGẦM TỪNG PART SAU KHI HỌC VIÊN NỘP (KHÔNG TRẢ REVIEW_JSON)
+    // ========================================================================
+    if (action === "grade_student_part") {
+      if (!geminiApiKey) {
+        return jsonResponse({ ok: false, error: "Chưa cấu hình GEMINI_API_KEY." }, 500);
+      }
+      const submissionId = String(body?.submission_id || "").trim();
+      const studentName = String(body?.student_name || "").trim();
+      const classCode = String(body?.class_code || "").trim().toUpperCase();
+      const partNum = parseInt(String(body?.part_num || "0"), 10) as 1 | 2 | 3;
+
+      if (!submissionId || !studentName || ![1, 2, 3].includes(partNum)) {
+        return jsonResponse({ ok: false, error: "Thiếu submission_id, tên học viên hoặc part_num (1-3)." }, 400);
+      }
+
+      const expectedKey = normalizeStudentKey(studentName, classCode);
+      const { data: sub } = await admin.from("mock_speaking_submissions").select("*").eq("id", submissionId).maybeSingle();
+      if (!sub || sub.student_key !== expectedKey) {
+        return jsonResponse({ ok: false, error: "Không có quyền chấm bài nộp này." }, 403);
+      }
+
+      const { data: existingRev } = await admin
+        .from("mock_speaking_ai_reviews")
+        .select("*")
+        .eq("submission_id", submissionId)
+        .maybeSingle();
+
+      if (existingRev && existingRev.status === "ready") {
+        return jsonResponse({ ok: true, part_done: partNum, all_done: true, status: "scheduled" });
+      }
+
+      const res = await gradeOnePartOfSubmission(admin, geminiApiKey, geminiModel, sub, existingRev || null, partNum, {
+        releaseNow: false,
+        resetExisting: false
+      });
+
+      if (!res.ok) {
+        return jsonResponse({ ok: false, error: res.error }, res.status || 500);
+      }
+      // Tuyệt đối KHÔNG trả review_json về trình duyệt học viên
+      return jsonResponse({
+        ok: true,
+        part_done: partNum,
+        all_done: res.all_done,
+        status: res.ai_status,
+        release_at: res.release_at
       });
     }
 
@@ -1282,9 +1229,7 @@ Deno.serve(async (req: Request) => {
         .order("submitted_at", { ascending: false })
         .limit(40);
 
-      if (filterTestId > 0) {
-        subQuery = subQuery.eq("test_id", filterTestId);
-      }
+      if (filterTestId > 0) subQuery = subQuery.eq("test_id", filterTestId);
 
       const [{ data: subs, error: subErr }, { data: revs }] = await Promise.all([
         subQuery,
@@ -1357,7 +1302,7 @@ Deno.serve(async (req: Request) => {
     }
 
     // ========================================================================
-    // ACTION 5: HÀNG ĐỢI TỰ ĐỘNG CHẤM LẠI (pg_cron MỖI 5 PHÚT HOẶC GIÁO VIÊN)
+    // ACTION 5: HÀNG ĐỢI TỰ ĐỘNG CHẤM LẠI (MỖI LẦN CHẤM 1 PART ĐỂ AN TOÀN RAM)
     // ========================================================================
     if (action === "process_queue") {
       if (!geminiApiKey) {
@@ -1372,15 +1317,14 @@ Deno.serve(async (req: Request) => {
         return jsonResponse({ ok: false, error: "Chỉ hệ thống hoặc Giáo viên được chạy hàng đợi chấm bài." }, 403);
       }
 
-      const batchSize = Math.max(1, Math.min(3, Number(body?.batch_size) || 2));
       const [{ data: subs, error: subErr }, { data: revs }] = await Promise.all([
         admin
           .from("mock_speaking_submissions")
           .select("*")
           .neq("status", "uploading")
           .order("submitted_at", { ascending: false })
-          .limit(100),
-        admin.from("mock_speaking_ai_reviews").select("id, submission_id, status, retry_count, release_at, updated_at")
+          .limit(80),
+        admin.from("mock_speaking_ai_reviews").select("*")
       ]);
 
       if (subErr) {
@@ -1406,22 +1350,26 @@ Deno.serve(async (req: Request) => {
             const lastMs = new Date(rev.updated_at).getTime();
             if (!isNaN(lastMs) && nowMs - lastMs < RETRY_COOLDOWN_MS) return false;
           }
-          // Nếu đang kẹt trạng thái grading quá 3 phút thì cho chấm lại
-          if (s.status === "grading" && !isTeacher) {
-            const updMs = new Date(s.updated_at || s.submitted_at || 0).getTime();
-            if (!isNaN(updMs) && nowMs - updMs < 3 * 60 * 1000) return false;
-          }
           return true;
         });
 
-      const slice = pendingList.slice(0, batchSize);
-      const results: Array<{ id: string; ok: boolean; error?: string }> = [];
-
-      for (const s of slice) {
-        const res = await gradeFullSubmission(admin, geminiApiKey, geminiModel, s, revById[s.id] || null, {
-          releaseNow: false
+      const results: Array<{ id: string; part: number; ok: boolean; all_done?: boolean; error?: string }> = [];
+      // Xử lý tối đa 1 Part / 1 lượt gọi để tuyệt đối không chạm trần RAM/CPU Free Tier
+      if (pendingList.length > 0) {
+        const s = pendingList[0];
+        const rev = revById[s.id] || null;
+        const nextPart = findNextPendingPart(s, rev) || 1;
+        const res = await gradeOnePartOfSubmission(admin, geminiApiKey, geminiModel, s, rev, nextPart, {
+          releaseNow: false,
+          resetExisting: false
         });
-        results.push({ id: s.id, ok: res.ok, error: res.ok ? undefined : res.error });
+        results.push({
+          id: s.id,
+          part: nextPart,
+          ok: res.ok,
+          all_done: res.ok ? res.all_done : false,
+          error: res.ok ? undefined : res.error
+        });
       }
 
       return jsonResponse({
@@ -1436,7 +1384,7 @@ Deno.serve(async (req: Request) => {
     }
 
     // ========================================================================
-    // ACTION 6: GIÁO VIÊN CHẤM / CHẤM LẠI TRỰC TIẾP 1 BÀI THI THỬ
+    // ACTION 6: GIÁO VIÊN CHẤM TỪNG PART TRỰC TIẾP (AN TOÀN RAM/CPU)
     // ========================================================================
     if (action === "grade_now") {
       if (!geminiApiKey) {
@@ -1449,6 +1397,9 @@ Deno.serve(async (req: Request) => {
 
       const submissionId = String(body?.submission_id || "").trim();
       const releaseNow = Boolean(body?.release_now);
+      const resetExisting = Boolean(body?.reset_existing);
+      const requestedPart = parseInt(String(body?.part_num || "0"), 10);
+
       if (!submissionId) {
         return jsonResponse({ ok: false, error: "Thiếu submission_id." }, 400);
       }
@@ -1469,8 +1420,13 @@ Deno.serve(async (req: Request) => {
         .eq("submission_id", submissionId)
         .maybeSingle();
 
-      const res = await gradeFullSubmission(admin, geminiApiKey, geminiModel, sub, existingRev || null, {
-        releaseNow
+      const partNum = ([1, 2, 3].includes(requestedPart)
+        ? requestedPart
+        : findNextPendingPart(sub, resetExisting ? null : existingRev || null) || 1) as 1 | 2 | 3;
+
+      const res = await gradeOnePartOfSubmission(admin, geminiApiKey, geminiModel, sub, existingRev || null, partNum, {
+        releaseNow,
+        resetExisting
       });
 
       if (!res.ok) {
@@ -1479,9 +1435,11 @@ Deno.serve(async (req: Request) => {
 
       return jsonResponse({
         ok: true,
+        part_done: partNum,
+        all_done: res.all_done,
         status: res.ai_status,
         release_at: res.release_at,
-        review_json: res.review_json
+        review_json: res.review_json || null
       });
     }
 

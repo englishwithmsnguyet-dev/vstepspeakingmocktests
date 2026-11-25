@@ -830,6 +830,19 @@
         review_json: null
       };
       renderPanel();
+
+      // Kích hoạt chấm ngầm lần lượt từng Part (mỗi lần 1 Part -> cực nhẹ RAM/CPU trên Supabase)
+      (async () => {
+        for (const pNum of [1, 2, 3]) {
+          await callEdgeFunction({
+            action: "grade_student_part",
+            submission_id: submissionId,
+            student_name: id.name,
+            class_code: id.classCode,
+            part_num: pNum
+          }).catch(() => {});
+        }
+      })();
     }
 
     async function syncPanelNow() {

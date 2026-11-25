@@ -12,7 +12,7 @@
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Lexend:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="./speaking-grader.css?v=20261126" />
+  <link rel="stylesheet" href="./speaking-grader.css?v=20261126c" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root {
@@ -117,8 +117,8 @@
 <body>
   <div id="teacher-root"></div>
 
-  <script src="./speaking-grader-config.js?v=20261126"></script>
-  <script src="./speaking-grader.js?v=20261126"></script>
+  <script src="./speaking-grader-config.js?v=20261126c"></script>
+  <script src="./speaking-grader.js?v=20261126c"></script>
   <script>
     (function () {
       const CFG = window.VSTEP_SPEAKING_GRADER_CONFIG || {};
@@ -150,6 +150,7 @@
         loading: false,
         flushingQueue: false,
         gradingId: "",
+        gradingStepText: "",
         releasingId: "",
         deletingId: "",
         savedToastId: "",
@@ -311,19 +312,37 @@
 
       async function triggerGradeNow(subId) {
         if (!subId || state.gradingId) return;
+        const item = state.submissions.find(x => x.id === subId);
         state.gradingId = subId;
-        render();
         const token = await getAccessToken();
-        const res = await GRADER.callEdgeFunction(
-          { action: "grade_now", submission_id: subId, release_now: false },
-          token
-        );
-        state.gradingId = "";
-        if (!res.ok) {
+        const partsToRun = [1, 2, 3];
+
+        for (let i = 0; i < partsToRun.length; i++) {
+          const pNum = partsToRun[i];
+          state.gradingStepText = `Đang chấm Part ${pNum}/3...`;
           render();
-          alert("Không chấm được bài: " + (res.error || "Lỗi máy chủ"));
-          return;
+          const res = await GRADER.callEdgeFunction(
+            {
+              action: "grade_now",
+              submission_id: subId,
+              part_num: pNum,
+              reset_existing: i === 0,
+              release_now: false
+            },
+            token
+          );
+          if (!res.ok) {
+            state.gradingId = "";
+            state.gradingStepText = "";
+            render();
+            alert(`Lỗi khi chấm Part ${pNum}: ` + (res.error || "Lỗi máy chủ"));
+            return;
+          }
+          if (res.all_done) break;
         }
+
+        state.gradingId = "";
+        state.gradingStepText = "";
         await loadDashboardData();
       }
 
@@ -465,15 +484,11 @@
               ${notConfigured ? `<div class="sg-alert error" style="margin-bottom:12px;">⚠️ Chưa cấu hình Supabase URL &amp; Anon Key trong <code>speaking-grader-config.js</code>.</div>` : ""}
               ${state.authError ? `<div class="sg-alert error" style="margin-bottom:12px;">⚠️ ${escapeHtml(state.authError)}</div>` : ""}
 
-              <button type="button" class="tg-btn yellow" id="tg-btn-google" style="width:100%;justify-content:center;height:42px;margin-bottom:14px;" ${notConfigured ? "disabled" : ""}>
-                🔐 Đăng nhập nhanh với Google
-              </button>
-
               <form id="tg-login-form" onsubmit="return false;" style="display:flex;flex-direction:column;gap:10px;">
-                <input type="email" id="tg-inp-email" class="tg-input" placeholder="Email giáo viên..." required />
+                <input type="email" id="tg-inp-email" class="tg-input" placeholder="Email giáo viên (VD: nguyetphamforwork@gmail.com)" value="${escapeHtml(CFG.teacherEmail || "")}" required />
                 <input type="password" id="tg-inp-pass" class="tg-input" placeholder="Mật khẩu Supabase..." required />
-                <button type="submit" class="tg-btn" style="width:100%;justify-content:center;height:40px;background:#18181b;color:#fff;" ${notConfigured ? "disabled" : ""}>
-                  Đăng nhập bằng Email →
+                <button type="submit" class="tg-btn yellow" style="width:100%;justify-content:center;height:42px;" ${notConfigured ? "disabled" : ""}>
+                  🔐 Đăng nhập Trang Giáo viên →
                 </button>
               </form>
               <div style="margin-top:14px;text-align:center;">
@@ -645,7 +660,7 @@
                     : ""
                 }
                 <button type="button" class="tg-btn" data-grade="${escapeHtml(s.id)}" ${isGrading ? "disabled" : ""}>
-                  ${isGrading ? "⏳ Đang chấm 3 Part..." : s.hasReady ? "↻ Chấm lại" : "✨ Tạo bài sửa"}
+                  ${isGrading ? `⏳ ${escapeHtml(state.gradingStepText || "Đang chấm...")}` : s.hasReady ? "↻ Chấm lại" : "✨ Tạo bài sửa"}
                 </button>
                 <button type="button" class="tg-btn danger" data-delete="${escapeHtml(s.id)}" ${isDeleting ? "disabled" : ""}>
                   ${isDeleting ? "Đang xoá..." : "🗑️ Xoá bài"}

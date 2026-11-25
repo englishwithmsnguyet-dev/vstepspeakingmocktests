@@ -16,7 +16,7 @@ import argparse
 import re
 from pathlib import Path
 
-CACHE_VER = "20261126b"
+CACHE_VER = "20261126c"
 
 CSS_START = "<!-- VSTEP-SPEAKING-GRADER:CSS:START -->"
 CSS_END = "<!-- VSTEP-SPEAKING-GRADER:CSS:END -->"

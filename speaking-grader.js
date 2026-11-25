@@ -856,10 +856,10 @@
         <div class="sg-box">
           <div class="sg-box-head">
             <div>
-              <span class="sg-eyebrow">VSTEP AI SPEAKING GRADING · PART 1–3</span>
-              <h3 class="sg-title">Nộp bài ghi âm để chấm điểm &amp; sửa chi tiết</h3>
+              <span class="sg-eyebrow">TRỢ LÝ MISS NGUYỆT · CHẤM SPEAKING PART 1–3</span>
+              <h3 class="sg-title">Gửi bài ghi âm cho Trợ lý Miss Nguyệt sửa chi tiết</h3>
               <p class="sg-sub">
-                Hệ thống sẽ nghe trực tiếp 3 file ghi âm của bạn (Phát âm, Ngữ điệu, Ngữ pháp, Lỗi Vietlish &amp; Mở rộng ý) và trả bài sửa chi tiết sau <strong>${RELEASE_HOURS} tiếng</strong>.
+                Trợ lý Miss Nguyệt sẽ nghe trực tiếp 3 file ghi âm của bạn (Phát âm, Ngữ điệu, Ngữ pháp, Lỗi Vietlish &amp; Mở rộng ý) và gửi bài sửa chi tiết sau <strong>${RELEASE_HOURS} tiếng</strong>.
               </p>
             </div>
           </div>
@@ -1028,7 +1028,7 @@
         }
       }
 
-      uiState.progressText = "Đang xác nhận nộp bài & xếp lịch chấm AI...";
+      uiState.progressText = "Đang gửi bài cho Trợ lý Miss Nguyệt...";
       renderPanel();
 
       const submitRes = await callEdgeFunction({
@@ -1163,8 +1163,8 @@
         }
         ${
           id.name
-            ? `<button type="button" class="sg-pill-btn" id="sg-btn-notif-bell" title="Thông báo bài sửa Speaking">
-                <span>🔔 Bài sửa AI</span>
+            ? `<button type="button" class="sg-pill-btn" id="sg-btn-notif-bell" title="Thông báo bài sửa từ Trợ lý Miss Nguyệt">
+                <span>🔔 Trợ lý Miss Nguyệt</span>
                 ${unreadCount > 0 ? `<span class="sg-bell-badge">${unreadCount > 9 ? "9+" : unreadCount}</span>` : ""}
               </button>`
             : ""
@@ -1182,7 +1182,7 @@
           sidebarUserCard.insertAdjacentElement("afterend", sbTeacherBtn);
         }
         sbTeacherBtn.href = teacherUrl;
-        sbTeacherBtn.textContent = "👨‍🏫 Trang Giáo viên (Chấm AI)";
+        sbTeacherBtn.textContent = "👨‍🏫 Trang Giáo viên (Trợ lý Miss Nguyệt)";
       } else if (sbTeacherBtn) {
         sbTeacherBtn.remove();
       }
@@ -1231,7 +1231,7 @@
         dropdownWrap.innerHTML = `
           <div class="sg-notif-dropdown" id="sg-notif-dropdown">
             <div class="sg-notif-head">
-              <span>🔔 Thông báo bài sửa Speaking</span>
+              <span>🔔 Bài sửa từ Trợ lý Miss Nguyệt</span>
               <span style="font-size:11.5px;color:#71717a;">Trả sau ${RELEASE_HOURS} tiếng</span>
             </div>
             <div class="sg-notif-list">${listHtml}</div>
@@ -1246,7 +1246,7 @@
         cloudWrap.innerHTML = `
           <div class="sg-cloud-list">
             <div style="font-size:13px;font-weight:800;color:#18181b;display:flex;justify-content:space-between;align-items:center;">
-              <span>📬 Bài thi Speaking đã nộp chấm AI (${homeState.items.length})</span>
+              <span>📬 Bài thi đã gửi Trợ lý Miss Nguyệt (${homeState.items.length})</span>
               <span style="font-size:12px;color:#71717a;font-weight:600;">${readyItems.length} đã trả · ${waitingItems.length} đang chờ</span>
             </div>
             ${homeState.items
@@ -1305,7 +1305,7 @@
             <div class="sg-modal-panel">
               <div class="sg-modal-header">
                 <div>
-                  <div style="font-size:16px;font-weight:900;color:#18181b;">📝 Bài sửa chi tiết · ${escapeHtml(it.test_title)}</div>
+                  <div style="font-size:16px;font-weight:900;color:#18181b;">📝 Trợ lý Miss Nguyệt sửa bài · ${escapeHtml(it.test_title)}</div>
                   <div style="font-size:12.5px;color:#52525b;">Nộp lúc ${escapeHtml(formatDateTime(it.submitted_at))} · Trả lúc ${escapeHtml(formatDateTime(it.release_at))}</div>
                 </div>
                 <button type="button" class="sg-modal-close" id="sg-btn-close-modal">✕</button>

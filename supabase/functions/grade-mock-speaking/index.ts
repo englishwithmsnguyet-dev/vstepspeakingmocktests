@@ -221,6 +221,7 @@ function buildPartGradingPrompt(params: {
   partNum: 1 | 2 | 3;
   testTitle: string;
   promptText: string;
+  verifiedTranscript: string;
   durationSec: number;
   targetLevel: string;
 }) {
@@ -269,10 +270,16 @@ ${params.promptText || "(Không có văn bản đề bài — hãy nghe trực t
 - Trình độ mục tiêu học viên chọn: Level ${level}
 - Thời lượng file ghi âm: ~${params.durationSec || 0} giây
 
+BẢN CHÉP NGUYÊN VĂN LỜI NÓI THỰC TẾ ĐÃ NGHE TỪ FILE GHI ÂM (BẮT BUỘC BÁM SÁT 100%):
+"""
+${params.verifiedTranscript || "(Không nghe thấy lời nói tiếng Anh rõ ràng)"}
+"""
+
 ĐÃ ĐÍNH KÈM FILE GHI ÂM THẬT CỦA THÍ SINH:
-- Hãy NGHE KỸ toàn bộ file ghi âm làm nguồn chính để:
-  1) Phiên âm ĐẦY ĐỦ, trung thực lời nói tiếng Anh của thí sinh vào trường "recognized_transcript".
-  2) Chấm trực tiếp PHÁT ÂM (độ rõ chữ, trọng âm từ, đặc biệt bắt lỗi mất final sound gốc /s/, /z/ như nice, house, place, office, because, always, relax, stress, bus, class, famous...) và NGỮ ĐIỆU (lên xuống giọng tự nhiên, nhấn content words, ngắt nghỉ hợp lý hay nói đều đều/ngập ngừng).
+- TUYỆT ĐỐI KHÔNG tự bịa thêm câu nói hay ý tưởng mà thí sinh không nói! Mọi nhận xét, cụm trích dẫn "original" trong "language_corrections", và từ cần chỉnh trong "pronunciation_fixes" PHẢI xuất phát 100% từ bài nói thực tế của thí sinh trong file ghi âm và bản chép nguyên văn ở trên.
+- Nếu thí sinh nói lạc đề, nói tiếng Việt, nói quá ngắn hoặc chỉ nói vài câu rời rạc, hãy chấm THẲNG THẮN đúng thực tế.
+- Giữ nguyên bản chép thực tế vào "recognized_transcript" (chỉ thêm dấu chấm/phẩy tối thiểu cho dễ đọc, KHÔNG thay từ hay sửa lỗi trong "recognized_transcript").
+- Nghe kỹ file ghi âm để chấm trực tiếp PHÁT ÂM (độ rõ chữ, trọng âm từ, đặc biệt bắt lỗi mất final sound gốc /s/, /z/ như nice, house, place, office, because, always, relax, stress, bus, class, famous...) và NGỮ ĐIỆU (lên xuống giọng tự nhiên, nhấn content words, ngắt nghỉ hợp lý hay nói đều đều/ngập ngừng).
 
 QUY TẮC ĐẶC BIỆT BẮT BUỘC PHẢI TUÂN THỦ:
 - QUY TẮC 1 (BỎ QUA ĐUÔI CHIA ĐỘNG TỪ "-s", "-es", "-ed" — CHỈ BẮT FINAL SOUND CỐ HỮU CỦA TỪ):
@@ -561,7 +568,7 @@ async function callGeminiAudioGradeStreaming(params: {
   geminiModel: string;
   audioBlob: Blob;
   audioMimeType: string;
-  promptText: string;
+  buildGradingPrompt: (verifiedTranscript: string) => string;
 }) {
   const uploaded = await uploadBlobToGeminiFilesApi(params.geminiApiKey, params.audioBlob, params.audioMimeType);
   if (!uploaded.ok) {
@@ -569,58 +576,50 @@ async function callGeminiAudioGradeStreaming(params: {
   }
 
   const RETIRED_MODELS = new Set(["gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-exp"]);
+  // Ưu tiên gemini-2.5-flash trước vì khả năng nghe & chép nguyên văn audio chính xác nhất
   const fallbackModels = Array.from(
     new Set([
+      "gemini-2.5-flash",
       params.geminiModel,
       "gemini-flash-latest",
-      "gemini-3.5-flash-lite",
-      "gemini-flash-lite-latest",
-      "gemini-2.5-flash"
+      "gemini-flash-lite-latest"
     ])
   ).filter(m => Boolean(m) && !RETIRED_MODELS.has(m));
 
-  const parts: Array<Record<string, unknown>> = [
-    {
-      fileData: {
-        mimeType: params.audioMimeType,
-        fileUri: uploaded.fileUri
-      }
-    },
-    { text: params.promptText }
-  ];
-
-  const errors: Array<{ model: string; status: number; detail: string }> = [];
-
-  try {
+  const callJsonModel = async (
+    parts: Array<Record<string, unknown>>,
+    temperature: number,
+    expectJson: boolean
+  ) => {
+    const errors: Array<{ model: string; status: number; detail: string }> = [];
     for (const modelName of fallbackModels) {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelName)}:generateContent?key=${encodeURIComponent(params.geminiApiKey)}`;
       let modelStatus = 500;
       let modelErrText = "";
 
       for (let attempt = 0; attempt < 2; attempt++) {
+        const genCfg: Record<string, unknown> = { temperature };
+        if (expectJson) genCfg.responseMimeType = "application/json";
+
         const res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             contents: [{ role: "user", parts }],
-            generationConfig: {
-              temperature: 0.25,
-              responseMimeType: "application/json"
-            }
+            generationConfig: genCfg
           })
         });
 
         if (res.ok) {
           const geminiJson = await res.json();
-          const rawCandidate = geminiJson?.candidates?.[0]?.content?.parts?.[0]?.text || "";
-          const parsed = parseModelJson(rawCandidate);
-          return { ok: true as const, parsed };
+          const rawCandidate = String(geminiJson?.candidates?.[0]?.content?.parts?.[0]?.text || "").trim();
+          return { ok: true as const, rawText: rawCandidate };
         }
 
         modelStatus = res.status;
         modelErrText = await res.text().catch(() => "");
         if ((res.status === 503 || res.status === 429 || res.status === 500) && attempt === 0) {
-          await new Promise(r => setTimeout(r, 1000));
+          await new Promise(r => setTimeout(r, 900));
           continue;
         }
         break;
@@ -629,17 +628,65 @@ async function callGeminiAudioGradeStreaming(params: {
       errors.push({ model: modelName, status: modelStatus, detail: modelErrText.slice(0, 160) });
       if (modelStatus === 400 || modelStatus === 401 || modelStatus === 403) break;
     }
+
+    const primary = errors.find(e => e.status !== 404) || errors[0] || { model: params.geminiModel, status: 500, detail: "" };
+    const summary = errors.map(e => `${e.model}:${e.status}`).join(", ");
+    return {
+      ok: false as const,
+      status: primary.status,
+      error: `Gemini API lỗi (${primary.status}): ${primary.detail || summary}`
+    };
+  };
+
+  try {
+    // BƯỚC 1: CHÉP NGUYÊN VĂN ĐỘC LẬP (KHÔNG GỬI ĐỀ BÀI -> CHỐNG AI BỊA TRANSCRIPT 100%)
+    const blindTranscribePrompt =
+      "Listen carefully to the attached audio recording and transcribe EVERY spoken word verbatim. " +
+      "Rules:\n" +
+      "1. Transcribe ONLY what is actually spoken in the audio. Do NOT invent, rewrite, complete, or fix grammar errors.\n" +
+      "2. Keep mistakes, hesitations, and exact phrasing as spoken (if Vietnamese words are spoken, transcribe them too).\n" +
+      "3. Output ONLY the plain verbatim transcript text (no labels, no markdown, no commentary).\n" +
+      "4. If the audio is silent, noise-only, or contains no intelligible speech, output exactly: [SILENT]";
+
+    const step1 = await callJsonModel(
+      [
+        { fileData: { mimeType: params.audioMimeType, fileUri: uploaded.fileUri } },
+        { text: blindTranscribePrompt }
+      ],
+      0.0,
+      false
+    );
+
+    if (!step1.ok) return step1;
+
+    const rawVerbatim = step1.rawText.replace(/^["'“]+|["'”]+$/g, "").trim();
+    const isSilent = !rawVerbatim || /^\[?SILENT\]?$/i.test(rawVerbatim);
+    const verifiedTranscript = isSilent ? "" : rawVerbatim;
+
+    // BƯỚC 2: CHẤM MULTIMODAL (GỬI CÙNG FILE AUDIO + BẢN CHÉP NGUYÊN VĂN BƯỚC 1 + ĐỀ BÀI)
+    const gradingPrompt = params.buildGradingPrompt(verifiedTranscript);
+    const step2 = await callJsonModel(
+      [
+        { fileData: { mimeType: params.audioMimeType, fileUri: uploaded.fileUri } },
+        { text: gradingPrompt }
+      ],
+      0.2,
+      true
+    );
+
+    if (!step2.ok) return step2;
+
+    const parsed = parseModelJson(step2.rawText);
+    // Khoá chặt recognized_transcript bằng đúng bản chép nguyên văn độc lập từ Bước 1
+    if (verifiedTranscript) {
+      parsed.recognized_transcript = verifiedTranscript;
+    } else {
+      parsed.recognized_transcript = "";
+    }
+    return { ok: true as const, parsed };
   } finally {
     await deleteGeminiFileBestEffort(params.geminiApiKey, uploaded.fileName);
   }
-
-  const primary = errors.find(e => e.status !== 404) || errors[0] || { model: params.geminiModel, status: 500, detail: "" };
-  const summary = errors.map(e => `${e.model}:${e.status}`).join(", ");
-  return {
-    ok: false as const,
-    status: primary.status,
-    error: `Gemini API lỗi (${primary.status}): ${primary.detail || summary}`
-  };
 }
 
 // ============================================================================
@@ -728,20 +775,20 @@ async function gradeOnePartOfSubmission(
       partsObj[partKey] = buildSkippedPartReview(partNum);
     } else {
       const trueMime = await detectTrueAudioMime(audioBlob, targetAudioPath);
-      const promptText = buildPartGradingPrompt({
-        partNum,
-        testTitle,
-        promptText: promptsMap[partNum],
-        durationSec: durationsMap[partNum],
-        targetLevel
-      });
-
       const gemRes = await callGeminiAudioGradeStreaming({
         geminiApiKey,
         geminiModel,
         audioBlob,
         audioMimeType: trueMime,
-        promptText
+        buildGradingPrompt: (verifiedTranscript: string) =>
+          buildPartGradingPrompt({
+            partNum,
+            testTitle,
+            promptText: promptsMap[partNum],
+            verifiedTranscript,
+            durationSec: durationsMap[partNum],
+            targetLevel
+          })
       });
 
       if (!gemRes.ok) {

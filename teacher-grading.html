@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <title>Trang Giáo Viên — Chấm VSTEP Speaking Mock Tests</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Lexend:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./speaking-grader.css?v=20261126" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --ink: #18181b;
+      --yellow: #ffe566;
+      --border: #e4e4e7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+    button, input, select { font-family: inherit; }
+    .tg-topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: #fff; border-bottom: 2px solid var(--ink);
+      padding: 10px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    .tg-brand { display: flex; align-items: center; gap: 10px; }
+    .tg-brand-badge {
+      width: 36px; height: 36px; border-radius: 9px; background: var(--yellow);
+      border: 2px solid var(--ink); display: grid; place-items: center; font-weight: 900;
+    }
+    .tg-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .tg-btn {
+      height: 36px; padding: 0 13px; border-radius: 8px;
+      border: 1.5px solid var(--ink); background: #fff; color: var(--ink);
+      font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .tg-btn:hover:not(:disabled) { background: #f4f4f5; }
+    .tg-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+    .tg-btn.yellow { background: var(--yellow); }
+    .tg-btn.yellow:hover:not(:disabled) { background: #facc15; }
+    .tg-btn.danger { background: #fef2f2; border-color: #fca5a5; color: #b91c1c; }
+    .tg-container { max-width: 1180px; margin: 0 auto; padding: 20px 18px 48px; }
+    .tg-auth-wrap {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px;
+    }
+    .tg-auth-card {
+      width: min(440px, 100%); background: #fff; border: 2px solid var(--ink);
+      border-radius: 14px; box-shadow: 5px 5px 0 var(--ink); padding: 26px 24px;
+    }
+    .tg-input {
+      width: 100%; height: 40px; padding: 0 12px; border-radius: 8px;
+      border: 1.5px solid #d4d4d8; background: #fff; font-size: 13.5px; color: var(--ink);
+    }
+    .tg-input:focus { outline: none; border-color: var(--ink); }
+    .tg-stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px; margin-bottom: 18px;
+    }
+    .tg-stat-card {
+      background: #fff; border: 2px solid var(--ink); border-radius: 12px;
+      box-shadow: 3px 3px 0 var(--ink); padding: 14px 16px;
+    }
+    .tg-stat-label { font-size: 12.5px; color: #52525b; font-weight: 700; margin-bottom: 4px; }
+    .tg-stat-val { font-size: 26px; font-weight: 900; font-family: 'JetBrains Mono', monospace; }
+    .tg-filter-bar {
+      background: #fff; border: 1.5px solid #d4d4d8; border-radius: 12px;
+      padding: 14px; margin-bottom: 18px;
+    }
+    .tg-filter-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 10px;
+    }
+    .tg-sub-card {
+      background: #fff; border: 2px solid var(--ink); border-radius: 14px;
+      box-shadow: 4px 4px 0 var(--ink); padding: 18px; margin-bottom: 16px;
+    }
+    .tg-sub-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 10px; flex-wrap: wrap; margin-bottom: 12px;
+    }
+    .tg-audio-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 10px; margin: 12px 0;
+    }
+    .tg-audio-box {
+      padding: 10px 12px; border-radius: 10px; border: 1.5px solid #e4e4e7; background: #fafafa;
+    }
+    .tg-audio-box audio { width: 100%; height: 36px; margin-top: 6px; }
+    .tg-ai-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 10px; flex-wrap: wrap; padding: 10px 12px;
+      background: #faf9f6; border: 1.5px solid #e4e4e7; border-radius: 10px; margin-top: 10px;
+    }
+    .tg-details {
+      margin-top: 12px; border: 1.5px solid #d4d4d8; border-radius: 10px; overflow: hidden;
+    }
+    .tg-details summary {
+      padding: 10px 14px; background: #fffbeb; font-weight: 800; font-size: 13.5px; cursor: pointer;
+    }
+    .tg-grade-row {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div id="teacher-root"></div>
+
+  <script src="./speaking-grader-config.js?v=20261126"></script>
+  <script src="./speaking-grader.js?v=20261126"></script>
+  <script>
+    (function () {
+      const CFG = window.VSTEP_SPEAKING_GRADER_CONFIG || {};
+      const GRADER = window.VstepSpeakingGrader;
+      const escapeHtml = GRADER.escapeHtml;
+      const formatDateTime = GRADER.formatDateTime;
+      const formatRemainingTime = GRADER.formatRemainingTime;
+      const AUDIO_BUCKET = "mock-speaking-recordings";
+      const RELEASE_HOURS = Number(CFG.releaseDelayHours) || 6;
+
+      let supabaseClient = null;
+      function getClient() {
+        if (supabaseClient) return supabaseClient;
+        const url = GRADER.getBaseUrl();
+        const key = GRADER.getAnonKey();
+        if (!url || !key || !GRADER.isConfigured() || !window.supabase) return null;
+        supabaseClient = window.supabase.createClient(url, key, {
+          auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+        });
+        return supabaseClient;
+      }
+
+      const state = {
+        checkingAuth: true,
+        authenticated: false,
+        teacherEmail: "",
+        authError: "",
+        dbError: "",
+        loading: false,
+        flushingQueue: false,
+        gradingId: "",
+        releasingId: "",
+        deletingId: "",
+        savedToastId: "",
+        submissions: [],
+        searchQuery: "",
+        filterClass: "all",
+        filterTest: "all",
+        filterLevel: "all",
+        filterStatus: "all"
+      };
+
+      async function getSignedAudioUrls(paths) {
+        const client = getClient();
+        const map = {};
+        if (!client || !Array.isArray(paths)) return map;
+        const unique = Array.from(new Set(paths.filter(Boolean)));
+        for (let i = 0; i < unique.length; i += 50) {
+          try {
+            const { data, error } = await client.storage
+              .from(AUDIO_BUCKET)
+              .createSignedUrls(unique.slice(i, i + 50), 7200);
+            if (!error && Array.isArray(data)) {
+              data.forEach(it => {
+                if (it && it.path && it.signedUrl) map[it.path] = it.signedUrl;
+              });
+            }
+          } catch (e) {}
+        }
+        return map;
+      }
+
+      async function getAccessToken() {
+        const client = getClient();
+        if (!client) return "";
+        const { data } = await client.auth.getSession();
+        return data && data.session ? data.session.access_token : "";
+      }
+
+      async function loadDashboardData() {
+        const client = getClient();
+        if (!client) return;
+        state.loading = true;
+        state.dbError = "";
+        render();
+
+        const [subsRes, revsRes] = await Promise.all([
+          client
+            .from("mock_speaking_submissions")
+            .select("*")
+            .neq("status", "uploading")
+            .order("submitted_at", { ascending: false })
+            .limit(300),
+          client.from("mock_speaking_ai_reviews").select("*")
+        ]);
+
+        if (subsRes.error || revsRes.error) {
+          const err = subsRes.error || revsRes.error;
+          state.dbError = `Lỗi đọc dữ liệu (${err.code || "DB"}): ${err.message}`;
+          state.loading = false;
+          render();
+          return;
+        }
+
+        const subRows = Array.isArray(subsRes.data) ? subsRes.data : [];
+        const revRows = Array.isArray(revsRes.data) ? revsRes.data : [];
+        const revBySubId = {};
+        revRows.forEach(r => {
+          if (r && r.submission_id) revBySubId[r.submission_id] = r;
+        });
+
+        const allPaths = [];
+        subRows.forEach(s => {
+          if (s.audio_path_p1) allPaths.push(s.audio_path_p1);
+          if (s.audio_path_p2) allPaths.push(s.audio_path_p2);
+          if (s.audio_path_p3) allPaths.push(s.audio_path_p3);
+        });
+        const signedUrls = await getSignedAudioUrls(allPaths);
+        const nowMs = Date.now();
+
+        state.submissions = subRows.map(s => {
+          const rev = revBySubId[s.id] || null;
+          const rj = rev && rev.status === "ready" && rev.review_json ? rev.review_json : null;
+          const relIso = (rev && rev.release_at) || s.release_at || "";
+          const relMs = relIso ? new Date(relIso).getTime() : 0;
+          const hasReady = Boolean(rj);
+          const isReleased = hasReady && relMs > 0 && relMs <= nowMs;
+          const isWaitingRelease = hasReady && relMs > nowMs;
+          const isSeen = isReleased && Boolean(rev && rev.student_seen_at);
+
+          return {
+            id: s.id,
+            studentName: s.student_name || "Học viên",
+            classCode: s.class_code || "",
+            testId: Number(s.test_id) || 1,
+            testTitle: s.test_title || `Speaking Mock Test ${String(s.test_id || 1).padStart(2, "0")}`,
+            targetLevel: String(s.target_level || "B1").toUpperCase(),
+            status: s.status || "",
+            submittedAt: s.submitted_at || s.created_at || "",
+            releaseAt: relIso,
+            audioPaths: { 1: s.audio_path_p1 || "", 2: s.audio_path_p2 || "", 3: s.audio_path_p3 || "" },
+            audioUrls: {
+              1: s.audio_path_p1 ? signedUrls[s.audio_path_p1] || "" : "",
+              2: s.audio_path_p2 ? signedUrls[s.audio_path_p2] || "" : "",
+              3: s.audio_path_p3 ? signedUrls[s.audio_path_p3] || "" : ""
+            },
+            teacherScore: s.teacher_score || "",
+            teacherFeedback: s.teacher_feedback || "",
+            review: rev,
+            reviewJson: rj,
+            hasReady,
+            isReleased,
+            isWaitingRelease,
+            isSeen
+          };
+        });
+
+        state.loading = false;
+        render();
+      }
+
+      async function verifyTeacherSession(user) {
+        const client = getClient();
+        if (!client || !user) {
+          state.checkingAuth = false;
+          state.authenticated = false;
+          render();
+          return;
+        }
+        const { data: isTeacherFlag, error } = await client.rpc("is_teacher");
+        if (error || !isTeacherFlag) {
+          state.checkingAuth = false;
+          state.authenticated = false;
+          state.authError = `Tài khoản ${user.email} chưa được cấp quyền Giáo viên trong bảng public.teachers.`;
+          await client.auth.signOut().catch(() => {});
+          render();
+          return;
+        }
+        state.checkingAuth = false;
+        state.authenticated = true;
+        state.teacherEmail = user.email || "";
+        state.authError = "";
+        await loadDashboardData();
+      }
+
+      function getFilteredSubmissions() {
+        const q = state.searchQuery.trim().toLowerCase();
+        return state.submissions.filter(s => {
+          if (q && !s.studentName.toLowerCase().includes(q) && !s.classCode.toLowerCase().includes(q)) return false;
+          if (state.filterClass !== "all" && s.classCode !== state.filterClass) return false;
+          if (state.filterTest !== "all" && String(s.testId) !== state.filterTest) return false;
+          if (state.filterLevel !== "all" && s.targetLevel !== state.filterLevel) return false;
+          if (state.filterStatus === "waiting_release" && !s.isWaitingRelease) return false;
+          if (state.filterStatus === "unread" && (!s.isReleased || s.isSeen)) return false;
+          if (state.filterStatus === "ungraded" && s.hasReady) return false;
+          if (state.filterStatus === "ready" && !s.hasReady) return false;
+          return true;
+        });
+      }
+
+      async function triggerGradeNow(subId) {
+        if (!subId || state.gradingId) return;
+        state.gradingId = subId;
+        render();
+        const token = await getAccessToken();
+        const res = await GRADER.callEdgeFunction(
+          { action: "grade_now", submission_id: subId, release_now: false },
+          token
+        );
+        state.gradingId = "";
+        if (!res.ok) {
+          render();
+          alert("Không chấm được bài: " + (res.error || "Lỗi máy chủ"));
+          return;
+        }
+        await loadDashboardData();
+      }
+
+      async function triggerReleaseNow(subId) {
+        const client = getClient();
+        if (!client || !subId || state.releasingId) return;
+        state.releasingId = subId;
+        render();
+        const { error } = await client.rpc("teacher_release_mock_review_now", { p_submission_id: subId });
+        state.releasingId = "";
+        if (error) {
+          render();
+          alert("Không trả bài sớm được: " + error.message);
+          return;
+        }
+        await loadDashboardData();
+      }
+
+      async function triggerFlushQueue() {
+        if (state.flushingQueue) return;
+        state.flushingQueue = true;
+        render();
+        const token = await getAccessToken();
+        const res = await GRADER.callEdgeFunction({ action: "process_queue", batch_size: 2 }, token);
+        state.flushingQueue = false;
+        if (!res.ok) {
+          render();
+          alert("Lỗi chạy hàng đợi: " + (res.error || "Không rõ"));
+          return;
+        }
+        await loadDashboardData();
+        alert(`Đã xử lý ${res.processed || 0} bài chờ: thành công ${res.succeeded || 0}, lỗi ${res.failed || 0}.`);
+      }
+
+      async function saveTeacherNote(subId) {
+        const client = getClient();
+        if (!client) return;
+        const scoreVal = (document.getElementById("inp-score-" + subId)?.value || "").trim();
+        const fbVal = (document.getElementById("inp-fb-" + subId)?.value || "").trim();
+        const { error } = await client
+          .from("mock_speaking_submissions")
+          .update({ teacher_score: scoreVal, teacher_feedback: fbVal, updated_at: new Date().toISOString() })
+          .eq("id", subId);
+        if (error) {
+          alert("Lỗi lưu nhận xét: " + error.message);
+          return;
+        }
+        const item = state.submissions.find(x => x.id === subId);
+        if (item) {
+          item.teacherScore = scoreVal;
+          item.teacherFeedback = fbVal;
+        }
+        state.savedToastId = subId;
+        render();
+        setTimeout(() => {
+          if (state.savedToastId === subId) {
+            state.savedToastId = "";
+            render();
+          }
+        }, 2000);
+      }
+
+      async function deleteSubmission(subId) {
+        const client = getClient();
+        const item = state.submissions.find(x => x.id === subId);
+        if (!client || !item || state.deletingId) return;
+        if (!confirm(`Xoá vĩnh viễn bài nộp "${item.testTitle}" của "${item.studentName}" để học viên làm lại?`)) {
+          return;
+        }
+        state.deletingId = subId;
+        render();
+        try {
+          const paths = [item.audioPaths[1], item.audioPaths[2], item.audioPaths[3]].filter(Boolean);
+          if (paths.length > 0) {
+            await client.storage.from(AUDIO_BUCKET).remove(paths).catch(() => {});
+          }
+          const { error } = await client.from("mock_speaking_submissions").delete().eq("id", subId);
+          if (error) throw error;
+          state.deletingId = "";
+          await loadDashboardData();
+        } catch (err) {
+          state.deletingId = "";
+          render();
+          alert("Không xoá được bài nộp: " + (err && err.message ? err.message : "Lỗi"));
+        }
+      }
+
+      function exportCsv(rows) {
+        const cell = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
+        const header = [
+          "Học viên", "Lớp", "Đề thi", "Mục tiêu", "Đánh giá tổng", "Điểm tổng (GV)",
+          "Part 1", "Part 2", "Part 3", "Trạng thái đọc", "Thời gian nộp",
+          "Mức đạt (GV)", "Nhận xét GV"
+        ];
+        const lines = [header.map(cell).join(",")];
+        rows.forEach(s => {
+          const rj = s.reviewJson || {};
+          const parts = rj.parts || {};
+          const readStatus = s.isReleased ? (s.isSeen ? "Đã đọc" : "Chưa đọc") : s.hasReady ? "Chờ tới hạn 6h" : "Chưa chấm";
+          lines.push([
+            s.studentName,
+            s.classCode || "—",
+            s.testTitle,
+            s.targetLevel,
+            rj.estimated_band || "",
+            rj.overall_score !== undefined && rj.overall_score !== null ? Number(rj.overall_score).toFixed(2) : "",
+            parts.part1 && !parts.part1.skipped ? parts.part1.estimated_band : "Trống",
+            parts.part2 && !parts.part2.skipped ? parts.part2.estimated_band : "Trống",
+            parts.part3 && !parts.part3.skipped ? parts.part3.estimated_band : "Trống",
+            readStatus,
+            formatDateTime(s.submittedAt),
+            s.teacherScore,
+            s.teacherFeedback
+          ].map(cell).join(","));
+        });
+        const blob = new Blob(["\uFEFF" + lines.join("\n")], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `bao-cao-vstep-speaking-mock-${new Date().toISOString().slice(0, 10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      function renderLoginView() {
+        const notConfigured = !GRADER.isConfigured();
+        return `
+          <div class="tg-auth-wrap">
+            <div class="tg-auth-card">
+              <div style="margin-bottom:10px;">
+                <span class="sg-eyebrow">VSTEP SPEAKING MOCK TESTS · GIÁO VIÊN</span>
+              </div>
+              <h1 style="font-size:21px;font-weight:900;margin-bottom:6px;">Đăng nhập Trang Giáo viên</h1>
+              <p style="font-size:13px;color:#52525b;line-height:1.5;margin-bottom:16px;">
+                Chỉ tài khoản có email trong bảng <code>public.teachers</code> mới được xem bài ghi âm, điểm quy đổi và trả bài sớm cho học viên.
+              </p>
+              ${notConfigured ? `<div class="sg-alert error" style="margin-bottom:12px;">⚠️ Chưa cấu hình Supabase URL &amp; Anon Key trong <code>speaking-grader-config.js</code>.</div>` : ""}
+              ${state.authError ? `<div class="sg-alert error" style="margin-bottom:12px;">⚠️ ${escapeHtml(state.authError)}</div>` : ""}
+
+              <button type="button" class="tg-btn yellow" id="tg-btn-google" style="width:100%;justify-content:center;height:42px;margin-bottom:14px;" ${notConfigured ? "disabled" : ""}>
+                🔐 Đăng nhập nhanh với Google
+              </button>
+
+              <form id="tg-login-form" onsubmit="return false;" style="display:flex;flex-direction:column;gap:10px;">
+                <input type="email" id="tg-inp-email" class="tg-input" placeholder="Email giáo viên..." required />
+                <input type="password" id="tg-inp-pass" class="tg-input" placeholder="Mật khẩu Supabase..." required />
+                <button type="submit" class="tg-btn" style="width:100%;justify-content:center;height:40px;background:#18181b;color:#fff;" ${notConfigured ? "disabled" : ""}>
+                  Đăng nhập bằng Email →
+                </button>
+              </form>
+              <div style="margin-top:14px;text-align:center;">
+                <a href="./index.html" style="font-size:12.5px;color:#52525b;font-weight:700;">← Quay lại trang thi thử</a>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderDashboard() {
+        const filtered = getFilteredSubmissions();
+        const total = state.submissions.length;
+        const ungradedCount = state.submissions.filter(s => !s.hasReady && s.status !== "no_audio").length;
+        const waitingReleaseCount = state.submissions.filter(s => s.isWaitingRelease).length;
+        const releasedCount = state.submissions.filter(s => s.isReleased).length;
+        const seenCount = state.submissions.filter(s => s.isSeen).length;
+
+        const allClasses = Array.from(new Set(state.submissions.map(s => s.classCode).filter(Boolean))).sort();
+        const allTests = Array.from(new Set(state.submissions.map(s => s.testId))).sort((a, b) => a - b);
+
+        return `
+          <header class="tg-topbar">
+            <div class="tg-brand">
+              <div class="tg-brand-badge">GV</div>
+              <div>
+                <div style="font-size:15px;font-weight:900;">Quản lý &amp; Chấm VSTEP Speaking</div>
+                <div style="font-size:11.5px;color:#52525b;">${escapeHtml(state.teacherEmail)}</div>
+              </div>
+            </div>
+            <div class="tg-actions">
+              <a href="./index.html" class="tg-btn">← Trang thi thử</a>
+              ${
+                ungradedCount > 0
+                  ? `<button type="button" class="tg-btn yellow" id="tg-btn-flush" ${state.flushingQueue ? "disabled" : ""}>
+                      ${state.flushingQueue ? "⏳ Đang chấm..." : `🔄 Chấm hàng đợi (${ungradedCount})`}
+                    </button>`
+                  : ""
+              }
+              <button type="button" class="tg-btn" id="tg-btn-refresh">${state.loading ? "⏳" : "↻"} Làm mới</button>
+              <button type="button" class="tg-btn yellow" id="tg-btn-export">📊 Xuất Excel</button>
+              <button type="button" class="tg-btn danger" id="tg-btn-logout">Đăng xuất</button>
+            </div>
+          </header>
+
+          <main class="tg-container">
+            ${state.dbError ? `<div class="sg-alert error" style="margin-bottom:14px;">⚠️ ${escapeHtml(state.dbError)}</div>` : ""}
+
+            <div class="tg-stats-grid">
+              <div class="tg-stat-card">
+                <div class="tg-stat-label">Tổng bài Mock Test đã nộp</div>
+                <div class="tg-stat-val">${total}</div>
+              </div>
+              <div class="tg-stat-card">
+                <div class="tg-stat-label">Đang chờ chấm / chờ trả 6h</div>
+                <div class="tg-stat-val" style="color:#b45309;">${ungradedCount + waitingReleaseCount}</div>
+              </div>
+              <div class="tg-stat-card">
+                <div class="tg-stat-label">Đã trả bài cho học viên</div>
+                <div class="tg-stat-val" style="color:#15803d;">${releasedCount}</div>
+              </div>
+              <div class="tg-stat-card">
+                <div class="tg-stat-label">Học viên đã đọc bài sửa</div>
+                <div class="tg-stat-val" style="color:#1d4ed8;">${seenCount}/${releasedCount}</div>
+              </div>
+            </div>
+
+            <div class="tg-filter-bar">
+              <div class="tg-filter-grid">
+                <input type="text" id="tg-search" class="tg-input" placeholder="Tìm tên học viên hoặc lớp..." value="${escapeHtml(state.searchQuery)}" />
+                <select id="tg-sel-class" class="tg-input">
+                  <option value="all">Tất cả lớp (${allClasses.length})</option>
+                  ${allClasses.map(c => `<option value="${escapeHtml(c)}" ${state.filterClass === c ? "selected" : ""}>Lớp ${escapeHtml(c)}</option>`).join("")}
+                </select>
+                <select id="tg-sel-test" class="tg-input">
+                  <option value="all">Tất cả đề thi</option>
+                  ${allTests.map(t => `<option value="${t}" ${state.filterTest === String(t) ? "selected" : ""}>Test ${String(t).padStart(2, "0")}</option>`).join("")}
+                </select>
+                <select id="tg-sel-level" class="tg-input">
+                  <option value="all" ${state.filterLevel === "all" ? "selected" : ""}>Mọi mục tiêu</option>
+                  <option value="B1" ${state.filterLevel === "B1" ? "selected" : ""}>Mục tiêu B1</option>
+                  <option value="B2" ${state.filterLevel === "B2" ? "selected" : ""}>Mục tiêu B2</option>
+                </select>
+                <select id="tg-sel-status" class="tg-input">
+                  <option value="all" ${state.filterStatus === "all" ? "selected" : ""}>Mọi trạng thái</option>
+                  <option value="waiting_release" ${state.filterStatus === "waiting_release" ? "selected" : ""}>Đã chấm · Chờ trả 6h</option>
+                  <option value="unread" ${state.filterStatus === "unread" ? "selected" : ""}>Đã trả · HV chưa đọc</option>
+                  <option value="ungraded" ${state.filterStatus === "ungraded" ? "selected" : ""}>Chưa có bài sửa AI</option>
+                  <option value="ready" ${state.filterStatus === "ready" ? "selected" : ""}>Đã có bài sửa AI</option>
+                </select>
+              </div>
+            </div>
+
+            ${
+              filtered.length === 0
+                ? `<div style="padding:40px;text-align:center;background:#fff;border:2px dashed #d4d4d8;border-radius:12px;color:#52525b;font-weight:700;">Chưa có bài nộp nào khớp bộ lọc hiện tại.</div>`
+                : filtered.map(renderSubmissionCard).join("")
+            }
+          </main>
+        `;
+      }
+
+      function renderSubmissionCard(s) {
+        const rj = s.reviewJson;
+        const isGrading = state.gradingId === s.id;
+        const isReleasing = state.releasingId === s.id;
+        const isDeleting = state.deletingId === s.id;
+        const band = rj ? rj.estimated_band || "" : "";
+        const overallScore = rj && rj.overall_score !== undefined && rj.overall_score !== null ? Number(rj.overall_score) : null;
+        const remain = s.isWaitingRelease ? formatRemainingTime(s.releaseAt) : "";
+
+        let statusText = `<span style="font-size:12.5px;color:#52525b;font-weight:700;">⏳ Đang chờ chấm tự động (trả sau ${RELEASE_HOURS} tiếng)</span>`;
+        if (s.isWaitingRelease) {
+          statusText = `<span style="font-size:12.5px;color:#92400e;font-weight:800;">⏳ Đã chấm xong · Hẹn trả lúc ${escapeHtml(formatDateTime(s.releaseAt))} (còn ${escapeHtml(remain)})</span>`;
+        } else if (s.isReleased) {
+          statusText = `<span style="font-size:12.5px;color:#166534;font-weight:800;">✅ Đã trả bài sửa (${escapeHtml(formatDateTime(s.releaseAt))}) · ${s.isSeen ? "✓ Học viên đã đọc" : "● Học viên chưa đọc"}</span>`;
+        } else if (s.status === "no_audio" || (s.review && s.review.status === "no_audio")) {
+          statusText = `<span style="font-size:12.5px;color:#b91c1c;font-weight:800;">⚠️ Bài nộp thiếu tệp âm thanh hợp lệ.</span>`;
+        } else if (s.review && s.review.status === "error") {
+          statusText = `<span style="font-size:12.5px;color:#b45309;font-weight:800;">🔄 Lỗi tạm thời (lần thử ${s.review.retry_count || 1}/20): ${escapeHtml((s.review.error_message || "").slice(0, 140))}</span>`;
+        }
+
+        const audioBoxes = [1, 2, 3]
+          .map(pNum => {
+            const url = s.audioUrls[pNum];
+            const path = s.audioPaths[pNum];
+            const partName = pNum === 1 ? "Part 1 · Social Interaction" : pNum === 2 ? "Part 2 · Solution Discussion" : "Part 3 · Topic Development";
+            return `
+              <div class="tg-audio-box">
+                <div style="font-size:12px;font-weight:800;color:#18181b;">🎙️ ${partName}</div>
+                ${
+                  url
+                    ? `<audio controls preload="metadata" src="${escapeHtml(url)}"></audio>`
+                    : path
+                      ? `<div style="font-size:12px;color:#b45309;margin-top:6px;">Chưa tải được link nghe — thử Làm mới.</div>`
+                      : `<div style="font-size:12px;color:#71717a;margin-top:6px;"><em>(Không có bản ghi âm phần này)</em></div>`
+                }
+              </div>
+            `;
+          })
+          .join("");
+
+        return `
+          <div class="tg-sub-card">
+            <div class="tg-sub-top">
+              <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap;">
+                <strong style="font-size:16px;">${escapeHtml(s.studentName)}</strong>
+                ${s.classCode ? `<span class="sg-badge">${escapeHtml(s.classCode)}</span>` : ""}
+                <span class="sg-badge" style="background:#eff6ff;border-color:#3b82f6;color:#1d4ed8;">${escapeHtml(s.testTitle)}</span>
+                <span class="sg-badge">Mục tiêu ${escapeHtml(s.targetLevel)}</span>
+                ${band ? `<span class="sg-badge ${band.includes("Chưa đạt") ? "band-below" : band.includes("Xấp xỉ") ? "band-approx" : "band-achieved"}">${escapeHtml(band)}</span>` : ""}
+                ${overallScore !== null && Number.isFinite(overallScore) ? `<span class="sg-badge teacher-score">Điểm tổng (GV): ${overallScore.toFixed(2)}/10</span>` : ""}
+              </div>
+              <div style="font-size:12px;color:#52525b;font-weight:600;">
+                Nộp lúc ${escapeHtml(formatDateTime(s.submittedAt))}
+              </div>
+            </div>
+
+            <div class="tg-audio-grid">${audioBoxes}</div>
+
+            <div class="tg-ai-bar">
+              <div>${statusText}</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                ${
+                  s.isWaitingRelease
+                    ? `<button type="button" class="tg-btn yellow" data-release="${escapeHtml(s.id)}" ${isReleasing ? "disabled" : ""}>
+                        ${isReleasing ? "Đang trả..." : "⚡ Trả bài sửa ngay"}
+                      </button>`
+                    : ""
+                }
+                <button type="button" class="tg-btn" data-grade="${escapeHtml(s.id)}" ${isGrading ? "disabled" : ""}>
+                  ${isGrading ? "⏳ Đang chấm 3 Part..." : s.hasReady ? "↻ Chấm lại" : "✨ Tạo bài sửa"}
+                </button>
+                <button type="button" class="tg-btn danger" data-delete="${escapeHtml(s.id)}" ${isDeleting ? "disabled" : ""}>
+                  ${isDeleting ? "Đang xoá..." : "🗑️ Xoá bài"}
+                </button>
+              </div>
+            </div>
+
+            ${
+              s.hasReady
+                ? `<details class="tg-details">
+                    <summary>📝 Xem chi tiết bài sửa AI (Part 1, Part 2, Part 3 · ${escapeHtml(band || "")})</summary>
+                    <div style="padding:12px;">
+                      ${GRADER.renderMockReviewHtml(rj, { targetLevel: s.targetLevel, isTeacherView: true })}
+                    </div>
+                  </details>`
+                : ""
+            }
+
+            <div class="tg-grade-row">
+              <input type="text" class="tg-input" style="max-width:210px;" id="inp-score-${escapeHtml(s.id)}" placeholder="Mức đạt GV (VD: Đạt B2)" value="${escapeHtml(s.teacherScore)}" />
+              <input type="text" class="tg-input" style="flex:1;min-width:220px;" id="inp-fb-${escapeHtml(s.id)}" placeholder="Nhận xét thêm của Giáo viên..." value="${escapeHtml(s.teacherFeedback)}" />
+              <button type="button" class="tg-btn yellow" data-save="${escapeHtml(s.id)}">
+                ${state.savedToastId === s.id ? "✓ Đã lưu!" : "Lưu nhận xét"}
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      function render() {
+        const root = document.getElementById("teacher-root");
+        if (!root) return;
+        if (state.checkingAuth) {
+          root.innerHTML = `<div class="tg-auth-wrap"><div class="tg-auth-card" style="text-align:center;">Đang kiểm tra đăng nhập Giáo viên...</div></div>`;
+          return;
+        }
+        root.innerHTML = state.authenticated ? renderDashboard() : renderLoginView();
+        bindEvents();
+      }
+
+      function bindEvents() {
+        const btnGoogle = document.getElementById("tg-btn-google");
+        if (btnGoogle) {
+          btnGoogle.onclick = async () => {
+            const client = getClient();
+            if (!client) return;
+            const { error } = await client.auth.signInWithOAuth({
+              provider: "google",
+              options: { redirectTo: window.location.origin + window.location.pathname, queryParams: { prompt: "select_account" } }
+            });
+            if (error) {
+              state.authError = error.message;
+              render();
+            }
+          };
+        }
+
+        const loginForm = document.getElementById("tg-login-form");
+        if (loginForm) {
+          loginForm.onsubmit = async e => {
+            e.preventDefault();
+            const client = getClient();
+            if (!client) return;
+            const email = (document.getElementById("tg-inp-email")?.value || "").trim();
+            const password = (document.getElementById("tg-inp-pass")?.value || "").trim();
+            const { data, error } = await client.auth.signInWithPassword({ email, password });
+            if (error) {
+              state.authError = "Sai email hoặc mật khẩu: " + error.message;
+              render();
+              return;
+            }
+            if (data && data.user) await verifyTeacherSession(data.user);
+          };
+        }
+
+        const btnLogout = document.getElementById("tg-btn-logout");
+        if (btnLogout) {
+          btnLogout.onclick = async () => {
+            const client = getClient();
+            if (client) await client.auth.signOut().catch(() => {});
+            state.authenticated = false;
+            state.submissions = [];
+            render();
+          };
+        }
+
+        const btnRefresh = document.getElementById("tg-btn-refresh");
+        if (btnRefresh) btnRefresh.onclick = () => loadDashboardData();
+
+        const btnFlush = document.getElementById("tg-btn-flush");
+        if (btnFlush) btnFlush.onclick = () => triggerFlushQueue();
+
+        const btnExport = document.getElementById("tg-btn-export");
+        if (btnExport) btnExport.onclick = () => exportCsv(getFilteredSubmissions());
+
+        const searchEl = document.getElementById("tg-search");
+        if (searchEl) {
+          searchEl.oninput = e => {
+            state.searchQuery = e.target.value;
+            const pos = e.target.selectionStart;
+            render();
+            const next = document.getElementById("tg-search");
+            if (next) { next.focus(); next.setSelectionRange(pos, pos); }
+          };
+        }
+
+        const bindSel = (id, key) => {
+          const el = document.getElementById(id);
+          if (el) el.onchange = e => { state[key] = e.target.value; render(); };
+        };
+        bindSel("tg-sel-class", "filterClass");
+        bindSel("tg-sel-test", "filterTest");
+        bindSel("tg-sel-level", "filterLevel");
+        bindSel("tg-sel-status", "filterStatus");
+
+        document.querySelectorAll("[data-grade]").forEach(b => (b.onclick = () => triggerGradeNow(b.getAttribute("data-grade"))));
+        document.querySelectorAll("[data-release]").forEach(b => (b.onclick = () => triggerReleaseNow(b.getAttribute("data-release"))));
+        document.querySelectorAll("[data-delete]").forEach(b => (b.onclick = () => deleteSubmission(b.getAttribute("data-delete"))));
+        document.querySelectorAll("[data-save]").forEach(b => (b.onclick = () => saveTeacherNote(b.getAttribute("data-save"))));
+      }
+
+      window.addEventListener("DOMContentLoaded", async () => {
+        const client = getClient();
+        if (!client) {
+          state.checkingAuth = false;
+          render();
+          return;
+        }
+        render();
+        const { data } = await client.auth.getSession();
+        if (data && data.session && data.session.user) {
+          await verifyTeacherSession(data.session.user);
+        } else {
+          state.checkingAuth = false;
+          render();
+        }
+        client.auth.onAuthStateChange(async (event, session) => {
+          if (event === "SIGNED_IN" && session && session.user && !state.authenticated) {
+            await verifyTeacherSession(session.user);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

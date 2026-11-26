@@ -74,7 +74,64 @@ function resolveAudioMimeFromMeta(contentType: string | null, audioPath: string)
   }
   if (lowerPath.endsWith(".ogg") || lowerType.includes("ogg")) return "audio/ogg";
   if (lowerPath.endsWith(".mp3") || lowerType.includes("mpeg") || lowerType.includes("mp3")) return "audio/mp3";
+  if (lowerPath.endsWith(".flac") || lowerType.includes("flac")) return "audio/flac";
   return "audio/webm";
+}
+
+function sniffAudioMimeFromMagicBytes(bytes: Uint8Array): string | null {
+  if (!bytes || bytes.length < 4) return null;
+  // EBML / WebM / Matroska: 1A 45 DF A3
+  if (bytes[0] === 0x1a && bytes[1] === 0x45 && bytes[2] === 0xdf && bytes[3] === 0xa3) {
+    return "audio/webm";
+  }
+  // ISO BMFF / MP4 / M4A (Safari/iOS MediaRecorder thường xuất MP4 dù đặt đuôi .webm): "ftyp" ở byte 4..7
+  if (
+    bytes.length >= 8 &&
+    bytes[4] === 0x66 &&
+    bytes[5] === 0x74 &&
+    bytes[6] === 0x79 &&
+    bytes[7] === 0x70
+  ) {
+    return "audio/mp4";
+  }
+  // Ogg / Ogg Opus: "OggS"
+  if (bytes[0] === 0x4f && bytes[1] === 0x67 && bytes[2] === 0x67 && bytes[3] === 0x53) {
+    return "audio/ogg";
+  }
+  // WAV: "RIFF" ... "WAVE"
+  if (
+    bytes.length >= 12 &&
+    bytes[0] === 0x52 &&
+    bytes[1] === 0x49 &&
+    bytes[2] === 0x46 &&
+    bytes[3] === 0x46 &&
+    bytes[8] === 0x57 &&
+    bytes[9] === 0x41 &&
+    bytes[10] === 0x56 &&
+    bytes[11] === 0x45
+  ) {
+    return "audio/wav";
+  }
+  // FLAC: "fLaC"
+  if (bytes[0] === 0x66 && bytes[1] === 0x4c && bytes[2] === 0x61 && bytes[3] === 0x43) {
+    return "audio/flac";
+  }
+  // MP3: "ID3" hoặc frame sync 0xFF 0xE0
+  if (
+    (bytes[0] === 0x49 && bytes[1] === 0x44 && bytes[2] === 0x33) ||
+    (bytes[0] === 0xff && (bytes[1] & 0xe0) === 0xe0)
+  ) {
+    return "audio/mp3";
+  }
+  return null;
+}
+
+function parseTotalSizeFromContentRange(contentRange: string | null): number | null {
+  if (!contentRange) return null;
+  const match = String(contentRange).match(/\/(\d+)\s*$/);
+  if (!match) return null;
+  const n = Number(match[1]);
+  return Number.isFinite(n) && n > 0 ? n : null;
 }
 
 // ============================================================================
@@ -456,7 +513,8 @@ function normalizePartReview(raw: Record<string, unknown>, partNum: 1 | 2 | 3) {
     pronunciation_fixes: pronFixes,
     language_corrections: langCorrections,
     idea_expansions: ideaExpansions,
-    natural_spoken_version: String(raw?.natural_spoken_version || "").trim()
+    natural_spoken_version: String(raw?.natural_spoken_version || "").trim(),
+    ...(raw?._meta && typeof raw._meta === "object" ? { _meta: raw._meta } : {})
   };
 }
 
@@ -483,14 +541,123 @@ function buildSkippedPartReview(partNum: 1 | 2 | 3) {
 }
 
 // ============================================================================
-// ZERO-COPY STREAMING: PIPE TRỰC TIẾP TỪ SUPABASE STORAGE SANG GEMINI FILES API
-// Hầu như 0 MB RAM & 0 ms CPU dù file ghi âm dài 4 phút (WAV 7-8 MB hay WebM)
+// ZERO-COPY RESUMABLE STREAMING: NHẬN DIỆN MAGIC BYTES (32B) + UPLOAD CHUẨN
+// RESUMABLE PROTOCOL SANG GEMINI FILES API (0 MB RAM BUFFER)
+// Khắc phục triệt để lỗi Safari/iPhone xuất MP4 gắn đuôi .webm và tương thích
+// chuẩn 100% với giao thức Resumable Upload chính thức của Google Gemini API.
 // ============================================================================
+async function probeAudioMimeAndSize(
+  signedAudioUrl: string,
+  audioPath: string
+): Promise<{ ok: true; mimeType: string; totalBytes: number | null } | { ok: false; status: number; error: string }> {
+  try {
+    const probeRes = await fetch(signedAudioUrl, {
+      headers: { Range: "bytes=0-31" },
+      signal: AbortSignal.timeout(12000)
+    });
+
+    if (!probeRes.ok && probeRes.status !== 206) {
+      return {
+        ok: false,
+        status: probeRes.status || 404,
+        error: `Không tải được file ghi âm từ Storage (HTTP ${probeRes.status}).`
+      };
+    }
+
+    const totalFromRange = parseTotalSizeFromContentRange(probeRes.headers.get("content-range"));
+    const lenHdr = probeRes.headers.get("content-length");
+    const totalBytes =
+      totalFromRange ||
+      (probeRes.status === 200 && lenHdr && Number(lenHdr) > 0 ? Number(lenHdr) : null);
+
+    let headBytes = new Uint8Array(0);
+    if (probeRes.body) {
+      const reader = probeRes.body.getReader();
+      const collected: number[] = [];
+      try {
+        while (collected.length < 32) {
+          const { done, value } = await reader.read();
+          if (done || !value) break;
+          for (let i = 0; i < value.length && collected.length < 32; i++) {
+            collected.push(value[i]);
+          }
+        }
+      } finally {
+        try {
+          await reader.cancel();
+        } catch (_e) {}
+      }
+      headBytes = new Uint8Array(collected);
+    }
+
+    if (totalBytes !== null && totalBytes < 200) {
+      return { ok: false, status: 400, error: "File ghi âm rỗng hoặc quá ngắn (< 200 bytes)." };
+    }
+
+    const sniffed = sniffAudioMimeFromMagicBytes(headBytes);
+    const mimeType = sniffed || resolveAudioMimeFromMeta(probeRes.headers.get("content-type"), audioPath);
+    return { ok: true, mimeType, totalBytes };
+  } catch (err) {
+    // Nếu probe Range gặp sự cố mạng tạm thời, vẫn cho phép fallback ở bước download chính
+    return {
+      ok: true,
+      mimeType: resolveAudioMimeFromMeta(null, audioPath),
+      totalBytes: null
+    };
+  }
+}
+
 async function streamStorageUrlToGeminiFilesApi(
   geminiApiKey: string,
   signedAudioUrl: string,
   audioPath: string
-): Promise<{ ok: true; fileUri: string; fileName: string; mimeType: string } | { ok: false; status: number; error: string }> {
+): Promise<
+  | { ok: true; fileUri: string; fileName: string; mimeType: string; sizeBytes: number }
+  | { ok: false; status: number; error: string }
+> {
+  // Bước 0: Đọc đúng 32 byte đầu để nhận diện đúng định dạng thật (MP4/WebM/OGG/WAV/MP3)
+  const probe = await probeAudioMimeAndSize(signedAudioUrl, audioPath);
+  if (!probe.ok) return probe;
+
+  const detectedMime = probe.mimeType;
+
+  // Bước A: Khởi tạo phiên Resumable Upload chính thức của Gemini Files API trước khi mở stream tải
+  const displayName = String(audioPath.split("/").pop() || "speaking_audio").slice(0, 80);
+  const startHeaders: Record<string, string> = {
+    "X-Goog-Upload-Protocol": "resumable",
+    "X-Goog-Upload-Command": "start",
+    "X-Goog-Upload-Header-Content-Type": detectedMime,
+    "Content-Type": "application/json"
+  };
+  if (probe.totalBytes && probe.totalBytes > 0) {
+    startHeaders["X-Goog-Upload-Header-Content-Length"] = String(probe.totalBytes);
+  }
+
+  const startRes = await fetch(
+    `https://generativelanguage.googleapis.com/upload/v1beta/files?key=${encodeURIComponent(geminiApiKey)}`,
+    {
+      method: "POST",
+      headers: startHeaders,
+      body: JSON.stringify({ file: { display_name: displayName } }),
+      signal: AbortSignal.timeout(15000)
+    }
+  );
+
+  if (!startRes.ok) {
+    const errText = await startRes.text().catch(() => "");
+    return {
+      ok: false,
+      status: startRes.status,
+      error: `Gemini Files Start lỗi (${startRes.status}): ${errText.slice(0, 180)}`
+    };
+  }
+
+  const uploadUrl = startRes.headers.get("x-goog-upload-url") || "";
+  if (!uploadUrl) {
+    return { ok: false, status: 500, error: "Gemini Files API không trả về x-goog-upload-url." };
+  }
+
+  // Bước B: Mở stream tải từ Supabase Storage và pipe thẳng (zero-copy, 0 MB RAM) lên uploadUrl
   const dlRes = await fetch(signedAudioUrl, { signal: AbortSignal.timeout(25000) });
   if (!dlRes.ok || !dlRes.body) {
     return {
@@ -500,20 +667,26 @@ async function streamStorageUrlToGeminiFilesApi(
     };
   }
 
-  const contentLength = dlRes.headers.get("content-length");
-  if (contentLength && Number(contentLength) < 200) {
+  const contentLengthHdr = dlRes.headers.get("content-length");
+  const totalBytes =
+    (contentLengthHdr && Number(contentLengthHdr) > 0 ? Number(contentLengthHdr) : null) || probe.totalBytes;
+
+  if (totalBytes !== null && totalBytes < 200) {
     try {
       await dlRes.body.cancel();
     } catch (_e) {}
     return { ok: false, status: 400, error: "File ghi âm rỗng hoặc quá ngắn (< 200 bytes)." };
   }
 
-  const mimeType = resolveAudioMimeFromMeta(dlRes.headers.get("content-type"), audioPath);
-  const uploadHeaders: Record<string, string> = { "Content-Type": mimeType };
-  if (contentLength) uploadHeaders["Content-Length"] = contentLength;
+  const uploadHeaders: Record<string, string> = {
+    "X-Goog-Upload-Offset": "0",
+    "X-Goog-Upload-Command": "upload, finalize"
+  };
+  if (totalBytes && totalBytes > 0) {
+    uploadHeaders["Content-Length"] = String(totalBytes);
+  }
 
-  const uploadEndpoint = `https://generativelanguage.googleapis.com/upload/v1beta/files?uploadType=media&key=${encodeURIComponent(geminiApiKey)}`;
-  const upRes = await fetch(uploadEndpoint, {
+  const upRes = await fetch(uploadUrl, {
     method: "POST",
     headers: uploadHeaders,
     body: dlRes.body,
@@ -533,6 +706,8 @@ async function streamStorageUrlToGeminiFilesApi(
   const fileObj = upJson?.file || upJson || {};
   const fileUri = String(fileObj.uri || "");
   const fileName = String(fileObj.name || "");
+  const storedMime = String(fileObj.mimeType || detectedMime);
+  const storedBytes = Number(fileObj.sizeBytes || totalBytes || 0);
   let state = String(fileObj.state || "ACTIVE").toUpperCase();
 
   if (!fileUri) {
@@ -540,7 +715,7 @@ async function streamStorageUrlToGeminiFilesApi(
   }
 
   if (state !== "ACTIVE" && fileName) {
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 10; i++) {
       await new Promise(r => setTimeout(r, 1000));
       const checkRes = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/${fileName}?key=${encodeURIComponent(geminiApiKey)}`,
@@ -557,7 +732,7 @@ async function streamStorageUrlToGeminiFilesApi(
     }
   }
 
-  return { ok: true, fileUri, fileName, mimeType };
+  return { ok: true, fileUri, fileName, mimeType: storedMime, sizeBytes: storedBytes };
 }
 
 async function deleteGeminiFileBestEffort(geminiApiKey: string, fileName: string) {
@@ -652,8 +827,15 @@ async function callGeminiAudioGradeWithSingleKey(params: {
 
       if (res.ok) {
         const geminiJson = await res.json();
-        const rawCandidate = String(geminiJson?.candidates?.[0]?.content?.parts?.[0]?.text || "").trim();
-        return { ok: true as const, rawText: rawCandidate };
+        const partsArr = Array.isArray(geminiJson?.candidates?.[0]?.content?.parts)
+          ? geminiJson.candidates[0].content.parts
+          : [];
+        const rawCandidate = partsArr
+          .filter((p: Record<string, unknown>) => !p?.thought && typeof p?.text === "string")
+          .map((p: Record<string, unknown>) => String(p.text))
+          .join("")
+          .trim();
+        return { ok: true as const, rawText: rawCandidate, modelUsed: modelName };
       }
 
       const modelStatus = res.status;
@@ -672,16 +854,31 @@ async function callGeminiAudioGradeWithSingleKey(params: {
   };
 
   try {
-    // BƯỚC 1: CHÉP NGUYÊN VĂN ĐỘC LẬP (CỐ GẮNG NGHE KỸ CẢ GIỌNG NHỎ / GIỌNG VIỆT, CHỈ BÁO TOO_QUIET KHI HOÀN TOÀN IM LẶNG)
+    // BƯỚC 1: CHÉP NGUYÊN VĂN TOÀN BỘ FILE GHI ÂM TỪ 0:00 ĐẾN HẾT (KHÔNG BỎ SÓT SAU KHOẢNG LẶNG DÀI)
     const blindTranscribePrompt =
-      "Listen VERY carefully to the attached audio recording of a Vietnamese student speaking English. " +
-      "The microphone volume may be quiet/soft and the speaker may have a Vietnamese accent — listen closely and transcribe EVERY spoken word you can hear.\n" +
-      "Rules:\n" +
-      "1. Do NOT give up just because the voice is soft, quiet, or accented. Strain to hear and transcribe all audible speech accurately.\n" +
-      "2. Transcribe ONLY what is actually spoken in the audio; never invent answers. If a specific word or brief segment is truly muffled, write [...] for that brief part and keep transcribing the rest.\n" +
-      "3. Keep the speaker's exact words, grammar mistakes, and hesitations without fixing them.\n" +
-      "4. Output ONLY the plain transcript text (no labels, no markdown, no commentary).\n" +
-      "5. ONLY output [TOO_QUIET] if the ENTIRE recording contains literally ZERO audible human speech (100% silence or pure static/noise from start to finish).";
+      "Listen carefully from the very beginning (0:00) to the very end of the attached audio recording of a Vietnamese student taking a VSTEP English speaking test.\n" +
+      "Important notes about this audio:\n" +
+      "- There may be 5 to 20 seconds of silence at the start while the student reads the prompt, and long pauses between questions or topics. Keep listening all the way to the very end of the recording.\n" +
+      "- The speaker's microphone volume may be soft/quiet and they may have a Vietnamese accent, hesitate, or self-correct.\n" +
+      "Instructions:\n" +
+      "1. Produce a detailed, verbatim transcript of EVERY spoken word you can hear across the entire recording, preserving exact phrasing, grammar mistakes, repetitions, and natural hesitations using '...'.\n" +
+      "2. Transcribe ONLY what is actually spoken in the audio; never invent answers. If a brief word is truly muffled, write [...] for that word and continue transcribing everything else.\n" +
+      "3. Output ONLY the plain transcript text (no labels, no markdown, no commentary).\n" +
+      "4. ONLY output NO_AUDIBLE_SPEECH if the ENTIRE recording from 0:00 to the end is 100% silence or static with literally zero human speech.";
+
+    const checkTranscriptMeaningful = (raw: string) => {
+      const cleaned = raw.replace(/^["'“]+|["'”]+$/g, "").trim();
+      const words = cleaned
+        .replace(/\[\.\.\.\]/g, " ")
+        .replace(/[^a-zA-ZÀ-ỹ0-9'\s]/g, " ")
+        .split(/\s+/)
+        .filter(Boolean);
+      const unintelligible =
+        !cleaned ||
+        /^\[?(?:SILENT|TOO_QUIET|UNINTELLIGIBLE|NO_SPEECH|NO_AUDIBLE_SPEECH)\]?$/i.test(cleaned) ||
+        words.length < 2;
+      return { cleaned, unintelligible };
+    };
 
     const step1 = await callModel(
       [
@@ -694,19 +891,29 @@ async function callGeminiAudioGradeWithSingleKey(params: {
 
     if (!step1.ok) return step1;
 
-    const rawVerbatim = step1.rawText.replace(/^["'“]+|["'”]+$/g, "").trim();
-    const meaningfulWords = rawVerbatim
-      .replace(/\[\.\.\.\]/g, " ")
-      .replace(/[^a-zA-ZÀ-ỹ0-9'\s]/g, " ")
-      .split(/\s+/)
-      .filter(Boolean);
-    const isUnintelligible =
-      !rawVerbatim ||
-      /^\[?(?:SILENT|TOO_QUIET|UNINTELLIGIBLE|NO_SPEECH)\]?$/i.test(rawVerbatim) ||
-      meaningfulWords.length < 2;
+    let step1Model = step1.modelUsed;
+    let transcriptCheck = checkTranscriptMeaningful(step1.rawText);
 
-    // Chỉ báo "quá nhỏ / không nhận diện được" khi gần như không nghe được bất kỳ lời nói nào
-    if (isUnintelligible) {
+    // Nếu file audio đủ lớn (> 20 KB) mà lần nghe đầu báo rỗng/quá nhỏ -> thử nghe kỹ lại 1 lần với prompt tối giản
+    if (transcriptCheck.unintelligible && uploaded.sizeBytes > 20000) {
+      const retryPrompt =
+        "Listen carefully to the entire attached audio file from start to finish and write down every single spoken word verbatim, including hesitations as '...'. Do not stop at silent pauses. Output only the plain transcript, or NO_AUDIBLE_SPEECH if there is zero human voice in the whole file.";
+      const retryRes = await callModel(
+        [
+          { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
+          { text: retryPrompt }
+        ],
+        0.1,
+        false
+      );
+      if (retryRes.ok) {
+        step1Model = retryRes.modelUsed;
+        transcriptCheck = checkTranscriptMeaningful(retryRes.rawText);
+      }
+    }
+
+    // Chỉ báo "quá nhỏ / không nhận diện được" khi gần như không nghe được bất kỳ lời nói nào trong cả file
+    if (transcriptCheck.unintelligible) {
       return {
         ok: true as const,
         parsed: {
@@ -726,12 +933,17 @@ async function callGeminiAudioGradeWithSingleKey(params: {
           pronunciation_fixes: [],
           language_corrections: [],
           idea_expansions: [],
-          natural_spoken_version: ""
+          natural_spoken_version: "",
+          _meta: {
+            mime_type: uploaded.mimeType,
+            file_bytes: uploaded.sizeBytes,
+            model_step1: step1Model
+          }
         }
       };
     }
 
-    const verifiedTranscript = rawVerbatim;
+    const verifiedTranscript = transcriptCheck.cleaned;
 
     // BƯỚC 2: CHẤM MULTIMODAL (GỬI CÙNG FILE AUDIO + BẢN CHÉP NGUYÊN VĂN BƯỚC 1 + ĐỀ BÀI)
     const gradingPrompt = params.buildGradingPrompt(verifiedTranscript);
@@ -748,6 +960,12 @@ async function callGeminiAudioGradeWithSingleKey(params: {
 
     const parsed = parseModelJson(step2.rawText);
     parsed.recognized_transcript = verifiedTranscript || "";
+    parsed._meta = {
+      mime_type: uploaded.mimeType,
+      file_bytes: uploaded.sizeBytes,
+      model_step1: step1Model,
+      model_step2: step2.modelUsed
+    };
     return { ok: true as const, parsed };
   } finally {
     await deleteGeminiFileBestEffort(params.geminiApiKey, uploaded.fileName);
@@ -1088,6 +1306,7 @@ function sanitizeReviewForStudent(reviewJson: Record<string, unknown> | null) {
     ["part1", "part2", "part3"].forEach(k => {
       if (clone.parts[k] && typeof clone.parts[k] === "object") {
         delete clone.parts[k].internal_score;
+        delete clone.parts[k]._meta;
       }
     });
   }
@@ -1648,7 +1867,10 @@ Deno.serve(async (req: Request) => {
 
           if (ttsRes.ok) {
             const ttsJson = await ttsRes.json().catch(() => ({}));
-            const inlineAudio = ttsJson?.candidates?.[0]?.content?.parts?.[0]?.inlineData;
+            const ttsParts = Array.isArray(ttsJson?.candidates?.[0]?.content?.parts)
+              ? ttsJson.candidates[0].content.parts
+              : [];
+            const inlineAudio = ttsParts.find((p: Record<string, unknown>) => p?.inlineData)?.inlineData;
             if (inlineAudio && inlineAudio.data) {
               return jsonResponse({
                 ok: true,

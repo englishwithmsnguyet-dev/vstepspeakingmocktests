@@ -163,6 +163,34 @@
       margin-top: 10px; padding: 10px 12px; border-radius: 10px;
       background: #f0fdf4; border: 1.5px solid #86efac;
     }
+    .tg-list-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;
+    }
+    .tg-list-tab {
+      flex: 1; min-width: 190px; padding: 11px 16px; border-radius: 10px;
+      border: 2px solid #d4d4d8; background: #fff; color: #3f3f46;
+      font-weight: 800; font-size: 13.5px; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      transition: all .15s ease;
+    }
+    .tg-list-tab:hover { border-color: #18181b; }
+    .tg-list-tab.active-pending {
+      background: #fef9c3; border-color: #18181b; color: #18181b;
+      box-shadow: 0 2px 0 #18181b;
+    }
+    .tg-list-tab.active-completed {
+      background: #dcfce7; border-color: #15803d; color: #14532d;
+      box-shadow: 0 2px 0 #15803d;
+    }
+    .tg-list-tab.active-all {
+      background: #18181b; border-color: #18181b; color: #fff;
+    }
+    .tg-tab-count {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 24px; height: 22px; padding: 0 7px; border-radius: 999px;
+      font-size: 12px; font-weight: 900; background: rgba(0, 0, 0, .09);
+    }
+    .tg-list-tab.active-all .tg-tab-count { background: rgba(255, 255, 255, .2); }
     .tg-btn.transcript {
       background: #f0f9ff; border-color: #0284c7; color: #0369a1;
     }
@@ -236,7 +264,8 @@
         filterClass: "all",
         filterTest: "all",
         filterLevel: "all",
-        filterStatus: "all"
+        filterStatus: "all",
+        activeListTab: "pending"
       };
 
       async function getSignedAudioUrls(paths) {
@@ -691,10 +720,17 @@
         }
       }
 
+      function getVisibleTabSubmissions(baseFiltered) {
+        const list = Array.isArray(baseFiltered) ? baseFiltered : getFilteredSubmissions();
+        if (state.activeListTab === "pending") return list.filter(s => !s.isReleased);
+        if (state.activeListTab === "completed") return list.filter(s => s.isReleased);
+        return list;
+      }
+
       async function delayFilteredByHours(extraHours = 2) {
         const client = getClient();
         if (!client || state.flushingQueue) return;
-        const targets = getFilteredSubmissions();
+        const targets = getVisibleTabSubmissions();
         if (!targets.length) {
           alert("Không có bài nào trong danh sách đang lọc để gia hạn.");
           return;
@@ -1136,7 +1172,7 @@
                 ? "Đã đọc"
                 : "Chưa đọc"
               : s.hasReady
-                ? "Chờ tới hạn 6h"
+                ? "Chờ tới hạn 8h"
                 : "Chưa chấm";
           lines.push([
             s.studentName,
@@ -1199,6 +1235,9 @@
 
       function renderDashboard() {
         const filtered = getFilteredSubmissions();
+        const pendingFiltered = filtered.filter(s => !s.isReleased);
+        const completedFiltered = filtered.filter(s => s.isReleased);
+        const displayed = getVisibleTabSubmissions(filtered);
         const total = state.submissions.length;
         const ungradedCount = state.submissions.filter(s => !s.hasReady && s.status !== "no_audio").length;
         const waitingReleaseCount = state.submissions.filter(s => s.isWaitingRelease).length;
@@ -1277,7 +1316,7 @@
                   <option value="approved" ${state.filterStatus === "approved" ? "selected" : ""}>GV đã đồng ý bài AI</option>
                   <option value="rejected" ${state.filterStatus === "rejected" ? "selected" : ""}>GV không đồng ý bài AI</option>
                   <option value="manual" ${state.filterStatus === "manual" ? "selected" : ""}>GV đã tự chấm</option>
-                  <option value="waiting_release" ${state.filterStatus === "waiting_release" ? "selected" : ""}>Đã chấm · Chờ trả 6h</option>
+                  <option value="waiting_release" ${state.filterStatus === "waiting_release" ? "selected" : ""}>Đã chấm · Chờ trả 8h</option>
                   <option value="unread" ${state.filterStatus === "unread" ? "selected" : ""}>Đã trả · HV chưa đọc</option>
                   <option value="ungraded" ${state.filterStatus === "ungraded" ? "selected" : ""}>Chưa có bài sửa</option>
                   <option value="ready" ${state.filterStatus === "ready" ? "selected" : ""}>Đã có bài sửa</option>
@@ -1285,10 +1324,41 @@
               </div>
             </div>
 
+            <div class="tg-list-tabs" role="tablist">
+              <button
+                type="button"
+                class="tg-list-tab ${state.activeListTab === "pending" ? "active-pending" : ""}"
+                data-list-tab="pending"
+              >
+                <span>⏳ Cần chấm / Chờ trả</span>
+                <span class="tg-tab-count">${pendingFiltered.length}</span>
+              </button>
+              <button
+                type="button"
+                class="tg-list-tab ${state.activeListTab === "completed" ? "active-completed" : ""}"
+                data-list-tab="completed"
+              >
+                <span>✅ DANH SÁCH ĐÃ CHẤM (Đã trả KQ)</span>
+                <span class="tg-tab-count">${completedFiltered.length}</span>
+              </button>
+              <button
+                type="button"
+                class="tg-list-tab ${state.activeListTab === "all" ? "active-all" : ""}"
+                data-list-tab="all"
+              >
+                <span>📋 Tất cả</span>
+                <span class="tg-tab-count">${filtered.length}</span>
+              </button>
+            </div>
+
             ${
-              filtered.length === 0
-                ? `<div style="padding:40px;text-align:center;background:#fff;border:2px dashed #d4d4d8;border-radius:12px;color:#52525b;font-weight:700;">Chưa có bài nộp nào khớp bộ lọc hiện tại.</div>`
-                : filtered.map(renderSubmissionCard).join("")
+              displayed.length === 0
+                ? `<div style="padding:40px;text-align:center;background:#fff;border:2px dashed #d4d4d8;border-radius:12px;color:#52525b;font-weight:700;">${
+                    state.activeListTab === "pending" && completedFiltered.length > 0
+                      ? `🎉 Tất cả ${completedFiltered.length} bài trong bộ lọc đã được trả kết quả! Cô bấm sang tab <strong>✅ DANH SÁCH ĐÃ CHẤM</strong> để xem lại.`
+                      : "Chưa có bài nộp nào trong danh sách này khớp bộ lọc hiện tại."
+                  }</div>`
+                : displayed.map(renderSubmissionCard).join("")
             }
           </main>
         `;
@@ -1769,7 +1839,7 @@
         if (btnFlush) btnFlush.onclick = () => triggerFlushQueue();
 
         const btnExport = document.getElementById("tg-btn-export");
-        if (btnExport) btnExport.onclick = () => exportCsv(getFilteredSubmissions());
+        if (btnExport) btnExport.onclick = () => exportCsv(getVisibleTabSubmissions());
 
         const searchEl = document.getElementById("tg-search");
         if (searchEl) {
@@ -1793,6 +1863,13 @@
 
         const delayAllBtn = document.getElementById("tg-btn-delay-all");
         if (delayAllBtn) delayAllBtn.onclick = () => delayFilteredByHours(2);
+
+        document.querySelectorAll("[data-list-tab]").forEach(b => {
+          b.onclick = () => {
+            state.activeListTab = b.getAttribute("data-list-tab") || "pending";
+            render();
+          };
+        });
 
         document.querySelectorAll("[data-grade]").forEach(b => (b.onclick = () => triggerGradeNow(b.getAttribute("data-grade"))));
         document.querySelectorAll("[data-stop-grading]").forEach(b => (b.onclick = () => stopActiveGrading(b.getAttribute("data-stop-grading"))));

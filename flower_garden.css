@@ -4,7 +4,7 @@
    ========================================================================== */
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap');
 
 /* ==========================================================================
    GLOBAL TYPOGRAPHY ENGINE (PLUS JAKARTA SANS & BE VIETNAM PRO)
@@ -37,7 +37,7 @@
 .quiz-badge,
 .quiz-feedback-box,
 .quiz-feedback-box *:not(i):not([class*="fa-"]) {
-    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+    font-family: 'Noto Serif', 'Times New Roman', Georgia, serif !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
 }
@@ -1249,7 +1249,7 @@
     align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
-    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-family: 'Noto Serif', 'Times New Roman', Georgia, serif !important;
     font-size: 13.5px !important;
     font-weight: 700 !important;
     line-height: 1.2 !important;
@@ -1413,7 +1413,7 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, sans-serif !important;
+    font-family: 'Noto Serif', 'Times New Roman', Georgia, serif !important;
     font-size: 13.5px;
     font-weight: 700;
     padding: 10px 18px;
@@ -3067,7 +3067,7 @@
     font-size: 13.5px !important;
     font-weight: 700 !important;
     color: #E11D48 !important;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif !important;
+    font-family: 'Noto Serif', 'Times New Roman', Georgia, serif !important;
     gap: 4px !important;
 }
 .heart-pulse {

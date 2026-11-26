@@ -426,7 +426,7 @@
                 color: #ffffff;
                 box-shadow: 0 4px 25px rgba(0, 0, 0, 0.45);
                 border-bottom: 2px solid rgba(234, 179, 8, 0.7);
-                font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+                font-family: 'Noto Serif', 'Times New Roman', Georgia, serif;
                 animation: slideDownBar 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             }
             @keyframes slideDownBar {

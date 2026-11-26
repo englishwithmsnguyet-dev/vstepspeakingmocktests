@@ -2324,17 +2324,17 @@ h1, h2, h3, h4,
 }
 
 /* ==========================================================================
-   UNIFIED TYPOGRAPHY SYSTEM (ĐỒNG BỘ FONT & SIZE CHỮ TOÀN WEBSITE)
+   UNIFIED TYPOGRAPHY SYSTEM (ĐỒNG BỘ FONT & SIZE CHỮ TOÀN WEBSITE) - SERIF / CÓ CHÂN)
    ========================================================================== */
 :root {
-    --font-main: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --fs-xs: 12px;
-    --fs-sm: 13px;
-    --fs-ui: 14px;
-    --fs-body: 15px;
-    --fs-sub: 16px;
-    --fs-h3: 17px;
-    --fs-h2: 20px;
+    --font-main: 'Noto Serif', 'Times New Roman', Georgia, serif;
+    --fs-xs: 12.5px;
+    --fs-sm: 13.5px;
+    --fs-ui: 14.5px;
+    --fs-body: 16px;
+    --fs-sub: 17px;
+    --fs-h3: 18px;
+    --fs-h2: 21px;
     --fs-h1: 32px;
 }
 
@@ -2344,9 +2344,9 @@ html {
 }
 
 body {
-    font-family: var(--font-main);
+    font-family: var(--font-main) !important;
     font-size: var(--fs-body);
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -2355,21 +2355,22 @@ button,
 input,
 select,
 textarea {
-    font-family: var(--font-main);
+    font-family: var(--font-main) !important;
 }
 
 /* Display & Header */
 .welcome-card h1 {
     font-size: var(--fs-h1);
-    line-height: 1.25;
+    line-height: 1.28;
+    letter-spacing: -0.3px;
 }
 .mock-test-pill {
     font-size: var(--fs-sub);
     line-height: 1.3;
 }
 .welcome-desc {
-    font-size: var(--fs-body);
-    line-height: 1.6;
+    font-size: 15.5px;
+    line-height: 1.65;
 }
 .app-footer {
     font-size: var(--fs-sm);
@@ -2407,16 +2408,16 @@ textarea {
     font-size: var(--fs-sub);
 }
 .item-info h4 {
-    font-size: var(--fs-body);
+    font-size: 15.5px;
 }
 .item-info p,
 .input-group label,
 .mic-status-msg {
     font-size: var(--fs-sm);
-    line-height: 1.5;
+    line-height: 1.55;
 }
 .input-group input[type="text"] {
-    font-size: var(--fs-body);
+    font-size: 15.5px;
 }
 .part-badge,
 .time-badge,
@@ -2444,12 +2445,12 @@ textarea {
 .factor-card h4,
 .follow-up-list {
     font-size: var(--fs-body);
-    line-height: 1.65;
+    line-height: 1.7;
 }
 .factor-desc,
 .follow-up-box h4 {
     font-size: var(--fs-ui);
-    line-height: 1.55;
+    line-height: 1.6;
 }
 .prep-tips-box {
     font-size: var(--fs-sm);
@@ -2459,17 +2460,17 @@ textarea {
     font-size: var(--fs-xs);
 }
 .mindmap-node {
-    font-size: var(--fs-sm);
+    font-size: 13px;
     line-height: 1.3;
 }
 .mindmap-node.node-center {
-    font-size: var(--fs-ui);
+    font-size: 14px;
     line-height: 1.3;
 }
 
 /* Review Dashboard */
 .success-banner h2 {
-    font-size: 24px;
+    font-size: 25px;
     line-height: 1.3;
 }
 .success-banner p,
@@ -2487,16 +2488,16 @@ textarea {
     font-size: var(--fs-sm);
 }
 .teacher-feedback-box textarea {
-    font-size: var(--fs-body);
-    line-height: 1.6;
+    font-size: 15.5px;
+    line-height: 1.65;
 }
 
-/* Solution Screen (Tab Bài Giải) - Uniform & Harmonious Hierarchy */
+/* Solution Screen (Tab Bài Giải) - Uniform & Harmonious Serif Hierarchy */
 .sol-tab-btn {
     font-size: var(--fs-ui);
 }
 .sol-part-title {
-    font-size: 19px;
+    font-size: 20px;
     line-height: 1.35;
 }
 .sol-topic-header {
@@ -2504,22 +2505,22 @@ textarea {
     line-height: 1.45;
 }
 .sol-question-text {
-    font-size: 15.5px;
-    line-height: 1.55;
+    font-size: var(--fs-body);
+    line-height: 1.6;
 }
 .sol-situation-box,
 .sol-answer-box,
 .level-content {
     font-size: var(--fs-body);
-    line-height: 1.7;
+    line-height: 1.75;
 }
 .level-badge {
-    font-size: 11.5px;
+    font-size: 12px;
 }
 .sol-translation,
 .translation-text {
     font-size: var(--fs-ui) !important;
-    line-height: 1.65;
+    line-height: 1.7;
 }
 .translation-toggle {
     font-size: var(--fs-ui);
@@ -2535,13 +2536,13 @@ textarea {
     font-size: var(--fs-ui) !important;
 }
 
-/* Cat Paw Framework Box - Harmonious with Solution Body */
+/* Cat Paw Framework Box - Harmonious Serif Sizing */
 .framework-toggle {
     font-size: var(--fs-ui) !important;
 }
 .framework-box {
     font-size: var(--fs-ui) !important;
-    line-height: 1.7 !important;
+    line-height: 1.75 !important;
 }
 .framework-box > div:nth-child(1),
 .framework-box > div:nth-child(3) {
@@ -2549,14 +2550,14 @@ textarea {
 }
 .framework-box > div:nth-child(2) {
     font-size: var(--fs-body) !important;
-    line-height: 2 !important;
+    line-height: 2.05 !important;
 }
 .framework-box > div:nth-child(2) strong {
     font-size: var(--fs-ui) !important;
 }
 .framework-box ul li {
     font-size: var(--fs-ui) !important;
-    line-height: 1.7 !important;
+    line-height: 1.75 !important;
 }
 .framework-box ul li strong {
     font-size: var(--fs-sm) !important;

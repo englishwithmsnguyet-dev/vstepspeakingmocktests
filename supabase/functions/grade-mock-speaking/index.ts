@@ -614,10 +614,16 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     return uploaded;
   }
 
-  const RETIRED_MODELS = new Set(["gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-exp"]);
-  // Chỉ giữ tối đa 2 model thật (2.5-flash & 2.5-flash-lite) để tránh gọi trùng alias gây timeout
+  const RETIRED_MODELS = new Set([
+    "gemini-2.0-flash",
+    "gemini-2.0-flash-lite",
+    "gemini-2.0-flash-exp",
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite"
+  ]);
+  // Dùng alias chính thức mới nhất (tương thích cả API key mới tạo lẫn key cũ)
   const fallbackModels = Array.from(
-    new Set([params.geminiModel, "gemini-2.5-flash", "gemini-2.5-flash-lite"])
+    new Set([params.geminiModel, "gemini-flash-latest", "gemini-3.5-flash-lite", "gemini-flash-lite-latest"])
   )
     .filter(m => Boolean(m) && !RETIRED_MODELS.has(m))
     .slice(0, 3);
@@ -1073,7 +1079,7 @@ Deno.serve(async (req: Request) => {
     const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
     const supabaseServiceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
     const geminiApiKeys = parseGeminiApiKeys();
-    const geminiModel = Deno.env.get("GEMINI_MODEL") || "gemini-2.5-flash";
+    const geminiModel = Deno.env.get("GEMINI_MODEL") || "gemini-flash-latest";
     const cronSecretEnv = Deno.env.get("CRON_SECRET") || "";
 
     if (!supabaseUrl || !supabaseServiceRoleKey) {
@@ -1579,40 +1585,45 @@ Deno.serve(async (req: Request) => {
           ? `Pronounce the following English word or short phrase clearly and naturally with standard American pronunciation. Speak ONLY the exact text once without adding anything else:\n\n${rawText}`
           : `Read the following English speaking response aloud in a warm, natural, expressive human conversational tone with clear phrasing and natural pauses, as a friendly native English speaker in a VSTEP interview. Speak ONLY the exact text below without adding any introduction or commentary:\n\n${rawText}`;
 
+      const ttsModels = ["gemini-3.8-flash-tts", "gemini-3.8-flash-lite-tts", "gemini-2.5-flash-preview-tts"];
       let lastStatus = 502;
       let lastErr = "";
-      for (const apiKey of geminiApiKeys) {
-        const ttsEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${encodeURIComponent(apiKey)}`;
-        const ttsRes = await fetch(ttsEndpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ role: "user", parts: [{ text: ttsPrompt }] }],
-            generationConfig: {
-              responseModalities: ["AUDIO"],
-              speechConfig: {
-                voiceConfig: {
-                  prebuiltVoiceConfig: { voiceName }
+      for (const apiKey of geminiApiKeys.slice(0, 3)) {
+        for (const ttsModel of ttsModels) {
+          const ttsEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(ttsModel)}:generateContent?key=${encodeURIComponent(apiKey)}`;
+          const ttsRes = await fetch(ttsEndpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [{ role: "user", parts: [{ text: ttsPrompt }] }],
+              generationConfig: {
+                responseModalities: ["AUDIO"],
+                speechConfig: {
+                  voiceConfig: {
+                    prebuiltVoiceConfig: { voiceName }
+                  }
                 }
               }
-            }
-          })
-        });
+            }),
+            signal: AbortSignal.timeout(25000)
+          });
 
-        if (ttsRes.ok) {
-          const ttsJson = await ttsRes.json().catch(() => ({}));
-          const inlineAudio = ttsJson?.candidates?.[0]?.content?.parts?.[0]?.inlineData;
-          if (inlineAudio && inlineAudio.data) {
-            return jsonResponse({
-              ok: true,
-              audio_base64: inlineAudio.data,
-              mime_type: inlineAudio.mimeType || "audio/L16;codec=pcm;rate=24000"
-            });
+          if (ttsRes.ok) {
+            const ttsJson = await ttsRes.json().catch(() => ({}));
+            const inlineAudio = ttsJson?.candidates?.[0]?.content?.parts?.[0]?.inlineData;
+            if (inlineAudio && inlineAudio.data) {
+              return jsonResponse({
+                ok: true,
+                audio_base64: inlineAudio.data,
+                mime_type: inlineAudio.mimeType || "audio/L16;codec=pcm;rate=24000"
+              });
+            }
           }
+          lastStatus = ttsRes.status;
+          lastErr = (await ttsRes.text().catch(() => "")).slice(0, 160);
+          if (ttsRes.status === 400 || ttsRes.status === 401 || ttsRes.status === 403) break;
         }
-        lastStatus = ttsRes.status;
-        lastErr = (await ttsRes.text().catch(() => "")).slice(0, 160);
-        if (ttsRes.status === 400) break;
+        if (lastStatus === 400) break;
       }
 
       return jsonResponse({ ok: false, error: `Gemini TTS lỗi (${lastStatus}): ${lastErr}` }, 502);

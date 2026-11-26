@@ -12,7 +12,7 @@
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Lexend:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="./speaking-grader.css?v=20261126i" />
+  <link rel="stylesheet" href="./speaking-grader.css?v=20261126j" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root {
@@ -117,8 +117,8 @@
 <body>
   <div id="teacher-root"></div>
 
-  <script src="./speaking-grader-config.js?v=20261126i"></script>
-  <script src="./speaking-grader.js?v=20261126i"></script>
+  <script src="./speaking-grader-config.js?v=20261126j"></script>
+  <script src="./speaking-grader.js?v=20261126j"></script>
   <script>
     (function () {
       const CFG = window.VSTEP_SPEAKING_GRADER_CONFIG || {};
@@ -310,6 +310,39 @@
         });
       }
 
+      async function ensurePartWavUpgraded(item, pNum, token) {
+        if (!item || !GRADER.convertBlobToCleanWav16k) return "";
+        const oldPath = String((item.audioPaths && item.audioPaths[pNum]) || "").trim();
+        const signedUrl = String((item.audioUrls && item.audioUrls[pNum]) || "").trim();
+        if (!oldPath || !signedUrl || /\.wav$/i.test(oldPath)) return "";
+
+        try {
+          state.gradingStepText = `Chuẩn hoá WAV Part ${pNum}/3...`;
+          render();
+          const dlRes = await fetch(signedUrl);
+          if (!dlRes.ok) return "";
+          const rawBlob = await dlRes.blob();
+          const wavBlob = await GRADER.convertBlobToCleanWav16k(rawBlob);
+          if (!wavBlob || !String(wavBlob.type || "").includes("wav") || wavBlob.size < 200) return "";
+
+          const prep = await GRADER.callEdgeFunction(
+            { action: "teacher_prepare_wav_upgrade", submission_id: item.id, part_num: pNum },
+            token
+          );
+          if (!prep.ok || !prep.signedUrl || !prep.wav_path) return "";
+
+          const putRes = await fetch(prep.signedUrl, {
+            method: "PUT",
+            headers: { "Content-Type": "audio/wav", "x-upsert": "true" },
+            body: wavBlob
+          });
+          if (!putRes.ok) return "";
+          return prep.wav_path;
+        } catch (e) {
+          return "";
+        }
+      }
+
       async function triggerGradeNow(subId) {
         if (!subId || state.gradingId) return;
         const item = state.submissions.find(x => x.id === subId);
@@ -319,18 +352,21 @@
 
         for (let i = 0; i < partsToRun.length; i++) {
           const pNum = partsToRun[i];
+          // Tự động chuyển đổi file .webm cũ sang chuẩn WAV 16kHz PCM (+ tăng âm micro nhỏ) trước khi chấm
+          const upgradedPath = await ensurePartWavUpgraded(item, pNum, token);
+
           state.gradingStepText = `Đang chấm Part ${pNum}/3...`;
           render();
-          const res = await GRADER.callEdgeFunction(
-            {
-              action: "grade_now",
-              submission_id: subId,
-              part_num: pNum,
-              reset_existing: i === 0,
-              release_now: false
-            },
-            token
-          );
+          const payload = {
+            action: "grade_now",
+            submission_id: subId,
+            part_num: pNum,
+            reset_existing: i === 0,
+            release_now: false
+          };
+          if (upgradedPath) payload.upgraded_audio_path = upgradedPath;
+
+          const res = await GRADER.callEdgeFunction(payload, token);
           if (!res.ok) {
             state.gradingId = "";
             state.gradingStepText = "";

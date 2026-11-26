@@ -429,6 +429,15 @@
       <div class="sg-block">
         <div class="sg-block-title">1. Lời nói nhận diện từ bản ghi âm &amp; đánh dấu chỗ cần chỉnh</div>
         <div class="sg-inline-transcript">${buildInlineHighlightedTranscript(partObj.recognized_transcript, corrections)}</div>
+        ${
+          isTeacherView && partObj._meta
+            ? `<div style="margin-top:6px;font-size:11px;color:#71717a;font-family:'JetBrains Mono',monospace;">
+                🎧 Chẩn đoán (GV): ${escapeHtml(partObj._meta.mime_type || "?")} · ${
+                  partObj._meta.file_bytes ? (Number(partObj._meta.file_bytes) / 1024).toFixed(0) + " KB" : "?"
+                } · Model: ${escapeHtml(partObj._meta.model_step1 || "?")}
+              </div>`
+            : ""
+        }
       </div>
 
       <div class="sg-block">
@@ -735,6 +744,14 @@
       const rendered = await offline.startRendering();
 
       const samples = rendered.getChannelData(0);
+      // Tự động cân bằng âm lượng nhẹ nhàng (Auto-Gain) cho micro nhỏ nhưng không khuếch đại tiếng ồn nền im lặng
+      let peak = 0;
+      for (let i = 0; i < samples.length; i++) {
+        const a = Math.abs(samples[i]);
+        if (a > peak) peak = a;
+      }
+      const gain = peak > 0.008 && peak < 0.72 ? Math.min(8.0, 0.78 / peak) : 1.0;
+
       const dataSize = samples.length * 2;
       const wavBuf = new ArrayBuffer(44 + dataSize);
       const view = new DataView(wavBuf);
@@ -757,7 +774,7 @@
 
       let offset = 44;
       for (let i = 0; i < samples.length; i++) {
-        const s = Math.max(-1, Math.min(1, samples[i]));
+        const s = Math.max(-1, Math.min(1, samples[i] * gain));
         view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7fff, true);
         offset += 2;
       }
@@ -956,15 +973,19 @@
       uiState.progressText = "Đang khởi tạo phiên nộp bài...";
       renderPanel();
 
-      // Giữ định dạng nén gọn nhẹ (WebM Opus / MP4 ~500KB thay vì WAV ~6MB) để upload & chấm nhanh gấp 10 lần
+      // Chuẩn hoá sang WAV 16kHz mono PCM (+ cân bằng âm lượng micro nhỏ) ngay trên trình duyệt
+      // -> Khắc phục triệt để lỗi Gemini API nhận diện sai trên file WebM ghi từ trình duyệt
+      // -> Edge Function dùng Zero-Copy Streaming nên WAV vẫn tốn 0 MB RAM!
       const preparedBlobs = {};
       const partsMeta = {};
       for (const n of presentParts) {
-        const rawBlob = uiState.recordings[n];
-        preparedBlobs[n] = rawBlob;
+        uiState.progressText = `Đang chuẩn hoá âm thanh Part ${n}...`;
+        renderPanel();
+        const cleanBlob = await convertBlobToCleanWav16k(uiState.recordings[n]);
+        preparedBlobs[n] = cleanBlob;
         partsMeta[String(n)] = {
           present: true,
-          mimeType: (rawBlob.type || "audio/webm").split(";")[0].trim()
+          mimeType: (cleanBlob.type || "audio/wav").split(";")[0].trim()
         };
       }
 
@@ -1408,6 +1429,7 @@
     formatDateTime,
     formatRemainingTime,
     speakEnglishText,
+    convertBlobToCleanWav16k,
     callEdgeFunction,
     renderMockReviewHtml,
     isConfigured,

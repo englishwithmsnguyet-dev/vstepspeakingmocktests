@@ -797,9 +797,9 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     "gemini-2.5-flash",
     "gemini-2.5-flash-lite"
   ]);
-  // Dùng alias chính thức mới nhất (tương thích cả API key mới tạo lẫn key cũ)
+  // Ưu tiên model Flash thế hệ mới nhất (3.8 Flash / flash-latest) để nghe tiếng Anh sát thực tế nhất
   const fallbackModels = Array.from(
-    new Set([params.geminiModel, "gemini-flash-latest", "gemini-3.5-flash-lite", "gemini-flash-lite-latest"])
+    new Set(["gemini-3.8-flash", params.geminiModel, "gemini-flash-latest", "gemini-3.5-flash-lite"])
   )
     .filter(m => Boolean(m) && !RETIRED_MODELS.has(m))
     .slice(0, 3);
@@ -1756,6 +1756,59 @@ Deno.serve(async (req: Request) => {
     }
 
     // ========================================================================
+    // ACTION 5B: GIÁO VIÊN TẠO SIGNED UPLOAD URL ĐỂ CHUẨN HOÁ FILE CŨ SANG WAV 16KHZ
+    // ========================================================================
+    if (action === "teacher_prepare_wav_upgrade") {
+      const authCheck = await verifyTeacherFromRequest(admin, req);
+      if (!authCheck.isTeacher) {
+        return jsonResponse({ ok: false, error: "Chỉ Giáo viên được thực hiện thao tác này." }, 403);
+      }
+
+      const submissionId = String(body?.submission_id || "").trim();
+      const partNum = parseInt(String(body?.part_num || "0"), 10) as 1 | 2 | 3;
+      if (!submissionId || ![1, 2, 3].includes(partNum)) {
+        return jsonResponse({ ok: false, error: "Thiếu submission_id hoặc part_num (1-3)." }, 400);
+      }
+
+      const { data: sub, error: subErr } = await admin
+        .from("mock_speaking_submissions")
+        .select("id, audio_path_p1, audio_path_p2, audio_path_p3")
+        .eq("id", submissionId)
+        .maybeSingle();
+
+      if (subErr || !sub) {
+        return jsonResponse({ ok: false, error: "Không tìm thấy bài nộp." }, 404);
+      }
+
+      const oldPath = String(
+        partNum === 1 ? sub.audio_path_p1 : partNum === 2 ? sub.audio_path_p2 : sub.audio_path_p3 || ""
+      ).trim();
+      if (!oldPath) {
+        return jsonResponse({ ok: false, error: `Part ${partNum} không có file ghi âm.` }, 400);
+      }
+
+      const baseDir = oldPath.includes("/") ? oldPath.slice(0, oldPath.lastIndexOf("/")) : submissionId;
+      const wavPath = `${baseDir}/part${partNum}_clean16k.wav`;
+      const { data: signedData, error: signErr } = await admin.storage
+        .from(AUDIO_BUCKET)
+        .createSignedUploadUrl(wavPath, { upsert: true });
+
+      if (signErr || !signedData?.signedUrl) {
+        return jsonResponse(
+          { ok: false, error: `Không tạo được link nâng cấp WAV: ${signErr?.message || "Storage error"}` },
+          500
+        );
+      }
+
+      return jsonResponse({
+        ok: true,
+        wav_path: wavPath,
+        signedUrl: signedData.signedUrl,
+        token: signedData.token
+      });
+    }
+
+    // ========================================================================
     // ACTION 6: GIÁO VIÊN CHẤM TỪNG PART TRỰC TIẾP (AN TOÀN RAM/CPU)
     // ========================================================================
     if (action === "grade_now") {
@@ -1771,6 +1824,7 @@ Deno.serve(async (req: Request) => {
       const releaseNow = Boolean(body?.release_now);
       const resetExisting = Boolean(body?.reset_existing);
       const requestedPart = parseInt(String(body?.part_num || "0"), 10);
+      const upgradedAudioPath = String(body?.upgraded_audio_path || "").trim();
 
       if (!submissionId) {
         return jsonResponse({ ok: false, error: "Thiếu submission_id." }, 400);
@@ -1795,6 +1849,19 @@ Deno.serve(async (req: Request) => {
       const partNum = ([1, 2, 3].includes(requestedPart)
         ? requestedPart
         : findNextPendingPart(sub, resetExisting ? null : existingRev || null) || 1) as 1 | 2 | 3;
+
+      if (
+        upgradedAudioPath &&
+        upgradedAudioPath.endsWith(".wav") &&
+        upgradedAudioPath.includes(submissionId)
+      ) {
+        const col = partNum === 1 ? "audio_path_p1" : partNum === 2 ? "audio_path_p2" : "audio_path_p3";
+        await admin
+          .from("mock_speaking_submissions")
+          .update({ [col]: upgradedAudioPath, updated_at: new Date().toISOString() })
+          .eq("id", submissionId);
+        (sub as Record<string, unknown>)[col] = upgradedAudioPath;
+      }
 
       const res = await gradeOnePartOfSubmission(admin, geminiApiKeys, geminiModel, sub, existingRev || null, partNum, {
         releaseNow,

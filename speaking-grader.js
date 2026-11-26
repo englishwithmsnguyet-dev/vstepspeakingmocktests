@@ -576,10 +576,16 @@
       .filter(Boolean);
 
     let html = "";
+    const approvedNote = String(tOv.approved_comment || "").trim();
     if (decision === "approved") {
       html += `
         <div class="sg-alert success" style="margin-bottom:10px;">
-          ✅ <strong>${isTeacherView ? "Giáo viên đã xác nhận ĐỒNG Ý với bài chấm AI này." : "Cô Nguyệt đã kiểm tra và duyệt bài sửa này."}</strong>
+          <div>✅ <strong>${isTeacherView ? "Giáo viên đã xác nhận ĐỒNG Ý với bài chấm AI này." : "Cô Nguyệt đã kiểm tra và duyệt bài sửa này."}</strong></div>
+          ${
+            approvedNote
+              ? `<div style="margin-top:6px;padding-top:6px;border-top:1px dashed #86efac;color:#14532d;line-height:1.6;white-space:pre-line;">👩‍🏫 <strong>Nhận xét của Cô Nguyệt:</strong> ${escapeHtml(approvedNote)}</div>`
+              : ""
+          }
         </div>
       `;
     } else if (decision === "rejected" && isTeacherView) {

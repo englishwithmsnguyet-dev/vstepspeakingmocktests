@@ -501,7 +501,7 @@
 
           const { error: e2 } = await client
             .from("mock_speaking_ai_reviews")
-            .update({ release_at: nextIso, updated_at: nowIso })
+            .update({ release_at: nextIso, student_seen_at: null, updated_at: nowIso })
             .eq("submission_id", subId);
           if (e2) throw e2;
 
@@ -545,7 +545,7 @@
               .eq("id", item.id);
             await client
               .from("mock_speaking_ai_reviews")
-              .update({ release_at: nextIso, updated_at: nowIso })
+              .update({ release_at: nextIso, student_seen_at: null, updated_at: nowIso })
               .eq("submission_id", item.id);
             done++;
           }

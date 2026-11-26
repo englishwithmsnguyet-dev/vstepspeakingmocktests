@@ -163,7 +163,14 @@ function playTimeUpChime() {
 // ==========================================================================
 async function requestMicrophone() {
     try {
-        micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+        try {
+            micStream = await navigator.mediaDevices.getUserMedia({
+                audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 },
+                video: false
+            });
+        } catch (_micConstraintErr) {
+            micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+        }
         elements.micStatus.innerHTML = '<i class="fa-solid fa-circle-check"></i> Đã cấp quyền Microphone thành công.';
         elements.micStatus.className = 'mic-status-msg success';
         

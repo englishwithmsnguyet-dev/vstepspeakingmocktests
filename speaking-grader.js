@@ -434,7 +434,9 @@
             ? `<div style="margin-top:6px;font-size:11px;color:#71717a;font-family:'JetBrains Mono',monospace;">
                 🎧 Chẩn đoán (GV): ${escapeHtml(partObj._meta.mime_type || "?")} · ${
                   partObj._meta.file_bytes ? (Number(partObj._meta.file_bytes) / 1024).toFixed(0) + " KB" : "?"
-                } · Model: ${escapeHtml(partObj._meta.model_step1 || "?")}
+                } · Chép lời: ${escapeHtml(partObj._meta.model_step1 || "?")}${
+                  partObj._meta.model_step2 ? ` · Chấm bài: ${escapeHtml(partObj._meta.model_step2)}` : ""
+                }
               </div>`
             : ""
         }
@@ -821,18 +823,37 @@
       const offline = new OfflineCtx(1, frameCount, targetRate);
       const src = offline.createBufferSource();
       src.buffer = decoded;
-      src.connect(offline.destination);
+      // Lọc thông cao 80Hz để cắt tiếng ù quạt, điều hoà, rung bàn & nhiễu DC
+      const highPass = offline.createBiquadFilter();
+      highPass.type = "highpass";
+      highPass.frequency.value = 80;
+      highPass.Q.value = 0.707;
+      src.connect(highPass);
+      highPass.connect(offline.destination);
       src.start(0);
       const rendered = await offline.startRendering();
 
       const samples = rendered.getChannelData(0);
-      // Tự động cân bằng âm lượng nhẹ nhàng (Auto-Gain) cho micro nhỏ nhưng không khuếch đại tiếng ồn nền im lặng
-      let peak = 0;
-      for (let i = 0; i < samples.length; i++) {
-        const a = Math.abs(samples[i]);
-        if (a > peak) peak = a;
+      // Đo âm lượng giọng nói thực theo khung 50ms (bách phân vị 90% của các khung có tiếng)
+      // -> Bỏ qua tiếng click chuột / chạm mic đơn lẻ, kích âm giọng nhỏ cực kỳ chuẩn xác!
+      const frameLen = 800; // 50ms ở 16kHz
+      const activeRms = [];
+      for (let start = 0; start < samples.length; start += frameLen) {
+        const end = Math.min(samples.length, start + frameLen);
+        let sumSq = 0;
+        for (let i = start; i < end; i++) sumSq += samples[i] * samples[i];
+        const rms = Math.sqrt(sumSq / Math.max(1, end - start));
+        if (rms > 0.004) activeRms.push(rms);
       }
-      const gain = peak > 0.008 && peak < 0.72 ? Math.min(8.0, 0.78 / peak) : 1.0;
+
+      let gain = 1.0;
+      if (activeRms.length > 0) {
+        activeRms.sort((a, b) => a - b);
+        const refRms = activeRms[Math.min(activeRms.length - 1, Math.floor(activeRms.length * 0.9))];
+        if (refRms > 0.004 && refRms < 0.14) {
+          gain = Math.min(12.0, 0.15 / refRms);
+        }
+      }
 
       const dataSize = samples.length * 2;
       const wavBuf = new ArrayBuffer(44 + dataSize);
@@ -854,9 +875,13 @@
       writeStr(36, "data");
       view.setUint32(40, dataSize, true);
 
+      // Soft Limiter (tanh) trên 0.85 để tăng âm giọng nhỏ mà KHÔNG bị rè/vỡ tiếng ở các tiếng click
       let offset = 44;
       for (let i = 0; i < samples.length; i++) {
-        const s = Math.max(-1, Math.min(1, samples[i] * gain));
+        const x = samples[i] * gain;
+        const absX = Math.abs(x);
+        const limited = absX <= 0.85 ? x : Math.sign(x) * (0.85 + 0.15 * Math.tanh((absX - 0.85) / 0.15));
+        const s = Math.max(-1, Math.min(1, limited));
         view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7fff, true);
         offset += 2;
       }

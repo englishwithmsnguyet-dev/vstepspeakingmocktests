@@ -12,7 +12,7 @@
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Lexend:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="./speaking-grader.css?v=20261126k" />
+  <link rel="stylesheet" href="./speaking-grader.css?v=20261126l" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root {
@@ -167,8 +167,8 @@
 <body>
   <div id="teacher-root"></div>
 
-  <script src="./speaking-grader-config.js?v=20261126k"></script>
-  <script src="./speaking-grader.js?v=20261126k"></script>
+  <script src="./speaking-grader-config.js?v=20261126l"></script>
+  <script src="./speaking-grader.js?v=20261126l"></script>
   <script>
     (function () {
       const CFG = window.VSTEP_SPEAKING_GRADER_CONFIG || {};
@@ -386,10 +386,10 @@
         if (!item || !GRADER.convertBlobToCleanWav16k) return "";
         const oldPath = String((item.audioPaths && item.audioPaths[pNum]) || "").trim();
         const signedUrl = String((item.audioUrls && item.audioUrls[pNum]) || "").trim();
-        if (!oldPath || !signedUrl || /\.wav$/i.test(oldPath)) return "";
+        if (!oldPath || !signedUrl || /_studio16k\.wav$/i.test(oldPath)) return "";
 
         try {
-          state.gradingStepText = `Chuẩn hoá WAV Part ${pNum}/3...`;
+          state.gradingStepText = `Lọc nhiễu & chuẩn hoá Part ${pNum}/3...`;
           render();
           const dlRes = await fetch(signedUrl);
           if (!dlRes.ok) return "";

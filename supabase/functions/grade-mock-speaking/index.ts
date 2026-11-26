@@ -263,7 +263,7 @@ ${params.verifiedTranscript || "(Không nghe thấy lời nói tiếng Anh rõ r
 ĐÃ ĐÍNH KÈM FILE GHI ÂM THẬT CỦA THÍ SINH:
 - TUYỆT ĐỐI KHÔNG tự bịa thêm câu nói hay ý tưởng mà thí sinh không nói! Mọi nhận xét, cụm trích dẫn "original" trong "language_corrections", và từ cần chỉnh trong "pronunciation_fixes" PHẢI xuất phát 100% từ bài nói thực tế của thí sinh trong file ghi âm và bản chép nguyên văn ở trên.
 - Nếu thí sinh nói lạc đề, nói tiếng Việt, nói quá ngắn hoặc chỉ nói vài câu rời rạc, hãy chấm THẲNG THẮN đúng thực tế.
-- Nếu trong bản chép có vài chỗ `[...]` do giọng học viên hơi nhỏ hoặc nghẹt mic, hãy chấm bình thường dựa trên toàn bộ phần nghe được và nhắc nhẹ thí sinh nói to, rõ hơn trong mục Phát âm & Ngữ điệu (không tự đánh 0 điểm oan).
+- Nếu trong bản chép có vài chỗ "[...]" do giọng học viên hơi nhỏ hoặc nghẹt mic, hãy chấm bình thường dựa trên toàn bộ phần nghe được và nhắc nhẹ thí sinh nói to, rõ hơn trong mục Phát âm & Ngữ điệu (không tự đánh 0 điểm oan).
 - Giữ nguyên bản chép thực tế vào "recognized_transcript" (chỉ thêm dấu chấm/phẩy tối thiểu cho dễ đọc, KHÔNG thay từ hay sửa lỗi trong "recognized_transcript").
 - Nghe kỹ file ghi âm để chấm trực tiếp PHÁT ÂM (độ rõ chữ, trọng âm từ, đặc biệt bắt lỗi mất final sound gốc /s/, /z/ như nice, house, place, office, because, always, relax, stress, bus, class, famous...) và NGỮ ĐIỆU (lên xuống giọng tự nhiên, nhấn content words, ngắt nghỉ hợp lý hay nói đều đều/ngập ngừng).
 

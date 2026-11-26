@@ -326,7 +326,7 @@
     const clean = String(text || "").trim();
     const list = Array.isArray(corrections) ? corrections : [];
     if (!clean) {
-      return `<span style="color:#71717a;font-style:italic;">(Không nhận diện được lời nói tiếng Anh rõ ràng trong bản ghi âm này)</span>`;
+      return `<span style="color:#b91c1c;font-style:italic;font-weight:600;">(Bài nói quá nhỏ và hệ thống không nhận diện được lời nói rõ ràng trong bản ghi âm này)</span>`;
     }
     if (list.length === 0) return `“${escapeHtml(clean)}”`;
 

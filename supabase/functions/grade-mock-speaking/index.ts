@@ -675,10 +675,10 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     const blindTranscribePrompt =
       "Listen carefully to the attached audio recording and transcribe EVERY spoken word verbatim. " +
       "Rules:\n" +
-      "1. Transcribe ONLY what is actually spoken in the audio. Do NOT invent, rewrite, complete, or fix grammar errors.\n" +
+      "1. Transcribe ONLY what is actually spoken clearly in the audio. Do NOT invent, guess, rewrite, or fix grammar errors.\n" +
       "2. Keep mistakes, hesitations, and exact phrasing as spoken (if Vietnamese words are spoken, transcribe them too).\n" +
       "3. Output ONLY the plain verbatim transcript text (no labels, no markdown, no commentary).\n" +
-      "4. If the audio is silent, noise-only, or contains no intelligible speech, output exactly: [SILENT]";
+      "4. If the audio is silent, noise-only, too quiet/faint, or cannot be understood clearly, output exactly: [TOO_QUIET]";
 
     const step1 = await callModel(
       [
@@ -692,8 +692,38 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     if (!step1.ok) return step1;
 
     const rawVerbatim = step1.rawText.replace(/^["'“]+|["'”]+$/g, "").trim();
-    const isSilent = !rawVerbatim || /^\[?SILENT\]?$/i.test(rawVerbatim);
-    const verifiedTranscript = isSilent ? "" : rawVerbatim;
+    const isUnintelligible =
+      !rawVerbatim ||
+      /^\[?(?:SILENT|TOO_QUIET|UNINTELLIGIBLE|NO_SPEECH)\]?$/i.test(rawVerbatim) ||
+      rawVerbatim.split(/\s+/).filter(Boolean).length < 3;
+
+    // Nếu bài nói quá nhỏ / im lặng / không nghe rõ -> trả kết quả ngay, KHÔNG gọi Bước 2 (tiết kiệm quota & chống bịa 100%)
+    if (isUnintelligible) {
+      return {
+        ok: true as const,
+        parsed: {
+          recognized_transcript: "",
+          internal_score: 0,
+          level_assessment: "Bài nói quá nhỏ và hệ thống không nhận diện được",
+          estimated_band: "Chưa đạt B1",
+          overall_comment:
+            "Bài nói quá nhỏ và hệ thống không nhận diện được lời nói rõ ràng trong bản ghi âm này. Bạn hãy kiểm tra lại micro, đặt micro gần miệng hơn, nói to và rõ hơn rồi ghi âm nộp lại nhé!",
+          criteria: {
+            pronunciation_intonation:
+              "Bài nói quá nhỏ và hệ thống không nhận diện được giọng nói rõ ràng để đánh giá phát âm và ngữ điệu.",
+            grammar: "Hệ thống không nhận diện được lời nói nên chưa thể đánh giá ngữ pháp.",
+            vocabulary_vietlish: "Hệ thống không nhận diện được lời nói nên chưa thể đánh giá từ vựng.",
+            coherence_logic: "Cần thu lại phần này rõ tiếng hơn để Trợ lý Miss Nguyệt có thể chấm đầy đủ."
+          },
+          pronunciation_fixes: [],
+          language_corrections: [],
+          idea_expansions: [],
+          natural_spoken_version: ""
+        }
+      };
+    }
+
+    const verifiedTranscript = rawVerbatim;
 
     // BƯỚC 2: CHẤM MULTIMODAL (GỬI CÙNG FILE AUDIO + BẢN CHÉP NGUYÊN VĂN BƯỚC 1 + ĐỀ BÀI)
     const gradingPrompt = params.buildGradingPrompt(verifiedTranscript);

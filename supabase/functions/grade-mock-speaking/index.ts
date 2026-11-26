@@ -263,6 +263,7 @@ ${params.verifiedTranscript || "(Không nghe thấy lời nói tiếng Anh rõ r
 ĐÃ ĐÍNH KÈM FILE GHI ÂM THẬT CỦA THÍ SINH:
 - TUYỆT ĐỐI KHÔNG tự bịa thêm câu nói hay ý tưởng mà thí sinh không nói! Mọi nhận xét, cụm trích dẫn "original" trong "language_corrections", và từ cần chỉnh trong "pronunciation_fixes" PHẢI xuất phát 100% từ bài nói thực tế của thí sinh trong file ghi âm và bản chép nguyên văn ở trên.
 - Nếu thí sinh nói lạc đề, nói tiếng Việt, nói quá ngắn hoặc chỉ nói vài câu rời rạc, hãy chấm THẲNG THẮN đúng thực tế.
+- Nếu trong bản chép có vài chỗ `[...]` do giọng học viên hơi nhỏ hoặc nghẹt mic, hãy chấm bình thường dựa trên toàn bộ phần nghe được và nhắc nhẹ thí sinh nói to, rõ hơn trong mục Phát âm & Ngữ điệu (không tự đánh 0 điểm oan).
 - Giữ nguyên bản chép thực tế vào "recognized_transcript" (chỉ thêm dấu chấm/phẩy tối thiểu cho dễ đọc, KHÔNG thay từ hay sửa lỗi trong "recognized_transcript").
 - Nghe kỹ file ghi âm để chấm trực tiếp PHÁT ÂM (độ rõ chữ, trọng âm từ, đặc biệt bắt lỗi mất final sound gốc /s/, /z/ như nice, house, place, office, because, always, relax, stress, bus, class, famous...) và NGỮ ĐIỆU (lên xuống giọng tự nhiên, nhấn content words, ngắt nghỉ hợp lý hay nói đều đều/ngập ngừng).
 
@@ -671,14 +672,16 @@ async function callGeminiAudioGradeWithSingleKey(params: {
   };
 
   try {
-    // BƯỚC 1: CHÉP NGUYÊN VĂN ĐỘC LẬP (KHÔNG GỬI ĐỀ BÀI -> CHỐNG AI BỊA TRANSCRIPT 100%)
+    // BƯỚC 1: CHÉP NGUYÊN VĂN ĐỘC LẬP (CỐ GẮNG NGHE KỸ CẢ GIỌNG NHỎ / GIỌNG VIỆT, CHỈ BÁO TOO_QUIET KHI HOÀN TOÀN IM LẶNG)
     const blindTranscribePrompt =
-      "Listen carefully to the attached audio recording and transcribe EVERY spoken word verbatim. " +
+      "Listen VERY carefully to the attached audio recording of a Vietnamese student speaking English. " +
+      "The microphone volume may be quiet/soft and the speaker may have a Vietnamese accent — listen closely and transcribe EVERY spoken word you can hear.\n" +
       "Rules:\n" +
-      "1. Transcribe ONLY what is actually spoken clearly in the audio. Do NOT invent, guess, rewrite, or fix grammar errors.\n" +
-      "2. Keep mistakes, hesitations, and exact phrasing as spoken (if Vietnamese words are spoken, transcribe them too).\n" +
-      "3. Output ONLY the plain verbatim transcript text (no labels, no markdown, no commentary).\n" +
-      "4. If the audio is silent, noise-only, too quiet/faint, or cannot be understood clearly, output exactly: [TOO_QUIET]";
+      "1. Do NOT give up just because the voice is soft, quiet, or accented. Strain to hear and transcribe all audible speech accurately.\n" +
+      "2. Transcribe ONLY what is actually spoken in the audio; never invent answers. If a specific word or brief segment is truly muffled, write [...] for that brief part and keep transcribing the rest.\n" +
+      "3. Keep the speaker's exact words, grammar mistakes, and hesitations without fixing them.\n" +
+      "4. Output ONLY the plain transcript text (no labels, no markdown, no commentary).\n" +
+      "5. ONLY output [TOO_QUIET] if the ENTIRE recording contains literally ZERO audible human speech (100% silence or pure static/noise from start to finish).";
 
     const step1 = await callModel(
       [
@@ -692,12 +695,17 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     if (!step1.ok) return step1;
 
     const rawVerbatim = step1.rawText.replace(/^["'“]+|["'”]+$/g, "").trim();
+    const meaningfulWords = rawVerbatim
+      .replace(/\[\.\.\.\]/g, " ")
+      .replace(/[^a-zA-ZÀ-ỹ0-9'\s]/g, " ")
+      .split(/\s+/)
+      .filter(Boolean);
     const isUnintelligible =
       !rawVerbatim ||
       /^\[?(?:SILENT|TOO_QUIET|UNINTELLIGIBLE|NO_SPEECH)\]?$/i.test(rawVerbatim) ||
-      rawVerbatim.split(/\s+/).filter(Boolean).length < 3;
+      meaningfulWords.length < 2;
 
-    // Nếu bài nói quá nhỏ / im lặng / không nghe rõ -> trả kết quả ngay, KHÔNG gọi Bước 2 (tiết kiệm quota & chống bịa 100%)
+    // Chỉ báo "quá nhỏ / không nhận diện được" khi gần như không nghe được bất kỳ lời nói nào
     if (isUnintelligible) {
       return {
         ok: true as const,
@@ -707,10 +715,10 @@ async function callGeminiAudioGradeWithSingleKey(params: {
           level_assessment: "Bài nói quá nhỏ và hệ thống không nhận diện được",
           estimated_band: "Chưa đạt B1",
           overall_comment:
-            "Bài nói quá nhỏ và hệ thống không nhận diện được lời nói rõ ràng trong bản ghi âm này. Bạn hãy kiểm tra lại micro, đặt micro gần miệng hơn, nói to và rõ hơn rồi ghi âm nộp lại nhé!",
+            "Bài nói quá nhỏ hoặc hầu như không có tiếng nói nên hệ thống không nhận diện được nội dung trong phần này. Bạn hãy kiểm tra lại micro, đặt micro gần miệng hơn, nói to và rõ hơn rồi ghi âm nộp lại nhé!",
           criteria: {
             pronunciation_intonation:
-              "Bài nói quá nhỏ và hệ thống không nhận diện được giọng nói rõ ràng để đánh giá phát âm và ngữ điệu.",
+              "Bài nói quá nhỏ và hệ thống không nhận diện được giọng nói để đánh giá phát âm và ngữ điệu.",
             grammar: "Hệ thống không nhận diện được lời nói nên chưa thể đánh giá ngữ pháp.",
             vocabulary_vietlish: "Hệ thống không nhận diện được lời nói nên chưa thể đánh giá từ vựng.",
             coherence_logic: "Cần thu lại phần này rõ tiếng hơn để Trợ lý Miss Nguyệt có thể chấm đầy đủ."

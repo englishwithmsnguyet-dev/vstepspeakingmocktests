@@ -1298,18 +1298,14 @@ async function transcribeWithGroqWhisper(params: {
 
 async function callGeminiAudioGradeWithSingleKey(params: {
   geminiApiKey: string;
+  deepgramApiKeys: string[];
+  groqApiKeys: string[];
   geminiModel: string;
   signedAudioUrl: string;
   audioPath: string;
   promptText: string;
   durationSec?: number;
-  preTranscribed?: {
-    transcript: string;
-    timestampedDraft?: string;
-    isSilent: boolean;
-    modelUsed: string;
-    locked?: boolean;
-  } | null;
+  overrideTranscript?: string;
   buildGradingPrompt: (verifiedTranscript: string, transcriptLocked: boolean) => string;
 }) {
   const uploaded = await streamStorageUrlToGeminiFilesApi(
@@ -1328,13 +1324,22 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     "gemini-1.5-flash",
     "gemini-1.5-pro"
   ]);
-  // Ưu tiên bản Flash ĐẦY ĐỦ (3.5 Flash / 3 Flash / flash-latest / 2.5 Flash) trước khi rơi xuống bản lite!
+  // Ưu tiên cao nhất cho Gemini 2.5 Pro & 2.5 Flash (bản đầy đủ nghe hiểu giọng Việt + ngữ cảnh VSTEP tốt nhất!)
+  const proAudioModels = Array.from(
+    new Set([
+      "gemini-2.5-pro",
+      "gemini-2.5-flash",
+      "gemini-3.5-flash",
+      "gemini-3-flash-preview"
+    ])
+  ).filter(m => Boolean(m) && !RETIRED_MODELS.has(m));
+
   const fallbackModels = Array.from(
     new Set([
-      "gemini-3.5-flash",
-      "gemini-3-flash",
-      "gemini-flash-latest",
+      "gemini-2.5-pro",
       "gemini-2.5-flash",
+      "gemini-3.5-flash",
+      "gemini-3-flash-preview",
       params.geminiModel,
       "gemini-3.5-flash-lite"
     ])
@@ -1347,17 +1352,20 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     temperature: number,
     expectJson: boolean,
     useSchema = true,
-    thinkingBudget: number | null = null
+    thinkingBudget: number | null = null,
+    modelList: string[] = fallbackModels
   ) => {
     const errors: Array<{ model: string; status: number; detail: string }> = [];
-    for (const modelName of fallbackModels) {
+    for (const modelName of modelList) {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelName)}:generateContent?key=${encodeURIComponent(params.geminiApiKey)}`;
       const genCfg: Record<string, unknown> = {
         temperature,
         maxOutputTokens: 8192
       };
-      if (typeof thinkingBudget === "number" && thinkingBudget >= 0) {
-        genCfg.thinkingConfig = { thinkingBudget };
+      if (typeof thinkingBudget === "number") {
+        // Gemini 2.5 Pro / 3 Pro bắt buộc thinkingBudget >= 128 (không chấp nhận 0)
+        const isPro = /(?:2\.5-pro|3-pro|3\.1-pro)/i.test(modelName);
+        genCfg.thinkingConfig = { thinkingBudget: isPro ? Math.max(128, thinkingBudget) : Math.max(0, thinkingBudget) };
       }
       if (expectJson) {
         genCfg.responseMimeType = "application/json";
@@ -1448,125 +1456,179 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     };
 
     const topicHintEn = extractEnglishPromptHints(params.promptText);
-    const whisperDraft =
-      params.preTranscribed && !params.preTranscribed.isSilent && params.preTranscribed.transcript
-        ? (params.preTranscribed.timestampedDraft || params.preTranscribed.transcript).trim()
-        : "";
-    const whisperClean =
-      params.preTranscribed && !params.preTranscribed.isSilent && params.preTranscribed.transcript
-        ? params.preTranscribed.transcript.trim()
-        : "";
+    const contextSection = topicHintEn
+      ? `EXAM QUESTIONS / TOPIC CONTEXT (use ONLY to disambiguate Vietnamese-accented pronunciation of topic words — NEVER invent answers the student did not say):\n"""\n${topicHintEn}\n"""\n\n`
+      : "";
 
     let step1Model = "";
     let transcriptCheck = { cleaned: "", unintelligible: true, wordCount: 0 };
     let isTranscriptLocked = false;
+    let lastStep1Err: { ok: false; status: number; error: string } | null = null;
 
-    // ƯU TIÊN 1 & 2 (BẢN CHÉP ĐÃ KHÓA CHUẨN — GIÁO VIÊN SỬA HOẶC DEEPGRAM NOVA-3):
-    // Bỏ qua hoàn toàn Gemini Step 1 chép lời để tiết kiệm thời gian & giữ nguyên 100% độ chuẩn xác của transcript!
-    if (params.preTranscribed?.locked && params.preTranscribed.transcript) {
-      const lockedCheck = checkTranscriptMeaningful(params.preTranscribed.transcript);
-      if (!lockedCheck.unintelligible) {
-        step1Model = params.preTranscribed.modelUsed;
-        transcriptCheck = lockedCheck;
+    // ƯU TIÊN 1: BẢN CHÉP DO GIÁO VIÊN TRỰC TIẾP CHỈNH SỬA (teacher:override)
+    const cleanOverride = String(params.overrideTranscript || "").replace(/\s{2,}/g, " ").trim();
+    if (cleanOverride) {
+      const ovCheck = checkTranscriptMeaningful(cleanOverride);
+      if (!ovCheck.unintelligible) {
+        step1Model = "teacher:override";
+        transcriptCheck = ovCheck;
         isTranscriptLocked = true;
       }
     }
 
+    // ƯU TIÊN 2 (CHÍNH — GEMINI 2.5 PRO / 2.5 FLASH MULTIMODAL NGHE TRỰC TIẾP FILE WAV + ĐỀ THI VSTEP):
+    // Không trộn bản nháp sai của ASR thuần âm học để Pro/Flash nghe trực tiếp sóng âm chuẩn nhất!
     if (!isTranscriptLocked) {
-      // BƯỚC 1 DỰ PHÒNG (DUAL-ENGINE FUSION: GROQ WHISPER LARGE V3 + GEMINI MULTIMODAL AUDIO VERIFICATION + EXAM CONTEXT):
-      // - Whisper Large v3 (không truyền prompt, lọc chặt no_speech_prob > 0.58) bắt cực sắc các âm giọng Việt
-      //   mà model nhỏ hay nghe nhầm (vd: "by bus" vs "papers", "very cheap" vs "very straight").
-      // - Gemini nghe trực tiếp toàn bộ file WAV cùng ngữ cảnh đề thi tiếng Anh + bản nháp Whisper để:
-      //   (a) Xoá sạch mọi chữ Whisper bịa trong khoảng lặng/tiếng ồn lớp học,
-      //   (b) Khôi phục đúng từ tiếng Anh bị nói nặng giọng Việt dựa vào âm thanh thật + chủ đề câu hỏi,
-      //   (c) Giữ nguyên 100% lỗi ngữ pháp thật của thí sinh (KHÔNG sửa lỗi, KHÔNG bịa thêm câu!).
-      const contextSection = topicHintEn
-        ? `EXAM QUESTIONS / TOPIC CONTEXT (use ONLY to disambiguate Vietnamese-accented pronunciation of topic words — NEVER invent answers the student did not say):\n"""\n${topicHintEn}\n"""\n\n`
-        : "";
-      const whisperSection = whisperDraft
-        ? `ROUGH WHISPER ACOUSTIC DRAFT (helpful for accented words, BUT may contain hallucinations during silences/classroom noise — verify EVERY phrase against the actual audio and DELETE anything not truly spoken by the student):\n"""\n${whisperDraft.slice(0, 2600)}\n"""\n\n`
-        : "";
-
-      const fusionTranscribePrompt =
-        "You are an expert verbatim English speech-to-text transcriber specialized in Vietnamese students taking VSTEP Speaking exams in a classroom.\n\n" +
+      const proTranscribePrompt =
+        "You are a world-class verbatim English speech-to-text transcriber specialized in Vietnamese students taking VSTEP Speaking exams in noisy/reverberant classrooms.\n\n" +
         contextSection +
-        whisperSection +
         "STRICT TRANSCRIPTION RULES:\n" +
         "1. Listen carefully to the ENTIRE attached audio recording from 0:00 to the VERY LAST SECOND.\n" +
-        "2. COMPLETELY IGNORE background classroom noises, chair scraping, breathing, silent thinking pauses (5–30 seconds), and any Vietnamese chatter from the student or people nearby.\n" +
+        "2. COMPLETELY IGNORE classroom reverb/background noise, breathing, sniffling, silent thinking pauses (5–30 seconds), and any Vietnamese chatter from the student or people nearby.\n" +
         "3. Transcribe ONLY the main student's ACTUAL SPOKEN ENGLISH WORDS in chronological order.\n" +
-        "4. Use the audio + exam topic context to accurately recognize Vietnamese-accented English words (for example: dropped final consonants like 'cheap', 'bus', 'ticket', 'relax', 'stress', 'game show', 'watch alone', 'comedy', 'action', 'fuel', 'parking', 'company president') instead of writing nonsensical phonetic guesses (like 'papers', 'straight', 'manageable').\n" +
-        "5. PRESERVE the student's real grammar mistakes, missing articles/endings, hesitations, and exact phrasing verbatim. Pay close attention to negatives ('wouldn't' vs 'would', 'don't' vs 'do', 'not'). NEVER rewrite their sentences into polished English and NEVER invent sentences that are not spoken in the audio.\n" +
-        "6. Output ONLY the clean plain English transcript text (no timestamps, no labels, no markdown, no commentary). Omit filler 'uh/um' when they break words unnecessarily.\n" +
+        "4. Use the audio acoustics TOGETHER with the VSTEP exam topic context above to decode heavy Vietnamese-accented English accurately (for example: dropped final consonants or vowel shifts like 'bus service', 'reduce traffic jam', 'air conditioning', 'air pollution', 'game show', 'watch alone', 'traveled by bus', 'very cheap', 'fuel and parking', 'company president') — NEVER output nonsensical phonetic guesses like 'five things', 'radio traffic jam', 'calamity reason', 'several papers', or 'very straight'.\n" +
+        "5. PRESERVE the student's real grammar mistakes, missing articles/prepositions/endings, hesitations, and exact phrasing verbatim. Pay close attention to negatives ('wouldn't' vs 'would', 'don't' vs 'do', 'not'). NEVER rewrite their sentences into polished English and NEVER invent sentences not spoken in the audio.\n" +
+        "6. Output ONLY the clean plain English transcript text (no timestamps, no labels, no markdown, no commentary). Omit filler 'uh/um' when they disrupt readability.\n" +
         "7. ONLY output NO_AUDIBLE_SPEECH if the entire audio has zero spoken English from start to finish.";
 
-      // KHÔNG tắt thinking ở Bước 1 vì suy luận ngắn giúp Gemini giải mã giọng Việt chính xác gấp nhiều lần!
-      const step1 = await callModel(
+      const proStep1 = await callModel(
         [
           { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
-          { text: fusionTranscribePrompt }
+          { text: proTranscribePrompt }
         ],
         0.0,
         false,
         false,
-        512
+        512,
+        proAudioModels
       );
 
-      if (step1.ok) {
-        const gemCheck = checkTranscriptMeaningful(step1.rawText);
+      if (proStep1.ok) {
+        const proCheck = checkTranscriptMeaningful(proStep1.rawText);
         if (
-          !gemCheck.unintelligible &&
-          !isRepetitionLoopHallucination(gemCheck.cleaned) &&
-          !WHISPER_SILENCE_HALLUCINATIONS.some(rx => rx.test(gemCheck.cleaned))
+          !proCheck.unintelligible &&
+          !isRepetitionLoopHallucination(proCheck.cleaned) &&
+          !WHISPER_SILENCE_HALLUCINATIONS.some(rx => rx.test(proCheck.cleaned))
         ) {
-          step1Model = whisperClean
-            ? `${params.preTranscribed?.modelUsed}+${step1.modelUsed}`
-            : step1.modelUsed;
-          transcriptCheck = gemCheck;
+          step1Model = proStep1.modelUsed;
+          transcriptCheck = proCheck;
+          isTranscriptLocked = true;
         }
-      }
-
-      // DỰ PHÒNG 1: Nếu Gemini lượt 1 trả về rỗng/quá thưa trên file lớn -> nghe lại 1 lượt nữa với Gemini
-      if (
-        (transcriptCheck.unintelligible && uploaded.sizeBytes > 20000) ||
-        isSuspiciouslySparse(transcriptCheck.wordCount)
-      ) {
-        const retryPrompt =
-          contextSection +
-          "Listen again carefully to the ENTIRE attached audio file from 0:00 to the very end. Ignore all Vietnamese background talk, classroom noise, and long silent pauses. Transcribe EVERY spoken English word by the main student verbatim using the exam topic context only to recognize accented pronunciation accurately. Output ONLY the plain English transcript text.";
-        const retryRes = await callModel(
-          [
-            { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
-            { text: retryPrompt }
-          ],
-          0.1,
-          false,
-          false,
-          0
-        );
-        if (retryRes.ok) {
-          const retryCheck = checkTranscriptMeaningful(retryRes.rawText);
-          if (
-            !retryCheck.unintelligible &&
-            !isRepetitionLoopHallucination(retryCheck.cleaned) &&
-            retryCheck.wordCount > transcriptCheck.wordCount
-          ) {
-            step1Model = `${retryRes.modelUsed}:retry`;
-            transcriptCheck = retryCheck;
+        // Nếu bản nghe lượt 1 còn quá thưa trên file dài -> nghe lại 1 lượt với Pro/Flash và giữ bản đầy đủ hơn
+        if (
+          (transcriptCheck.unintelligible && uploaded.sizeBytes > 20000) ||
+          isSuspiciouslySparse(transcriptCheck.wordCount)
+        ) {
+          const retryPrompt =
+            contextSection +
+            "Listen again carefully to the ENTIRE attached audio file from 0:00 to the very last second. Ignore classroom noise, sniffling, Vietnamese background talk, and long pauses. Transcribe EVERY spoken English word by the main student verbatim using the exam topic context to decode heavy Vietnamese accent accurately. Output ONLY plain English transcript text.";
+          const proRetry = await callModel(
+            [
+              { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
+              { text: retryPrompt }
+            ],
+            0.1,
+            false,
+            false,
+            256,
+            proAudioModels
+          );
+          if (proRetry.ok) {
+            const retryCheck = checkTranscriptMeaningful(proRetry.rawText);
+            if (
+              !retryCheck.unintelligible &&
+              !isRepetitionLoopHallucination(retryCheck.cleaned) &&
+              retryCheck.wordCount > transcriptCheck.wordCount
+            ) {
+              step1Model = `${proRetry.modelUsed}:retry`;
+              transcriptCheck = retryCheck;
+              isTranscriptLocked = true;
+            }
           }
         }
+      } else {
+        lastStep1Err = proStep1;
+      }
+    }
+
+    // ƯU TIÊN 3 (DỰ PHÒNG TỰ ĐỘNG KHI CHƯA BẬT BILLING / HẾT QUOTA PRO & FLASH):
+    // 3a) Deepgram Nova-3 (nếu có DEEPGRAM_API_KEY)
+    if (!isTranscriptLocked && params.deepgramApiKeys && params.deepgramApiKeys.length > 0) {
+      const dgRes = await transcribeWithDeepgramNova3({
+        deepgramApiKeys: params.deepgramApiKeys,
+        signedAudioUrl: params.signedAudioUrl,
+        promptText: params.promptText
+      });
+      if (dgRes.ok && !dgRes.isSilent && countRealWords(dgRes.transcript) >= 2) {
+        const dgCheck = checkTranscriptMeaningful(dgRes.transcript);
+        if (!dgCheck.unintelligible) {
+          step1Model = dgRes.modelUsed;
+          transcriptCheck = dgCheck;
+          isTranscriptLocked = true;
+        }
+      }
+    }
+
+    // 3b) Dự phòng cuối: Groq Whisper + Gemini lite
+    if (!isTranscriptLocked && transcriptCheck.unintelligible) {
+      let whisperDraft = "";
+      let whisperClean = "";
+      let whisperModel = "";
+      if (params.groqApiKeys && params.groqApiKeys.length > 0) {
+        const groqRes = await transcribeWithGroqWhisper({
+          groqApiKeys: params.groqApiKeys,
+          signedAudioUrl: params.signedAudioUrl
+        });
+        if (groqRes.ok && !groqRes.isSilent) {
+          whisperDraft = (groqRes.timestampedDraft || groqRes.transcript).trim();
+          whisperClean = groqRes.transcript.trim();
+          whisperModel = groqRes.modelUsed;
+        }
       }
 
-      // DỰ PHÒNG 2: Nếu Gemini Step 1 vẫn không chép được nhưng Groq Whisper (đã lọc sạch) có bản chép -> dùng bản sạch của Whisper
+      const whisperSection = whisperDraft
+        ? `ROUGH WHISPER ACOUSTIC DRAFT (verify against audio and delete any hallucinations):\n"""\n${whisperDraft.slice(0, 2600)}\n"""\n\n`
+        : "";
+      const fallbackPrompt =
+        "You are a verbatim English speech-to-text transcriber for Vietnamese VSTEP Speaking students.\n\n" +
+        contextSection +
+        whisperSection +
+        "Listen from 0:00 to the very end, ignore classroom noise/silences/Vietnamese chatter, transcribe ONLY the main student's spoken English verbatim (preserve grammar mistakes, never invent answers). Output ONLY plain English text or NO_AUDIBLE_SPEECH.";
+
+      const fbRes = await callModel(
+        [
+          { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
+          { text: fallbackPrompt }
+        ],
+        0.0,
+        false,
+        false,
+        512,
+        fallbackModels
+      );
+      if (fbRes.ok) {
+        const fbCheck = checkTranscriptMeaningful(fbRes.rawText);
+        if (
+          !fbCheck.unintelligible &&
+          !isRepetitionLoopHallucination(fbCheck.cleaned) &&
+          !WHISPER_SILENCE_HALLUCINATIONS.some(rx => rx.test(fbCheck.cleaned))
+        ) {
+          step1Model = whisperClean ? `${whisperModel}+${fbRes.modelUsed}` : fbRes.modelUsed;
+          transcriptCheck = fbCheck;
+        }
+      } else {
+        lastStep1Err = fbRes;
+      }
+
       if (transcriptCheck.unintelligible && whisperClean) {
         const wCheck = checkTranscriptMeaningful(whisperClean);
         if (!wCheck.unintelligible && !isRepetitionLoopHallucination(wCheck.cleaned)) {
-          step1Model = params.preTranscribed?.modelUsed || "groq:whisper";
+          step1Model = whisperModel || "groq:whisper";
           transcriptCheck = wCheck;
         }
       }
 
-      if (!step1.ok && transcriptCheck.unintelligible) return step1;
+      if (lastStep1Err && transcriptCheck.unintelligible) return lastStep1Err;
     }
 
     // Chỉ báo "quá nhỏ / không nhận diện được" khi gần như không nghe được bất kỳ lời nói nào trong cả file
@@ -1697,59 +1759,6 @@ async function callGeminiAudioGradeStreaming(params: {
   overrideTranscript?: string;
   buildGradingPrompt: (verifiedTranscript: string, transcriptLocked: boolean) => string;
 }) {
-  // ƯU TIÊN 1: Bản chép do Giáo viên trực tiếp sửa & yêu cầu chấm lại Part này
-  // ƯU TIÊN 2: Deepgram Nova-3 (Neural VAD không bịa chữ khoảng lặng + Keyterm Boosting theo đề thi, 0 MB RAM)
-  // ƯU TIÊN 3 (Dự phòng): Groq Whisper Large v3 + Gemini Audio Verification
-  let preTranscribed: {
-    transcript: string;
-    timestampedDraft?: string;
-    isSilent: boolean;
-    modelUsed: string;
-    locked?: boolean;
-  } | null = null;
-
-  const cleanOverride = String(params.overrideTranscript || "").replace(/\s{2,}/g, " ").trim();
-  if (cleanOverride && countRealWords(cleanOverride) >= 2) {
-    preTranscribed = {
-      transcript: cleanOverride,
-      isSilent: false,
-      modelUsed: "teacher:override",
-      locked: true
-    };
-  }
-
-  if (!preTranscribed && params.deepgramApiKeys && params.deepgramApiKeys.length > 0) {
-    const dgRes = await transcribeWithDeepgramNova3({
-      deepgramApiKeys: params.deepgramApiKeys,
-      signedAudioUrl: params.signedAudioUrl,
-      promptText: params.promptText
-    });
-    if (dgRes.ok && !dgRes.isSilent && countRealWords(dgRes.transcript) >= 2) {
-      preTranscribed = {
-        transcript: dgRes.transcript,
-        isSilent: false,
-        modelUsed: dgRes.modelUsed,
-        locked: true
-      };
-    }
-  }
-
-  if (!preTranscribed && params.groqApiKeys && params.groqApiKeys.length > 0) {
-    const groqRes = await transcribeWithGroqWhisper({
-      groqApiKeys: params.groqApiKeys,
-      signedAudioUrl: params.signedAudioUrl
-    });
-    if (groqRes.ok && !groqRes.isSilent) {
-      preTranscribed = {
-        transcript: groqRes.transcript,
-        timestampedDraft: groqRes.timestampedDraft,
-        isSilent: groqRes.isSilent,
-        modelUsed: groqRes.modelUsed,
-        locked: false
-      };
-    }
-  }
-
   let lastErr: { ok: false; status: number; error: string } = {
     ok: false,
     status: 500,
@@ -1762,12 +1771,14 @@ async function callGeminiAudioGradeStreaming(params: {
     const key = keysToTry[idx];
     const res = await callGeminiAudioGradeWithSingleKey({
       geminiApiKey: key,
+      deepgramApiKeys: params.deepgramApiKeys,
+      groqApiKeys: params.groqApiKeys,
       geminiModel: params.geminiModel,
       signedAudioUrl: params.signedAudioUrl,
       audioPath: params.audioPath,
       promptText: params.promptText,
       durationSec: params.durationSec,
-      preTranscribed,
+      overrideTranscript: params.overrideTranscript,
       buildGradingPrompt: params.buildGradingPrompt
     });
     if (res.ok) return res;

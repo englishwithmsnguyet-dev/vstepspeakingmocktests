@@ -488,10 +488,10 @@ ${params.verifiedTranscript || "(Không nghe thấy lời nói tiếng Anh rõ r
 """
 
 ĐÃ ĐÍNH KÈM FILE GHI ÂM THẬT CỦA THÍ SINH:
-- TUYỆT ĐỐI KHÔNG tự bịa thêm câu nói hay ý tưởng mà thí sinh không nói! Mọi nhận xét, cụm trích dẫn "original" trong "language_corrections", và từ cần chỉnh trong "pronunciation_fixes" PHẢI xuất phát 100% từ bài nói thực tế của thí sinh trong file ghi âm và bản chép nguyên văn ở trên.
+- BẢN CHÉP NHÁP Ở TRÊN CÓ THỂ CÒN SÓT MỘT SỐ TỪ ở những đoạn học viên nói nhỏ, nói nhanh hoặc nghỉ lấy hơi. Hãy NGHE LẠI TOÀN BỘ FILE GHI ÂM từ 0:00 đến giây cuối cùng để kiểm tra và BỔ SUNG ĐẦY ĐỦ mọi từ/câu thực tế học viên đã nói (đặc biệt thay các chỗ "[...]" bằng đúng từ nghe được) vào trường "recognized_transcript" (chỉ thêm dấu chấm/phẩy tối thiểu cho dễ đọc, TUYỆT ĐỐI KHÔNG sửa lỗi ngữ pháp hay tự bịa thêm câu mà học viên không nói).
+- TUYỆT ĐỐI KHÔNG tự bịa thêm câu nói hay ý tưởng mà thí sinh không nói! Mọi nhận xét, cụm trích dẫn "original" trong "language_corrections", và từ cần chỉnh trong "pronunciation_fixes" PHẢI xuất phát 100% từ bài nói thực tế của thí sinh trong file ghi âm.
 - Nếu thí sinh nói lạc đề, nói tiếng Việt, nói quá ngắn hoặc chỉ nói vài câu rời rạc, hãy chấm THẲNG THẮN đúng thực tế.
-- Nếu trong bản chép có vài chỗ "[...]" do giọng học viên hơi nhỏ hoặc nghẹt mic, hãy chấm bình thường dựa trên toàn bộ phần nghe được và nhắc nhẹ thí sinh nói to, rõ hơn trong mục Phát âm & Ngữ điệu (không tự đánh 0 điểm oan).
-- Giữ nguyên bản chép thực tế vào "recognized_transcript" (chỉ thêm dấu chấm/phẩy tối thiểu cho dễ đọc, KHÔNG thay từ hay sửa lỗi trong "recognized_transcript").
+- Nếu trong audio có vài chỗ quá nhỏ/nghẹt mic, hãy chấm bình thường dựa trên toàn bộ phần nghe được và nhắc nhẹ thí sinh nói to, rõ hơn trong mục Phát âm & Ngữ điệu (không tự đánh 0 điểm oan).
 - Nghe kỹ file ghi âm để chấm trực tiếp PHÁT ÂM (độ rõ chữ, trọng âm từ, đặc biệt bắt lỗi mất final sound gốc /s/, /z/ như nice, house, place, office, because, always, relax, stress, bus, class, famous...) và NGỮ ĐIỆU (lên xuống giọng tự nhiên, nhấn content words, ngắt nghỉ hợp lý hay nói đều đều/ngập ngừng).
 
 QUY TẮC ĐẶC BIỆT BẮT BUỘC PHẢI TUÂN THỦ:
@@ -970,15 +970,49 @@ function parseGroqApiKeys(): string[] {
   return [...keys.slice(offset), ...keys.slice(0, offset)];
 }
 
-function buildWhisperTopicHint(promptText: string): string {
-  const clean = String(promptText || "")
+function extractEnglishPromptHints(promptText: string): string {
+  // Bỏ phần dịch tiếng Việt trong ngoặc (...) và lọc ký tự có dấu tiếng Việt để tránh làm nhiễu bộ giải mã tiếng Anh
+  const withoutViParens = String(promptText || "").replace(/\([^)]*[À-ỹ][^)]*\)/g, " ");
+  const asciiOnly = withoutViParens
+    .replace(/[^\x20-\x7E]/g, " ")
     .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, 180);
+    .trim();
+  return asciiOnly.slice(0, 220);
+}
+
+function buildWhisperTopicHint(promptText: string): string {
+  const clean = extractEnglishPromptHints(promptText);
   if (!clean) {
-    return "VSTEP English speaking test by a Vietnamese student. Keep natural hesitations and exact spoken words.";
+    return "VSTEP English speaking test by a Vietnamese student. Natural spoken English with hesitations.";
   }
-  return `VSTEP English speaking exam. Context keywords: ${clean}`;
+  return `VSTEP English speaking exam. Topic: ${clean}`;
+}
+
+function countRealWords(text: string): number {
+  return String(text || "")
+    .replace(/\[\.\.\.\]/g, " ")
+    .replace(/[^a-zA-ZÀ-ỹ0-9'\s]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+}
+
+function isRepetitionLoopHallucination(text: string): boolean {
+  const tokens = String(text || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9'\s]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean);
+  if (tokens.length < 24) return false;
+  // Phát hiện lỗi lặp vô hạn cùng 1 cụm 3-gram quá nhiều lần
+  const counts = new Map<string, number>();
+  let maxFreq = 0;
+  for (let i = 0; i <= tokens.length - 3; i++) {
+    const gram = `${tokens[i]} ${tokens[i + 1]} ${tokens[i + 2]}`;
+    const c = (counts.get(gram) || 0) + 1;
+    counts.set(gram, c);
+    if (c > maxFreq) maxFreq = c;
+  }
+  return maxFreq >= Math.max(7, Math.floor(tokens.length / 8));
 }
 
 const WHISPER_SILENCE_HALLUCINATIONS = [
@@ -1034,8 +1068,9 @@ async function transcribeWithGroqWhisper(params: {
         }
 
         const data = await res.json().catch(() => ({}));
+        const rawFullText = String(data?.text || "").replace(/\s{2,}/g, " ").trim();
         const segments = Array.isArray(data?.segments) ? data.segments : [];
-        let cleanText = "";
+        let cleanText = rawFullText;
 
         if (segments.length > 0) {
           const kept: string[] = [];
@@ -1045,20 +1080,18 @@ async function transcribeWithGroqWhisper(params: {
             const noSpeech = Number(seg?.no_speech_prob ?? 0);
             const avgLogProb = Number(seg?.avg_logprob ?? 0);
             const isKnownPhantom = WHISPER_SILENCE_HALLUCINATIONS.some(rx => rx.test(segText));
-            if (isKnownPhantom && noSpeech > 0.42) continue;
-            if (noSpeech > 0.8 && avgLogProb < -1.1) continue;
+            // Chỉ loại ảo giác im lặng rõ ràng; KHÔNG cắt oan giọng Việt nói nhỏ/ngập ngừng!
+            if (isKnownPhantom && noSpeech > 0.55) continue;
+            if (noSpeech > 0.95 && avgLogProb < -1.8 && countRealWords(segText) <= 3) continue;
             kept.push(segText);
           }
-          cleanText = kept.join(" ").replace(/\s{2,}/g, " ").trim();
-        } else {
-          cleanText = String(data?.text || "").replace(/\s{2,}/g, " ").trim();
+          const joined = kept.join(" ").replace(/\s{2,}/g, " ").trim();
+          // Nếu lọc segments không làm mất chữ bất thường thì dùng joined, ngược lại giữ nguyên rawFullText
+          cleanText = countRealWords(joined) >= countRealWords(rawFullText) * 0.85 ? joined : rawFullText;
         }
 
-        const words = cleanText
-          .replace(/[^a-zA-ZÀ-ỹ0-9'\s]/g, " ")
-          .split(/\s+/)
-          .filter(Boolean);
-        const isSilent = words.length < 2 || WHISPER_SILENCE_HALLUCINATIONS.some(rx => rx.test(cleanText));
+        const wordCount = countRealWords(cleanText);
+        const isSilent = wordCount < 2 || WHISPER_SILENCE_HALLUCINATIONS.some(rx => rx.test(cleanText));
 
         return {
           ok: true,
@@ -1080,6 +1113,8 @@ async function callGeminiAudioGradeWithSingleKey(params: {
   geminiModel: string;
   signedAudioUrl: string;
   audioPath: string;
+  promptText: string;
+  durationSec?: number;
   preTranscribed?: { transcript: string; isSilent: boolean; modelUsed: string } | null;
   buildGradingPrompt: (verifiedTranscript: string) => string;
 }) {
@@ -1110,15 +1145,19 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     parts: Array<Record<string, unknown>>,
     temperature: number,
     expectJson: boolean,
-    useSchema = true
+    useSchema = true,
+    disableThinking = false
   ) => {
     const errors: Array<{ model: string; status: number; detail: string }> = [];
     for (const modelName of fallbackModels) {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelName)}:generateContent?key=${encodeURIComponent(params.geminiApiKey)}`;
       const genCfg: Record<string, unknown> = {
         temperature,
-        maxOutputTokens: expectJson ? 8192 : 4096
+        maxOutputTokens: 8192
       };
+      if (disableThinking) {
+        genCfg.thinkingConfig = { thinkingBudget: 0 };
+      }
       if (expectJson) {
         genCfg.responseMimeType = "application/json";
         if (useSchema) {
@@ -1136,9 +1175,10 @@ async function callGeminiAudioGradeWithSingleKey(params: {
         signal: AbortSignal.timeout(45000)
       });
 
-      // Nếu model từ chối responseSchema (HTTP 400), tự động gọi lại chỉ với responseMimeType
-      if (!res.ok && res.status === 400 && expectJson && useSchema) {
-        const retryCfg = { temperature, maxOutputTokens: 8192, responseMimeType: "application/json" };
+      // Nếu model từ chối responseSchema hoặc thinkingConfig (HTTP 400), tự động gọi lại với config cơ bản
+      if (!res.ok && res.status === 400 && (useSchema || disableThinking)) {
+        const retryCfg: Record<string, unknown> = { temperature, maxOutputTokens: 8192 };
+        if (expectJson) retryCfg.responseMimeType = "application/json";
         res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -1181,39 +1221,48 @@ async function callGeminiAudioGradeWithSingleKey(params: {
   try {
     const checkTranscriptMeaningful = (raw: string) => {
       const cleaned = raw.replace(/^["'“]+|["'”]+$/g, "").trim();
-      const words = cleaned
-        .replace(/\[\.\.\.\]/g, " ")
-        .replace(/[^a-zA-ZÀ-ỹ0-9'\s]/g, " ")
-        .split(/\s+/)
-        .filter(Boolean);
+      const wordCount = countRealWords(cleaned);
       const unintelligible =
         !cleaned ||
         /^\[?(?:SILENT|TOO_QUIET|UNINTELLIGIBLE|NO_SPEECH|NO_AUDIBLE_SPEECH)\]?$/i.test(cleaned) ||
-        words.length < 2;
-      return { cleaned, unintelligible };
+        wordCount < 2;
+      return { cleaned, unintelligible, wordCount };
+    };
+
+    const topicHintEn = extractEnglishPromptHints(params.promptText);
+    const estDurationSec = Math.max(
+      Number(params.durationSec || 0),
+      uploaded.mimeType.includes("wav") ? Math.round(uploaded.sizeBytes / 32000) : 0
+    );
+    const isSuspiciouslySparse = (wc: number) => {
+      if (estDurationSec >= 35 && wc < Math.min(60, Math.floor(estDurationSec * 0.55))) return true;
+      if (uploaded.sizeBytes > 160000 && wc < 28) return true;
+      return false;
     };
 
     let step1Model = "";
-    let transcriptCheck = { cleaned: "", unintelligible: true };
+    let transcriptCheck = { cleaned: "", unintelligible: true, wordCount: 0 };
 
-    // BƯỚC 1: ƯU TIÊN DÙNG BẢN CHÉP CHUYÊN DỤNG GROQ WHISPER LARGE V3 (NẾU ĐÃ CÓ)
+    // BƯỚC 1A: ƯU TIÊN DÙNG BẢN CHÉP CHUYÊN DỤNG GROQ WHISPER LARGE V3 (NẾU ĐÃ CÓ)
     if (params.preTranscribed && !params.preTranscribed.isSilent && params.preTranscribed.transcript) {
       step1Model = params.preTranscribed.modelUsed;
       transcriptCheck = checkTranscriptMeaningful(params.preTranscribed.transcript);
     }
 
-    // DỰ PHÒNG: NẾU CHƯA CẤU HÌNH GROQ HOẶC GROQ BÁO RỖNG TRÊN FILE LỚN -> DÙNG GEMINI NGHE CHÉP NGUYÊN VĂN
-    if (transcriptCheck.unintelligible) {
+    // BƯỚC 1B: CHẠY GEMINI VERBATIM TRANSCRIPTION NẾU CHƯA CÓ GROQ HOẶC BẢN CHÉP QUÁ THƯA SO VỚI THỜI LƯỢNG AUDIO
+    if (transcriptCheck.unintelligible || isSuspiciouslySparse(transcriptCheck.wordCount)) {
+      const topicLine = topicHintEn
+        ? `- Exam topic keywords (ONLY to recognize accented pronunciation, NEVER invent words not spoken): ${topicHintEn}\n`
+        : "";
       const blindTranscribePrompt =
-        "Listen carefully from the very beginning (0:00) to the very end of the attached audio recording of a Vietnamese student taking a VSTEP English speaking test.\n" +
-        "Important notes about this audio:\n" +
-        "- There may be 5 to 20 seconds of silence at the start while the student reads the prompt, and long pauses between questions or topics. Keep listening all the way to the very end of the recording.\n" +
-        "- The speaker's microphone volume may be soft/quiet and they may have a Vietnamese accent, hesitate, or self-correct.\n" +
-        "Instructions:\n" +
-        "1. Produce a detailed, verbatim transcript of EVERY spoken word you can hear across the entire recording, preserving exact phrasing, grammar mistakes, repetitions, and natural hesitations using '...'.\n" +
-        "2. Transcribe ONLY what is actually spoken in the audio; never invent answers. If a brief word is truly muffled, write [...] for that word and continue transcribing everything else.\n" +
-        "3. Output ONLY the plain transcript text (no labels, no markdown, no commentary).\n" +
-        "4. ONLY output NO_AUDIBLE_SPEECH if the ENTIRE recording from 0:00 to the end is 100% silence or static with literally zero human speech.";
+        "You are a precision verbatim speech-to-text transcriber. Listen carefully from 0:00 to the VERY LAST SECOND of the attached audio recording of a Vietnamese student taking a VSTEP English speaking test.\n" +
+        "Critical rules to avoid dropping words:\n" +
+        topicLine +
+        "- There may be 5–25 seconds of silence at the start and pauses between sentences/questions. DO NOT stop early — keep transcribing all the way to the very end of the file.\n" +
+        "- The speaker may have a soft voice, Vietnamese accent, dropped final sounds, grammar mistakes, hesitations, or self-corrections. Transcribe EVERY SINGLE SPOKEN WORD verbatim — DO NOT skip, summarize, compress, or omit quiet phrases, short answers, or filler words.\n" +
+        "- Keep exact grammar mistakes and repetitions as spoken. Only write [...] if a word is completely inaudible noise; otherwise write your best acoustic hearing of the spoken English word.\n" +
+        "- Output ONLY the complete plain transcript text in chronological order (no timestamps, no labels, no markdown, no commentary).\n" +
+        "- ONLY output NO_AUDIBLE_SPEECH if the ENTIRE recording from 0:00 to the end has literally zero human voice.";
 
       const step1 = await callModel(
         [
@@ -1221,29 +1270,52 @@ async function callGeminiAudioGradeWithSingleKey(params: {
           { text: blindTranscribePrompt }
         ],
         0.0,
-        false
+        false,
+        false,
+        true
       );
 
-      if (!step1.ok) return step1;
+      if (!step1.ok && transcriptCheck.unintelligible) return step1;
 
-      step1Model = step1.modelUsed;
-      transcriptCheck = checkTranscriptMeaningful(step1.rawText);
+      if (step1.ok) {
+        const gemCheck = checkTranscriptMeaningful(step1.rawText);
+        if (
+          !gemCheck.unintelligible &&
+          !isRepetitionLoopHallucination(gemCheck.cleaned) &&
+          (transcriptCheck.unintelligible || gemCheck.wordCount > transcriptCheck.wordCount * 1.15)
+        ) {
+          step1Model = step1.modelUsed;
+          transcriptCheck = gemCheck;
+        }
+      }
 
-      // Nếu file audio đủ lớn (> 20 KB) mà lần nghe đầu báo rỗng/quá nhỏ -> thử nghe kỹ lại 1 lần với prompt tối giản
-      if (transcriptCheck.unintelligible && uploaded.sizeBytes > 20000) {
+      // Nếu bản chép vẫn quá ngắn/rỗng so với độ dài file -> nghe lại 1 lượt nữa với nhắc nhở kỹ đoạn nói nhỏ & sau khoảng lặng
+      if (
+        (transcriptCheck.unintelligible && uploaded.sizeBytes > 20000) ||
+        isSuspiciouslySparse(transcriptCheck.wordCount)
+      ) {
         const retryPrompt =
-          "Listen carefully to the entire attached audio file from start to finish and write down every single spoken word verbatim, including hesitations as '...'. Do not stop at silent pauses. Output only the plain transcript, or NO_AUDIBLE_SPEECH if there is zero human voice in the whole file.";
+          "Listen again very carefully to the ENTIRE attached audio file from start (0:00) to finish. Do NOT skip quiet speech or speech that begins after long silent pauses. Write down EVERY single spoken English word verbatim from beginning to end without summarizing or omitting any sentence. Output ONLY the plain transcript text.";
         const retryRes = await callModel(
           [
             { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
             { text: retryPrompt }
           ],
           0.1,
-          false
+          false,
+          false,
+          true
         );
         if (retryRes.ok) {
-          step1Model = retryRes.modelUsed;
-          transcriptCheck = checkTranscriptMeaningful(retryRes.rawText);
+          const retryCheck = checkTranscriptMeaningful(retryRes.rawText);
+          if (
+            !retryCheck.unintelligible &&
+            !isRepetitionLoopHallucination(retryCheck.cleaned) &&
+            retryCheck.wordCount > transcriptCheck.wordCount
+          ) {
+            step1Model = `${retryRes.modelUsed}:retry`;
+            transcriptCheck = retryCheck;
+          }
         }
       }
     }
@@ -1280,8 +1352,9 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     }
 
     const verifiedTranscript = transcriptCheck.cleaned;
+    const step1WordCount = transcriptCheck.wordCount;
 
-    // BƯỚC 2: CHẤM MULTIMODAL (GỬI CÙNG FILE AUDIO + BẢN CHÉP NGUYÊN VĂN BƯỚC 1 + ĐỀ BÀI)
+    // BƯỚC 2: CHẤM MULTIMODAL (GỬI CÙNG FILE AUDIO + BẢN CHÉP NHÁP BƯỚC 1 + ĐỀ BÀI)
     // Có tự động thử lại 1 lần ở temperature=0 nếu JSON trả về bị lỗi cú pháp/cắt ngang
     const gradingPrompt = params.buildGradingPrompt(verifiedTranscript);
     let parsed: Record<string, unknown> | null = null;
@@ -1300,7 +1373,8 @@ async function callGeminiAudioGradeWithSingleKey(params: {
         ],
         attempt === 0 ? 0.2 : 0.0,
         true,
-        true
+        true,
+        false
       );
 
       if (!step2.ok) return step2;
@@ -1326,12 +1400,30 @@ async function callGeminiAudioGradeWithSingleKey(params: {
       };
     }
 
-    parsed.recognized_transcript = verifiedTranscript || "";
+    // Giữ bản chép ĐẦY ĐỦ HƠN giữa Bước 1 và Bước 2 (tránh ghi đè mất các từ Bước 2 vừa nghe bổ sung được!)
+    const step2Transcript = String(parsed.recognized_transcript || "").trim();
+    const step2WordCount = countRealWords(step2Transcript);
+    const step1Gaps = (verifiedTranscript.match(/\[\.\.\.\]/g) || []).length;
+    const step2Gaps = (step2Transcript.match(/\[\.\.\.\]/g) || []).length;
+    const step2LooksValid =
+      step2WordCount >= Math.max(2, Math.floor(step1WordCount * 0.9)) &&
+      step2WordCount <= Math.max(step1WordCount * 2.5, step1WordCount + 120) &&
+      !isRepetitionLoopHallucination(step2Transcript);
+
+    const finalTranscript =
+      step2LooksValid && (step2WordCount > step1WordCount || step2Gaps < step1Gaps)
+        ? step2Transcript
+        : verifiedTranscript;
+
+    parsed.recognized_transcript = finalTranscript || "";
     parsed._meta = {
       mime_type: uploaded.mimeType,
       file_bytes: uploaded.sizeBytes,
       model_step1: step1Model,
-      model_step2: step2Model
+      model_step2: step2Model,
+      words_step1: step1WordCount,
+      words_step2: step2WordCount,
+      words_final: countRealWords(finalTranscript)
     };
     return { ok: true as const, parsed };
   } finally {
@@ -1346,6 +1438,7 @@ async function callGeminiAudioGradeStreaming(params: {
   signedAudioUrl: string;
   audioPath: string;
   promptText: string;
+  durationSec?: number;
   buildGradingPrompt: (verifiedTranscript: string) => string;
 }) {
   // Chạy Groq Whisper Large v3 TRƯỚC 1 lần duy nhất (zero-RAM qua signedAudioUrl, ~1-2 giây)
@@ -1381,6 +1474,8 @@ async function callGeminiAudioGradeStreaming(params: {
       geminiModel: params.geminiModel,
       signedAudioUrl: params.signedAudioUrl,
       audioPath: params.audioPath,
+      promptText: params.promptText,
+      durationSec: params.durationSec,
       preTranscribed,
       buildGradingPrompt: params.buildGradingPrompt
     });
@@ -1495,6 +1590,7 @@ async function gradeOnePartOfSubmission(
         signedAudioUrl: signedData.signedUrl,
         audioPath: targetAudioPath,
         promptText: promptsMap[partNum],
+        durationSec: durationsMap[partNum],
         buildGradingPrompt: (verifiedTranscript: string) =>
           buildPartGradingPrompt({
             partNum,

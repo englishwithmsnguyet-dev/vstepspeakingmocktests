@@ -828,14 +828,24 @@
       highPass.type = "highpass";
       highPass.frequency.value = 80;
       highPass.Q.value = 0.707;
+
+      // Bộ nén dải động (DynamicsCompressor) cân bằng đều giọng nói nhỏ vs giọng to
+      // -> Giúp các câu nói nhỏ, cuối câu hoặc sau tiếng hít thở KHÔNG bị AI nghe sót chữ!
+      const compressor = offline.createDynamicsCompressor();
+      compressor.threshold.value = -28;
+      compressor.knee.value = 24;
+      compressor.ratio.value = 4;
+      compressor.attack.value = 0.005;
+      compressor.release.value = 0.15;
+
       src.connect(highPass);
-      highPass.connect(offline.destination);
+      highPass.connect(compressor);
+      compressor.connect(offline.destination);
       src.start(0);
       const rendered = await offline.startRendering();
 
       const samples = rendered.getChannelData(0);
-      // Đo âm lượng giọng nói thực theo khung 50ms (bách phân vị 90% của các khung có tiếng)
-      // -> Bỏ qua tiếng click chuột / chạm mic đơn lẻ, kích âm giọng nhỏ cực kỳ chuẩn xác!
+      // Đo âm lượng giọng nói thực theo khung 50ms (bách phân vị 65% để không bị tiếng ho/chạm mic lấn át giọng nói nhỏ)
       const frameLen = 800; // 50ms ở 16kHz
       const activeRms = [];
       for (let start = 0; start < samples.length; start += frameLen) {
@@ -843,15 +853,15 @@
         let sumSq = 0;
         for (let i = start; i < end; i++) sumSq += samples[i] * samples[i];
         const rms = Math.sqrt(sumSq / Math.max(1, end - start));
-        if (rms > 0.004) activeRms.push(rms);
+        if (rms > 0.003) activeRms.push(rms);
       }
 
       let gain = 1.0;
       if (activeRms.length > 0) {
         activeRms.sort((a, b) => a - b);
-        const refRms = activeRms[Math.min(activeRms.length - 1, Math.floor(activeRms.length * 0.9))];
-        if (refRms > 0.004 && refRms < 0.14) {
-          gain = Math.min(12.0, 0.15 / refRms);
+        const refRms = activeRms[Math.min(activeRms.length - 1, Math.floor(activeRms.length * 0.65))];
+        if (refRms > 0.003 && refRms < 0.18) {
+          gain = Math.min(14.0, 0.18 / refRms);
         }
       }
 

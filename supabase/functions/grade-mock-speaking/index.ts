@@ -977,7 +977,7 @@ function extractEnglishPromptHints(promptText: string): string {
     .replace(/[^\x20-\x7E]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
-  return asciiOnly.slice(0, 220);
+  return asciiOnly.slice(0, 700);
 }
 
 function buildWhisperTopicHint(promptText: string): string {
@@ -1022,6 +1022,7 @@ const WHISPER_SILENCE_HALLUCINATIONS = [
   /support us on (?:twitter|facebook|instagram|youtube|patreon)/i,
   /(?:twitter|facebook|instagram).*(?:twitter|facebook|instagram)/i,
   /please (?:like|share|subscribe|follow)/i,
+  /\bas an egb\b|\bhaving an egb\b/i,
   /^subtitles? by.*$/i,
   /^amara\.org.*$/i,
   /^mbc\b.*$/i,
@@ -1029,11 +1030,18 @@ const WHISPER_SILENCE_HALLUCINATIONS = [
   /^bye[.!?\s]*$/i
 ];
 
+function formatSecMmSs(sec: number): string {
+  const s = Math.max(0, Math.floor(Number(sec) || 0));
+  const m = Math.floor(s / 60);
+  const r = s % 60;
+  return `${String(m).padStart(2, "0")}:${String(r).padStart(2, "0")}`;
+}
+
 async function transcribeWithGroqWhisper(params: {
   groqApiKeys: string[];
   signedAudioUrl: string;
 }): Promise<
-  | { ok: true; transcript: string; isSilent: boolean; modelUsed: string }
+  | { ok: true; transcript: string; timestampedDraft: string; isSilent: boolean; modelUsed: string }
   | { ok: false; error: string }
 > {
   if (!params.groqApiKeys || params.groqApiKeys.length === 0) {
@@ -1072,9 +1080,11 @@ async function transcribeWithGroqWhisper(params: {
         const data = await res.json().catch(() => ({}));
         const segments = Array.isArray(data?.segments) ? data.segments : [];
         let cleanText = "";
+        let timestampedDraft = "";
 
         if (segments.length > 0) {
           const kept: string[] = [];
+          const keptTimed: string[] = [];
           for (const seg of segments) {
             const segText = String(seg?.text || "").trim();
             if (!segText) continue;
@@ -1084,15 +1094,20 @@ async function transcribeWithGroqWhisper(params: {
             const isKnownPhantom = WHISPER_SILENCE_HALLUCINATIONS.some(rx => rx.test(segText));
             if (isKnownPhantom) continue;
             // Loại các đoạn Whisper bịa chữ trong khoảng im lặng / tiếng ồn lớp học / lặp vô hạn
-            if (noSpeech > 0.65) continue;
+            if (noSpeech > 0.58) continue;
             if (compRatio > 2.2) continue;
-            if (avgLogProb < -1.25 && noSpeech > 0.35) continue;
+            if (avgLogProb < -1.2 && noSpeech > 0.35) continue;
             kept.push(segText);
+            const tStart = formatSecMmSs(Number(seg?.start ?? 0));
+            const tEnd = formatSecMmSs(Number(seg?.end ?? 0));
+            keptTimed.push(`[${tStart}-${tEnd}] ${segText}`);
           }
           cleanText = kept.join(" ").replace(/\s{2,}/g, " ").trim();
+          timestampedDraft = keptTimed.join("\n").trim();
         } else {
           const raw = String(data?.text || "").replace(/\s{2,}/g, " ").trim();
           cleanText = WHISPER_SILENCE_HALLUCINATIONS.some(rx => rx.test(raw)) ? "" : raw;
+          timestampedDraft = cleanText;
         }
 
         const wordCount = countRealWords(cleanText);
@@ -1101,6 +1116,7 @@ async function transcribeWithGroqWhisper(params: {
         return {
           ok: true,
           transcript: isSilent ? "" : cleanText,
+          timestampedDraft: isSilent ? "" : timestampedDraft,
           isSilent,
           modelUsed: `groq:${modelName}`
         };
@@ -1120,7 +1136,7 @@ async function callGeminiAudioGradeWithSingleKey(params: {
   audioPath: string;
   promptText: string;
   durationSec?: number;
-  preTranscribed?: { transcript: string; isSilent: boolean; modelUsed: string } | null;
+  preTranscribed?: { transcript: string; timestampedDraft?: string; isSilent: boolean; modelUsed: string } | null;
   buildGradingPrompt: (verifiedTranscript: string) => string;
 }) {
   const uploaded = await streamStorageUrlToGeminiFilesApi(
@@ -1139,12 +1155,19 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     "gemini-1.5-flash",
     "gemini-1.5-pro"
   ]);
-  // Ưu tiên Gemini 2.5 Flash / gemini-flash-latest (nghe âm thanh gốc chuẩn nhất, không bị ảo giác khoảng lặng như Whisper!)
+  // Ưu tiên bản Flash ĐẦY ĐỦ (3.5 Flash / 3 Flash / flash-latest / 2.5 Flash) trước khi rơi xuống bản lite!
   const fallbackModels = Array.from(
-    new Set(["gemini-2.5-flash", "gemini-flash-latest", params.geminiModel, "gemini-2.5-flash-lite", "gemini-3.5-flash-lite"])
+    new Set([
+      "gemini-3.5-flash",
+      "gemini-3-flash",
+      "gemini-flash-latest",
+      "gemini-2.5-flash",
+      params.geminiModel,
+      "gemini-3.5-flash-lite"
+    ])
   )
     .filter(m => Boolean(m) && !RETIRED_MODELS.has(m))
-    .slice(0, 4);
+    .slice(0, 6);
 
   const callModel = async (
     parts: Array<Record<string, unknown>>,
@@ -1244,33 +1267,56 @@ async function callGeminiAudioGradeWithSingleKey(params: {
       return false;
     };
 
+    const topicHintEn = extractEnglishPromptHints(params.promptText);
+    const whisperDraft =
+      params.preTranscribed && !params.preTranscribed.isSilent && params.preTranscribed.transcript
+        ? (params.preTranscribed.timestampedDraft || params.preTranscribed.transcript).trim()
+        : "";
+    const whisperClean =
+      params.preTranscribed && !params.preTranscribed.isSilent && params.preTranscribed.transcript
+        ? params.preTranscribed.transcript.trim()
+        : "";
+
     let step1Model = "";
     let transcriptCheck = { cleaned: "", unintelligible: true, wordCount: 0 };
 
-    // BƯỚC 1 (CHÍNH): DÙNG GEMINI MULTIMODAL NGHE TRỰC TIẾP TOÀN BỘ AUDIO
-    // Lý do: Học viên thi trong lớp học thường có 10–30 giây tiếng ồn/nói tiếng Việt ở đầu và nhiều khoảng lặng
-    // suy nghĩ 5–25 giây giữa các câu. Whisper hay bịa chữ rác (Twitter/Facebook/đọc lại đề) trong khoảng lặng,
-    // còn Gemini 2.5 Flash nghe liên tục toàn file nên phân biệt chính xác giọng thí sinh nói tiếng Anh vs tạp âm lớp học!
-    const blindTranscribePrompt =
-      "You are an expert verbatim English speech-to-text transcriber for VSTEP Speaking exams taken by Vietnamese students in a classroom.\n" +
-      "CRITICAL RULES:\n" +
-      "1. Listen to the ENTIRE audio recording from 0:00 to the VERY LAST SECOND.\n" +
-      "2. IGNORE completely: background classroom noises, chair scraping, coughing, mouse clicks, silent thinking pauses (which may last 5–30 seconds), and ANY Vietnamese chatter from the student or people nearby.\n" +
-      "3. Transcribe ONLY the main student's ACTUAL SPOKEN ENGLISH WORDS verbatim in chronological order.\n" +
-      "4. Preserve exact grammar mistakes, verb/noun errors, contractions ('wouldn't' vs 'would', 'don't' vs 'do'), hesitations, and self-corrections. NEVER fix grammar and NEVER invent or guess sentences that were not spoken.\n" +
-      "5. Pay extra careful attention to negative forms ('wouldn't', 'don't', 'doesn't', 'isn't', 'not') and soft-spoken words.\n" +
-      "6. Output ONLY the clean plain English transcript text (no timestamps, no speaker labels, no markdown, no commentary).\n" +
-      "7. ONLY output NO_AUDIBLE_SPEECH if the entire recording contains zero spoken English from start to finish.";
+    // BƯỚC 1 (DUAL-ENGINE FUSION: GROQ WHISPER LARGE V3 + GEMINI MULTIMODAL AUDIO VERIFICATION + EXAM CONTEXT):
+    // - Whisper Large v3 (không truyền prompt, lọc chặt no_speech_prob > 0.58) bắt cực sắc các âm giọng Việt
+    //   mà model nhỏ hay nghe nhầm (vd: "by bus" vs "papers", "very cheap" vs "very straight").
+    // - Gemini nghe trực tiếp toàn bộ file WAV cùng ngữ cảnh đề thi tiếng Anh + bản nháp Whisper để:
+    //   (a) Xoá sạch mọi chữ Whisper bịa trong khoảng lặng/tiếng ồn lớp học,
+    //   (b) Khôi phục đúng từ tiếng Anh bị nói nặng giọng Việt dựa vào âm thanh thật + chủ đề câu hỏi,
+    //   (c) Giữ nguyên 100% lỗi ngữ pháp thật của thí sinh (KHÔNG sửa lỗi, KHÔNG bịa thêm câu!).
+    const contextSection = topicHintEn
+      ? `EXAM QUESTIONS / TOPIC CONTEXT (use ONLY to disambiguate Vietnamese-accented pronunciation of topic words — NEVER invent answers the student did not say):\n"""\n${topicHintEn}\n"""\n\n`
+      : "";
+    const whisperSection = whisperDraft
+      ? `ROUGH WHISPER ACOUSTIC DRAFT (helpful for accented words, BUT may contain hallucinations during silences/classroom noise — verify EVERY phrase against the actual audio and DELETE anything not truly spoken by the student):\n"""\n${whisperDraft.slice(0, 2600)}\n"""\n\n`
+      : "";
 
+    const fusionTranscribePrompt =
+      "You are an expert verbatim English speech-to-text transcriber specialized in Vietnamese students taking VSTEP Speaking exams in a classroom.\n\n" +
+      contextSection +
+      whisperSection +
+      "STRICT TRANSCRIPTION RULES:\n" +
+      "1. Listen carefully to the ENTIRE attached audio recording from 0:00 to the VERY LAST SECOND.\n" +
+      "2. COMPLETELY IGNORE background classroom noises, chair scraping, breathing, silent thinking pauses (5–30 seconds), and any Vietnamese chatter from the student or people nearby.\n" +
+      "3. Transcribe ONLY the main student's ACTUAL SPOKEN ENGLISH WORDS in chronological order.\n" +
+      "4. Use the audio + exam topic context to accurately recognize Vietnamese-accented English words (for example: dropped final consonants like 'cheap', 'bus', 'ticket', 'relax', 'stress', 'game show', 'watch alone', 'comedy', 'action', 'fuel', 'parking', 'company president') instead of writing nonsensical phonetic guesses (like 'papers', 'straight', 'manageable').\n" +
+      "5. PRESERVE the student's real grammar mistakes, missing articles/endings, hesitations, and exact phrasing verbatim. Pay close attention to negatives ('wouldn't' vs 'would', 'don't' vs 'do', 'not'). NEVER rewrite their sentences into polished English and NEVER invent sentences that are not spoken in the audio.\n" +
+      "6. Output ONLY the clean plain English transcript text (no timestamps, no labels, no markdown, no commentary). Omit filler 'uh/um' when they break words unnecessarily.\n" +
+      "7. ONLY output NO_AUDIBLE_SPEECH if the entire audio has zero spoken English from start to finish.";
+
+    // KHÔNG tắt thinking ở Bước 1 vì suy luận ngắn giúp Gemini giải mã giọng Việt chính xác gấp nhiều lần!
     const step1 = await callModel(
       [
         { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
-        { text: blindTranscribePrompt }
+        { text: fusionTranscribePrompt }
       ],
       0.0,
       false,
       false,
-      true
+      false
     );
 
     if (step1.ok) {
@@ -1280,7 +1326,9 @@ async function callGeminiAudioGradeWithSingleKey(params: {
         !isRepetitionLoopHallucination(gemCheck.cleaned) &&
         !WHISPER_SILENCE_HALLUCINATIONS.some(rx => rx.test(gemCheck.cleaned))
       ) {
-        step1Model = step1.modelUsed;
+        step1Model = whisperClean
+          ? `${params.preTranscribed?.modelUsed}+${step1.modelUsed}`
+          : step1.modelUsed;
         transcriptCheck = gemCheck;
       }
     }
@@ -1291,7 +1339,8 @@ async function callGeminiAudioGradeWithSingleKey(params: {
       isSuspiciouslySparse(transcriptCheck.wordCount)
     ) {
       const retryPrompt =
-        "Listen again carefully to the ENTIRE attached audio file from 0:00 to the very end. Ignore all Vietnamese background talk, classroom noise, and long silent pauses. Transcribe EVERY spoken English word by the main student verbatim without summarizing, skipping quiet sentences, or inventing anything. Output ONLY the plain English transcript text.";
+        contextSection +
+        "Listen again carefully to the ENTIRE attached audio file from 0:00 to the very end. Ignore all Vietnamese background talk, classroom noise, and long silent pauses. Transcribe EVERY spoken English word by the main student verbatim using the exam topic context only to recognize accented pronunciation accurately. Output ONLY the plain English transcript text.";
       const retryRes = await callModel(
         [
           { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
@@ -1300,7 +1349,7 @@ async function callGeminiAudioGradeWithSingleKey(params: {
         0.1,
         false,
         false,
-        true
+        false
       );
       if (retryRes.ok) {
         const retryCheck = checkTranscriptMeaningful(retryRes.rawText);
@@ -1315,11 +1364,11 @@ async function callGeminiAudioGradeWithSingleKey(params: {
       }
     }
 
-    // DỰ PHÒNG 2: Chỉ dùng Groq Whisper (đã lọc chặt ảo giác khoảng lặng & bỏ prompt) khi Gemini Step 1 không chép được
-    if (transcriptCheck.unintelligible && params.preTranscribed && !params.preTranscribed.isSilent && params.preTranscribed.transcript) {
-      const wCheck = checkTranscriptMeaningful(params.preTranscribed.transcript);
+    // DỰ PHÒNG 2: Nếu Gemini Step 1 vẫn không chép được nhưng Groq Whisper (đã lọc sạch) có bản chép -> dùng bản sạch của Whisper
+    if (transcriptCheck.unintelligible && whisperClean) {
+      const wCheck = checkTranscriptMeaningful(whisperClean);
       if (!wCheck.unintelligible && !isRepetitionLoopHallucination(wCheck.cleaned)) {
-        step1Model = params.preTranscribed.modelUsed;
+        step1Model = params.preTranscribed?.modelUsed || "groq:whisper";
         transcriptCheck = wCheck;
       }
     }
@@ -1447,8 +1496,23 @@ async function callGeminiAudioGradeStreaming(params: {
   durationSec?: number;
   buildGradingPrompt: (verifiedTranscript: string) => string;
 }) {
-  // Chỉ chạy Groq Whisper dự phòng khi thực sự cần (không chạy trước Gemini vì Whisper hay bịa chữ trong khoảng lặng lớp học)
-  let preTranscribed: { transcript: string; isSilent: boolean; modelUsed: string } | null = null;
+  // Chạy Groq Whisper Large v3 (KHÔNG truyền prompt, lọc chặt no_speech_prob > 0.58) lấy bản nháp âm học có mốc thời gian
+  // rồi gửi cùng file WAV thật + câu hỏi đề thi cho Gemini nghe đối chiếu & lọc sạch 100% ảo giác khoảng lặng!
+  let preTranscribed: { transcript: string; timestampedDraft?: string; isSilent: boolean; modelUsed: string } | null = null;
+  if (params.groqApiKeys && params.groqApiKeys.length > 0) {
+    const groqRes = await transcribeWithGroqWhisper({
+      groqApiKeys: params.groqApiKeys,
+      signedAudioUrl: params.signedAudioUrl
+    });
+    if (groqRes.ok && !groqRes.isSilent) {
+      preTranscribed = {
+        transcript: groqRes.transcript,
+        timestampedDraft: groqRes.timestampedDraft,
+        isSilent: groqRes.isSilent,
+        modelUsed: groqRes.modelUsed
+      };
+    }
+  }
 
   let lastErr: { ok: false; status: number; error: string } = {
     ok: false,
@@ -1473,21 +1537,6 @@ async function callGeminiAudioGradeStreaming(params: {
     if (res.ok) return res;
     lastErr = res;
     if (res.status === 400) break;
-  }
-
-  // Nếu mọi key Gemini đều lỗi mà có Groq Whisper -> thử lấy bản chép Whisper sạch rồi báo lỗi rõ ràng
-  if (!preTranscribed && params.groqApiKeys && params.groqApiKeys.length > 0) {
-    const groqRes = await transcribeWithGroqWhisper({
-      groqApiKeys: params.groqApiKeys,
-      signedAudioUrl: params.signedAudioUrl
-    });
-    if (groqRes.ok && !groqRes.isSilent) {
-      preTranscribed = {
-        transcript: groqRes.transcript,
-        isSilent: groqRes.isSilent,
-        modelUsed: groqRes.modelUsed
-      };
-    }
   }
 
   return {

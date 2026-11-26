@@ -185,7 +185,7 @@
   <div id="teacher-root"></div>
 
   <script src="./speaking-grader-config.js?v=20261126_8h"></script>
-  <script src="./speaking-grader.js?v=20261126_asr"></script>
+  <script src="./speaking-grader.js?v=20261127_stop"></script>
   <script>
     (function () {
       const CFG = window.VSTEP_SPEAKING_GRADER_CONFIG || {};
@@ -434,17 +434,46 @@
         }
       }
 
+      let activeGradeController = null;
+
+      function stopActiveGrading(subId) {
+        if (activeGradeController) {
+          try { activeGradeController.abort(); } catch (e) {}
+          activeGradeController = null;
+        }
+        const targetId = subId || state.gradingId || (state.regradingPartKey ? state.regradingPartKey.split("_p")[0] : "");
+        state.gradingId = "";
+        state.gradingStepText = "";
+        state.regradingPartKey = "";
+        if (targetId) {
+          state.savedToastId = targetId;
+          state.savedToastText = "⏹️ Đã dừng quá trình chấm bài theo yêu cầu!";
+          setTimeout(() => {
+            if (state.savedToastId === targetId) {
+              state.savedToastId = "";
+              state.savedToastText = "";
+              render();
+            }
+          }, 3000);
+        }
+        render();
+      }
+
       async function triggerGradeNow(subId) {
-        if (!subId || state.gradingId) return;
+        if (!subId || state.gradingId || state.regradingPartKey) return;
         const item = state.submissions.find(x => x.id === subId);
+        activeGradeController = new AbortController();
+        const signal = activeGradeController.signal;
         state.gradingId = subId;
         const token = await getAccessToken();
         const partsToRun = [1, 2, 3];
 
         for (let i = 0; i < partsToRun.length; i++) {
+          if (signal.aborted) return;
           const pNum = partsToRun[i];
           // Tự động chuyển đổi file .webm cũ sang chuẩn WAV 16kHz PCM (+ tăng âm micro nhỏ) trước khi chấm
           const upgradedPath = await ensurePartWavUpgraded(item, pNum, token);
+          if (signal.aborted) return;
 
           state.gradingStepText = `Đang chấm Part ${pNum}/3...`;
           render();
@@ -457,15 +486,18 @@
           };
           if (upgradedPath) payload.upgraded_audio_path = upgradedPath;
 
-          let res = await GRADER.callEdgeFunction(payload, token);
+          let res = await GRADER.callEdgeFunction(payload, token, signal);
+          if (signal.aborted || res.aborted) return;
           // Tự động thử lại 1 lần nếu AI gặp lỗi JSON hoặc lỗi mạng/timeout tạm thời (giữ nguyên các Part đã chấm xong)
           if (!res.ok && /JSON|502|503|504|timeout|timed out|network|signal/i.test(String(res.error || ""))) {
             state.gradingStepText = `Đang thử chấm lại Part ${pNum}/3...`;
             render();
             const retryPayload = { ...payload, reset_existing: false };
-            res = await GRADER.callEdgeFunction(retryPayload, token);
+            res = await GRADER.callEdgeFunction(retryPayload, token, signal);
+            if (signal.aborted || res.aborted) return;
           }
           if (!res.ok) {
+            activeGradeController = null;
             state.gradingId = "";
             state.gradingStepText = "";
             render();
@@ -475,6 +507,8 @@
           if (res.all_done) break;
         }
 
+        if (signal.aborted) return;
+        activeGradeController = null;
         state.gradingId = "";
         state.gradingStepText = "";
         await loadDashboardData();
@@ -490,12 +524,15 @@
           return;
         }
 
+        activeGradeController = new AbortController();
+        const signal = activeGradeController.signal;
         const key = `${subId}_p${pNum}`;
         state.regradingPartKey = key;
         render();
 
         try {
           const token = await getAccessToken();
+          if (signal.aborted) return;
           const payload = {
             action: "grade_now",
             submission_id: subId,
@@ -504,16 +541,20 @@
             release_now: false,
             override_transcript: text
           };
-          let res = await GRADER.callEdgeFunction(payload, token);
+          let res = await GRADER.callEdgeFunction(payload, token, signal);
+          if (signal.aborted || res.aborted) return;
           if (!res.ok && /JSON|502|503|504|timeout|timed out|network|signal|compute resources|WORKER_LIMIT/i.test(String(res.error || ""))) {
-            res = await GRADER.callEdgeFunction(payload, token);
+            res = await GRADER.callEdgeFunction(payload, token, signal);
+            if (signal.aborted || res.aborted) return;
           }
           if (!res.ok) {
+            activeGradeController = null;
             state.regradingPartKey = "";
             render();
             alert(`Lỗi khi chấm lại Part ${pNum}: ` + (res.error || "Lỗi máy chủ"));
             return;
           }
+          activeGradeController = null;
           state.regradingPartKey = "";
           state.transcriptOpenId = subId;
           state.savedToastId = subId;
@@ -527,6 +568,8 @@
             }
           }, 4000);
         } catch (err) {
+          if (signal.aborted) return;
+          activeGradeController = null;
           state.regradingPartKey = "";
           render();
           alert(`Lỗi khi chấm lại Part ${pNum}: ` + (err && err.message ? err.message : err));
@@ -537,13 +580,17 @@
         const pNum = Number(partNum);
         if (!subId || ![1, 2, 3].includes(pNum) || state.regradingPartKey || state.gradingId) return;
         const item = state.submissions.find(x => x.id === subId);
+        activeGradeController = new AbortController();
+        const signal = activeGradeController.signal;
         const key = `${subId}_p${pNum}`;
         state.regradingPartKey = key;
         render();
 
         try {
           const token = await getAccessToken();
+          if (signal.aborted) return;
           const upgradedPath = await ensurePartWavUpgraded(item, pNum, token);
+          if (signal.aborted) return;
           const payload = {
             action: "grade_now",
             submission_id: subId,
@@ -553,16 +600,20 @@
           };
           if (upgradedPath) payload.upgraded_audio_path = upgradedPath;
 
-          let res = await GRADER.callEdgeFunction(payload, token);
+          let res = await GRADER.callEdgeFunction(payload, token, signal);
+          if (signal.aborted || res.aborted) return;
           if (!res.ok && /JSON|502|503|504|timeout|timed out|network|signal|compute resources|WORKER_LIMIT/i.test(String(res.error || ""))) {
-            res = await GRADER.callEdgeFunction(payload, token);
+            res = await GRADER.callEdgeFunction(payload, token, signal);
+            if (signal.aborted || res.aborted) return;
           }
           if (!res.ok) {
+            activeGradeController = null;
             state.regradingPartKey = "";
             render();
             alert(`Lỗi khi chấm riêng Part ${pNum}: ` + (res.error || "Lỗi máy chủ"));
             return;
           }
+          activeGradeController = null;
           state.regradingPartKey = "";
           state.savedToastId = subId;
           state.savedToastText = `✅ Đã chấm xong riêng Part ${pNum} (giữ nguyên 2 Part còn lại)!`;
@@ -575,6 +626,8 @@
             }
           }, 4000);
         } catch (err) {
+          if (signal.aborted) return;
+          activeGradeController = null;
           state.regradingPartKey = "";
           render();
           alert(`Lỗi khi chấm riêng Part ${pNum}: ` + (err && err.message ? err.message : err));
@@ -1462,9 +1515,16 @@
                 <button type="button" class="tg-btn" data-delay="${escapeHtml(s.id)}" ${isReleasing ? "disabled" : ""} title="Lùi thời gian trả bài thêm 2 tiếng">
                   ${isReleasing ? "Đang lùi..." : "⏰ +2 tiếng"}
                 </button>
-                <button type="button" class="tg-btn" data-grade="${escapeHtml(s.id)}" ${isGrading ? "disabled" : ""}>
+                <button type="button" class="tg-btn" data-grade="${escapeHtml(s.id)}" ${isGrading || Boolean(state.regradingPartKey) ? "disabled" : ""}>
                   ${isGrading ? `⏳ ${escapeHtml(state.gradingStepText || "Đang chấm...")}` : s.hasAiParts ? "↻ Chấm lại AI" : "✨ Tạo bài sửa AI"}
                 </button>
+                ${
+                  isGrading || (state.regradingPartKey && state.regradingPartKey.startsWith(`${s.id}_p`))
+                    ? `<button type="button" class="tg-btn danger" data-stop-grading="${escapeHtml(s.id)}" title="Dừng ngay quá trình chấm bài hiện tại">
+                        ⏹️ Dừng chấm
+                      </button>`
+                    : ""
+                }
                 ${
                   hasAnyAudio || s.hasAiParts
                     ? `<button type="button" class="tg-btn transcript ${isTranscriptOpen ? "active" : ""}" data-toggle-transcript="${escapeHtml(s.id)}" title="Sửa nhanh vài chữ trong lời chép và chấm lại riêng 1 Part">
@@ -1643,6 +1703,7 @@
         if (delayAllBtn) delayAllBtn.onclick = () => delayFilteredByHours(2);
 
         document.querySelectorAll("[data-grade]").forEach(b => (b.onclick = () => triggerGradeNow(b.getAttribute("data-grade"))));
+        document.querySelectorAll("[data-stop-grading]").forEach(b => (b.onclick = () => stopActiveGrading(b.getAttribute("data-stop-grading"))));
         document.querySelectorAll("[data-release]").forEach(b => (b.onclick = () => triggerReleaseNow(b.getAttribute("data-release"))));
         document.querySelectorAll("[data-delay]").forEach(b => (b.onclick = () => delayReleaseByHours(b.getAttribute("data-delay"), 2)));
         document.querySelectorAll("[data-delete]").forEach(b => (b.onclick = () => deleteSubmission(b.getAttribute("data-delete"))));

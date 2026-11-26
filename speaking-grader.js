@@ -270,7 +270,7 @@
     return getStudentIdentity().classCode === "GV";
   }
 
-  async function callEdgeFunction(payload, bearerToken) {
+  async function callEdgeFunction(payload, bearerToken, signal) {
     if (!isConfigured()) {
       return {
         ok: false,
@@ -285,11 +285,13 @@
       headers.Authorization = `Bearer ${bearerToken}`;
     }
     try {
-      const res = await fetch(`${getBaseUrl()}/functions/v1/${EDGE_FN}`, {
+      const fetchOpts = {
         method: "POST",
         headers,
         body: JSON.stringify(payload)
-      });
+      };
+      if (signal) fetchOpts.signal = signal;
+      const res = await fetch(`${getBaseUrl()}/functions/v1/${EDGE_FN}`, fetchOpts);
       const raw = await res.text().catch(() => "");
       let parsed = null;
       try {
@@ -301,6 +303,9 @@
       }
       return parsed;
     } catch (err) {
+      if (err && err.name === "AbortError") {
+        return { ok: false, aborted: true, error: "Đã dừng chấm theo yêu cầu." };
+      }
       return { ok: false, error: err && err.message ? err.message : "Lỗi kết nối máy chủ chấm bài." };
     }
   }

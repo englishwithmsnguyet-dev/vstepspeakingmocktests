@@ -537,16 +537,97 @@
 
   let reviewUidSeq = 0;
 
+  function renderTeacherOverrideHtml(tOv, isTeacherView) {
+    if (!tOv || typeof tOv !== "object") return "";
+    const decision = String(tOv.decision || "");
+    const parts = tOv.parts && typeof tOv.parts === "object" ? tOv.parts : {};
+    const partCards = [
+      { key: "part1", label: "Part 1 · Social Interaction" },
+      { key: "part2", label: "Part 2 · Solution Discussion" },
+      { key: "part3", label: "Part 3 · Topic Development" }
+    ]
+      .map(p => {
+        const d = parts[p.key] || {};
+        const band = String(d.band || "").trim();
+        const comment = String(d.comment || "").trim();
+        const sc =
+          isTeacherView && d.score !== undefined && d.score !== null && d.score !== ""
+            ? Number(d.score)
+            : null;
+        if (!band && !comment && sc === null) return "";
+        return `
+          <div style="background:#fff;border:1.5px solid #e4e4e7;border-radius:10px;padding:10px 12px;">
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:5px;">
+              <strong style="font-size:12.5px;color:#18181b;">${escapeHtml(p.label)}</strong>
+              ${band ? `<span class="sg-badge ${getBandToneClass(band)}">${escapeHtml(band)}</span>` : ""}
+              ${sc !== null && Number.isFinite(sc) ? `<span class="sg-badge teacher-score">${sc.toFixed(2)}/10</span>` : ""}
+            </div>
+            ${comment ? `<div style="font-size:13px;color:#27272a;line-height:1.55;white-space:pre-line;">${escapeHtml(comment)}</div>` : ""}
+          </div>
+        `;
+      })
+      .filter(Boolean);
+
+    let html = "";
+    if (decision === "approved") {
+      html += `
+        <div class="sg-alert success" style="margin-bottom:10px;">
+          ✅ <strong>${isTeacherView ? "Giáo viên đã xác nhận ĐỒNG Ý với bài chấm AI này." : "Cô Nguyệt đã kiểm tra và duyệt bài sửa này."}</strong>
+        </div>
+      `;
+    } else if (decision === "rejected" && isTeacherView) {
+      html += `
+        <div class="sg-alert error" style="margin-bottom:10px;">
+          ❌ <strong>Giáo viên đã chọn KHÔNG ĐỒNG Ý với bài chấm AI</strong>${tOv.hide_ai_review ? " (bài chấm AI đang được ẩn với học viên)." : "."}
+        </div>
+      `;
+    }
+
+    const overallBand = String(tOv.overall_band || "").trim();
+    const overallComment = String(tOv.overall_comment || "").trim();
+    const overallScore =
+      isTeacherView && tOv.overall_score !== undefined && tOv.overall_score !== null && tOv.overall_score !== ""
+        ? Number(tOv.overall_score)
+        : null;
+
+    if (decision === "manual" || overallBand || overallComment || partCards.length > 0 || overallScore !== null) {
+      html += `
+        <div style="background:#f5f3ff;border:2px solid #7c3aed;border-radius:12px;padding:14px 16px;margin-bottom:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+            <strong style="font-size:14.5px;color:#4c1d95;">👩‍🏫 Bài chấm trực tiếp từ Cô Nguyệt</strong>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              ${overallBand ? `<span class="sg-badge ${getBandToneClass(overallBand)}">Đánh giá: ${escapeHtml(overallBand)}</span>` : ""}
+              ${overallScore !== null && Number.isFinite(overallScore) ? `<span class="sg-badge teacher-score">Điểm GV: ${overallScore.toFixed(2)}/10</span>` : ""}
+            </div>
+          </div>
+          ${overallComment ? `<div style="font-size:13.5px;color:#1f2937;line-height:1.6;white-space:pre-line;margin-bottom:${partCards.length ? "10px" : "0"};">${escapeHtml(overallComment)}</div>` : ""}
+          ${partCards.length > 0 ? `<div style="display:grid;gap:8px;">${partCards.join("")}</div>` : ""}
+        </div>
+      `;
+    }
+    return html;
+  }
+
   function renderMockReviewHtml(reviewJson, opts) {
     if (!reviewJson || typeof reviewJson !== "object") return "";
     const options = opts || {};
     const isTeacherView = Boolean(options.isTeacherView);
     const targetLevel = String(options.targetLevel || reviewJson.target_level || "B1").toUpperCase();
     const uid = `sg_rev_${++reviewUidSeq}`;
+    const tOvHtml = renderTeacherOverrideHtml(reviewJson.teacher_override, isTeacherView);
     const parts = reviewJson.parts || {};
     const p1 = parts.part1 || null;
     const p2 = parts.part2 || null;
     const p3 = parts.part3 || null;
+    const hasAnyAiParts = Boolean(p1 || p2 || p3);
+
+    // Nếu giáo viên đã ẩn bài sửa AI (chỉ hiện bài giáo viên tự chấm)
+    if (!isTeacherView && (reviewJson.ai_hidden_by_teacher || !hasAnyAiParts)) {
+      return `<div class="sg-review-wrap">${tOvHtml || `<div class="sg-alert info">Cô Nguyệt đang cập nhật nhận xét chi tiết cho bài thi của bạn.</div>`}</div>`;
+    }
+    if (isTeacherView && !hasAnyAiParts && tOvHtml) {
+      return `<div class="sg-review-wrap">${tOvHtml}</div>`;
+    }
 
     const overallBand = String(reviewJson.estimated_band || "");
     const overallScore =
@@ -583,6 +664,7 @@
 
     return `
       <div class="sg-review-wrap" data-sg-review-root="${uid}">
+        ${tOvHtml}
         <div class="sg-review-tabs">
           <button type="button" class="sg-tab-btn active" data-sg-tab-target="${uid}__overview">📊 Tổng quan</button>
           <button type="button" class="sg-tab-btn" data-sg-tab-target="${uid}__p1">🎙️ Part 1 ${p1 && !p1.skipped ? `(${escapeHtml(p1.estimated_band || "")})` : "(Trống)"}</button>

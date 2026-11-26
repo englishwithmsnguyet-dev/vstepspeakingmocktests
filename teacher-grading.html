@@ -12,7 +12,7 @@
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Lexend:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="./speaking-grader.css?v=20261126j" />
+  <link rel="stylesheet" href="./speaking-grader.css?v=20261126k" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root {
@@ -112,13 +112,63 @@
     .tg-grade-row {
       display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;
     }
+    .tg-verdict-bar {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 10px; margin-top: 12px; padding: 10px 12px;
+      border-radius: 10px; background: #f8fafc; border: 1.5px solid #cbd5e1;
+    }
+    .tg-verdict-btns {
+      display: flex; gap: 7px; flex-wrap: wrap; align-items: center;
+    }
+    .tg-btn.approve {
+      background: #f0fdf4; border-color: #16a34a; color: #166534;
+    }
+    .tg-btn.approve.active {
+      background: #16a34a; border-color: #14532d; color: #fff;
+    }
+    .tg-btn.reject {
+      background: #fef2f2; border-color: #dc2626; color: #991b1b;
+    }
+    .tg-btn.reject.active {
+      background: #dc2626; border-color: #7f1d1d; color: #fff;
+    }
+    .tg-btn.manual {
+      background: #f5f3ff; border-color: #7c3aed; color: #5b21b6;
+    }
+    .tg-btn.manual.active {
+      background: #7c3aed; border-color: #4c1d95; color: #fff;
+    }
+    .tg-manual-panel {
+      margin-top: 12px; padding: 14px 16px; border-radius: 12px;
+      background: #faf5ff; border: 2px solid #7c3aed;
+    }
+    .tg-manual-grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 10px;
+    }
+    .tg-manual-part-box {
+      background: #fff; border: 1.5px solid #ddd6fe; border-radius: 10px; padding: 10px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .tg-textarea {
+      width: 100%; border: 1.5px solid #d4d4d8; border-radius: 8px;
+      padding: 8px 10px; font-size: 13px; background: #fff; color: var(--ink);
+      font-family: inherit; resize: vertical; line-height: 1.5;
+    }
+    .tg-textarea:focus { outline: none; border-color: #7c3aed; }
+    .tg-saved-summary {
+      margin-top: 10px; padding: 10px 12px; border-radius: 10px;
+      background: #f5f3ff; border: 1.5px solid #c4b5fd; font-size: 13px; color: #3b0764;
+    }
+    @media (max-width: 820px) {
+      .tg-manual-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
   <div id="teacher-root"></div>
 
-  <script src="./speaking-grader-config.js?v=20261126j"></script>
-  <script src="./speaking-grader.js?v=20261126j"></script>
+  <script src="./speaking-grader-config.js?v=20261126k"></script>
+  <script src="./speaking-grader.js?v=20261126k"></script>
   <script>
     (function () {
       const CFG = window.VSTEP_SPEAKING_GRADER_CONFIG || {};
@@ -153,7 +203,11 @@
         gradingStepText: "",
         releasingId: "",
         deletingId: "",
+        verdictSavingId: "",
+        manualOpenId: "",
+        manualSavingId: "",
         savedToastId: "",
+        savedToastText: "",
         submissions: [],
         searchQuery: "",
         filterClass: "all",
@@ -233,15 +287,25 @@
         state.submissions = subRows.map(s => {
           const rev = revBySubId[s.id] || null;
           const rj = rev && rev.status === "ready" && rev.review_json ? rev.review_json : null;
+          const tOv = rj && rj.teacher_override && typeof rj.teacher_override === "object" ? rj.teacher_override : null;
           const relIso = (rev && rev.release_at) || s.release_at || "";
           const relMs = relIso ? new Date(relIso).getTime() : 0;
+          const hasAiParts = Boolean(rj && rj.parts && (rj.parts.part1 || rj.parts.part2 || rj.parts.part3));
           const hasReady = Boolean(rj);
-          const isReleased = hasReady && relMs > 0 && relMs <= nowMs;
-          const isWaitingRelease = hasReady && relMs > nowMs;
+          const isRejectedBlocked = Boolean(
+            tOv &&
+              tOv.hide_ai_review === true &&
+              !tOv.overall_band &&
+              !tOv.overall_comment &&
+              !(tOv.parts && ["part1", "part2", "part3"].some(k => tOv.parts[k] && (tOv.parts[k].band || tOv.parts[k].comment)))
+          );
+          const isReleased = hasReady && !isRejectedBlocked && relMs > 0 && relMs <= nowMs;
+          const isWaitingRelease = hasReady && !isRejectedBlocked && relMs > nowMs;
           const isSeen = isReleased && Boolean(rev && rev.student_seen_at);
 
           return {
             id: s.id,
+            studentKey: s.student_key || "",
             studentName: s.student_name || "Học viên",
             classCode: s.class_code || "",
             testId: Number(s.test_id) || 1,
@@ -260,7 +324,11 @@
             teacherFeedback: s.teacher_feedback || "",
             review: rev,
             reviewJson: rj,
+            teacherOverride: tOv,
+            teacherDecision: tOv ? String(tOv.decision || "") : "",
+            hasAiParts,
             hasReady,
+            isRejectedBlocked,
             isReleased,
             isWaitingRelease,
             isSeen
@@ -306,6 +374,10 @@
           if (state.filterStatus === "unread" && (!s.isReleased || s.isSeen)) return false;
           if (state.filterStatus === "ungraded" && s.hasReady) return false;
           if (state.filterStatus === "ready" && !s.hasReady) return false;
+          if (state.filterStatus === "pending_verdict" && (!s.hasAiParts || Boolean(s.teacherDecision))) return false;
+          if (state.filterStatus === "approved" && s.teacherDecision !== "approved") return false;
+          if (state.filterStatus === "rejected" && s.teacherDecision !== "rejected") return false;
+          if (state.filterStatus === "manual" && s.teacherDecision !== "manual") return false;
           return true;
         });
       }
@@ -413,32 +485,218 @@
         alert(`Đã xử lý ${res.processed || 0} bài chờ: thành công ${res.succeeded || 0}, lỗi ${res.failed || 0}.`);
       }
 
-      async function saveTeacherNote(subId) {
+      const VSTEP_BAND_OPTIONS = [
+        "",
+        "Chưa đạt B1",
+        "Xấp xỉ B1",
+        "Đạt B1",
+        "Xấp xỉ B2",
+        "Đạt B2",
+        "Xấp xỉ C1",
+        "Đạt C1"
+      ];
+
+      function scoreToBandHelper(scoreVal) {
+        const n = Number(scoreVal);
+        if (!Number.isFinite(n) || scoreVal === "" || scoreVal === null || scoreVal === undefined) return "";
+        const r = Math.round(Math.max(0, Math.min(10, n)) * 4) / 4;
+        if (r >= 9.0) return "Đạt C1";
+        if (r >= 8.75) return "Xấp xỉ C1";
+        if (r >= 6.0) return "Đạt B2";
+        if (r >= 5.75) return "Xấp xỉ B2";
+        if (r >= 4.0) return "Đạt B1";
+        if (r >= 3.75) return "Xấp xỉ B1";
+        return "Chưa đạt B1";
+      }
+
+      async function setAiVerdict(subId, decision) {
         const client = getClient();
-        if (!client) return;
-        const scoreVal = (document.getElementById("inp-score-" + subId)?.value || "").trim();
-        const fbVal = (document.getElementById("inp-fb-" + subId)?.value || "").trim();
+        const item = state.submissions.find(x => x.id === subId);
+        if (!client || !item || !item.reviewJson || state.verdictSavingId) return;
+
+        state.verdictSavingId = subId;
+        render();
+
+        const nowIso = new Date().toISOString();
+        const existingJson = JSON.parse(JSON.stringify(item.reviewJson));
+        const prevOv = existingJson.teacher_override && typeof existingJson.teacher_override === "object"
+          ? existingJson.teacher_override
+          : {};
+
+        existingJson.teacher_override = {
+          ...prevOv,
+          decision,
+          hide_ai_review: decision === "rejected",
+          reviewed_by: state.teacherEmail,
+          reviewed_at: nowIso
+        };
+
         const { error } = await client
-          .from("mock_speaking_submissions")
-          .update({ teacher_score: scoreVal, teacher_feedback: fbVal, updated_at: new Date().toISOString() })
-          .eq("id", subId);
+          .from("mock_speaking_ai_reviews")
+          .update({
+            review_json: existingJson,
+            updated_at: nowIso
+          })
+          .eq("submission_id", subId);
+
+        state.verdictSavingId = "";
         if (error) {
-          alert("Lỗi lưu nhận xét: " + error.message);
+          render();
+          alert("Không lưu được quyết định duyệt AI: " + error.message);
           return;
         }
-        const item = state.submissions.find(x => x.id === subId);
-        if (item) {
-          item.teacherScore = scoreVal;
-          item.teacherFeedback = fbVal;
+
+        if (decision === "rejected") {
+          // Tự động mở khung Giáo viên tự chấm để cô nhập bài chấm thay thế ngay
+          state.manualOpenId = subId;
         }
         state.savedToastId = subId;
-        render();
+        state.savedToastText =
+          decision === "approved"
+            ? "✅ Đã chọn ĐỒNG Ý với bài chấm AI!"
+            : "❌ Đã chọn KHÔNG ĐỒNG Ý — bài AI đã được ẩn với học viên. Bạn có thể tự chấm bên dưới!";
+        await loadDashboardData();
         setTimeout(() => {
           if (state.savedToastId === subId) {
             state.savedToastId = "";
+            state.savedToastText = "";
             render();
           }
-        }, 2000);
+        }, 3500);
+      }
+
+      async function saveTeacherManualGrade(subId, releaseNow) {
+        const client = getClient();
+        const item = state.submissions.find(x => x.id === subId);
+        if (!client || !item || state.manualSavingId) return;
+
+        const val = id => (document.getElementById(id)?.value || "").trim();
+        const parseOptScore = raw => {
+          if (!raw) return null;
+          const n = Number(raw.replace(",", "."));
+          if (!Number.isFinite(n)) return null;
+          return Math.round(Math.max(0, Math.min(10, n)) * 4) / 4;
+        };
+
+        const overallScore = parseOptScore(val(`tg-man-score-${subId}`));
+        const overallBand = val(`tg-man-band-${subId}`) || (overallScore !== null ? scoreToBandHelper(overallScore) : "");
+        const overallComment = val(`tg-man-comment-${subId}`);
+        const hideAiEl = document.getElementById(`tg-man-hide-ai-${subId}`);
+        const hideAi = hideAiEl ? Boolean(hideAiEl.checked) : !item.hasAiParts;
+
+        const parts = {};
+        [1, 2, 3].forEach(n => {
+          const pScore = parseOptScore(val(`tg-man-p${n}-score-${subId}`));
+          const pBand = val(`tg-man-p${n}-band-${subId}`) || (pScore !== null ? scoreToBandHelper(pScore) : "");
+          const pComment = val(`tg-man-p${n}-comment-${subId}`);
+          parts[`part${n}`] = {
+            band: pBand,
+            score: pScore,
+            comment: pComment
+          };
+        });
+
+        const hasAnyContent =
+          Boolean(overallBand || overallComment || overallScore !== null) ||
+          ["part1", "part2", "part3"].some(k => parts[k].band || parts[k].comment || parts[k].score !== null);
+
+        if (!hasAnyContent) {
+          alert("Vui lòng chọn ít nhất Mức đạt hoặc nhập nhận xét của Giáo viên trước khi lưu.");
+          return;
+        }
+
+        state.manualSavingId = subId;
+        render();
+
+        const nowIso = new Date().toISOString();
+        const baseJson = item.reviewJson
+          ? JSON.parse(JSON.stringify(item.reviewJson))
+          : {
+              target_level: item.targetLevel || "B1",
+              estimated_band: overallBand,
+              overall_comment: overallComment,
+              overall_score: overallScore
+            };
+
+        baseJson.teacher_override = {
+          decision: "manual",
+          hide_ai_review: hideAi,
+          reviewed_by: state.teacherEmail,
+          reviewed_at: nowIso,
+          overall_band: overallBand,
+          overall_score: overallScore,
+          overall_comment: overallComment,
+          parts
+        };
+
+        if (!item.hasAiParts) {
+          baseJson.estimated_band = overallBand;
+          baseJson.overall_comment = overallComment;
+          if (overallScore !== null) baseJson.overall_score = overallScore;
+        }
+
+        const existingRelIso = item.releaseAt || new Date(Date.now() + RELEASE_HOURS * 3600 * 1000).toISOString();
+        const nextReleaseIso = releaseNow ? nowIso : existingRelIso;
+        const isAlreadyReleased = new Date(nextReleaseIso).getTime() <= Date.now();
+
+        const { error: revErr } = await client.from("mock_speaking_ai_reviews").upsert(
+          {
+            id: item.id,
+            submission_id: item.id,
+            student_key: item.studentKey || `${item.studentName.trim().toLowerCase()}__${(item.classCode || "").toUpperCase()}`,
+            student_name: item.studentName,
+            class_code: item.classCode || "",
+            test_id: item.testId,
+            target_level: item.targetLevel || "B1",
+            status: "ready",
+            release_at: nextReleaseIso,
+            review_json: baseJson,
+            error_message: "",
+            student_seen_at: releaseNow ? null : (item.review && item.review.student_seen_at) || null,
+            updated_at: nowIso
+          },
+          { onConflict: "id" }
+        );
+
+        if (revErr) {
+          state.manualSavingId = "";
+          render();
+          alert("Lỗi lưu bài chấm của Giáo viên: " + revErr.message);
+          return;
+        }
+
+        const teacherScoreLabel = overallBand || (overallScore !== null ? `${overallScore.toFixed(2)}/10` : "");
+        const { error: subErr } = await client
+          .from("mock_speaking_submissions")
+          .update({
+            teacher_score: teacherScoreLabel,
+            teacher_feedback: overallComment,
+            release_at: nextReleaseIso,
+            status: isAlreadyReleased ? "ready" : "scheduled",
+            updated_at: nowIso
+          })
+          .eq("id", subId);
+
+        state.manualSavingId = "";
+        if (subErr) {
+          render();
+          alert("Đã lưu bài chấm nhưng lỗi cập nhật bảng nộp bài: " + subErr.message);
+          return;
+        }
+
+        state.manualOpenId = "";
+        state.savedToastId = subId;
+        state.savedToastText = releaseNow
+          ? "⚡ Đã lưu bài chấm của Giáo viên và TRẢ BÀI NGAY cho học viên!"
+          : "💾 Đã lưu bài chấm của Giáo viên!";
+        await loadDashboardData();
+        setTimeout(() => {
+          if (state.savedToastId === subId) {
+            state.savedToastId = "";
+            state.savedToastText = "";
+            render();
+          }
+        }, 3500);
       }
 
       async function deleteSubmission(subId) {
@@ -469,20 +727,40 @@
       function exportCsv(rows) {
         const cell = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
         const header = [
-          "Học viên", "Lớp", "Đề thi", "Mục tiêu", "Đánh giá tổng", "Điểm tổng (GV)",
+          "Học viên", "Lớp", "Đề thi", "Mục tiêu", "Quyết định GV", "Đánh giá tổng (AI)", "Điểm tổng AI (GV)",
           "Part 1", "Part 2", "Part 3", "Trạng thái đọc", "Thời gian nộp",
-          "Mức đạt (GV)", "Nhận xét GV"
+          "Mức đạt (GV tự chấm)", "Điểm (GV tự chấm)", "Nhận xét GV"
         ];
         const lines = [header.map(cell).join(",")];
         rows.forEach(s => {
           const rj = s.reviewJson || {};
           const parts = rj.parts || {};
-          const readStatus = s.isReleased ? (s.isSeen ? "Đã đọc" : "Chưa đọc") : s.hasReady ? "Chờ tới hạn 6h" : "Chưa chấm";
+          const tOv = s.teacherOverride || {};
+          const verdictLabel =
+            s.teacherDecision === "approved"
+              ? "Đồng ý AI"
+              : s.teacherDecision === "rejected"
+                ? "Không đồng ý AI"
+                : s.teacherDecision === "manual"
+                  ? "GV tự chấm"
+                  : s.hasAiParts
+                    ? "Chưa duyệt AI"
+                    : "—";
+          const readStatus = s.isRejectedBlocked
+            ? "Đã ẩn bài AI"
+            : s.isReleased
+              ? s.isSeen
+                ? "Đã đọc"
+                : "Chưa đọc"
+              : s.hasReady
+                ? "Chờ tới hạn 6h"
+                : "Chưa chấm";
           lines.push([
             s.studentName,
             s.classCode || "—",
             s.testTitle,
             s.targetLevel,
+            verdictLabel,
             rj.estimated_band || "",
             rj.overall_score !== undefined && rj.overall_score !== null ? Number(rj.overall_score).toFixed(2) : "",
             parts.part1 && !parts.part1.skipped ? parts.part1.estimated_band : "Trống",
@@ -490,8 +768,9 @@
             parts.part3 && !parts.part3.skipped ? parts.part3.estimated_band : "Trống",
             readStatus,
             formatDateTime(s.submittedAt),
-            s.teacherScore,
-            s.teacherFeedback
+            tOv.overall_band || s.teacherScore || "",
+            tOv.overall_score !== undefined && tOv.overall_score !== null ? Number(tOv.overall_score).toFixed(2) : "",
+            tOv.overall_comment || s.teacherFeedback || ""
           ].map(cell).join(","));
         });
         const blob = new Blob(["\uFEFF" + lines.join("\n")], { type: "text/csv;charset=utf-8;" });
@@ -610,10 +889,14 @@
                 </select>
                 <select id="tg-sel-status" class="tg-input">
                   <option value="all" ${state.filterStatus === "all" ? "selected" : ""}>Mọi trạng thái</option>
+                  <option value="pending_verdict" ${state.filterStatus === "pending_verdict" ? "selected" : ""}>Có bài AI · GV chưa duyệt</option>
+                  <option value="approved" ${state.filterStatus === "approved" ? "selected" : ""}>GV đã đồng ý bài AI</option>
+                  <option value="rejected" ${state.filterStatus === "rejected" ? "selected" : ""}>GV không đồng ý bài AI</option>
+                  <option value="manual" ${state.filterStatus === "manual" ? "selected" : ""}>GV đã tự chấm</option>
                   <option value="waiting_release" ${state.filterStatus === "waiting_release" ? "selected" : ""}>Đã chấm · Chờ trả 6h</option>
                   <option value="unread" ${state.filterStatus === "unread" ? "selected" : ""}>Đã trả · HV chưa đọc</option>
-                  <option value="ungraded" ${state.filterStatus === "ungraded" ? "selected" : ""}>Chưa có bài sửa AI</option>
-                  <option value="ready" ${state.filterStatus === "ready" ? "selected" : ""}>Đã có bài sửa AI</option>
+                  <option value="ungraded" ${state.filterStatus === "ungraded" ? "selected" : ""}>Chưa có bài sửa</option>
+                  <option value="ready" ${state.filterStatus === "ready" ? "selected" : ""}>Đã có bài sửa</option>
                 </select>
               </div>
             </div>
@@ -627,17 +910,139 @@
         `;
       }
 
+      function renderBandOptions(selectedVal) {
+        return VSTEP_BAND_OPTIONS.map(b =>
+          `<option value="${escapeHtml(b)}" ${selectedVal === b ? "selected" : ""}>${b ? escapeHtml(b) : "-- Chọn mức đạt --"}</option>`
+        ).join("");
+      }
+
+      function renderManualGradingPanel(s) {
+        const tOv = s.teacherOverride || {};
+        const tParts = tOv.parts && typeof tOv.parts === "object" ? tOv.parts : {};
+        const curBand = tOv.overall_band || s.teacherScore || "";
+        const curScore =
+          tOv.overall_score !== undefined && tOv.overall_score !== null && tOv.overall_score !== ""
+            ? String(tOv.overall_score)
+            : "";
+        const curComment = tOv.overall_comment || s.teacherFeedback || "";
+        const defaultHideAi = tOv.hide_ai_review !== undefined ? Boolean(tOv.hide_ai_review) : (!s.hasAiParts || s.teacherDecision === "rejected");
+        const isSaving = state.manualSavingId === s.id;
+
+        const partInputs = [
+          { n: 1, title: "Part 1 · Social Interaction" },
+          { n: 2, title: "Part 2 · Solution Discussion" },
+          { n: 3, title: "Part 3 · Topic Development" }
+        ]
+          .map(p => {
+            const pd = tParts[`part${p.n}`] || {};
+            const pScore = pd.score !== undefined && pd.score !== null && pd.score !== "" ? String(pd.score) : "";
+            return `
+              <div class="tg-manual-part-box">
+                <div style="font-size:12.5px;font-weight:800;color:#4c1d95;">🎙️ ${p.title}</div>
+                <div style="display:flex;gap:6px;">
+                  <select class="tg-input" style="flex:1;font-size:12.5px;padding:6px 8px;" id="tg-man-p${p.n}-band-${escapeHtml(s.id)}">
+                    ${renderBandOptions(pd.band || "")}
+                  </select>
+                  <input
+                    type="number"
+                    step="0.25"
+                    min="0"
+                    max="10"
+                    class="tg-input"
+                    style="width:82px;font-size:12.5px;padding:6px 8px;"
+                    id="tg-man-p${p.n}-score-${escapeHtml(s.id)}"
+                    data-sync-band="tg-man-p${p.n}-band-${escapeHtml(s.id)}"
+                    placeholder="Điểm"
+                    value="${escapeHtml(pScore)}"
+                  />
+                </div>
+                <textarea
+                  rows="3"
+                  class="tg-textarea"
+                  id="tg-man-p${p.n}-comment-${escapeHtml(s.id)}"
+                  placeholder="Nhận xét phát âm, ngữ pháp, ý tưởng cho Part ${p.n} (tùy chọn)..."
+                >${escapeHtml(pd.comment || "")}</textarea>
+              </div>
+            `;
+          })
+          .join("");
+
+        return `
+          <div class="tg-manual-panel">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+              <strong style="font-size:14px;color:#4c1d95;">✍️ Giáo viên tự chấm trực tiếp — ${escapeHtml(s.studentName)} (${escapeHtml(s.testTitle)})</strong>
+              <button type="button" class="tg-btn" data-toggle-manual="${escapeHtml(s.id)}" style="padding:5px 10px;font-size:12px;">✕ Đóng</button>
+            </div>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px;">
+              <div style="min-width:200px;flex:1;">
+                <label style="display:block;font-size:11.5px;font-weight:800;color:#5b21b6;margin-bottom:4px;">Mức đạt tổng (hiển thị cho học viên)</label>
+                <select class="tg-input" style="width:100%;" id="tg-man-band-${escapeHtml(s.id)}">
+                  ${renderBandOptions(curBand)}
+                </select>
+              </div>
+              <div style="width:185px;">
+                <label style="display:block;font-size:11.5px;font-weight:800;color:#5b21b6;margin-bottom:4px;">Điểm tổng GV (0–10, ẩn với HV)</label>
+                <input
+                  type="number"
+                  step="0.25"
+                  min="0"
+                  max="10"
+                  class="tg-input"
+                  style="width:100%;"
+                  id="tg-man-score-${escapeHtml(s.id)}"
+                  data-sync-band="tg-man-band-${escapeHtml(s.id)}"
+                  placeholder="VD: 5.50"
+                  value="${escapeHtml(curScore)}"
+                />
+              </div>
+            </div>
+
+            <div style="margin-bottom:10px;">
+              <label style="display:block;font-size:11.5px;font-weight:800;color:#5b21b6;margin-bottom:4px;">Nhận xét tổng quan của Cô Nguyệt</label>
+              <textarea
+                rows="3"
+                class="tg-textarea"
+                id="tg-man-comment-${escapeHtml(s.id)}"
+                placeholder="Nhập nhận xét tổng quan, điểm mạnh và trọng tâm cần cải thiện cho học viên..."
+              >${escapeHtml(curComment)}</textarea>
+            </div>
+
+            <div class="tg-manual-grid">${partInputs}</div>
+
+            <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12.5px;font-weight:700;color:#3f3f46;cursor:pointer;">
+              <input type="checkbox" id="tg-man-hide-ai-${escapeHtml(s.id)}" ${defaultHideAi ? "checked" : ""} style="width:16px;height:16px;" />
+              <span>Ẩn bài chấm của AI với học viên (chỉ hiển thị bài chấm của Giáo viên)</span>
+            </label>
+
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+              <button type="button" class="tg-btn manual active" data-save-manual="${escapeHtml(s.id)}" ${isSaving ? "disabled" : ""}>
+                ${isSaving ? "⏳ Đang lưu..." : "💾 Lưu bài chấm GV"}
+              </button>
+              <button type="button" class="tg-btn yellow" data-save-manual-release="${escapeHtml(s.id)}" ${isSaving ? "disabled" : ""}>
+                ${isSaving ? "⏳ Đang lưu..." : "⚡ Lưu & Trả bài ngay cho học viên"}
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
       function renderSubmissionCard(s) {
         const rj = s.reviewJson;
+        const tOv = s.teacherOverride;
         const isGrading = state.gradingId === s.id;
         const isReleasing = state.releasingId === s.id;
         const isDeleting = state.deletingId === s.id;
+        const isVerdictBusy = state.verdictSavingId === s.id;
+        const isManualOpen = state.manualOpenId === s.id;
         const band = rj ? rj.estimated_band || "" : "";
         const overallScore = rj && rj.overall_score !== undefined && rj.overall_score !== null ? Number(rj.overall_score) : null;
         const remain = s.isWaitingRelease ? formatRemainingTime(s.releaseAt) : "";
 
         let statusText = `<span style="font-size:12.5px;color:#52525b;font-weight:700;">⏳ Đang chờ chấm tự động (trả sau ${RELEASE_HOURS} tiếng)</span>`;
-        if (s.isWaitingRelease) {
+        if (s.isRejectedBlocked) {
+          statusText = `<span style="font-size:12.5px;color:#b91c1c;font-weight:800;">❌ GV đã chọn KHÔNG ĐỒNG Ý bài AI — đang ẩn với học viên cho tới khi GV tự chấm hoặc chấm lại</span>`;
+        } else if (s.isWaitingRelease) {
           statusText = `<span style="font-size:12.5px;color:#92400e;font-weight:800;">⏳ Đã chấm xong · Hẹn trả lúc ${escapeHtml(formatDateTime(s.releaseAt))} (còn ${escapeHtml(remain)})</span>`;
         } else if (s.isReleased) {
           statusText = `<span style="font-size:12.5px;color:#166534;font-weight:800;">✅ Đã trả bài sửa (${escapeHtml(formatDateTime(s.releaseAt))}) · ${s.isSeen ? "✓ Học viên đã đọc" : "● Học viên chưa đọc"}</span>`;
@@ -645,6 +1050,15 @@
           statusText = `<span style="font-size:12.5px;color:#b91c1c;font-weight:800;">⚠️ Bài nộp thiếu tệp âm thanh hợp lệ.</span>`;
         } else if (s.review && s.review.status === "error") {
           statusText = `<span style="font-size:12.5px;color:#b45309;font-weight:800;">🔄 Lỗi tạm thời (lần thử ${s.review.retry_count || 1}/20): ${escapeHtml((s.review.error_message || "").slice(0, 140))}</span>`;
+        }
+
+        let verdictBadge = "";
+        if (s.teacherDecision === "approved") {
+          verdictBadge = `<span class="sg-badge band-achieved">✅ GV đồng ý AI</span>`;
+        } else if (s.teacherDecision === "rejected") {
+          verdictBadge = `<span class="sg-badge band-below">❌ GV không đồng ý AI</span>`;
+        } else if (s.teacherDecision === "manual") {
+          verdictBadge = `<span class="sg-badge" style="background:#f5f3ff;border-color:#7c3aed;color:#5b21b6;">👩‍🏫 GV tự chấm${tOv && tOv.overall_band ? `: ${escapeHtml(tOv.overall_band)}` : ""}</span>`;
         }
 
         const audioBoxes = [1, 2, 3]
@@ -676,7 +1090,8 @@
                 <span class="sg-badge" style="background:#eff6ff;border-color:#3b82f6;color:#1d4ed8;">${escapeHtml(s.testTitle)}</span>
                 <span class="sg-badge">Mục tiêu ${escapeHtml(s.targetLevel)}</span>
                 ${band ? `<span class="sg-badge ${band.includes("Chưa đạt") ? "band-below" : band.includes("Xấp xỉ") ? "band-approx" : "band-achieved"}">${escapeHtml(band)}</span>` : ""}
-                ${overallScore !== null && Number.isFinite(overallScore) ? `<span class="sg-badge teacher-score">Điểm tổng (GV): ${overallScore.toFixed(2)}/10</span>` : ""}
+                ${overallScore !== null && Number.isFinite(overallScore) ? `<span class="sg-badge teacher-score">Điểm AI (GV): ${overallScore.toFixed(2)}/10</span>` : ""}
+                ${verdictBadge}
               </div>
               <div style="font-size:12px;color:#52525b;font-weight:600;">
                 Nộp lúc ${escapeHtml(formatDateTime(s.submittedAt))}
@@ -696,7 +1111,7 @@
                     : ""
                 }
                 <button type="button" class="tg-btn" data-grade="${escapeHtml(s.id)}" ${isGrading ? "disabled" : ""}>
-                  ${isGrading ? `⏳ ${escapeHtml(state.gradingStepText || "Đang chấm...")}` : s.hasReady ? "↻ Chấm lại" : "✨ Tạo bài sửa"}
+                  ${isGrading ? `⏳ ${escapeHtml(state.gradingStepText || "Đang chấm...")}` : s.hasAiParts ? "↻ Chấm lại AI" : "✨ Tạo bài sửa AI"}
                 </button>
                 <button type="button" class="tg-btn danger" data-delete="${escapeHtml(s.id)}" ${isDeleting ? "disabled" : ""}>
                   ${isDeleting ? "Đang xoá..." : "🗑️ Xoá bài"}
@@ -704,24 +1119,70 @@
               </div>
             </div>
 
+            <div class="tg-verdict-bar">
+              <div style="font-size:12.5px;font-weight:800;color:#1e293b;">
+                ⚖️ Thẩm định của Giáo viên:
+              </div>
+              <div class="tg-verdict-btns">
+                ${
+                  s.hasAiParts
+                    ? `<button
+                        type="button"
+                        class="tg-btn approve ${s.teacherDecision === "approved" ? "active" : ""}"
+                        data-verdict-approve="${escapeHtml(s.id)}"
+                        ${isVerdictBusy ? "disabled" : ""}
+                      >
+                        ✅ Đồng ý với AI
+                      </button>
+                      <button
+                        type="button"
+                        class="tg-btn reject ${s.teacherDecision === "rejected" ? "active" : ""}"
+                        data-verdict-reject="${escapeHtml(s.id)}"
+                        ${isVerdictBusy ? "disabled" : ""}
+                      >
+                        ❌ Không đồng ý với AI
+                      </button>`
+                    : ""
+                }
+                <button
+                  type="button"
+                  class="tg-btn manual ${isManualOpen || s.teacherDecision === "manual" ? "active" : ""}"
+                  data-toggle-manual="${escapeHtml(s.id)}"
+                >
+                  ✍️ ${s.teacherDecision === "manual" ? "Sửa bài GV tự chấm" : "Giáo viên tự chấm"}
+                </button>
+              </div>
+            </div>
+
+            ${
+              state.savedToastId === s.id && state.savedToastText
+                ? `<div class="sg-alert success" style="margin-top:10px;">${escapeHtml(state.savedToastText)}</div>`
+                : ""
+            }
+
+            ${
+              !isManualOpen && (s.teacherScore || s.teacherFeedback)
+                ? `<div class="tg-saved-summary">
+                    <strong>👩‍🏫 Kết quả GV đã lưu${s.teacherScore ? ` · ${escapeHtml(s.teacherScore)}` : ""}${
+                      tOv && tOv.overall_score !== undefined && tOv.overall_score !== null ? ` (${Number(tOv.overall_score).toFixed(2)}/10)` : ""
+                    }:</strong>
+                    ${s.teacherFeedback ? `<div style="margin-top:4px;white-space:pre-line;">${escapeHtml(s.teacherFeedback)}</div>` : ""}
+                  </div>`
+                : ""
+            }
+
+            ${isManualOpen ? renderManualGradingPanel(s) : ""}
+
             ${
               s.hasReady
                 ? `<details class="tg-details">
-                    <summary>📝 Xem chi tiết bài sửa AI (Part 1, Part 2, Part 3 · ${escapeHtml(band || "")})</summary>
+                    <summary>📝 Xem chi tiết bài sửa (Part 1, Part 2, Part 3 · ${escapeHtml(band || (tOv && tOv.overall_band) || "")})</summary>
                     <div style="padding:12px;">
                       ${GRADER.renderMockReviewHtml(rj, { targetLevel: s.targetLevel, isTeacherView: true })}
                     </div>
                   </details>`
                 : ""
             }
-
-            <div class="tg-grade-row">
-              <input type="text" class="tg-input" style="max-width:210px;" id="inp-score-${escapeHtml(s.id)}" placeholder="Mức đạt GV (VD: Đạt B2)" value="${escapeHtml(s.teacherScore)}" />
-              <input type="text" class="tg-input" style="flex:1;min-width:220px;" id="inp-fb-${escapeHtml(s.id)}" placeholder="Nhận xét thêm của Giáo viên..." value="${escapeHtml(s.teacherFeedback)}" />
-              <button type="button" class="tg-btn yellow" data-save="${escapeHtml(s.id)}">
-                ${state.savedToastId === s.id ? "✓ Đã lưu!" : "Lưu nhận xét"}
-              </button>
-            </div>
           </div>
         `;
       }
@@ -815,7 +1276,25 @@
         document.querySelectorAll("[data-grade]").forEach(b => (b.onclick = () => triggerGradeNow(b.getAttribute("data-grade"))));
         document.querySelectorAll("[data-release]").forEach(b => (b.onclick = () => triggerReleaseNow(b.getAttribute("data-release"))));
         document.querySelectorAll("[data-delete]").forEach(b => (b.onclick = () => deleteSubmission(b.getAttribute("data-delete"))));
-        document.querySelectorAll("[data-save]").forEach(b => (b.onclick = () => saveTeacherNote(b.getAttribute("data-save"))));
+        document.querySelectorAll("[data-verdict-approve]").forEach(b => (b.onclick = () => setAiVerdict(b.getAttribute("data-verdict-approve"), "approved")));
+        document.querySelectorAll("[data-verdict-reject]").forEach(b => (b.onclick = () => setAiVerdict(b.getAttribute("data-verdict-reject"), "rejected")));
+        document.querySelectorAll("[data-toggle-manual]").forEach(b => {
+          b.onclick = () => {
+            const id = b.getAttribute("data-toggle-manual");
+            state.manualOpenId = state.manualOpenId === id ? "" : id;
+            render();
+          };
+        });
+        document.querySelectorAll("[data-save-manual]").forEach(b => (b.onclick = () => saveTeacherManualGrade(b.getAttribute("data-save-manual"), false)));
+        document.querySelectorAll("[data-save-manual-release]").forEach(b => (b.onclick = () => saveTeacherManualGrade(b.getAttribute("data-save-manual-release"), true)));
+        document.querySelectorAll("[data-sync-band]").forEach(inp => {
+          inp.oninput = () => {
+            const targetId = inp.getAttribute("data-sync-band");
+            const sel = targetId ? document.getElementById(targetId) : null;
+            const band = scoreToBandHelper(inp.value);
+            if (sel && band) sel.value = band;
+          };
+        });
       }
 
       window.addEventListener("DOMContentLoaded", async () => {

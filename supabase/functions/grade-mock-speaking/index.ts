@@ -1302,6 +1302,28 @@ function sanitizeReviewForStudent(reviewJson: Record<string, unknown> | null) {
   const clone = JSON.parse(JSON.stringify(reviewJson));
   delete clone.overall_score;
   delete clone.internal_score;
+
+  const tOv = clone.teacher_override && typeof clone.teacher_override === "object" ? clone.teacher_override : null;
+  if (tOv) {
+    delete tOv.overall_score;
+    delete tOv.reviewed_by;
+    if (tOv.parts && typeof tOv.parts === "object") {
+      ["part1", "part2", "part3"].forEach(k => {
+        if (tOv.parts[k] && typeof tOv.parts[k] === "object") {
+          delete tOv.parts[k].score;
+        }
+      });
+    }
+    // Nếu GV chọn ẩn bài chấm AI (do không đồng ý hoặc tự chấm hoàn toàn) -> gỡ sạch dữ liệu AI ở server
+    if (tOv.hide_ai_review) {
+      delete clone.parts;
+      clone.ai_hidden_by_teacher = true;
+      clone.estimated_band = String(tOv.overall_band || "").trim();
+      clone.overall_comment = String(tOv.overall_comment || "").trim();
+      return clone;
+    }
+  }
+
   if (clone.parts && typeof clone.parts === "object") {
     ["part1", "part2", "part3"].forEach(k => {
       if (clone.parts[k] && typeof clone.parts[k] === "object") {
@@ -1622,8 +1644,35 @@ Deno.serve(async (req: Request) => {
         const rev = revById[s.id] || null;
         const relIso = (rev && rev.release_at) || s.release_at || "";
         const relMs = relIso ? new Date(relIso).getTime() : 0;
+        const rjObj =
+          rev && rev.review_json && typeof rev.review_json === "object"
+            ? (rev.review_json as Record<string, unknown>)
+            : null;
+        const tOv =
+          rjObj && rjObj.teacher_override && typeof rjObj.teacher_override === "object"
+            ? (rjObj.teacher_override as Record<string, unknown>)
+            : null;
+        const tOvParts =
+          tOv && tOv.parts && typeof tOv.parts === "object" ? (tOv.parts as Record<string, Record<string, unknown>>) : {};
+        const hasManualContent = Boolean(
+          tOv &&
+            (String(tOv.overall_band || "").trim() ||
+              String(tOv.overall_comment || "").trim() ||
+              ["part1", "part2", "part3"].some(
+                k => String(tOvParts?.[k]?.band || "").trim() || String(tOvParts?.[k]?.comment || "").trim()
+              ))
+        );
+        // Nếu GV chọn "Không đồng ý AI" và chưa viết bài tự chấm thay thế -> khoá tuyệt đối không trả bản AI lỗi cho học viên
+        const isBlockedByTeacherReject = Boolean(
+          tOv && tOv.hide_ai_review === true && !hasManualContent
+        );
         const isReadyAndReleased = Boolean(
-          rev && rev.status === "ready" && rev.review_json && relMs > 0 && relMs <= nowMs
+          rev &&
+            rev.status === "ready" &&
+            rjObj &&
+            !isBlockedByTeacherReject &&
+            relMs > 0 &&
+            relMs <= nowMs
         );
         const isNoAudio = s.status === "no_audio" || (rev && rev.status === "no_audio");
 
@@ -1641,7 +1690,7 @@ Deno.serve(async (req: Request) => {
           has_p1: Boolean(s.audio_path_p1),
           has_p2: Boolean(s.audio_path_p2),
           has_p3: Boolean(s.audio_path_p3),
-          review_json: isReadyAndReleased && rev ? sanitizeReviewForStudent(rev.review_json || null) : null
+          review_json: isReadyAndReleased && rev ? sanitizeReviewForStudent(rjObj) : null
         };
       });
 

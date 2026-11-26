@@ -167,7 +167,7 @@
 <body>
   <div id="teacher-root"></div>
 
-  <script src="./speaking-grader-config.js?v=20261126l"></script>
+  <script src="./speaking-grader-config.js?v=20261126_8h"></script>
   <script src="./speaking-grader.js?v=20261126_asr"></script>
   <script>
     (function () {
@@ -474,6 +474,89 @@
           return;
         }
         await loadDashboardData();
+      }
+
+      async function delayReleaseByHours(subId, extraHours = 2) {
+        const client = getClient();
+        if (!client || !subId || state.releasingId) return;
+        const item = state.items.find(x => x.id === subId);
+        if (!item) return;
+
+        const baseMs = Math.max(Date.now(), new Date(item.releaseAt || 0).getTime() || 0);
+        const nextIso = new Date(baseMs + extraHours * 3600 * 1000).toISOString();
+        const nowIso = new Date().toISOString();
+
+        state.releasingId = subId;
+        render();
+        try {
+          const { error: e1 } = await client
+            .from("mock_speaking_submissions")
+            .update({
+              release_at: nextIso,
+              status: item.status === "ready" ? "scheduled" : item.status,
+              updated_at: nowIso
+            })
+            .eq("id", subId);
+          if (e1) throw e1;
+
+          const { error: e2 } = await client
+            .from("mock_speaking_ai_reviews")
+            .update({ release_at: nextIso, updated_at: nowIso })
+            .eq("submission_id", subId);
+          if (e2) throw e2;
+
+          state.releasingId = "";
+          await loadDashboardData();
+        } catch (err) {
+          state.releasingId = "";
+          render();
+          alert("Không gia hạn được thời gian trả bài: " + (err && err.message ? err.message : err));
+        }
+      }
+
+      async function delayFilteredByHours(extraHours = 2) {
+        const client = getClient();
+        if (!client || state.flushingQueue) return;
+        const targets = getFilteredItems();
+        if (!targets.length) {
+          alert("Không có bài nào trong danh sách đang lọc để gia hạn.");
+          return;
+        }
+        const ok = confirm(
+          `Gia hạn thêm +${extraHours} tiếng thời gian trả bài cho ${targets.length} bài đang hiển thị?\n(Các bài đã đến giờ trả sẽ tạm khoá lại thêm ${extraHours} tiếng tính từ bây giờ để Cô chấm xong.)`
+        );
+        if (!ok) return;
+
+        state.flushingQueue = true;
+        render();
+        const nowIso = new Date().toISOString();
+        let done = 0;
+        try {
+          for (const item of targets) {
+            const baseMs = Math.max(Date.now(), new Date(item.releaseAt || 0).getTime() || 0);
+            const nextIso = new Date(baseMs + extraHours * 3600 * 1000).toISOString();
+            await client
+              .from("mock_speaking_submissions")
+              .update({
+                release_at: nextIso,
+                status: item.status === "ready" ? "scheduled" : item.status,
+                updated_at: nowIso
+              })
+              .eq("id", item.id);
+            await client
+              .from("mock_speaking_ai_reviews")
+              .update({ release_at: nextIso, updated_at: nowIso })
+              .eq("submission_id", item.id);
+            done++;
+          }
+          state.flushingQueue = false;
+          await loadDashboardData();
+          alert(`✅ Đã gia hạn thêm +${extraHours} tiếng cho ${done} bài thành công!`);
+        } catch (err) {
+          state.flushingQueue = false;
+          render();
+          alert("Lỗi khi gia hạn hàng loạt: " + (err && err.message ? err.message : err));
+        }
       }
 
       async function triggerFlushQueue() {
@@ -850,6 +933,7 @@
                     </button>`
                   : ""
               }
+              <button type="button" class="tg-btn" id="tg-btn-delay-all" ${state.flushingQueue ? "disabled" : ""} title="Lùi giờ trả bài thêm 2 tiếng cho tất cả bài đang lọc">⏰ Gia hạn +2 tiếng</button>
               <button type="button" class="tg-btn" id="tg-btn-refresh">${state.loading ? "⏳" : "↻"} Làm mới</button>
               <button type="button" class="tg-btn yellow" id="tg-btn-export">📊 Xuất Excel</button>
               <button type="button" class="tg-btn danger" id="tg-btn-logout">Đăng xuất</button>
@@ -865,7 +949,7 @@
                 <div class="tg-stat-val">${total}</div>
               </div>
               <div class="tg-stat-card">
-                <div class="tg-stat-label">Đang chờ chấm / chờ trả 6h</div>
+                <div class="tg-stat-label">Đang chờ chấm / chờ trả 8h</div>
                 <div class="tg-stat-val" style="color:#b45309;">${ungradedCount + waitingReleaseCount}</div>
               </div>
               <div class="tg-stat-card">
@@ -1117,6 +1201,9 @@
                       </button>`
                     : ""
                 }
+                <button type="button" class="tg-btn" data-delay="${escapeHtml(s.id)}" ${isReleasing ? "disabled" : ""} title="Lùi thời gian trả bài thêm 2 tiếng">
+                  ${isReleasing ? "Đang lùi..." : "⏰ +2 tiếng"}
+                </button>
                 <button type="button" class="tg-btn" data-grade="${escapeHtml(s.id)}" ${isGrading ? "disabled" : ""}>
                   ${isGrading ? `⏳ ${escapeHtml(state.gradingStepText || "Đang chấm...")}` : s.hasAiParts ? "↻ Chấm lại AI" : "✨ Tạo bài sửa AI"}
                 </button>
@@ -1280,8 +1367,12 @@
         bindSel("tg-sel-level", "filterLevel");
         bindSel("tg-sel-status", "filterStatus");
 
+        const delayAllBtn = document.getElementById("tg-btn-delay-all");
+        if (delayAllBtn) delayAllBtn.onclick = () => delayFilteredByHours(2);
+
         document.querySelectorAll("[data-grade]").forEach(b => (b.onclick = () => triggerGradeNow(b.getAttribute("data-grade"))));
         document.querySelectorAll("[data-release]").forEach(b => (b.onclick = () => triggerReleaseNow(b.getAttribute("data-release"))));
+        document.querySelectorAll("[data-delay]").forEach(b => (b.onclick = () => delayReleaseByHours(b.getAttribute("data-delay"), 2)));
         document.querySelectorAll("[data-delete]").forEach(b => (b.onclick = () => deleteSubmission(b.getAttribute("data-delete"))));
         document.querySelectorAll("[data-verdict-approve]").forEach(b => (b.onclick = () => setAiVerdict(b.getAttribute("data-verdict-approve"), "approved")));
         document.querySelectorAll("[data-verdict-reject]").forEach(b => (b.onclick = () => setAiVerdict(b.getAttribute("data-verdict-reject"), "rejected")));

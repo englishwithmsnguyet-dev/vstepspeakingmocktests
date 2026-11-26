@@ -18,7 +18,7 @@ const CORS_HEADERS = {
 };
 
 const AUDIO_BUCKET = "mock-speaking-recordings";
-const RELEASE_DELAY_HOURS = 6;
+const RELEASE_DELAY_HOURS = 8;
 const MAX_SUBMISSIONS_PER_TEST_24H = 5;
 const MAX_AUTO_RETRIES = 20;
 const RETRY_COOLDOWN_MS = 90 * 1000;

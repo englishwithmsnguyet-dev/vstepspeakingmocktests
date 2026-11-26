@@ -10,7 +10,7 @@ window.VSTEP_SPEAKING_GRADER_CONFIG = {
   url: "https://cssfktsmqyadgzjakgbo.supabase.co",
   anonKey: "sb_publishable_7lKDuGVWXrILo11Jygwv2g_jhtoC_0H",
   edgeFunctionName: "grade-mock-speaking",
-  releaseDelayHours: 6,
+  releaseDelayHours: 8,
   teacherEmail: "nguyetphamforwork@gmail.com",
   teacherPageUrl: "teacher-grading.html"
 };

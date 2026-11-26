@@ -833,7 +833,16 @@ async function streamStorageUrlToGeminiFilesApi(
   }
 
   // Bước B: Mở stream tải từ Supabase Storage và pipe thẳng (zero-copy, 0 MB RAM) lên uploadUrl
-  const dlRes = await fetch(signedAudioUrl, { signal: AbortSignal.timeout(25000) });
+  let dlRes: Response;
+  try {
+    dlRes = await fetch(signedAudioUrl, { signal: AbortSignal.timeout(35000) });
+  } catch (err) {
+    return {
+      ok: false,
+      status: 504,
+      error: `Quá thời gian tải file ghi âm từ Storage (timeout): ${err instanceof Error ? err.message : ""}`
+    };
+  }
   if (!dlRes.ok || !dlRes.body) {
     return {
       ok: false,
@@ -861,12 +870,21 @@ async function streamStorageUrlToGeminiFilesApi(
     uploadHeaders["Content-Length"] = String(totalBytes);
   }
 
-  const upRes = await fetch(uploadUrl, {
-    method: "POST",
-    headers: uploadHeaders,
-    body: dlRes.body,
-    signal: AbortSignal.timeout(35000)
-  });
+  let upRes: Response;
+  try {
+    upRes = await fetch(uploadUrl, {
+      method: "POST",
+      headers: uploadHeaders,
+      body: dlRes.body,
+      signal: AbortSignal.timeout(55000)
+    });
+  } catch (err) {
+    return {
+      ok: false,
+      status: 504,
+      error: `Quá thời gian đẩy file ghi âm sang Gemini Files (timeout): ${err instanceof Error ? err.message : ""}`
+    };
+  }
 
   if (!upRes.ok) {
     const errText = await upRes.text().catch(() => "");
@@ -1329,7 +1347,7 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     temperature: number,
     expectJson: boolean,
     useSchema = true,
-    disableThinking = false
+    thinkingBudget: number | null = null
   ) => {
     const errors: Array<{ model: string; status: number; detail: string }> = [];
     for (const modelName of fallbackModels) {
@@ -1338,8 +1356,8 @@ async function callGeminiAudioGradeWithSingleKey(params: {
         temperature,
         maxOutputTokens: 8192
       };
-      if (disableThinking) {
-        genCfg.thinkingConfig = { thinkingBudget: 0 };
+      if (typeof thinkingBudget === "number" && thinkingBudget >= 0) {
+        genCfg.thinkingConfig = { thinkingBudget };
       }
       if (expectJson) {
         genCfg.responseMimeType = "application/json";
@@ -1348,29 +1366,36 @@ async function callGeminiAudioGradeWithSingleKey(params: {
         }
       }
 
-      let res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{ role: "user", parts }],
-          generationConfig: genCfg
-        }),
-        signal: AbortSignal.timeout(45000)
-      });
-
-      // Nếu model từ chối responseSchema hoặc thinkingConfig (HTTP 400), tự động gọi lại với config cơ bản
-      if (!res.ok && res.status === 400 && (useSchema || disableThinking)) {
-        const retryCfg: Record<string, unknown> = { temperature, maxOutputTokens: 8192 };
-        if (expectJson) retryCfg.responseMimeType = "application/json";
+      let res: Response;
+      try {
         res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             contents: [{ role: "user", parts }],
-            generationConfig: retryCfg
+            generationConfig: genCfg
           }),
-          signal: AbortSignal.timeout(45000)
+          signal: AbortSignal.timeout(65000)
         });
+
+        // Nếu model từ chối responseSchema hoặc thinkingConfig (HTTP 400), tự động gọi lại với config cơ bản
+        if (!res.ok && res.status === 400 && (useSchema || typeof thinkingBudget === "number")) {
+          const retryCfg: Record<string, unknown> = { temperature, maxOutputTokens: 8192 };
+          if (expectJson) retryCfg.responseMimeType = "application/json";
+          res = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [{ role: "user", parts }],
+              generationConfig: retryCfg
+            }),
+            signal: AbortSignal.timeout(65000)
+          });
+        }
+      } catch (fetchErr) {
+        const msg = fetchErr instanceof Error ? fetchErr.message : String(fetchErr);
+        errors.push({ model: modelName, status: 504, detail: `Timeout/network: ${msg.slice(0, 120)}` });
+        continue;
       }
 
       if (res.ok) {
@@ -1484,7 +1509,7 @@ async function callGeminiAudioGradeWithSingleKey(params: {
         0.0,
         false,
         false,
-        false
+        512
       );
 
       if (step1.ok) {
@@ -1517,7 +1542,7 @@ async function callGeminiAudioGradeWithSingleKey(params: {
           0.1,
           false,
           false,
-          false
+          0
         );
         if (retryRes.ok) {
           const retryCheck = checkTranscriptMeaningful(retryRes.rawText);
@@ -1590,6 +1615,8 @@ async function callGeminiAudioGradeWithSingleKey(params: {
         attempt === 0
           ? gradingPrompt
           : `${gradingPrompt}\n\nLƯU Ý BẮT BUỘC: Trả về ĐÚNG 1 đối tượng JSON chuẩn RFC 8259, không có dấu phẩy thừa trước } hoặc ], mọi chuỗi phải escape dấu ngoặc kép đúng chuẩn.`;
+      // Giới hạn thinkingBudget để model chấm nhanh Part 3 dài (~10-15s) không bị suy luận quá lâu gây timeout
+      const step2ThinkingBudget = attempt === 0 ? (isTranscriptLocked ? 512 : 1024) : 0;
       const step2 = await callModel(
         [
           { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
@@ -1598,7 +1625,7 @@ async function callGeminiAudioGradeWithSingleKey(params: {
         attempt === 0 ? 0.2 : 0.0,
         true,
         true,
-        false
+        step2ThinkingBudget
       );
 
       if (!step2.ok) return step2;

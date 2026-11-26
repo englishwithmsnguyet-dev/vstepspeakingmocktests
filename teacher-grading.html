@@ -458,8 +458,8 @@
           if (upgradedPath) payload.upgraded_audio_path = upgradedPath;
 
           let res = await GRADER.callEdgeFunction(payload, token);
-          // Tự động thử lại 1 lần nếu AI gặp lỗi JSON hoặc lỗi mạng tạm thời (giữ nguyên các Part đã chấm xong)
-          if (!res.ok && /JSON|502|503|timeout|network/i.test(String(res.error || ""))) {
+          // Tự động thử lại 1 lần nếu AI gặp lỗi JSON hoặc lỗi mạng/timeout tạm thời (giữ nguyên các Part đã chấm xong)
+          if (!res.ok && /JSON|502|503|504|timeout|timed out|network|signal/i.test(String(res.error || ""))) {
             state.gradingStepText = `Đang thử chấm lại Part ${pNum}/3...`;
             render();
             const retryPayload = { ...payload, reset_existing: false };
@@ -505,7 +505,7 @@
             override_transcript: text
           };
           let res = await GRADER.callEdgeFunction(payload, token);
-          if (!res.ok && /JSON|502|503|timeout|network/i.test(String(res.error || ""))) {
+          if (!res.ok && /JSON|502|503|504|timeout|timed out|network|signal/i.test(String(res.error || ""))) {
             res = await GRADER.callEdgeFunction(payload, token);
           }
           if (!res.ok) {
@@ -530,6 +530,54 @@
           state.regradingPartKey = "";
           render();
           alert(`Lỗi khi chấm lại Part ${pNum}: ` + (err && err.message ? err.message : err));
+        }
+      }
+
+      async function regradeSinglePart(subId, partNum) {
+        const pNum = Number(partNum);
+        if (!subId || ![1, 2, 3].includes(pNum) || state.regradingPartKey || state.gradingId) return;
+        const item = state.submissions.find(x => x.id === subId);
+        const key = `${subId}_p${pNum}`;
+        state.regradingPartKey = key;
+        render();
+
+        try {
+          const token = await getAccessToken();
+          const upgradedPath = await ensurePartWavUpgraded(item, pNum, token);
+          const payload = {
+            action: "grade_now",
+            submission_id: subId,
+            part_num: pNum,
+            reset_existing: false,
+            release_now: false
+          };
+          if (upgradedPath) payload.upgraded_audio_path = upgradedPath;
+
+          let res = await GRADER.callEdgeFunction(payload, token);
+          if (!res.ok && /JSON|502|503|504|timeout|timed out|network|signal/i.test(String(res.error || ""))) {
+            res = await GRADER.callEdgeFunction(payload, token);
+          }
+          if (!res.ok) {
+            state.regradingPartKey = "";
+            render();
+            alert(`Lỗi khi chấm riêng Part ${pNum}: ` + (res.error || "Lỗi máy chủ"));
+            return;
+          }
+          state.regradingPartKey = "";
+          state.savedToastId = subId;
+          state.savedToastText = `✅ Đã chấm xong riêng Part ${pNum} (giữ nguyên 2 Part còn lại)!`;
+          await loadDashboardData();
+          setTimeout(() => {
+            if (state.savedToastId === subId) {
+              state.savedToastId = "";
+              state.savedToastText = "";
+              render();
+            }
+          }, 4000);
+        } catch (err) {
+          state.regradingPartKey = "";
+          render();
+          alert(`Lỗi khi chấm riêng Part ${pNum}: ` + (err && err.message ? err.message : err));
         }
       }
 
@@ -1291,9 +1339,21 @@
             const url = s.audioUrls[pNum];
             const path = s.audioPaths[pNum];
             const partName = pNum === 1 ? "Part 1 · Social Interaction" : pNum === 2 ? "Part 2 · Solution Discussion" : "Part 3 · Topic Development";
+            const partKey = `${s.id}_p${pNum}`;
+            const isPartBusy = state.regradingPartKey === partKey;
+            const anyBusy = Boolean(state.regradingPartKey || state.gradingId);
             return `
               <div class="tg-audio-box">
-                <div style="font-size:12px;font-weight:800;color:#18181b;">🎙️ ${partName}</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;">
+                  <div style="font-size:12px;font-weight:800;color:#18181b;">🎙️ ${partName}</div>
+                  ${
+                    path
+                      ? `<button type="button" class="tg-btn" style="padding:3px 8px;font-size:11px;" data-regrade-part="${escapeHtml(s.id)}:${pNum}" ${anyBusy ? "disabled" : ""} title="Chấm lại riêng Part ${pNum} (giữ nguyên 2 Part còn lại)">
+                          ${isPartBusy ? "⏳ Đang chấm..." : `↻ Chấm Part ${pNum}`}
+                        </button>`
+                      : ""
+                  }
+                </div>
                 ${
                   url
                     ? `<audio controls preload="metadata" src="${escapeHtml(url)}"></audio>`
@@ -1538,6 +1598,13 @@
             const raw = b.getAttribute("data-regrade-transcript") || "";
             const parts = raw.split(":");
             if (parts.length === 2) regradePartWithTranscript(parts[0], Number(parts[1]));
+          };
+        });
+        document.querySelectorAll("[data-regrade-part]").forEach(b => {
+          b.onclick = () => {
+            const raw = b.getAttribute("data-regrade-part") || "";
+            const parts = raw.split(":");
+            if (parts.length === 2) regradeSinglePart(parts[0], Number(parts[1]));
           };
         });
         document.querySelectorAll("[data-save-manual]").forEach(b => (b.onclick = () => saveTeacherManualGrade(b.getAttribute("data-save-manual"), false)));

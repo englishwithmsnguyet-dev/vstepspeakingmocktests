@@ -174,10 +174,10 @@ const VstepDB = {
 // Form Recording: https://forms.gle/pGY7Ci8T1aHv15Ud6
 // ==========================================================================
 const VstepAuth = {
-    ALLOWED_CLASSES: ['CB210', 'CB211', 'CB213', 'ONB103', 'B212', 'B2', 'GV'],
+    ALLOWED_CLASSES: ['CB210', 'CB211', 'CB213', 'ONB103', 'B212', 'GV'],
     BANNED_CLASSES: ['CB196', 'CB201', 'CB202', 'CB206', 'CB219', 'CB220', 'B209'],
     REQUIRED_PASSWORD: 'VSTEPSEPTEMBER',
-    VALID_PASSWORDS: ['VSTEPSEPTEMBER', 'STUDYHARD', 'B2', 'GIATUE', 'PTMN2896', 'PTMN2412', 'PTMN2805'],
+    VALID_PASSWORDS: ['VSTEPSEPTEMBER', 'STUDYHARD', 'PTMN2896', 'PTMN2412', 'PTMN2805'],
     TEACHER_UNLOCK_PASSWORDS: ['PTMN2896', 'PTMN2412', 'PTMN2805', 'PTMN', 'VSTEPSEPTEMBER', 'STUDYHARD'],
     FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSc7PpUuIwfXofYNKtZ2L_YqhJTlh-Xc7SoBqAgjXxtUla6XZw/formResponse',
     ENTRY_ID: 'entry.1205151935',
@@ -216,9 +216,6 @@ const VstepAuth = {
             "Trần Hoàng Thông", "Nguyễn Kim Tiền", "Lê Thị Bảo Trân", "Võ Thị Diễm Trinh", 
             "Nguyễn Tấn Trung", "Nguyễn Tiến Trung", "Trần Thị Ánh Tuyết", "Đặng Nguyễn Khánh Uyên", 
             "Nguyễn Thị Chúc Yến"
-        ],
-        "B2": [
-            "Gia Tuệ", "Trương Gia Tuệ", "Gia Tuê", "Nguyễn Gia Tuệ", "Trần Gia Tuệ", "Lê Gia Tuệ"
         ]
     },
 
@@ -254,6 +251,7 @@ const VstepAuth = {
         if (!name) return false;
         const cleanClass = className || sessionStorage.getItem('vstep_student_class') || localStorage.getItem('vstep_student_class') || '';
         if (this.isTeacher(name, cleanClass)) return false;
+        if (this.checkIsGiaTue(name) || (cleanClass && cleanClass.toUpperCase() === 'B2')) return true;
         const key = this.getStudentLockKey(name);
         return localStorage.getItem(key) === 'true' || localStorage.getItem('vstep_current_user_locked') === 'true';
     },
@@ -307,25 +305,18 @@ const VstepAuth = {
             return { ok: true, matchedName: 'Cô Nguyệt (PTMN)', className: 'GV' };
         }
 
-        if (this.checkIsGiaTue(cleanName) && (!cleanClass || cleanClass === 'B2' || cleanClass === 'CB206')) {
-            cleanClass = 'B2';
+        if (this.checkIsGiaTue(cleanName) || cleanClass === 'B2') {
+            return { 
+                ok: false, 
+                error: 'Tài khoản học viên "Gia Tuệ" hiện đã bị KHÓA! Vui lòng liên hệ Giáo viên (Cô Nguyệt).' 
+            };
         }
 
         if (!this.ALLOWED_CLASSES.includes(cleanClass)) {
             return { 
                 ok: false, 
-                error: `Lớp "${className}" không hợp lệ hoặc đã kết thúc! Hệ thống hiện chỉ nhận các lớp: CB210, CB211, CB213, ONB103, B212 và học viên Gia Tuệ (B2).` 
+                error: `Lớp "${className}" không hợp lệ hoặc đã kết thúc! Hệ thống hiện chỉ nhận các lớp: CB210, CB211, CB213, ONB103, B212.` 
             };
-        }
-
-        if (cleanClass === 'B2') {
-            if (!this.checkIsGiaTue(cleanName)) {
-                return { 
-                    ok: false, 
-                    error: 'Mã lớp B2 hiện chỉ dành riêng cho học viên Gia Tuệ (B2)! Vui lòng kiểm tra lại Họ tên hoặc Mã lớp.' 
-                };
-            }
-            return { ok: true, matchedName: 'Gia Tuệ', className: 'B2' };
         }
 
         if (cleanClass === 'GV') {

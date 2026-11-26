@@ -909,6 +909,63 @@
         }, 3500);
       }
 
+      async function clearTeacherManualGrade(subId) {
+        const client = getClient();
+        const item = state.submissions.find(x => x.id === subId);
+        if (!client || !item || state.manualSavingId) return;
+
+        const ok = confirm(
+          `Xoá phần "Kết quả GV đã lưu" của bài ${item.studentName}?\n(Bài sửa chi tiết của AI và 3 file ghi âm vẫn được giữ nguyên!)`
+        );
+        if (!ok) return;
+
+        state.manualSavingId = subId;
+        render();
+
+        const nowIso = new Date().toISOString();
+        try {
+          const { error: subErr } = await client
+            .from("mock_speaking_submissions")
+            .update({
+              teacher_score: "",
+              teacher_feedback: "",
+              updated_at: nowIso
+            })
+            .eq("id", subId);
+          if (subErr) throw subErr;
+
+          if (item.reviewJson) {
+            const nextJson = JSON.parse(JSON.stringify(item.reviewJson));
+            delete nextJson.teacher_override;
+            const { error: revErr } = await client
+              .from("mock_speaking_ai_reviews")
+              .update({
+                review_json: nextJson,
+                updated_at: nowIso
+              })
+              .eq("submission_id", subId);
+            if (revErr) throw revErr;
+          }
+
+          state.manualSavingId = "";
+          state.manualOpenId = "";
+          state.savedToastId = subId;
+          state.savedToastText = "✅ Đã xoá phần kết quả GV đã lưu thành công!";
+          await loadDashboardData();
+          setTimeout(() => {
+            if (state.savedToastId === subId) {
+              state.savedToastId = "";
+              state.savedToastText = "";
+              render();
+            }
+          }, 3500);
+        } catch (err) {
+          state.manualSavingId = "";
+          render();
+          alert("Không xoá được kết quả GV đã lưu: " + (err && err.message ? err.message : err));
+        }
+      }
+
       async function deleteSubmission(subId) {
         const client = getClient();
         const item = state.submissions.find(x => x.id === subId);
@@ -1233,6 +1290,13 @@
               <button type="button" class="tg-btn yellow" data-save-manual-release="${escapeHtml(s.id)}" ${isSaving ? "disabled" : ""}>
                 ${isSaving ? "⏳ Đang lưu..." : "⚡ Lưu & Trả bài ngay cho học viên"}
               </button>
+              ${
+                s.teacherScore || s.teacherFeedback || s.teacherDecision === "manual"
+                  ? `<button type="button" class="tg-btn danger" data-clear-manual="${escapeHtml(s.id)}" ${isSaving ? "disabled" : ""}>
+                      🗑️ Xoá kết quả GV đã lưu
+                    </button>`
+                  : ""
+              }
             </div>
           </div>
         `;
@@ -1458,9 +1522,14 @@
             ${
               !isManualOpen && (s.teacherScore || s.teacherFeedback)
                 ? `<div class="tg-saved-summary">
-                    <strong>👩‍🏫 Kết quả GV đã lưu${s.teacherScore ? ` · ${escapeHtml(s.teacherScore)}` : ""}${
-                      tOv && tOv.overall_score !== undefined && tOv.overall_score !== null ? ` (${Number(tOv.overall_score).toFixed(2)}/10)` : ""
-                    }:</strong>
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
+                      <strong>👩‍🏫 Kết quả GV đã lưu${s.teacherScore ? ` · ${escapeHtml(s.teacherScore)}` : ""}${
+                        tOv && tOv.overall_score !== undefined && tOv.overall_score !== null ? ` (${Number(tOv.overall_score).toFixed(2)}/10)` : ""
+                      }:</strong>
+                      <button type="button" class="tg-btn danger" style="padding:3px 9px;font-size:11.5px;" data-clear-manual="${escapeHtml(s.id)}" ${state.manualSavingId === s.id ? "disabled" : ""}>
+                        ${state.manualSavingId === s.id ? "Đang xoá..." : "🗑️ Xoá kết quả GV này"}
+                      </button>
+                    </div>
                     ${s.teacherFeedback ? `<div style="margin-top:4px;white-space:pre-line;">${escapeHtml(s.teacherFeedback)}</div>` : ""}
                   </div>`
                 : ""
@@ -1609,6 +1678,7 @@
         });
         document.querySelectorAll("[data-save-manual]").forEach(b => (b.onclick = () => saveTeacherManualGrade(b.getAttribute("data-save-manual"), false)));
         document.querySelectorAll("[data-save-manual-release]").forEach(b => (b.onclick = () => saveTeacherManualGrade(b.getAttribute("data-save-manual-release"), true)));
+        document.querySelectorAll("[data-clear-manual]").forEach(b => (b.onclick = () => clearTeacherManualGrade(b.getAttribute("data-clear-manual"))));
         document.querySelectorAll("[data-sync-band]").forEach(inp => {
           inp.oninput = () => {
             const targetId = inp.getAttribute("data-sync-band");

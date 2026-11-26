@@ -159,8 +159,25 @@
       margin-top: 10px; padding: 10px 12px; border-radius: 10px;
       background: #f5f3ff; border: 1.5px solid #c4b5fd; font-size: 13px; color: #3b0764;
     }
+    .tg-btn.transcript {
+      background: #f0f9ff; border-color: #0284c7; color: #0369a1;
+    }
+    .tg-btn.transcript.active {
+      background: #0284c7; border-color: #0284c7; color: #fff;
+    }
+    .tg-transcript-panel {
+      margin-top: 12px; padding: 14px 16px; border-radius: 12px;
+      background: #f0f9ff; border: 2px solid #0284c7;
+    }
+    .tg-transcript-grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 10px;
+    }
+    .tg-transcript-box {
+      background: #fff; border: 1.5px solid #bae6fd; border-radius: 10px; padding: 10px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
     @media (max-width: 820px) {
-      .tg-manual-grid { grid-template-columns: 1fr; }
+      .tg-manual-grid, .tg-transcript-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -206,6 +223,8 @@
         verdictSavingId: "",
         manualOpenId: "",
         manualSavingId: "",
+        transcriptOpenId: "",
+        regradingPartKey: "",
         savedToastId: "",
         savedToastText: "",
         submissions: [],
@@ -459,6 +478,59 @@
         state.gradingId = "";
         state.gradingStepText = "";
         await loadDashboardData();
+      }
+
+      async function regradePartWithTranscript(subId, partNum) {
+        const pNum = Number(partNum);
+        if (!subId || ![1, 2, 3].includes(pNum) || state.regradingPartKey || state.gradingId) return;
+        const ta = document.getElementById(`tg-tr-${subId}-p${pNum}`);
+        const text = (ta ? ta.value : "").replace(/\s{2,}/g, " ").trim();
+        if (!text) {
+          alert(`Vui lòng nhập lời nói tiếng Anh cho Part ${pNum} trước khi chấm lại.`);
+          return;
+        }
+
+        const key = `${subId}_p${pNum}`;
+        state.regradingPartKey = key;
+        render();
+
+        try {
+          const token = await getAccessToken();
+          const payload = {
+            action: "grade_now",
+            submission_id: subId,
+            part_num: pNum,
+            reset_existing: false,
+            release_now: false,
+            override_transcript: text
+          };
+          let res = await GRADER.callEdgeFunction(payload, token);
+          if (!res.ok && /JSON|502|503|timeout|network/i.test(String(res.error || ""))) {
+            res = await GRADER.callEdgeFunction(payload, token);
+          }
+          if (!res.ok) {
+            state.regradingPartKey = "";
+            render();
+            alert(`Lỗi khi chấm lại Part ${pNum}: ` + (res.error || "Lỗi máy chủ"));
+            return;
+          }
+          state.regradingPartKey = "";
+          state.transcriptOpenId = subId;
+          state.savedToastId = subId;
+          state.savedToastText = `✅ Đã chấm lại Part ${pNum} theo lời chép Cô vừa chỉnh sửa (giữ nguyên audio & 2 Part còn lại)!`;
+          await loadDashboardData();
+          setTimeout(() => {
+            if (state.savedToastId === subId) {
+              state.savedToastId = "";
+              state.savedToastText = "";
+              render();
+            }
+          }, 4000);
+        } catch (err) {
+          state.regradingPartKey = "";
+          render();
+          alert(`Lỗi khi chấm lại Part ${pNum}: ` + (err && err.message ? err.message : err));
+        }
       }
 
       async function triggerReleaseNow(subId) {
@@ -1118,6 +1190,66 @@
         `;
       }
 
+      function renderTranscriptEditorPanel(s) {
+        const parts =
+          (s.reviewJson && s.reviewJson.parts) ||
+          (s.review && s.review.review_json && s.review.review_json.parts) ||
+          {};
+        const boxes = [1, 2, 3]
+          .map(n => {
+            const pObj = parts[`part${n}`] || {};
+            const curText = String(pObj.recognized_transcript || "").trim();
+            const srcModel = String((pObj._meta && pObj._meta.model_step1) || "").trim();
+            const hasAudio = Boolean(s.audioPaths && s.audioPaths[n]);
+            const key = `${s.id}_p${n}`;
+            const isBusy = state.regradingPartKey === key;
+            const anyBusy = Boolean(state.regradingPartKey || state.gradingId);
+            return `
+              <div class="tg-transcript-box">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;">
+                  <strong style="font-size:12.5px;color:#0369a1;">Part ${n}</strong>
+                  ${
+                    srcModel
+                      ? `<span style="font-size:10.5px;color:#475569;font-family:monospace;background:#f1f5f9;padding:2px 6px;border-radius:6px;">${escapeHtml(srcModel)}</span>`
+                      : ""
+                  }
+                </div>
+                <textarea
+                  rows="5"
+                  class="tg-textarea"
+                  style="font-size:12.5px;border-color:#bae6fd;"
+                  id="tg-tr-${escapeHtml(s.id)}-p${n}"
+                  placeholder="${hasAudio ? `Nhập hoặc sửa lời học viên nói ở Part ${n}...` : "Không có tệp ghi âm cho phần này"}"
+                  ${!hasAudio ? "disabled" : ""}
+                >${escapeHtml(curText)}</textarea>
+                <button
+                  type="button"
+                  class="tg-btn transcript ${isBusy ? "active" : ""}"
+                  style="width:100%;justify-content:center;"
+                  data-regrade-transcript="${escapeHtml(s.id)}:${n}"
+                  ${!hasAudio || anyBusy ? "disabled" : ""}
+                >
+                  ${isBusy ? `⏳ Đang chấm lại Part ${n}...` : `✨ Chấm lại Part ${n} theo lời này`}
+                </button>
+              </div>
+            `;
+          })
+          .join("");
+
+        return `
+          <div class="tg-transcript-panel">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+              <strong style="font-size:14px;color:#0369a1;">✏️ Sửa nhanh lời chép (Transcript) & Chấm lại từng Part</strong>
+              <button type="button" class="tg-btn" data-toggle-transcript="${escapeHtml(s.id)}">✕ Đóng</button>
+            </div>
+            <div style="font-size:12px;color:#0c4a6e;margin-top:4px;line-height:1.5;">
+              Nghe đối chiếu ở khung audio phía trên, sửa vài từ AI nghe nhầm rồi bấm <strong>Chấm lại Part này</strong>. Hệ thống vẫn giữ file ghi âm gốc để chấm phát âm/ngữ điệu và giữ nguyên 2 Part còn lại.
+            </div>
+            <div class="tg-transcript-grid">${boxes}</div>
+          </div>
+        `;
+      }
+
       function renderSubmissionCard(s) {
         const rj = s.reviewJson;
         const tOv = s.teacherOverride;
@@ -1126,6 +1258,8 @@
         const isDeleting = state.deletingId === s.id;
         const isVerdictBusy = state.verdictSavingId === s.id;
         const isManualOpen = state.manualOpenId === s.id;
+        const isTranscriptOpen = state.transcriptOpenId === s.id;
+        const hasAnyAudio = Boolean(s.audioPaths && (s.audioPaths[1] || s.audioPaths[2] || s.audioPaths[3]));
         const band = rj ? rj.estimated_band || "" : "";
         const overallScore = rj && rj.overall_score !== undefined && rj.overall_score !== null ? Number(rj.overall_score) : null;
         const remain = s.isWaitingRelease ? formatRemainingTime(s.releaseAt) : "";
@@ -1207,6 +1341,13 @@
                 <button type="button" class="tg-btn" data-grade="${escapeHtml(s.id)}" ${isGrading ? "disabled" : ""}>
                   ${isGrading ? `⏳ ${escapeHtml(state.gradingStepText || "Đang chấm...")}` : s.hasAiParts ? "↻ Chấm lại AI" : "✨ Tạo bài sửa AI"}
                 </button>
+                ${
+                  hasAnyAudio || s.hasAiParts
+                    ? `<button type="button" class="tg-btn transcript ${isTranscriptOpen ? "active" : ""}" data-toggle-transcript="${escapeHtml(s.id)}" title="Sửa nhanh vài chữ trong lời chép và chấm lại riêng 1 Part">
+                        ✏️ Sửa lời chép
+                      </button>`
+                    : ""
+                }
                 <button type="button" class="tg-btn danger" data-delete="${escapeHtml(s.id)}" ${isDeleting ? "disabled" : ""}>
                   ${isDeleting ? "Đang xoá..." : "🗑️ Xoá bài"}
                 </button>
@@ -1264,6 +1405,8 @@
                   </div>`
                 : ""
             }
+
+            ${isTranscriptOpen ? renderTranscriptEditorPanel(s) : ""}
 
             ${isManualOpen ? renderManualGradingPanel(s) : ""}
 
@@ -1381,6 +1524,20 @@
             const id = b.getAttribute("data-toggle-manual");
             state.manualOpenId = state.manualOpenId === id ? "" : id;
             render();
+          };
+        });
+        document.querySelectorAll("[data-toggle-transcript]").forEach(b => {
+          b.onclick = () => {
+            const id = b.getAttribute("data-toggle-transcript");
+            state.transcriptOpenId = state.transcriptOpenId === id ? "" : id;
+            render();
+          };
+        });
+        document.querySelectorAll("[data-regrade-transcript]").forEach(b => {
+          b.onclick = () => {
+            const raw = b.getAttribute("data-regrade-transcript") || "";
+            const parts = raw.split(":");
+            if (parts.length === 2) regradePartWithTranscript(parts[0], Number(parts[1]));
           };
         });
         document.querySelectorAll("[data-save-manual]").forEach(b => (b.onclick = () => saveTeacherManualGrade(b.getAttribute("data-save-manual"), false)));

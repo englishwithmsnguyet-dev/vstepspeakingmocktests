@@ -732,3 +732,60 @@
     right: 12px;
   }
 }
+
+/* ==========================================================================
+   UNIFIED TYPOGRAPHY SYSTEM (ĐỒNG BỘ FONT & SIZE CHỮ TOÀN WEBSITE)
+   ========================================================================== */
+.sg-box,
+.sg-modal-panel,
+.sg-notif-dropdown,
+.sg-floating-bar,
+.sg-sidebar-teacher-btn {
+    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+.sg-box button,
+.sg-modal-panel button,
+.sg-notif-dropdown button,
+.sg-floating-bar button {
+    font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+.sg-eyebrow,
+.sg-bell-badge,
+.sg-status-pill,
+.sg-cat-pill {
+    font-size: 12px;
+}
+.sg-title {
+    font-size: 18px;
+    line-height: 1.35;
+}
+.sg-sub,
+.sg-overall-comment,
+.sg-inline-transcript,
+.sg-revised-box,
+.sg-alert {
+    font-size: 14px;
+    line-height: 1.65;
+}
+.sg-block-title {
+    font-size: 15px;
+}
+.sg-part-chip,
+.sg-level-label,
+.sg-level-btn,
+.sg-tab-btn,
+.sg-criteria-label,
+.sg-criteria-text,
+.sg-table,
+.sg-pill-btn,
+.sg-sidebar-teacher-btn,
+.sg-notif-head {
+    font-size: 13px;
+}
+.sg-submit-btn {
+    font-size: 14px;
+}
+.sg-badge,
+.sg-speak-btn {
+    font-size: 12px;
+}

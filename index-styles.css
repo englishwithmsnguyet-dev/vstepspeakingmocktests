@@ -734,3 +734,107 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+/* ==========================================================================
+   UNIFIED TYPOGRAPHY SYSTEM (ĐỒNG BỘ FONT & SIZE CHỮ TOÀN WEBSITE)
+   ========================================================================== */
+:root {
+    --font-main: 'Plus Jakarta Sans', 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --fs-xs: 12px;
+    --fs-sm: 13px;
+    --fs-ui: 14px;
+    --fs-body: 15px;
+    --fs-sub: 16px;
+    --fs-h3: 17px;
+    --fs-h2: 20px;
+    --fs-h1: 32px;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-main);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: var(--font-main);
+}
+
+/* Display & Header */
+.welcome-header-center h1,
+.header-brand-title {
+    font-size: var(--fs-h1);
+    line-height: 1.25;
+}
+.mock-test-pill {
+    font-size: var(--fs-body);
+    line-height: 1.3;
+}
+
+/* Sidebar */
+.sidebar-header {
+    font-size: var(--fs-sub);
+}
+.test-item a {
+    font-size: var(--fs-ui);
+    line-height: 1.4;
+}
+.sidebar-brand-bottom .brand-text {
+    font-size: var(--fs-sm);
+    line-height: 1.35;
+}
+
+/* Section & Card Headings */
+.notes-card h2,
+.tests-card h2 {
+    font-size: var(--fs-h2);
+    line-height: 1.35;
+}
+.note-section h3,
+.test-card-title {
+    font-size: var(--fs-sub);
+    line-height: 1.4;
+}
+
+/* Main Reading Content */
+.note-list li {
+    font-size: var(--fs-body);
+    line-height: 1.65;
+}
+.test-card-desc {
+    font-size: var(--fs-ui);
+    line-height: 1.55;
+}
+.topic-bullet {
+    font-size: var(--fs-sm);
+    line-height: 1.5;
+}
+
+/* Controls & Badges */
+.btn-card-action {
+    font-size: var(--fs-ui);
+}
+.status-badge {
+    font-size: var(--fs-xs);
+}
+.lock-title {
+    font-size: var(--fs-h2);
+}
+.lock-subtitle,
+.lock-error-msg {
+    font-size: var(--fs-ui);
+}
+.lock-input,
+.lock-btn {
+    font-size: var(--fs-body);
+}

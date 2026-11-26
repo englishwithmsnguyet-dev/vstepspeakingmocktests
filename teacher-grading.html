@@ -217,7 +217,7 @@
   <div id="teacher-root"></div>
 
   <script src="./speaking-grader-config.js?v=20261126_8h"></script>
-  <script src="./speaking-grader.js?v=20261127_note"></script>
+  <script src="./speaking-grader.js?v=20261127_band"></script>
   <script>
     (function () {
       const CFG = window.VSTEP_SPEAKING_GRADER_CONFIG || {};
@@ -874,9 +874,11 @@
         if (!client || !item || !item.reviewJson || state.verdictSavingId) return;
 
         const el = document.getElementById(`tg-app-note-${subId}`);
+        const bandEl = document.getElementById(`tg-app-band-${subId}`);
         const note = clearNote ? "" : String(el ? el.value : "").trim();
-        if (!clearNote && !note) {
-          alert("Vui lòng nhập nội dung nhận xét của Giáo viên trước khi lưu.");
+        const chosenBand = String(bandEl ? bandEl.value : "").trim();
+        if (!clearNote && !note && !chosenBand) {
+          alert("Vui lòng chọn Mức đạt hoặc nhập nhận xét của Giáo viên trước khi lưu.");
           return;
         }
 
@@ -889,10 +891,22 @@
           ? existingJson.teacher_override
           : {};
 
+        const prevBand = String(existingJson.estimated_band || "").trim();
+        if (chosenBand) {
+          existingJson.estimated_band = chosenBand;
+          if (prevBand && prevBand !== chosenBand && typeof existingJson.overall_comment === "string") {
+            existingJson.overall_comment = existingJson.overall_comment.replace(
+              `đạt mức ${prevBand}`,
+              `đạt mức ${chosenBand}`
+            );
+          }
+        }
+
         existingJson.teacher_override = {
           ...prevOv,
           decision: "approved",
           hide_ai_review: false,
+          approved_band: chosenBand || prevOv.approved_band || "",
           approved_comment: note,
           reviewed_by: state.teacherEmail,
           reviewed_at: nowIso
@@ -909,14 +923,14 @@
         state.verdictSavingId = "";
         if (error) {
           render();
-          alert("Không lưu được nhận xét của Giáo viên: " + error.message);
+          alert("Không lưu được đánh giá / nhận xét của Giáo viên: " + error.message);
           return;
         }
 
         state.savedToastId = subId;
         state.savedToastText = clearNote
           ? "✅ Đã xoá nhận xét thêm của Giáo viên."
-          : "💾 Đã lưu nhận xét của Giáo viên gửi kèm bài chấm AI!";
+          : `💾 Đã lưu kết luận GV${chosenBand ? ` (${chosenBand})` : ""} và nhận xét gửi học viên!`;
         await loadDashboardData();
         setTimeout(() => {
           if (state.savedToastId === subId) {
@@ -1709,6 +1723,14 @@
             ${
               s.teacherDecision === "approved"
                 ? `<div class="tg-approved-note-box">
+                    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
+                      <label for="tg-app-band-${escapeHtml(s.id)}" style="font-size:12px;font-weight:800;color:#166534;">
+                        🎯 Chốt đánh giá (Đạt / Chưa đạt):
+                      </label>
+                      <select id="tg-app-band-${escapeHtml(s.id)}" class="tg-input" style="min-width:170px;padding:5px 9px;font-size:12.5px;border-color:#86efac;font-weight:800;">
+                        ${renderBandOptions((tOv && tOv.approved_band) || band || "")}
+                      </select>
+                    </div>
                     <label for="tg-app-note-${escapeHtml(s.id)}" style="display:block;font-size:12px;font-weight:800;color:#166534;margin-bottom:5px;">
                       💬 Nhận xét thêm của Cô Nguyệt (hiển thị ngay đầu bài sửa gửi cho học viên):
                     </label>
@@ -1721,7 +1743,7 @@
                     >${escapeHtml((tOv && tOv.approved_comment) || "")}</textarea>
                     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
                       <button type="button" class="tg-btn approve active" style="padding:5px 12px;font-size:12px;" data-save-approved-note="${escapeHtml(s.id)}" ${isVerdictBusy ? "disabled" : ""}>
-                        ${isVerdictBusy ? "⏳ Đang lưu..." : "💾 Lưu nhận xét GV"}
+                        ${isVerdictBusy ? "⏳ Đang lưu..." : "💾 Lưu mức đạt & nhận xét GV"}
                       </button>
                       ${
                         tOv && tOv.approved_comment

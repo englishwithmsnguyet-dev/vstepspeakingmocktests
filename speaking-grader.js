@@ -577,10 +577,14 @@
 
     let html = "";
     const approvedNote = String(tOv.approved_comment || "").trim();
+    const approvedBand = String(tOv.approved_band || "").trim();
     if (decision === "approved") {
       html += `
         <div class="sg-alert success" style="margin-bottom:10px;">
-          <div>✅ <strong>${isTeacherView ? "Giáo viên đã xác nhận ĐỒNG Ý với bài chấm AI này." : "Cô Nguyệt đã kiểm tra và duyệt bài sửa này."}</strong></div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span>✅ <strong>${isTeacherView ? "Giáo viên đã xác nhận ĐỒNG Ý với bài chấm AI này." : "Cô Nguyệt đã kiểm tra và duyệt bài sửa này."}</strong></span>
+            ${approvedBand ? `<span class="sg-badge ${getBandToneClass(approvedBand)}">Kết luận GV: ${escapeHtml(approvedBand)}</span>` : ""}
+          </div>
           ${
             approvedNote
               ? `<div style="margin-top:6px;padding-top:6px;border-top:1px dashed #86efac;color:#14532d;line-height:1.6;white-space:pre-line;">👩‍🏫 <strong>Nhận xét của Cô Nguyệt:</strong> ${escapeHtml(approvedNote)}</div>`
@@ -642,7 +646,8 @@
       return `<div class="sg-review-wrap">${tOvHtml}</div>`;
     }
 
-    const overallBand = String(reviewJson.estimated_band || "");
+    const tOvObj = reviewJson.teacher_override && typeof reviewJson.teacher_override === "object" ? reviewJson.teacher_override : null;
+    const overallBand = String((tOvObj && tOvObj.approved_band) || reviewJson.estimated_band || "");
     const overallScore =
       isTeacherView && reviewJson.overall_score !== undefined && reviewJson.overall_score !== null
         ? Number(reviewJson.overall_score)

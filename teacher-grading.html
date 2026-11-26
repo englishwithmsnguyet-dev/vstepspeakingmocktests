@@ -505,7 +505,7 @@
             override_transcript: text
           };
           let res = await GRADER.callEdgeFunction(payload, token);
-          if (!res.ok && /JSON|502|503|504|timeout|timed out|network|signal/i.test(String(res.error || ""))) {
+          if (!res.ok && /JSON|502|503|504|timeout|timed out|network|signal|compute resources|WORKER_LIMIT/i.test(String(res.error || ""))) {
             res = await GRADER.callEdgeFunction(payload, token);
           }
           if (!res.ok) {
@@ -554,7 +554,7 @@
           if (upgradedPath) payload.upgraded_audio_path = upgradedPath;
 
           let res = await GRADER.callEdgeFunction(payload, token);
-          if (!res.ok && /JSON|502|503|504|timeout|timed out|network|signal/i.test(String(res.error || ""))) {
+          if (!res.ok && /JSON|502|503|504|timeout|timed out|network|signal|compute resources|WORKER_LIMIT/i.test(String(res.error || ""))) {
             res = await GRADER.callEdgeFunction(payload, token);
           }
           if (!res.ok) {

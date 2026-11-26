@@ -435,6 +435,7 @@ function buildPartGradingPrompt(params: {
   promptText: string;
   verifiedTranscript: string;
   transcriptLocked?: boolean;
+  textOnlyOverride?: boolean;
   durationSec: number;
   targetLevel: string;
 }) {
@@ -488,11 +489,18 @@ BẢN CHÉP NGUYÊN VĂN LỜI NÓI THỰC TẾ ĐÃ NGHE TỪ FILE GHI ÂM (B�
 ${params.verifiedTranscript || "(Không nghe thấy lời nói tiếng Anh rõ ràng)"}
 """
 
-ĐÃ ĐÍNH KÈM FILE GHI ÂM THẬT CỦA THÍ SINH:
+${
+  params.textOnlyOverride
+    ? `CHẾ ĐỘ CHẤM THEO BẢN CHÉP CHUẨN DO GIÁO VIÊN XÁC THỰC (KHÔNG CẦN ĐÍNH KÈM AUDIO):
+- BẢN CHÉP CHUẨN Ở TRÊN DO GIÁO VIÊN ĐÃ NGHE & XÁC THỰC 100%. HÃY GIỮ NGUYÊN 100% nội dung bản chép này cho trường "recognized_transcript" và trích dẫn ĐÚNG NGUYÊN VĂN cụm từ trong bản chép này vào trường "original" của "language_corrections" (TUYỆT ĐỐI KHÔNG tự đổi chữ, không sửa hay thêm bớt câu).
+- Chấm chi tiết Ngữ pháp, Từ vựng/Vietlish, Bố cục & Độ hoàn thành yêu cầu Part ${partNum}, Mở rộng ý và Bản nói mẫu tự nhiên dựa 100% trên bản chép trên.
+- Với mục "pronunciation_intonation" và "pronunciation_fixes": lưu ý rằng bài được chấm từ bản chép đã xác thực của Giáo viên, đồng thời chọn tối đa 3-4 từ tiếng Anh thực tế có trong bản chép trên mà học viên Việt Nam hay đọc sai trọng âm hoặc nuốt final sound gốc (/s/, /z/, /t/, /d/, /k/...) để hướng dẫn phiên âm US IPA và mẹo phát âm hữu ích.`
+    : `ĐÃ ĐÍNH KÈM FILE GHI ÂM THẬT CỦA THÍ SINH:
 ${
   params.transcriptLocked
     ? `- BẢN CHÉP CHUẨN Ở TRÊN ĐÃ ĐƯỢC XÁC THỰC CHÍNH XÁC (từ Giáo viên hoặc hệ thống nhận diện giọng nói chuẩn). HÃY GIỮ NGUYÊN 100% nội dung bản chép này cho trường "recognized_transcript" và trích dẫn ĐÚNG NGUYÊN VĂN cụm từ trong bản chép này vào trường "original" của "language_corrections" (KHÔNG tự viết lại, KHÔNG đổi từ hay cắt bớt bản chép). Dùng file ghi âm đính kèm để đánh giá trực tiếp PHÁT ÂM, FINAL SOUND, NGỮ ĐIỆU và NHỊP NÓI.`
     : `- BẢN CHÉP NHÁP Ở TRÊN CÓ THỂ CÒN SÓT MỘT SỐ TỪ ở những đoạn học viên nói nhỏ, nói nhanh hoặc nghỉ lấy hơi. Hãy NGHE LẠI TOÀN BỘ FILE GHI ÂM từ 0:00 đến giây cuối cùng để kiểm tra và BỔ SUNG ĐẦY ĐỦ mọi từ/câu thực tế học viên đã nói (đặc biệt thay các chỗ "[...]" bằng đúng từ nghe được) vào trường "recognized_transcript" (chỉ thêm dấu chấm/phẩy tối thiểu cho dễ đọc, TUYỆT ĐỐI KHÔNG sửa lỗi ngữ pháp hay tự bịa thêm câu mà học viên không nói).`
+}`
 }
 - TUYỆT ĐỐI KHÔNG tự bịa thêm câu nói hay ý tưởng mà thí sinh không nói! Mọi nhận xét, cụm trích dẫn "original" trong "language_corrections", và từ cần chỉnh trong "pronunciation_fixes" PHẢI xuất phát 100% từ bài nói thực tế của thí sinh trong file ghi âm.
 - Nếu thí sinh nói lạc đề, nói tiếng Việt, nói quá ngắn hoặc chỉ nói vài câu rời rạc, hãy chấm THẲNG THẮN đúng thực tế.
@@ -1306,15 +1314,24 @@ async function callGeminiAudioGradeWithSingleKey(params: {
   promptText: string;
   durationSec?: number;
   overrideTranscript?: string;
-  buildGradingPrompt: (verifiedTranscript: string, transcriptLocked: boolean) => string;
+  buildGradingPrompt: (verifiedTranscript: string, transcriptLocked: boolean, textOnlyOverride: boolean) => string;
 }) {
-  const uploaded = await streamStorageUrlToGeminiFilesApi(
-    params.geminiApiKey,
-    params.signedAudioUrl,
-    params.audioPath
-  );
-  if (!uploaded.ok) {
-    return uploaded;
+  const cleanOverrideEarly = String(params.overrideTranscript || "").replace(/\s{2,}/g, " ").trim();
+  const isTextOnlyOverride = Boolean(cleanOverrideEarly && countRealWords(cleanOverrideEarly) >= 2);
+
+  // Khi Giáo viên chấm theo bản chép đã xác thực (teacher:override), KHÔNG stream file WAV 5-7MB qua Edge Function
+  // -> 0 MB RAM, không bao giờ dính lỗi compute resources (WORKER_LIMIT), chấm xong chỉ trong 2-4 giây!
+  let uploaded: { ok: true; fileUri: string; fileName: string; mimeType: string; sizeBytes: number } | null = null;
+  if (!isTextOnlyOverride) {
+    const upRes = await streamStorageUrlToGeminiFilesApi(
+      params.geminiApiKey,
+      params.signedAudioUrl,
+      params.audioPath
+    );
+    if (!upRes.ok) {
+      return upRes;
+    }
+    uploaded = upRes;
   }
 
   const RETIRED_MODELS = new Set([
@@ -1447,11 +1464,11 @@ async function callGeminiAudioGradeWithSingleKey(params: {
 
     const estDurationSec = Math.max(
       Number(params.durationSec || 0),
-      uploaded.mimeType.includes("wav") ? Math.round(uploaded.sizeBytes / 32000) : 0
+      uploaded && uploaded.mimeType.includes("wav") ? Math.round(uploaded.sizeBytes / 32000) : 0
     );
     const isSuspiciouslySparse = (wc: number) => {
       if (estDurationSec >= 45 && wc < 25) return true;
-      if (uploaded.sizeBytes > 250000 && wc < 18) return true;
+      if (uploaded && uploaded.sizeBytes > 250000 && wc < 18) return true;
       return false;
     };
 
@@ -1478,7 +1495,7 @@ async function callGeminiAudioGradeWithSingleKey(params: {
 
     // ƯU TIÊN 2 (CHÍNH — GEMINI 2.5 PRO / 2.5 FLASH MULTIMODAL NGHE TRỰC TIẾP FILE WAV + ĐỀ THI VSTEP):
     // Không trộn bản nháp sai của ASR thuần âm học để Pro/Flash nghe trực tiếp sóng âm chuẩn nhất!
-    if (!isTranscriptLocked) {
+    if (!isTranscriptLocked && uploaded) {
       const proTranscribePrompt =
         "You are a world-class verbatim English speech-to-text transcriber specialized in Vietnamese students taking VSTEP Speaking exams in noisy/reverberant classrooms.\n\n" +
         contextSection +
@@ -1570,7 +1587,7 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     }
 
     // 3b) Dự phòng cuối: Groq Whisper + Gemini lite
-    if (!isTranscriptLocked && transcriptCheck.unintelligible) {
+    if (!isTranscriptLocked && transcriptCheck.unintelligible && uploaded) {
       let whisperDraft = "";
       let whisperClean = "";
       let whisperModel = "";
@@ -1654,8 +1671,8 @@ async function callGeminiAudioGradeWithSingleKey(params: {
           idea_expansions: [],
           natural_spoken_version: "",
           _meta: {
-            mime_type: uploaded.mimeType,
-            file_bytes: uploaded.sizeBytes,
+            mime_type: uploaded?.mimeType || "text/plain",
+            file_bytes: uploaded?.sizeBytes || 0,
             model_step1: step1Model
           }
         }
@@ -1665,9 +1682,9 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     const verifiedTranscript = transcriptCheck.cleaned;
     const step1WordCount = transcriptCheck.wordCount;
 
-    // BƯỚC 2: CHẤM MULTIMODAL (GỬI CÙNG FILE AUDIO + BẢN CHÉP BƯỚC 1 + ĐỀ BÀI)
+    // BƯỚC 2: CHẤM BÀI (GỬI AUDIO + BẢN CHÉP, HOẶC TEXT-ONLY SIÊU NHANH KHI GV XÁC THỰC TRANSCRIPT)
     // Có tự động thử lại 1 lần ở temperature=0 nếu JSON trả về bị lỗi cú pháp/cắt ngang
-    const gradingPrompt = params.buildGradingPrompt(verifiedTranscript, isTranscriptLocked);
+    const gradingPrompt = params.buildGradingPrompt(verifiedTranscript, isTranscriptLocked, isTextOnlyOverride);
     let parsed: Record<string, unknown> | null = null;
     let step2Model = "";
     let lastParseErr = "";
@@ -1679,11 +1696,14 @@ async function callGeminiAudioGradeWithSingleKey(params: {
           : `${gradingPrompt}\n\nLƯU Ý BẮT BUỘC: Trả về ĐÚNG 1 đối tượng JSON chuẩn RFC 8259, không có dấu phẩy thừa trước } hoặc ], mọi chuỗi phải escape dấu ngoặc kép đúng chuẩn.`;
       // Giới hạn thinkingBudget để model chấm nhanh Part 3 dài (~10-15s) không bị suy luận quá lâu gây timeout
       const step2ThinkingBudget = attempt === 0 ? (isTranscriptLocked ? 512 : 1024) : 0;
+      const step2Parts: Array<Record<string, unknown>> = uploaded
+        ? [
+            { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
+            { text: promptForAttempt }
+          ]
+        : [{ text: promptForAttempt }];
       const step2 = await callModel(
-        [
-          { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
-          { text: promptForAttempt }
-        ],
+        step2Parts,
         attempt === 0 ? 0.2 : 0.0,
         true,
         true,
@@ -1733,8 +1753,8 @@ async function callGeminiAudioGradeWithSingleKey(params: {
 
     parsed.recognized_transcript = finalTranscript || "";
     parsed._meta = {
-      mime_type: uploaded.mimeType,
-      file_bytes: uploaded.sizeBytes,
+      mime_type: uploaded?.mimeType || "text/plain",
+      file_bytes: uploaded?.sizeBytes || 0,
       model_step1: step1Model,
       model_step2: step2Model,
       words_step1: step1WordCount,
@@ -1743,7 +1763,9 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     };
     return { ok: true as const, parsed };
   } finally {
-    await deleteGeminiFileBestEffort(params.geminiApiKey, uploaded.fileName);
+    if (uploaded?.fileName) {
+      await deleteGeminiFileBestEffort(params.geminiApiKey, uploaded.fileName);
+    }
   }
 }
 
@@ -1757,7 +1779,7 @@ async function callGeminiAudioGradeStreaming(params: {
   promptText: string;
   durationSec?: number;
   overrideTranscript?: string;
-  buildGradingPrompt: (verifiedTranscript: string, transcriptLocked: boolean) => string;
+  buildGradingPrompt: (verifiedTranscript: string, transcriptLocked: boolean, textOnlyOverride: boolean) => string;
 }) {
   let lastErr: { ok: false; status: number; error: string } = {
     ok: false,
@@ -1896,13 +1918,14 @@ async function gradeOnePartOfSubmission(
         promptText: promptsMap[partNum],
         durationSec: durationsMap[partNum],
         overrideTranscript: options.overrideTranscript,
-        buildGradingPrompt: (verifiedTranscript: string, transcriptLocked: boolean) =>
+        buildGradingPrompt: (verifiedTranscript: string, transcriptLocked: boolean, textOnlyOverride: boolean) =>
           buildPartGradingPrompt({
             partNum,
             testTitle,
             promptText: promptsMap[partNum],
             verifiedTranscript,
             transcriptLocked,
+            textOnlyOverride,
             durationSec: durationsMap[partNum],
             targetLevel
           })

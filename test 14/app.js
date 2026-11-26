@@ -363,7 +363,13 @@ function showScreen(screenId) {
         if (timeline) timeline.classList.add('completed-mode');
     } else {
         const timeline = document.querySelector('.progress-timeline');
-        if (timeline) timeline.classList.remove('completed-mode');
+        if (timeline) {
+            if (isCurrentUserTeacher()) {
+                timeline.classList.add('completed-mode');
+            } else {
+                timeline.classList.remove('completed-mode');
+            }
+        }
         
         if (screenId === 'part1') {
             elements.stepWelcome.classList.add('completed');
@@ -584,34 +590,107 @@ function restartTest() {
 // ==========================================================================
 // 7. Interactive Features & Listeners Binding
 // ==========================================================================
+function isCurrentUserTeacher() {
+    if (typeof VstepAuth !== 'undefined' && typeof VstepAuth.getStudentInfo === 'function' && typeof VstepAuth.isTeacher === 'function') {
+        const info = VstepAuth.getStudentInfo();
+        if (VstepAuth.isTeacher(info.name, info.classCode)) return true;
+    }
+    const inputVal = (elements.studentNameInput ? elements.studentNameInput.value : '') || '';
+    const storedName = sessionStorage.getItem('vstep_student_name') || localStorage.getItem('vstep_student_name') || '';
+    const storedClass = (sessionStorage.getItem('vstep_student_class') || localStorage.getItem('vstep_student_class') || '').toUpperCase();
+    if (storedClass === 'GV') return true;
+    const combined = (inputVal + ' ' + storedName).toLowerCase();
+    return combined.includes('ptmn') || combined.includes('cô nguyệt') || combined.includes('co nguyet') || combined.includes(' - gv');
+}
+
+function syncTeacherTimelineAccess() {
+    const timeline = document.querySelector('.progress-timeline');
+    const isTeacher = isCurrentUserTeacher();
+    if (timeline) {
+        if (isTeacher || isTestCompleted) {
+            timeline.classList.add('completed-mode');
+        } else {
+            timeline.classList.remove('completed-mode');
+        }
+    }
+    document.querySelectorAll('.timeline-step').forEach(step => {
+        if (isTeacher) {
+            step.style.cursor = 'pointer';
+            step.style.opacity = step.classList.contains('active') ? '1' : '0.88';
+            step.title = 'Chế độ Giáo viên: Nhấn để chuyển nhanh sang tab này';
+        } else {
+            step.style.cursor = '';
+            step.style.opacity = '';
+            step.removeAttribute('title');
+        }
+    });
+}
+
 function initAppListeners() {
-    // 7.0 Timeline navigation for completed test
+    // 7.0 Timeline navigation for completed test OR teacher account (free switching)
     document.querySelectorAll('.timeline-step').forEach(step => {
         step.addEventListener('click', () => {
-            if (isTestCompleted) {
-                const screenId = step.id.replace('step-', '');
-                if (screenId === 'welcome') {
-                    showScreen('welcome');
-                } else if (screenId === 'part1') {
-                    showScreen('part1');
+            const isTeacher = isCurrentUserTeacher();
+            if (!isTestCompleted && !isTeacher) return;
+
+            const screenId = step.id.replace('step-', '');
+
+            // Stop active timer/recording cleanly if switching tabs mid-test as teacher
+            if (isTeacher && !isTestCompleted) {
+                if (typeof timerInterval !== 'undefined' && timerInterval) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                }
+                if (typeof mediaRecorder !== 'undefined' && mediaRecorder && mediaRecorder.state === 'recording') {
+                    try { mediaRecorder.stop(); } catch (e) {}
+                }
+            }
+
+            if (screenId === 'welcome') {
+                currentScreen = 'welcome';
+                showScreen('welcome');
+            } else if (screenId === 'part1') {
+                currentScreen = 'part1';
+                showScreen('part1');
+                if (isTestCompleted) {
                     elements.p1Status.className = 'status-indicator completed';
                     elements.p1Status.innerHTML = '<i class="fa-solid fa-check"></i><span class="status-text" style="margin-left: 4px;">Đã hoàn thành</span>';
-                } else if (screenId === 'part2') {
-                    showScreen('part2');
+                }
+            } else if (screenId === 'part2') {
+                currentScreen = 'part2_speak';
+                showScreen('part2');
+                if (isTestCompleted) {
                     elements.p2Status.className = 'status-indicator completed';
                     elements.p2StatusText.innerHTML = '<i class="fa-solid fa-check"></i><span class="status-text" style="margin-left: 4px;">Đã hoàn thành</span>';
                     elements.p2StatusText.style.textAlign = 'center';
-                } else if (screenId === 'part3') {
-                    showScreen('part3');
+                }
+            } else if (screenId === 'part3') {
+                currentScreen = 'part3_speak';
+                showScreen('part3');
+                if (isTestCompleted) {
                     elements.p3Status.className = 'status-indicator completed';
                     elements.p3StatusText.innerHTML = '<i class="fa-solid fa-check"></i><span class="status-text" style="margin-left: 4px;">Đã hoàn thành</span>';
                     elements.p3StatusText.style.textAlign = 'center';
-                } else if (screenId === 'review') {
-                    enterReview();
-                } else if (screenId === 'solution') {
-                    showScreen('solution');
                 }
+            } else if (screenId === 'review') {
+                if (isTestCompleted) {
+                    enterReview();
+                } else {
+                    currentScreen = 'review';
+                    showScreen('review');
+                    if (elements.reviewStudentInfo) {
+                        const dateStr = new Date().toLocaleDateString('vi-VN', {
+                            year: 'numeric', month: 'long', day: 'numeric',
+                            hour: '2-digit', minute: '2-digit'
+                        });
+                        elements.reviewStudentInfo.innerText = `Học viên: ${studentName} | Chế độ xem Giáo viên (${dateStr})`;
+                    }
+                }
+            } else if (screenId === 'solution') {
+                currentScreen = 'solution';
+                showScreen('solution');
             }
+            syncTeacherTimelineAccess();
         });
     });
 
@@ -725,6 +804,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 VstepAuth.showLoginModal(false, (info) => {
                     studentName = info.displayName;
                     if (elements.studentNameInput) elements.studentNameInput.value = studentName;
+                    syncTeacherTimelineAccess();
                 });
             }, 300);
         } else {
@@ -738,6 +818,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initSidebarProtection();
     initVisualizerCache();
     initAppListeners();
+    syncTeacherTimelineAccess();
+    setTimeout(syncTeacherTimelineAccess, 400);
 });
 
 // ==========================================================================

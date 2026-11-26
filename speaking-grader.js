@@ -953,22 +953,20 @@
       uiState.submitting = true;
       uiState.errorMsg = "";
       uiState.successMsg = "";
-      uiState.progressText = "Đang chuẩn hoá âm thanh (WAV 16kHz)...";
+      uiState.progressText = "Đang khởi tạo phiên nộp bài...";
       renderPanel();
 
+      // Giữ định dạng nén gọn nhẹ (WebM Opus / MP4 ~500KB thay vì WAV ~6MB) để upload & chấm nhanh gấp 10 lần
       const preparedBlobs = {};
       const partsMeta = {};
       for (const n of presentParts) {
-        const cleanBlob = await convertBlobToCleanWav16k(uiState.recordings[n]);
-        preparedBlobs[n] = cleanBlob;
+        const rawBlob = uiState.recordings[n];
+        preparedBlobs[n] = rawBlob;
         partsMeta[String(n)] = {
           present: true,
-          mimeType: (cleanBlob.type || "audio/webm").split(";")[0].trim()
+          mimeType: (rawBlob.type || "audio/webm").split(";")[0].trim()
         };
       }
-
-      uiState.progressText = "Đang khởi tạo phiên nộp bài...";
-      renderPanel();
 
       const createRes = await callEdgeFunction({
         action: "create_upload_urls",

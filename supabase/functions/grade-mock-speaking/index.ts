@@ -65,30 +65,15 @@ function pickAudioExtension(mimeType: string): string {
   return "webm";
 }
 
-// Chỉ đọc đúng 32 byte đầu của Blob để nhận diện chính xác định dạng thật (tránh tốn RAM/CPU)
-async function detectTrueAudioMime(blob: Blob, audioPath: string): Promise<string> {
-  try {
-    const headBuf = await blob.slice(0, 32).arrayBuffer();
-    const u8 = new Uint8Array(headBuf);
-    if (u8.length >= 4) {
-      if (u8[0] === 0x1a && u8[1] === 0x45 && u8[2] === 0xdf && u8[3] === 0xa3) return "audio/webm";
-      if (u8[0] === 0x4f && u8[1] === 0x67 && u8[2] === 0x67 && u8[3] === 0x53) return "audio/ogg";
-      if (u8[0] === 0x52 && u8[1] === 0x49 && u8[2] === 0x46 && u8[3] === 0x46) return "audio/wav";
-      if (u8.length >= 8 && u8[4] === 0x66 && u8[5] === 0x74 && u8[6] === 0x79 && u8[7] === 0x70) return "audio/mp4";
-      if ((u8[0] === 0x49 && u8[1] === 0x44 && u8[2] === 0x33) || (u8[0] === 0xff && (u8[1] & 0xe0) === 0xe0)) {
-        return "audio/mp3";
-      }
-    }
-  } catch (_e) {}
-
-  const lowerType = String(blob.type || "").toLowerCase().split(";")[0].trim();
+function resolveAudioMimeFromMeta(contentType: string | null, audioPath: string): string {
+  const lowerType = String(contentType || "").toLowerCase().split(";")[0].trim();
   const lowerPath = String(audioPath || "").toLowerCase();
-  if (lowerType.includes("mp4") || lowerType.includes("m4a") || lowerPath.endsWith(".mp4") || lowerPath.endsWith(".m4a")) {
+  if (lowerPath.endsWith(".wav") || lowerType.includes("wav")) return "audio/wav";
+  if (lowerPath.endsWith(".mp4") || lowerPath.endsWith(".m4a") || lowerType.includes("mp4") || lowerType.includes("m4a")) {
     return "audio/mp4";
   }
-  if (lowerType.includes("ogg") || lowerPath.endsWith(".ogg")) return "audio/ogg";
-  if (lowerType.includes("wav") || lowerPath.endsWith(".wav")) return "audio/wav";
-  if (lowerType.includes("mpeg") || lowerType.includes("mp3") || lowerPath.endsWith(".mp3")) return "audio/mp3";
+  if (lowerPath.endsWith(".ogg") || lowerType.includes("ogg")) return "audio/ogg";
+  if (lowerPath.endsWith(".mp3") || lowerType.includes("mpeg") || lowerType.includes("mp3")) return "audio/mp3";
   return "audio/webm";
 }
 
@@ -497,20 +482,41 @@ function buildSkippedPartReview(partNum: 1 | 2 | 3) {
 }
 
 // ============================================================================
-// STREAMING GEMINI FILES API UPLOAD (KHÔNG TỐN RAM/CPU NHƯ BASE64)
+// ZERO-COPY STREAMING: PIPE TRỰC TIẾP TỪ SUPABASE STORAGE SANG GEMINI FILES API
+// Hầu như 0 MB RAM & 0 ms CPU dù file ghi âm dài 4 phút (WAV 7-8 MB hay WebM)
 // ============================================================================
-async function uploadBlobToGeminiFilesApi(
+async function streamStorageUrlToGeminiFilesApi(
   geminiApiKey: string,
-  audioBlob: Blob,
-  audioMimeType: string
-): Promise<{ ok: true; fileUri: string; fileName: string } | { ok: false; status: number; error: string }> {
+  signedAudioUrl: string,
+  audioPath: string
+): Promise<{ ok: true; fileUri: string; fileName: string; mimeType: string } | { ok: false; status: number; error: string }> {
+  const dlRes = await fetch(signedAudioUrl, { signal: AbortSignal.timeout(25000) });
+  if (!dlRes.ok || !dlRes.body) {
+    return {
+      ok: false,
+      status: dlRes.status || 404,
+      error: `Không tải được file ghi âm từ Storage (HTTP ${dlRes.status}).`
+    };
+  }
+
+  const contentLength = dlRes.headers.get("content-length");
+  if (contentLength && Number(contentLength) < 200) {
+    try {
+      await dlRes.body.cancel();
+    } catch (_e) {}
+    return { ok: false, status: 400, error: "File ghi âm rỗng hoặc quá ngắn (< 200 bytes)." };
+  }
+
+  const mimeType = resolveAudioMimeFromMeta(dlRes.headers.get("content-type"), audioPath);
+  const uploadHeaders: Record<string, string> = { "Content-Type": mimeType };
+  if (contentLength) uploadHeaders["Content-Length"] = contentLength;
+
   const uploadEndpoint = `https://generativelanguage.googleapis.com/upload/v1beta/files?uploadType=media&key=${encodeURIComponent(geminiApiKey)}`;
   const upRes = await fetch(uploadEndpoint, {
     method: "POST",
-    headers: {
-      "Content-Type": audioMimeType
-    },
-    body: audioBlob
+    headers: uploadHeaders,
+    body: dlRes.body,
+    signal: AbortSignal.timeout(35000)
   });
 
   if (!upRes.ok) {
@@ -532,12 +538,12 @@ async function uploadBlobToGeminiFilesApi(
     return { ok: false, status: 500, error: "Gemini Files API không trả về fileUri." };
   }
 
-  // Đợi trạng thái ACTIVE (với audio thường sẵn sàng ngay hoặc sau 1 giây)
   if (state !== "ACTIVE" && fileName) {
     for (let i = 0; i < 6; i++) {
-      await new Promise(r => setTimeout(r, 1200));
+      await new Promise(r => setTimeout(r, 1000));
       const checkRes = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/${fileName}?key=${encodeURIComponent(geminiApiKey)}`
+        `https://generativelanguage.googleapis.com/v1beta/${fileName}?key=${encodeURIComponent(geminiApiKey)}`,
+        { signal: AbortSignal.timeout(10000) }
       );
       if (checkRes.ok) {
         const checkJson = await checkRes.json().catch(() => ({}));
@@ -550,7 +556,7 @@ async function uploadBlobToGeminiFilesApi(
     }
   }
 
-  return { ok: true, fileUri, fileName };
+  return { ok: true, fileUri, fileName, mimeType };
 }
 
 async function deleteGeminiFileBestEffort(geminiApiKey: string, fileName: string) {
@@ -595,26 +601,26 @@ function parseGeminiApiKeys(): string[] {
 async function callGeminiAudioGradeWithSingleKey(params: {
   geminiApiKey: string;
   geminiModel: string;
-  audioBlob: Blob;
-  audioMimeType: string;
+  signedAudioUrl: string;
+  audioPath: string;
   buildGradingPrompt: (verifiedTranscript: string) => string;
 }) {
-  const uploaded = await uploadBlobToGeminiFilesApi(params.geminiApiKey, params.audioBlob, params.audioMimeType);
+  const uploaded = await streamStorageUrlToGeminiFilesApi(
+    params.geminiApiKey,
+    params.signedAudioUrl,
+    params.audioPath
+  );
   if (!uploaded.ok) {
     return uploaded;
   }
 
   const RETIRED_MODELS = new Set(["gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-exp"]);
-  // Ưu tiên gemini-2.5-flash -> gemini-2.5-flash-lite (riêng hạn mức ngày, tăng gấp đôi quota miễn phí)
+  // Chỉ giữ tối đa 2 model thật (2.5-flash & 2.5-flash-lite) để tránh gọi trùng alias gây timeout
   const fallbackModels = Array.from(
-    new Set([
-      "gemini-2.5-flash",
-      "gemini-2.5-flash-lite",
-      params.geminiModel,
-      "gemini-flash-latest",
-      "gemini-flash-lite-latest"
-    ])
-  ).filter(m => Boolean(m) && !RETIRED_MODELS.has(m));
+    new Set([params.geminiModel, "gemini-2.5-flash", "gemini-2.5-flash-lite"])
+  )
+    .filter(m => Boolean(m) && !RETIRED_MODELS.has(m))
+    .slice(0, 3);
 
   const callModel = async (
     parts: Array<Record<string, unknown>>,
@@ -624,38 +630,27 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     const errors: Array<{ model: string; status: number; detail: string }> = [];
     for (const modelName of fallbackModels) {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelName)}:generateContent?key=${encodeURIComponent(params.geminiApiKey)}`;
-      let modelStatus = 500;
-      let modelErrText = "";
+      const genCfg: Record<string, unknown> = { temperature };
+      if (expectJson) genCfg.responseMimeType = "application/json";
 
-      for (let attempt = 0; attempt < 2; attempt++) {
-        const genCfg: Record<string, unknown> = { temperature };
-        if (expectJson) genCfg.responseMimeType = "application/json";
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ role: "user", parts }],
+          generationConfig: genCfg
+        }),
+        signal: AbortSignal.timeout(45000)
+      });
 
-        const res = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ role: "user", parts }],
-            generationConfig: genCfg
-          })
-        });
-
-        if (res.ok) {
-          const geminiJson = await res.json();
-          const rawCandidate = String(geminiJson?.candidates?.[0]?.content?.parts?.[0]?.text || "").trim();
-          return { ok: true as const, rawText: rawCandidate };
-        }
-
-        modelStatus = res.status;
-        modelErrText = await res.text().catch(() => "");
-        // Nếu 429 hết quota model này thì chuyển ngay sang model tiếp theo thay vì chờ lâu
-        if ((res.status === 503 || res.status === 500) && attempt === 0) {
-          await new Promise(r => setTimeout(r, 800));
-          continue;
-        }
-        break;
+      if (res.ok) {
+        const geminiJson = await res.json();
+        const rawCandidate = String(geminiJson?.candidates?.[0]?.content?.parts?.[0]?.text || "").trim();
+        return { ok: true as const, rawText: rawCandidate };
       }
 
+      const modelStatus = res.status;
+      const modelErrText = await res.text().catch(() => "");
       errors.push({ model: modelName, status: modelStatus, detail: modelErrText.slice(0, 140) });
       if (modelStatus === 400 || modelStatus === 401 || modelStatus === 403) break;
     }
@@ -681,7 +676,7 @@ async function callGeminiAudioGradeWithSingleKey(params: {
 
     const step1 = await callModel(
       [
-        { fileData: { mimeType: params.audioMimeType, fileUri: uploaded.fileUri } },
+        { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
         { text: blindTranscribePrompt }
       ],
       0.0,
@@ -698,7 +693,7 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     const gradingPrompt = params.buildGradingPrompt(verifiedTranscript);
     const step2 = await callModel(
       [
-        { fileData: { mimeType: params.audioMimeType, fileUri: uploaded.fileUri } },
+        { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
         { text: gradingPrompt }
       ],
       0.2,
@@ -718,8 +713,8 @@ async function callGeminiAudioGradeWithSingleKey(params: {
 async function callGeminiAudioGradeStreaming(params: {
   geminiApiKeys: string[];
   geminiModel: string;
-  audioBlob: Blob;
-  audioMimeType: string;
+  signedAudioUrl: string;
+  audioPath: string;
   buildGradingPrompt: (verifiedTranscript: string) => string;
 }) {
   let lastErr: { ok: false; status: number; error: string } = {
@@ -728,18 +723,19 @@ async function callGeminiAudioGradeStreaming(params: {
     error: "Chưa cấu hình GEMINI_API_KEY."
   };
 
-  for (let idx = 0; idx < params.geminiApiKeys.length; idx++) {
-    const key = params.geminiApiKeys[idx];
+  // Thử tối đa 3 key mỗi lượt gọi để đảm bảo thời gian thực thi gọn nhẹ
+  const keysToTry = params.geminiApiKeys.slice(0, 3);
+  for (let idx = 0; idx < keysToTry.length; idx++) {
+    const key = keysToTry[idx];
     const res = await callGeminiAudioGradeWithSingleKey({
       geminiApiKey: key,
       geminiModel: params.geminiModel,
-      audioBlob: params.audioBlob,
-      audioMimeType: params.audioMimeType,
+      signedAudioUrl: params.signedAudioUrl,
+      audioPath: params.audioPath,
       buildGradingPrompt: params.buildGradingPrompt
     });
     if (res.ok) return res;
     lastErr = res;
-    // Chỉ xoay sang key kế tiếp khi gặp lỗi hạn mức/quá tải/key hết hiệu lực (429/403/401/500/503)
     if (res.status === 400) break;
   }
 
@@ -747,8 +743,8 @@ async function callGeminiAudioGradeStreaming(params: {
     ok: false as const,
     status: lastErr.status,
     error:
-      params.geminiApiKeys.length > 1
-        ? `${lastErr.error} (đã thử xoay vòng ${params.geminiApiKeys.length} API key)`
+      keysToTry.length > 1
+        ? `${lastErr.error} (đã thử xoay vòng ${keysToTry.length} API key)`
         : lastErr.error
   };
 }
@@ -834,16 +830,18 @@ async function gradeOnePartOfSubmission(
   if (!targetAudioPath) {
     partsObj[partKey] = buildSkippedPartReview(partNum);
   } else {
-    const { data: audioBlob, error: dlErr } = await admin.storage.from(AUDIO_BUCKET).download(targetAudioPath);
-    if (dlErr || !audioBlob || audioBlob.size < 200) {
+    const { data: signedData, error: signErr } = await admin.storage
+      .from(AUDIO_BUCKET)
+      .createSignedUrl(targetAudioPath, 180);
+
+    if (signErr || !signedData?.signedUrl) {
       partsObj[partKey] = buildSkippedPartReview(partNum);
     } else {
-      const trueMime = await detectTrueAudioMime(audioBlob, targetAudioPath);
       const gemRes = await callGeminiAudioGradeStreaming({
         geminiApiKeys,
         geminiModel,
-        audioBlob,
-        audioMimeType: trueMime,
+        signedAudioUrl: signedData.signedUrl,
+        audioPath: targetAudioPath,
         buildGradingPrompt: (verifiedTranscript: string) =>
           buildPartGradingPrompt({
             partNum,

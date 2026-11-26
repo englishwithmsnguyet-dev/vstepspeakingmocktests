@@ -246,6 +246,80 @@ function isIgnoredVerbInflectionFix(original: string, corrected: string, categor
   return singularSubjects.has(prevWord);
 }
 
+function escapeRawControlCharsInJsonStrings(input: string): string {
+  let out = "";
+  let inString = false;
+  let escaped = false;
+  for (let i = 0; i < input.length; i++) {
+    const ch = input[i];
+    if (inString) {
+      if (escaped) {
+        out += ch;
+        escaped = false;
+      } else if (ch === "\\") {
+        out += ch;
+        escaped = true;
+      } else if (ch === '"') {
+        out += ch;
+        inString = false;
+      } else if (ch === "\n") {
+        out += "\\n";
+      } else if (ch === "\r") {
+        out += "\\r";
+      } else if (ch === "\t") {
+        out += "\\t";
+      } else {
+        out += ch;
+      }
+    } else {
+      out += ch;
+      if (ch === '"') inString = true;
+    }
+  }
+  return out;
+}
+
+function stripTrailingCommasOutsideStrings(input: string): string {
+  let out = "";
+  let inString = false;
+  let escaped = false;
+  for (let i = 0; i < input.length; i++) {
+    const ch = input[i];
+    if (inString) {
+      out += ch;
+      if (escaped) {
+        escaped = false;
+      } else if (ch === "\\") {
+        escaped = true;
+      } else if (ch === '"') {
+        inString = false;
+      }
+    } else if (ch === '"') {
+      out += ch;
+      inString = true;
+    } else if (ch === ",") {
+      let j = i + 1;
+      while (j < input.length && /\s/.test(input[j])) j++;
+      if (j < input.length && (input[j] === "}" || input[j] === "]")) {
+        continue; // Drop trailing comma before } or ]
+      }
+      out += ch;
+    } else {
+      out += ch;
+    }
+  }
+  return out;
+}
+
+function extractOutermostJsonObject(text: string): string {
+  const first = text.indexOf("{");
+  const last = text.lastIndexOf("}");
+  if (first !== -1 && last > first) {
+    return text.slice(first, last + 1);
+  }
+  return text;
+}
+
 function parseModelJson(rawText: string) {
   const trimmed = String(rawText || "").trim();
   const unfenced = trimmed
@@ -253,8 +327,104 @@ function parseModelJson(rawText: string) {
     .replace(/^```\s*/i, "")
     .replace(/\s*```$/i, "")
     .trim();
-  return JSON.parse(unfenced);
+
+  if (!unfenced) {
+    throw new Error("AI trả về phản hồi rỗng.");
+  }
+
+  // Lượt 1: Parse trực tiếp
+  try {
+    return JSON.parse(unfenced);
+  } catch (_e1) {}
+
+  // Lượt 2: Cắt đúng khối { ... } ngoài cùng + bỏ dấu phẩy thừa + escape ký tự xuống dòng thô trong chuỗi
+  const extracted = extractOutermostJsonObject(unfenced);
+  const repaired = stripTrailingCommasOutsideStrings(escapeRawControlCharsInJsonStrings(extracted));
+  try {
+    return JSON.parse(repaired);
+  } catch (e2) {
+    // Lượt 3: Sửa trường hợp thiếu ngoặc kép quanh key đơn giản (ví dụ: { word: "..." })
+    const quotedKeys = repaired.replace(/([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)(\s*:)/g, '$1"$2"$3');
+    try {
+      return JSON.parse(quotedKeys);
+    } catch (_e3) {
+      throw e2;
+    }
+  }
 }
+
+const PART_REVIEW_RESPONSE_SCHEMA = {
+  type: "OBJECT",
+  properties: {
+    recognized_transcript: { type: "STRING" },
+    internal_score: { type: "NUMBER" },
+    level_assessment: { type: "STRING" },
+    estimated_band: { type: "STRING" },
+    overall_comment: { type: "STRING" },
+    criteria: {
+      type: "OBJECT",
+      properties: {
+        pronunciation_intonation: { type: "STRING" },
+        grammar: { type: "STRING" },
+        vocabulary_vietlish: { type: "STRING" },
+        coherence_logic: { type: "STRING" }
+      },
+      required: ["pronunciation_intonation", "grammar", "vocabulary_vietlish", "coherence_logic"]
+    },
+    pronunciation_fixes: {
+      type: "ARRAY",
+      items: {
+        type: "OBJECT",
+        properties: {
+          word: { type: "STRING" },
+          ipa: { type: "STRING" },
+          issue_vi: { type: "STRING" }
+        },
+        required: ["word", "ipa", "issue_vi"]
+      }
+    },
+    language_corrections: {
+      type: "ARRAY",
+      items: {
+        type: "OBJECT",
+        properties: {
+          id: { type: "INTEGER" },
+          original: { type: "STRING" },
+          corrected: { type: "STRING" },
+          category: { type: "STRING" },
+          explanation_vi: { type: "STRING" }
+        },
+        required: ["original", "corrected", "category", "explanation_vi"]
+      }
+    },
+    idea_expansions: {
+      type: "ARRAY",
+      items: {
+        type: "OBJECT",
+        properties: {
+          where_vi: { type: "STRING" },
+          issue_vi: { type: "STRING" },
+          suggested_en: { type: "STRING" },
+          meaning_vi: { type: "STRING" }
+        },
+        required: ["where_vi", "issue_vi", "suggested_en", "meaning_vi"]
+      }
+    },
+    natural_spoken_version: { type: "STRING" }
+  },
+  required: [
+    "recognized_transcript",
+    "internal_score",
+    "level_assessment",
+    "estimated_band",
+    "overall_comment",
+    "criteria",
+    "pronunciation_fixes",
+    "language_corrections",
+    "idea_expansions",
+    "natural_spoken_version"
+  ]
+};
 
 // ============================================================================
 // PROMPT BUILDER CHUYÊN BIỆT CHO TỪNG PART (PART 1 / PART 2 / PART 3)
@@ -939,15 +1109,24 @@ async function callGeminiAudioGradeWithSingleKey(params: {
   const callModel = async (
     parts: Array<Record<string, unknown>>,
     temperature: number,
-    expectJson: boolean
+    expectJson: boolean,
+    useSchema = true
   ) => {
     const errors: Array<{ model: string; status: number; detail: string }> = [];
     for (const modelName of fallbackModels) {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(modelName)}:generateContent?key=${encodeURIComponent(params.geminiApiKey)}`;
-      const genCfg: Record<string, unknown> = { temperature };
-      if (expectJson) genCfg.responseMimeType = "application/json";
+      const genCfg: Record<string, unknown> = {
+        temperature,
+        maxOutputTokens: expectJson ? 8192 : 4096
+      };
+      if (expectJson) {
+        genCfg.responseMimeType = "application/json";
+        if (useSchema) {
+          genCfg.responseSchema = PART_REVIEW_RESPONSE_SCHEMA;
+        }
+      }
 
-      const res = await fetch(endpoint, {
+      let res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -956,6 +1135,20 @@ async function callGeminiAudioGradeWithSingleKey(params: {
         }),
         signal: AbortSignal.timeout(45000)
       });
+
+      // Nếu model từ chối responseSchema (HTTP 400), tự động gọi lại chỉ với responseMimeType
+      if (!res.ok && res.status === 400 && expectJson && useSchema) {
+        const retryCfg = { temperature, maxOutputTokens: 8192, responseMimeType: "application/json" };
+        res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ role: "user", parts }],
+            generationConfig: retryCfg
+          }),
+          signal: AbortSignal.timeout(45000)
+        });
+      }
 
       if (res.ok) {
         const geminiJson = await res.json();
@@ -1089,25 +1282,56 @@ async function callGeminiAudioGradeWithSingleKey(params: {
     const verifiedTranscript = transcriptCheck.cleaned;
 
     // BƯỚC 2: CHẤM MULTIMODAL (GỬI CÙNG FILE AUDIO + BẢN CHÉP NGUYÊN VĂN BƯỚC 1 + ĐỀ BÀI)
+    // Có tự động thử lại 1 lần ở temperature=0 nếu JSON trả về bị lỗi cú pháp/cắt ngang
     const gradingPrompt = params.buildGradingPrompt(verifiedTranscript);
-    const step2 = await callModel(
-      [
-        { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
-        { text: gradingPrompt }
-      ],
-      0.2,
-      true
-    );
+    let parsed: Record<string, unknown> | null = null;
+    let step2Model = "";
+    let lastParseErr = "";
 
-    if (!step2.ok) return step2;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const promptForAttempt =
+        attempt === 0
+          ? gradingPrompt
+          : `${gradingPrompt}\n\nLƯU Ý BẮT BUỘC: Trả về ĐÚNG 1 đối tượng JSON chuẩn RFC 8259, không có dấu phẩy thừa trước } hoặc ], mọi chuỗi phải escape dấu ngoặc kép đúng chuẩn.`;
+      const step2 = await callModel(
+        [
+          { fileData: { mimeType: uploaded.mimeType, fileUri: uploaded.fileUri } },
+          { text: promptForAttempt }
+        ],
+        attempt === 0 ? 0.2 : 0.0,
+        true,
+        true
+      );
 
-    const parsed = parseModelJson(step2.rawText);
+      if (!step2.ok) return step2;
+
+      try {
+        const candidate = parseModelJson(step2.rawText);
+        if (candidate && typeof candidate === "object" && !Array.isArray(candidate)) {
+          parsed = candidate as Record<string, unknown>;
+          step2Model = step2.modelUsed;
+          break;
+        }
+        lastParseErr = "AI trả về dữ liệu JSON không đúng định dạng đối tượng.";
+      } catch (parseErr) {
+        lastParseErr = parseErr instanceof Error ? parseErr.message : String(parseErr);
+      }
+    }
+
+    if (!parsed) {
+      return {
+        ok: false as const,
+        status: 502,
+        error: `AI trả về JSON chưa hợp lệ (${lastParseErr}). Vui lòng bấm chấm lại.`
+      };
+    }
+
     parsed.recognized_transcript = verifiedTranscript || "";
     parsed._meta = {
       mime_type: uploaded.mimeType,
       file_bytes: uploaded.sizeBytes,
       model_step1: step1Model,
-      model_step2: step2.modelUsed
+      model_step2: step2Model
     };
     return { ok: true as const, parsed };
   } finally {

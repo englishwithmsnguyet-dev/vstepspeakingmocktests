@@ -438,7 +438,14 @@
           };
           if (upgradedPath) payload.upgraded_audio_path = upgradedPath;
 
-          const res = await GRADER.callEdgeFunction(payload, token);
+          let res = await GRADER.callEdgeFunction(payload, token);
+          // Tự động thử lại 1 lần nếu AI gặp lỗi JSON hoặc lỗi mạng tạm thời (giữ nguyên các Part đã chấm xong)
+          if (!res.ok && /JSON|502|503|timeout|network/i.test(String(res.error || ""))) {
+            state.gradingStepText = `Đang thử chấm lại Part ${pNum}/3...`;
+            render();
+            const retryPayload = { ...payload, reset_existing: false };
+            res = await GRADER.callEdgeFunction(retryPayload, token);
+          }
           if (!res.ok) {
             state.gradingId = "";
             state.gradingStepText = "";

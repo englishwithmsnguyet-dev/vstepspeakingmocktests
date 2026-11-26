@@ -2327,7 +2327,7 @@ html {
 body {
     font-family: var(--font-main) !important;
     font-size: var(--fs-body);
-    line-height: 1.65;
+    line-height: 1.85;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -2351,7 +2351,7 @@ textarea {
 }
 .welcome-desc {
     font-size: 15.5px;
-    line-height: 1.65;
+    line-height: 1.85;
 }
 .app-footer {
     font-size: var(--fs-sm);
@@ -2395,7 +2395,7 @@ textarea {
 .input-group label,
 .mic-status-msg {
     font-size: var(--fs-sm);
-    line-height: 1.55;
+    line-height: 1.75;
 }
 .input-group input[type="text"] {
     font-size: 15.5px;
@@ -2419,23 +2419,26 @@ textarea {
 .topic-desc,
 .section-subtitle {
     font-size: var(--fs-sub);
-    line-height: 1.45;
+    line-height: 1.6;
 }
 .question-list li,
 .situation-desc,
 .factor-card h4,
 .follow-up-list {
     font-size: var(--fs-body);
-    line-height: 1.7;
+    line-height: 1.9;
+}
+.follow-up-list {
+    gap: 12px;
 }
 .factor-desc,
 .follow-up-box h4 {
     font-size: var(--fs-ui);
-    line-height: 1.6;
+    line-height: 1.75;
 }
 .prep-tips-box {
     font-size: var(--fs-sm);
-    line-height: 1.55;
+    line-height: 1.75;
 }
 .q-num {
     font-size: var(--fs-xs);
@@ -2470,30 +2473,34 @@ textarea {
 }
 .teacher-feedback-box textarea {
     font-size: 15.5px;
-    line-height: 1.65;
+    line-height: 1.85;
 }
 
-/* Solution Screen (Tab Bài Giải) - Uniform & Harmonious Serif Hierarchy */
+/* Solution Screen (Tab Bài Giải) - Uniform & Airy Serif Line Spacing */
 .sol-tab-btn {
     font-size: var(--fs-ui);
 }
 .sol-part-title {
     font-size: 20px;
-    line-height: 1.35;
+    line-height: 1.45;
 }
 .sol-topic-header {
     font-size: var(--fs-sub);
-    line-height: 1.45;
+    line-height: 1.6;
 }
 .sol-question-text {
     font-size: var(--fs-body);
-    line-height: 1.6;
+    line-height: 1.75;
+    margin-bottom: 10px;
 }
 .sol-situation-box,
 .sol-answer-box,
 .level-content {
     font-size: var(--fs-body);
-    line-height: 1.75;
+    line-height: 1.95;
+}
+.sol-situation-box ul li {
+    margin-bottom: 6px;
 }
 .level-badge {
     font-size: 12px;
@@ -2501,7 +2508,7 @@ textarea {
 .sol-translation,
 .translation-text {
     font-size: var(--fs-ui) !important;
-    line-height: 1.7;
+    line-height: 1.9;
 }
 .translation-toggle {
     font-size: var(--fs-ui);
@@ -2517,13 +2524,13 @@ textarea {
     font-size: var(--fs-ui) !important;
 }
 
-/* Cat Paw Framework Box - Harmonious Serif Sizing */
+/* Cat Paw Framework Box - Airy Serif Line Spacing */
 .framework-toggle {
     font-size: var(--fs-ui) !important;
 }
 .framework-box {
     font-size: var(--fs-ui) !important;
-    line-height: 1.75 !important;
+    line-height: 1.9 !important;
 }
 .framework-box > div:nth-child(1),
 .framework-box > div:nth-child(3) {
@@ -2531,14 +2538,18 @@ textarea {
 }
 .framework-box > div:nth-child(2) {
     font-size: var(--fs-body) !important;
-    line-height: 2.05 !important;
+    line-height: 2.25 !important;
 }
 .framework-box > div:nth-child(2) strong {
     font-size: var(--fs-ui) !important;
 }
+.framework-box ul {
+    gap: 11px !important;
+}
 .framework-box ul li {
     font-size: var(--fs-ui) !important;
-    line-height: 1.75 !important;
+    line-height: 1.95 !important;
+    padding: 11px 16px 11px 40px !important;
 }
 .framework-box ul li strong {
     font-size: var(--fs-sm) !important;

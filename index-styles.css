@@ -758,7 +758,7 @@ html {
 body {
     font-family: var(--font-main) !important;
     font-size: var(--fs-body);
-    line-height: 1.65;
+    line-height: 1.85;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -808,17 +808,20 @@ textarea {
 }
 
 /* Main Reading Content */
+.note-list {
+    gap: 12px;
+}
 .note-list li {
     font-size: 15.5px;
-    line-height: 1.68;
+    line-height: 1.9;
 }
 .test-card-desc {
     font-size: var(--fs-ui);
-    line-height: 1.6;
+    line-height: 1.8;
 }
 .topic-bullet {
     font-size: var(--fs-sm);
-    line-height: 1.55;
+    line-height: 1.75;
 }
 
 /* Controls & Badges */

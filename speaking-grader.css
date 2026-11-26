@@ -765,7 +765,7 @@
 .sg-revised-box,
 .sg-alert {
     font-size: 14.5px;
-    line-height: 1.7;
+    line-height: 1.85;
 }
 .sg-block-title {
     font-size: 15.5px;
@@ -781,6 +781,7 @@
 .sg-sidebar-teacher-btn,
 .sg-notif-head {
     font-size: 13.5px;
+    line-height: 1.7;
 }
 .sg-submit-btn {
     font-size: 14.5px;

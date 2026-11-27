@@ -217,7 +217,7 @@
   <div id="teacher-root"></div>
 
   <script src="./speaking-grader-config.js?v=20261126_8h"></script>
-  <script src="./speaking-grader.js?v=20261127_band"></script>
+  <script src="./speaking-grader.js?v=20261127_partband"></script>
   <script>
     (function () {
       const CFG = window.VSTEP_SPEAKING_GRADER_CONFIG || {};
@@ -875,9 +875,18 @@
 
         const el = document.getElementById(`tg-app-note-${subId}`);
         const bandEl = document.getElementById(`tg-app-band-${subId}`);
+        const p1El = document.getElementById(`tg-app-p1-band-${subId}`);
+        const p2El = document.getElementById(`tg-app-p2-band-${subId}`);
+        const p3El = document.getElementById(`tg-app-p3-band-${subId}`);
         const note = clearNote ? "" : String(el ? el.value : "").trim();
         const chosenBand = String(bandEl ? bandEl.value : "").trim();
-        if (!clearNote && !note && !chosenBand) {
+        const pBands = {
+          part1: String(p1El ? p1El.value : "").trim(),
+          part2: String(p2El ? p2El.value : "").trim(),
+          part3: String(p3El ? p3El.value : "").trim()
+        };
+        const hasAnyPartBand = Boolean(pBands.part1 || pBands.part2 || pBands.part3);
+        if (!clearNote && !note && !chosenBand && !hasAnyPartBand) {
           alert("Vui lòng chọn Mức đạt hoặc nhập nhận xét của Giáo viên trước khi lưu.");
           return;
         }
@@ -902,11 +911,36 @@
           }
         }
 
+        if (existingJson.parts && typeof existingJson.parts === "object") {
+          [1, 2, 3].forEach(n => {
+            const pk = `part${n}`;
+            const nb = pBands[pk];
+            if (nb && existingJson.parts[pk] && typeof existingJson.parts[pk] === "object") {
+              const oldPb = String(existingJson.parts[pk].estimated_band || "").trim();
+              existingJson.parts[pk].estimated_band = nb;
+              if (oldPb && oldPb !== nb && typeof existingJson.overall_comment === "string") {
+                existingJson.overall_comment = existingJson.overall_comment.replace(
+                  `Part ${n} (${oldPb})`,
+                  `Part ${n} (${nb})`
+                );
+              }
+            }
+          });
+        }
+
+        const prevApb = prevOv.approved_part_bands && typeof prevOv.approved_part_bands === "object"
+          ? prevOv.approved_part_bands
+          : {};
         existingJson.teacher_override = {
           ...prevOv,
           decision: "approved",
           hide_ai_review: false,
           approved_band: chosenBand || prevOv.approved_band || "",
+          approved_part_bands: {
+            part1: pBands.part1 || prevApb.part1 || "",
+            part2: pBands.part2 || prevApb.part2 || "",
+            part3: pBands.part3 || prevApb.part3 || ""
+          },
           approved_comment: note,
           reviewed_by: state.teacherEmail,
           reviewed_at: nowIso
@@ -930,7 +964,7 @@
         state.savedToastId = subId;
         state.savedToastText = clearNote
           ? "✅ Đã xoá nhận xét thêm của Giáo viên."
-          : `💾 Đã lưu kết luận GV${chosenBand ? ` (${chosenBand})` : ""} và nhận xét gửi học viên!`;
+          : `💾 Đã lưu đánh giá GV (tổng & từng Part) và nhận xét gửi học viên!`;
         await loadDashboardData();
         setTimeout(() => {
           if (state.savedToastId === subId) {
@@ -1722,14 +1756,33 @@
 
             ${
               s.teacherDecision === "approved"
-                ? `<div class="tg-approved-note-box">
-                    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
-                      <label for="tg-app-band-${escapeHtml(s.id)}" style="font-size:12px;font-weight:800;color:#166534;">
-                        🎯 Chốt đánh giá (Đạt / Chưa đạt):
-                      </label>
-                      <select id="tg-app-band-${escapeHtml(s.id)}" class="tg-input" style="min-width:170px;padding:5px 9px;font-size:12.5px;border-color:#86efac;font-weight:800;">
-                        ${renderBandOptions((tOv && tOv.approved_band) || band || "")}
-                      </select>
+                ? (() => {
+                    const rjParts = (rj && rj.parts) || {};
+                    const apb = (tOv && tOv.approved_part_bands) || {};
+                    const getPB = n =>
+                      apb[`part${n}`] ||
+                      (rjParts[`part${n}`] && !rjParts[`part${n}`].skipped ? rjParts[`part${n}`].estimated_band || "" : "");
+                    return `<div class="tg-approved-note-box">
+                    <div style="font-size:12px;font-weight:800;color:#166534;margin-bottom:6px;">
+                      🎯 Chốt đánh giá của Giáo viên (Tổng thể &amp; từng Part):
+                    </div>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;margin-bottom:10px;">
+                      <div>
+                        <label for="tg-app-band-${escapeHtml(s.id)}" style="display:block;font-size:11px;font-weight:800;color:#14532d;margin-bottom:3px;">📊 Tổng thể</label>
+                        <select id="tg-app-band-${escapeHtml(s.id)}" class="tg-input" style="width:100%;padding:5px 8px;font-size:12.5px;border-color:#22c55e;font-weight:800;">
+                          ${renderBandOptions((tOv && tOv.approved_band) || band || "")}
+                        </select>
+                      </div>
+                      ${[1, 2, 3]
+                        .map(
+                          n => `<div>
+                        <label for="tg-app-p${n}-band-${escapeHtml(s.id)}" style="display:block;font-size:11px;font-weight:800;color:#14532d;margin-bottom:3px;">🎙️ Part ${n}</label>
+                        <select id="tg-app-p${n}-band-${escapeHtml(s.id)}" class="tg-input" style="width:100%;padding:5px 8px;font-size:12.5px;border-color:#86efac;font-weight:700;">
+                          ${renderBandOptions(getPB(n))}
+                        </select>
+                      </div>`
+                        )
+                        .join("")}
                     </div>
                     <label for="tg-app-note-${escapeHtml(s.id)}" style="display:block;font-size:12px;font-weight:800;color:#166534;margin-bottom:5px;">
                       💬 Nhận xét thêm của Cô Nguyệt (hiển thị ngay đầu bài sửa gửi cho học viên):
@@ -1753,7 +1806,8 @@
                           : ""
                       }
                     </div>
-                  </div>`
+                  </div>`;
+                  })()
                 : ""
             }
 

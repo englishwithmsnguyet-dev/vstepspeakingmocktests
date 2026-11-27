@@ -578,12 +578,21 @@
     let html = "";
     const approvedNote = String(tOv.approved_comment || "").trim();
     const approvedBand = String(tOv.approved_band || "").trim();
+    const apb = tOv.approved_part_bands && typeof tOv.approved_part_bands === "object" ? tOv.approved_part_bands : {};
+    const apbBadges = [1, 2, 3]
+      .map(n => {
+        const b = String(apb[`part${n}`] || "").trim();
+        return b ? `<span class="sg-badge ${getBandToneClass(b)}" style="font-size:11.5px;">Part ${n}: ${escapeHtml(b)}</span>` : "";
+      })
+      .filter(Boolean)
+      .join(" ");
     if (decision === "approved") {
       html += `
         <div class="sg-alert success" style="margin-bottom:10px;">
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
             <span>✅ <strong>${isTeacherView ? "Giáo viên đã xác nhận ĐỒNG Ý với bài chấm AI này." : "Cô Nguyệt đã kiểm tra và duyệt bài sửa này."}</strong></span>
             ${approvedBand ? `<span class="sg-badge ${getBandToneClass(approvedBand)}">Kết luận GV: ${escapeHtml(approvedBand)}</span>` : ""}
+            ${apbBadges}
           </div>
           ${
             approvedNote
@@ -647,6 +656,16 @@
     }
 
     const tOvObj = reviewJson.teacher_override && typeof reviewJson.teacher_override === "object" ? reviewJson.teacher_override : null;
+    const apbObj = tOvObj && tOvObj.approved_part_bands && typeof tOvObj.approved_part_bands === "object" ? tOvObj.approved_part_bands : {};
+    const withPartBand = (partObj, key) => {
+      if (!partObj) return null;
+      const ovBand = String(apbObj[key] || "").trim();
+      return ovBand ? { ...partObj, estimated_band: ovBand } : partObj;
+    };
+    const p1Eff = withPartBand(p1, "part1");
+    const p2Eff = withPartBand(p2, "part2");
+    const p3Eff = withPartBand(p3, "part3");
+
     const overallBand = String((tOvObj && tOvObj.approved_band) || reviewJson.estimated_band || "");
     const overallScore =
       isTeacherView && reviewJson.overall_score !== undefined && reviewJson.overall_score !== null
@@ -654,9 +673,9 @@
         : null;
 
     const summaryCards = [
-      { key: "p1", title: "Part 1 · Social Interaction", data: p1 },
-      { key: "p2", title: "Part 2 · Solution Discussion", data: p2 },
-      { key: "p3", title: "Part 3 · Topic Development", data: p3 }
+      { key: "p1", title: "Part 1 · Social Interaction", data: p1Eff },
+      { key: "p2", title: "Part 2 · Solution Discussion", data: p2Eff },
+      { key: "p3", title: "Part 3 · Topic Development", data: p3Eff }
     ]
       .map(item => {
         const d = item.data;
@@ -685,9 +704,9 @@
         ${tOvHtml}
         <div class="sg-review-tabs">
           <button type="button" class="sg-tab-btn active" data-sg-tab-target="${uid}__overview">📊 Tổng quan</button>
-          <button type="button" class="sg-tab-btn" data-sg-tab-target="${uid}__p1">🎙️ Part 1 ${p1 && !p1.skipped ? `(${escapeHtml(p1.estimated_band || "")})` : "(Trống)"}</button>
-          <button type="button" class="sg-tab-btn" data-sg-tab-target="${uid}__p2">💡 Part 2 ${p2 && !p2.skipped ? `(${escapeHtml(p2.estimated_band || "")})` : "(Trống)"}</button>
-          <button type="button" class="sg-tab-btn" data-sg-tab-target="${uid}__p3">🧭 Part 3 ${p3 && !p3.skipped ? `(${escapeHtml(p3.estimated_band || "")})` : "(Trống)"}</button>
+          <button type="button" class="sg-tab-btn" data-sg-tab-target="${uid}__p1">🎙️ Part 1 ${p1Eff && !p1Eff.skipped ? `(${escapeHtml(p1Eff.estimated_band || "")})` : "(Trống)"}</button>
+          <button type="button" class="sg-tab-btn" data-sg-tab-target="${uid}__p2">💡 Part 2 ${p2Eff && !p2Eff.skipped ? `(${escapeHtml(p2Eff.estimated_band || "")})` : "(Trống)"}</button>
+          <button type="button" class="sg-tab-btn" data-sg-tab-target="${uid}__p3">🧭 Part 3 ${p3Eff && !p3Eff.skipped ? `(${escapeHtml(p3Eff.estimated_band || "")})` : "(Trống)"}</button>
         </div>
 
         <div class="sg-tab-panel active" id="${uid}__overview">
@@ -701,13 +720,13 @@
         </div>
 
         <div class="sg-tab-panel" id="${uid}__p1">
-          ${renderSinglePartPanelHtml(p1, "Part 1", targetLevel, isTeacherView)}
+          ${renderSinglePartPanelHtml(p1Eff, "Part 1", targetLevel, isTeacherView)}
         </div>
         <div class="sg-tab-panel" id="${uid}__p2">
-          ${renderSinglePartPanelHtml(p2, "Part 2", targetLevel, isTeacherView)}
+          ${renderSinglePartPanelHtml(p2Eff, "Part 2", targetLevel, isTeacherView)}
         </div>
         <div class="sg-tab-panel" id="${uid}__p3">
-          ${renderSinglePartPanelHtml(p3, "Part 3", targetLevel, isTeacherView)}
+          ${renderSinglePartPanelHtml(p3Eff, "Part 3", targetLevel, isTeacherView)}
         </div>
       </div>
     `;
